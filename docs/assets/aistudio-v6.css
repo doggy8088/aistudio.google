@@ -60,7 +60,7 @@ body,
   background: #1e1f20;
   border: 1px solid #444746;
 }
-.md-sidebar--secondary { display: none; }
+.md-sidebar--secondary:not([hidden]) { display: none; }
 @media screen and (max-width: 76.234375em) {
   .md-content__inner { padding: 1.2rem 1.1rem 1.6rem; border-radius: 12px; }
 }
@@ -154,6 +154,14 @@ body,
 
 /* sidebar shows only the current top-bar section (docs / api-reference) */
 .ais-offsection { display: none !important; }
+/* current section: no group header (top bar names it), no first-level
+   guide line, children sit at the top level */
+.ais-rootsection > .md-nav__link { display: none !important; }
+.md-nav--primary .ais-rootsection > .md-nav > .md-nav__list {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none !important;
+}
 
 /* filter box injected by aistudio.js, mirroring the official "Filter" */
 .ais-filter { padding: 0.35rem 0.55rem 0.7rem 0.15rem; }

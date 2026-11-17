@@ -19,6 +19,7 @@
        the sidebar shows only the current section's tree (like the
        official site): hide the other section's group and landing page. */
     var mode = window.location.pathname.indexOf("/api-reference") === 0 ? "api" : "docs";
+    var keepPrefix = mode === "api" ? "/api-reference/" : "/docs/";
     var otherPrefix = mode === "api" ? "/docs/" : "/api-reference/";
     var rootList = wrap.querySelector(".md-nav--primary > .md-nav__list");
     if (rootList) {
@@ -26,7 +27,15 @@
         var a = li.querySelector(":scope > a.md-nav__link") || li.querySelector("a.md-nav__link");
         if (!a) return;
         var p = new URL(a.getAttribute("href"), window.location.href).pathname;
-        if (p.indexOf(otherPrefix) === 0) li.classList.add("ais-offsection");
+        if (p.indexOf(otherPrefix) === 0) {
+          li.classList.add("ais-offsection");
+        } else if (p.indexOf(keepPrefix) === 0 && li.classList.contains("md-nav__item--section")) {
+          /* current section: drop its redundant group header (the top
+             bar already names the section) and flatten its children */
+          li.classList.add("ais-rootsection");
+          var toggle = li.querySelector(":scope > .md-nav__toggle");
+          if (toggle) toggle.checked = true;
+        }
       });
     }
 
