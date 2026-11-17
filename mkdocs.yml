@@ -1,0 +1,33 @@
+site_name: Google AI Studio 文件｜繁體中文版
+site_url: https://aistudio.gh.miniasp.com/
+site_description: Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。
+copyright: 原文 © Google，來源：<a href="https://aistudio.google.com/docs">aistudio.google.com</a>｜繁體中文翻譯版（非官方）
+theme:
+  name: material
+  language: zh-TW
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+extra:
+  generator: false

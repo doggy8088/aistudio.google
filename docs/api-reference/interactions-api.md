@@ -1,0 +1,9804 @@
+# Gemini Interactions API
+
+
+!!! note " "
+
+      **建議**：**Interactions API** 是所有使用 Gemini 的新專案與應用程式所推薦的標準 API。它針對代理工作流程、伺服器端狀態管理與即時對話進行了最佳化。
+
+
+!!! note " "
+
+      你正在檢視 Interactions API 的 beta 版本。端點位於 `/v1beta/` 之下。另有穩定的 [v1 版本](/api-reference/interactions-api/?api-version=v1) 可供使用。
+
+
+Gemini Interactions API 讓開發人員能使用 Gemini 模型建構生成式 AI 應用程式。Gemini 是我們能力最強的模型，從一開始就以多模態為設計核心。它能泛化並流暢地理解、處理及結合不同類型的資訊，包括語言、圖片、音訊、影片與程式碼。你可以將 Gemini API 用於跨文字與圖片的推理、內容生成、對話代理、摘要與分類系統等用途。
+
+## 方法 {#methods}
+
+
+| 方法 | HTTP 請求 |
+| --- | --- |
+| [建立互動](/api-reference/interactions-api/create-interaction/) | `POST` `/v1beta/interactions` 建立新的互動。 |
+| [取消互動](/api-reference/interactions-api/cancel-interaction-by-id/) | `POST` `/v1beta/interactions/{id}/cancel` 依 id 取消互動。 |
+| [取得互動](/api-reference/interactions-api/get-interaction-by-id/) | `GET` `/v1beta/interactions/{id}` 依 `Interaction.id` 擷取單一互動的完整詳細資料。 |
+| [刪除互動](/api-reference/interactions-api/delete-interaction/) | `DELETE` `/v1beta/interactions/{id}` 依 id 刪除互動。 |
+
+
+## 資源 {#resources}
+
+### Interaction {#Resource:Interaction}
+
+Interaction 資源。
+
+
+  
+  **屬性**：
+
+  
+  **id**: required `string`
+
+  僅供輸出。互動完成的專屬識別碼。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**status**: required `string enum` 僅供輸出。互動的狀態。</summary>
+
+  
+
+  可能的值：
+
+  - `in_progress`：互動進行中。
+  - `requires_action`：互動需要使用者採取動作／提供輸入。
+  - `completed`：互動已完成。
+  - `failed`：互動失敗。
+  - `cancelled`：互動已取消。
+  - `incomplete`：互動已完成，但結果不完整（例如達到 max_tokens）。
+  - `requires_continuation`：互動至少還需要再發出一次請求才能完成。下一個請求應將 continuation_token 設為本次請求所回傳的值。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **created**: required `string`
+
+  僅供輸出。回應的建立時間，採用 ISO 8601 格式（YYYY-MM-DDThh:mm:ssZ）。
+
+  
+
+---
+
+
+  **updated**: required `string`
+
+  僅供輸出。回應的最後更新時間，採用 ISO 8601 格式（YYYY-MM-DDThh:mm:ssZ）。
+
+  
+
+---
+
+
+  **steps**: required [`Step`](/api-reference/interactions-api/#Resource:Step) `array`
+
+  僅供輸出。組成互動的步驟（包含在回應中時）。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**model**: `ModelOption` 用來生成互動的 `Model` 名稱。</summary>
+
+  
+
+  可能的值：
+
+  - `gemma-4-26b-a4b-it`: Gemma 4 26B A4B IT
+  - `gemma-4-31b-it`: Gemma 4 31B IT
+  - `gemini-flash-latest`：Gemini Flash 的最新版本
+  - `gemini-flash-lite-latest`：Gemini Flash-Lite 的最新版本
+  - `gemini-pro-latest`：Gemini Pro 的最新版本
+  - `gemini-2.5-flash`：我們第一個混合推理模型，支援 100 萬權杖的上下文視窗，並具備思考預算。
+  - `gemini-2.5-pro`：我們最先進的多用途模型，擅長撰寫程式碼與複雜的推理任務。
+  - `gemini-2.5-flash-lite`：我們最小、最具成本效益的模型，專為大規模使用而打造。
+  - `gemini-3.5-flash-lite`：Gemini 3.5 Flash-Lite——我們最快、最具成本效益的 3.5 模型，適合高輸送量執行。
+  - `gemini-2.5-flash-image`：我們的原生圖片生成模型，針對速度、彈性與上下文理解進行最佳化。文字輸入與輸出的計價與 2.5 Flash 相同。
+  - `gemini-3-flash-preview`：我們為速度而打造的最聰明模型，結合前沿智慧與卓越的搜尋及接地能力。
+  - `gemini-3.1-pro-preview`：我們最新的 SOTA 推理模型，具備前所未有的深度與細膩度，以及強大的多模態理解與程式設計能力。
+  - `gemini-3.1-pro-preview-customtools`：針對自訂工具使用最佳化的 Gemini 3.1 Pro Preview
+  - `gemini-3.1-flash-lite`：我們最具成本效益的模型，針對大量代理任務、翻譯與簡單資料處理進行最佳化。
+  - `gemini-3.1-flash-lite-image`：Gemini 3.1 Flash Lite Image。
+  - `gemini-3-pro-image`: Gemini 3 Pro Image
+  - `nano-banana-pro-preview`: Gemini 3 Pro Image Preview
+  - `gemini-3.1-flash-image`：Gemini 3.1 Flash Image。
+  - `gemini-nano-banana-2.1`: Gemini Nano Banana 2.1.
+  - `gemini-3.1-flash-tts-preview`：Gemini 3.1 Flash TTS：強大、低延遲的語音生成。享有自然的輸出、可引導的提示詞，以及全新的富表現力音訊標籤，精確控制旁白。
+  - `gemini-3.5-flash`：Gemini 3.5 Flash——我們較早期的 Flash 模型，為速度而打造，在日常、高輸送量的工作負載中具備基礎效能。
+  - `gemini-3.6-flash`：Gemini 3.6 Flash——我們上一代的 Flash 模型，在一般代理與日常任務中兼顧速度與多模態能力。
+  - `gemini-3.7-flash`：Gemini 3.7 Flash——我們高速、高效率的 Flash 模型，為日常程式設計、代理工具使用與可靠的多步驟執行而打造。
+  - `gemini-3.8-flash`：Gemini 3.8 Flash——我們最聰明的 Flash 模型，專為長程軟體工程、自主代理與複雜的企業工作流程而設計。
+  - `gemini-4-argon`：Gemini 4 Argon——我們全新的前沿模型，以深度與精確度解決真實世界軟體工程與知識工作中最困難的問題。
+  - `gemini-4-carbon`：Gemini 4 Carbon——我們能力最強的推理模型，為持續性的代理程式設計、多模態知識工作、科學探索與網路安全防禦而打造。
+  - `gemini-4-hydrogen`：Gemini 4 Hydrogen——具備前沿級智慧的模型，為程式設計、代理工作流程與多模態知識工作中的快速、可靠執行而打造。
+  - `gemini-3.8-flash-tts`：Gemini 3.8 Flash TTS——旗艦 TTS 模型，支援 Voice Design 與雙說話者劇本控制。可提示自訂聲音角色、逐行指導朗讀方式，並加入聲音爆發效果。
+  - `gemini-3.8-flash-lite-tts`：Gemini 3.8 Flash Lite TTS——高速且具成本效益，非常適合快速配音、媒體在地化與高輸送量的語音代理。可直接取代 gemini-3.1-flash-tts-preview。
+  - `gemini-3.5-transcribe`：Gemini 3.5 Transcribe——低延遲的語音轉文字模型，具備以語句為單位的語言偵測、說話者分離、字詞層級時間戳記與自訂詞彙偏置。
+  - `lyria-3-clip-preview`：我們低延遲的音樂生成模型，針對高保真音訊片段與精確的節奏控制進行最佳化。
+  - `lyria-3-pro-preview`：我們先進的完整歌曲生成模型，具備深厚的作曲理解能力，針對精確的結構控制與多樣音樂風格間的複雜轉場進行最佳化。
+  - `gemini-robotics-er-1.6-preview`: Gemini Robotics-ER 1.6 Preview
+  - `gemini-robotics-er-2-preview`: Gemini Robotics Embodied Reasoning 2 Preview
+  - `lyria-3.5`：我們的旗艦音樂生成模型，針對結構連貫複雜的完整長度歌曲進行最佳化。
+  - `gemini-omni-1.2-flash`：Gemini Omni 1.2 Flash——我們最新的多模態模型，支援快速、對話式的影片生成、編輯與電影級控制。
+  - `gemini-omni-1.1-flash`：Gemini Omni 1.1 Flash——我們的高效能多模態模型，專為快速、對話式的影片生成、編輯與電影級控制而設計。
+  - `gemini-omni-flash-preview`：我們多模態模型的預覽版，支援對話式的影片生成、編輯與電影級控制。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**generation_config**: `GenerationConfig` 僅供輸入。模型互動的設定參數。</summary>
+
+  
+
+  **seed**: `integer`
+
+  解碼時用來確保可重現性的種子。
+
+  **stop_sequences**: `string array`
+
+  會停止輸出互動的字元序列清單。
+
+  
+
+<details>
+<summary>**tool_choice**: [`ToolChoiceConfig`](/api-reference/interactions-api/#Resource:ToolChoiceConfig) or `string enum` 工具選擇設定。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[ToolChoiceConfig](/api-reference/interactions-api/#Resource:ToolChoiceConfig)**</summary>
+
+  
+
+  包含允許使用之工具的工具選擇設定。
+
+  
+
+<details>
+<summary>**allowed_tools**: `AllowedTools` 允許使用的工具。</summary>
+
+  
+
+  
+
+<details>
+<summary>**mode**: `string enum` 工具選擇的模式。</summary>
+
+  
+
+  可能的值：
+
+  - `auto`：自動工具選擇。
+  - `any`：任意工具選擇。
+  - `none`：不選擇工具。
+  - `validated`：已驗證的工具選擇。
+
+  
+
+</details>
+
+
+  **tools**: `string array`
+
+  允許使用的工具名稱。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `auto`：自動工具選擇。
+  - `any`：任意工具選擇。
+  - `none`：不選擇工具。
+  - `validated`：已驗證的工具選擇。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**thinking_level**: `ThinkingLevel` 模型應生成的思考權杖層級。</summary>
+
+  
+
+  可能的值：
+
+  - `minimal`：幾乎不思考。
+  - `low`：低思考層級。
+  - `medium`：中思考層級。
+  - `high`：高思考層級。
+  - `xhigh`：超高思考層級，高於 `high`。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**thinking_summaries**: `ThinkingSummaries` 是否在回應中包含思考摘要。
+
+  
+
+  可能的值：
+
+  - `auto`：自動思考摘要。
+  - `none`：不含思考摘要。
+
+  
+
+</details>
+
+
+  **max_output_tokens**: `integer`
+
+  回應中可包含的權杖數量上限。
+
+  
+
+<details>
+<summary>**video_config**: `VideoConfig` 影片生成的設定。</summary>
+
+  
+
+  
+
+<details>
+<summary>**task**: `string enum` 影片生成的選用任務模式。未指定時，模型會依提供的文字提示詞與輸入媒體自動決定適當的模式。</summary>
+
+  
+
+  可能的值：
+
+  - `text_to_video`：僅依文字提示詞生成影片。
+  - `image_to_video`：從一或兩張來源圖片生成影片。第一張圖片定義起始畫面，選用的第二張圖片定義結束畫面。
+  - `reference_to_video`：使用參考媒體（例如圖片、音訊或影片）生成影片。
+  - `edit`：修改既有的輸入影片。
+  - `extend`：延長既有的輸入影片。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**transcription_config**: `TranscriptionConfig` 選用。語音辨識（轉錄）的設定。提供時即啟用 ASR。</summary>
+
+  
+
+  **language_codes**: `string array`
+
+  選用。BCP-47 語言代碼，提供音訊中所含語言的提示。省略或留空時，預設為自動偵測語言。
+
+  **custom_vocabulary**: `string array`
+
+  選用。自訂詞彙片語清單，用來引導語音辨識模型偏向辨識特定詞彙。
+
+  
+
+<details>
+<summary>**mode**: `TranscriptionMode` or `string enum` 具判別性的轉錄模式選項或列舉。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**SmartTranscriptionMode**</summary>
+
+  
+
+  智慧轉錄模式的設定。
+
+  **type**: required `object`
+
+  Value: `smart`
+
+  **source_text**: `string`
+
+  要透過語音指令編輯或改寫的來源文字。提供時，模型會進行語音驅動的編輯，並輸出定稿的替代文字。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**VerbatimTranscriptionMode**</summary>
+
+  
+
+  逐字轉錄模式的設定。
+
+  **type**: required `object`
+
+  Value: `verbatim`
+
+  **timestamp_granularities**: `string array`
+
+  選用。轉錄輸出中時間戳記的精細程度。支援的值："word"。留空時不生成時間戳記。
+
+  **diarization_mode**: `string`
+
+  選用。設定說話者分離。支援的值："speaker"。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `verbatim`：逐字轉錄模式。
+  - `smart`：智慧轉錄模式。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**structured_speech_config**: `SpeakerConfig` or `SpeechConfig array` 語音與多說話者設定。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**SpeakerConfig**</summary>
+
+  
+
+  多說話者與語音生成的設定。
+
+  
+
+<details>
+<summary>**speakers**: `SpeechConfig array` 各說話者的個別設定。</summary>
+
+  
+
+  **voice**: `string`
+
+  說話者的聲音。
+
+  **language**: `string`
+
+  語音的語言。
+
+  **speaker**: `string`
+
+  說話者的名稱，應與提示詞中給定的說話者名稱相符。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**SpeechConfig array**</summary>
+
+  
+
+  語音互動的設定。
+
+  **voice**: `string`
+
+  說話者的聲音。
+
+  **language**: `string`
+
+  語音的語言。
+
+  **speaker**: `string`
+
+  說話者的名稱，應與提示詞中給定的說話者名稱相符。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **system_instruction**: `string`
+
+  互動的系統指令。
+
+  
+
+---
+
+
+  **tools**: [`Tool`](/api-reference/interactions-api/#Resource:Tool) `array`
+
+  模型在互動期間可呼叫的工具宣告清單。
+
+  
+
+---
+
+
+  **input**: [`Content`](/api-reference/interactions-api/#Resource:Content) or [`Content`](/api-reference/interactions-api/#Resource:Content) `array` or [`Step`](/api-reference/interactions-api/#Resource:Step) `array` or `string`
+
+  互動的輸入。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**usage**: `Usage` 僅供輸出。互動請求的權杖用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**response_format**: [`ResponseFormat`](/api-reference/interactions-api/#Resource:ResponseFormat) or [`ResponseFormat`](/api-reference/interactions-api/#Resource:ResponseFormat) `array` 強制生成的回應必須是符合此欄位所指定 JSON 架構的 JSON 物件。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[ResponseFormat](/api-reference/interactions-api/#Resource:ResponseFormat)**</summary>
+
+  
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**[ResponseFormat](/api-reference/interactions-api/#Resource:ResponseFormat) array**</summary>
+
+  
+
+  清單中的每個項目為下列其中之一：`AudioResponseFormat`、`ImageResponseFormat`、`TextResponseFormat`、`VideoResponseFormat`。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **previous_interaction_id**: `string`
+
+  前一個互動的 ID（如有）。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**environment**: [`EnvironmentConfig`](/api-reference/interactions-api/#Resource:EnvironmentConfig) or `string` 互動的環境設定。可以是指定遠端環境來源的物件，或是參照既有環境 ID 的字串。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[EnvironmentConfig](/api-reference/interactions-api/#Resource:EnvironmentConfig)**</summary>
+
+  
+
+  自訂環境的設定。
+
+  **type**: required `object`
+
+  Value: `remote`
+
+  
+
+<details>
+<summary>**sources**: `Source array`</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `gcs`：Cloud Storage 值區。
+  - `inline`：行內內容。
+  - `repository`：一般存放庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
+
+  
+
+</details>
+
+
+  **source**: `string`
+
+  環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
+
+  **target**: `string`
+
+  來源應在環境中出現的位置。
+
+  **content**: `string`
+
+  當 `type` 為 `INLINE` 時的行內內容。
+
+  **encoding**: `string`
+
+  行內內容的選用編碼（例如 `base64`）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**network**: [`EnvironmentNetworkEgressAllowlist`](/api-reference/interactions-api/#Resource:EnvironmentNetworkEgressAllowlist) or `string enum` 環境的網路設定。
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[EnvironmentNetworkEgressAllowlist](/api-reference/interactions-api/#Resource:EnvironmentNetworkEgressAllowlist)**</summary>
+
+  
+
+  環境的網路輸出流量設定。
+
+  
+
+<details>
+<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 可封鎖所有網路輸出流量。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**EgressRule array**</summary>
+
+  
+
+  單一網域允許清單規則，可選擇性注入標頭。
+
+  **domain**: required `string`
+
+  允許發出對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
+
+  **transform**: `object`
+
+  要注入至符合此規則之請求的標頭。Key：標頭名稱（例如 "Authorization"）。Value：標頭值（例如 "Bearer your-token"）。
+
+  **credential**: `string`
+
+  選用。以 ID 參照伺服器代管的 Credential 資源。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `disabled`：封鎖所有網路輸出流量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `disabled`：封鎖所有網路輸出流量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **environment_id**: `string`
+
+  選用。互動的環境 ID。指定時，請求會更新既有環境，而不是建立新環境。
+
+  
+
+<details>
+<summary>**env**: `object` or `string` 要在沙箱環境中設定的環境變數。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**mode**: `string enum` 此環境的運算生命週期模式。</summary>
+
+  
+
+  可能的值：
+
+  - `on_demand`：此環境的運算生命週期模式。
+  - `self_hosted`：此環境的運算生命週期模式。
+
+  
+
+</details>
+
+
+  **custom_config**: `object`
+
+  選用。任意的客戶自訂 JSON 設定，會直接傳遞給自託管環境的輪詢器。僅在 `mode` 為 `SELF_HOSTED` 時支援。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **environment_id**: `string`
+
+  僅供輸出。互動的環境 ID。僅在請求中設定了環境設定時才會填入。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**service_tier**: `ServiceTier` 互動的服務層級。
+
+  
+
+  可能的值：
+
+  - `flex`：Flex 服務層級。
+  - `standard`：Standard 服務層級。
+  - `priority`：Priority 服務層級。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**webhook_config**: `WebhookConfig` 選用。在互動完成時接收通知的 webhook 設定。</summary>
+
+  
+
+  **uris**: `string array`
+
+  選用。設定時，webhook 事件將使用這些 webhook URI，而非已註冊的 webhook。
+
+  **user_metadata**: `object`
+
+  選用。每次向 webhook 發出事件時一併回傳的使用者中繼資料。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**safety_settings**: `SafetySetting array` 互動的安全設定。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: required `HarmCategory` 要封鎖的危害類別類型。</summary>
+
+  
+
+  可能的值：
+
+  - `hate_speech`：基於特定屬性，宣揚暴力或煽動對個人或群體仇恨的內容。
+  - `dangerous_content`：宣揚、協助或促成危險活動的內容。
+  - `harassment`：辱罵、威脅，或意圖霸凌、折磨或嘲弄他人的內容。
+  - `sexually_explicit`：含有露骨性內容的內容。
+  - `jailbreak`：意圖繞過安全篩選器的提示詞。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**threshold**: required `string enum` 封鎖內容的閾值。若危害機率超過此閾值，內容將被封鎖。</summary>
+
+  
+
+  可能的值：
+
+  - `block_low_and_above`：封鎖危害機率為低或更高的內容。
+  - `block_medium_and_above`：封鎖危害機率為中或更高的內容。
+  - `block_only_high`：僅封鎖危害機率為高的內容。
+  - `off`：完全關閉安全篩選器。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**method**: `string enum` 選用。封鎖內容的方法。未指定時，預設行為是使用機率分數。</summary>
+
+  
+
+  可能的值：
+
+  - `severity`：危害封鎖方法同時使用機率與嚴重程度分數。
+  - `probability`：危害封鎖方法使用機率分數。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **labels**: `object`
+
+  請求的標籤，附有使用者定義的中繼資料。標籤鍵與值的長度不得超過 63 個字元（Unicode 碼位），且只能包含小寫字母、數字字元、底線與連字號。允許使用國際字元。標籤值為選用。標籤鍵必須以字母開頭。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**errors**: `Error array` 僅供輸出。記錄在此互動上的診斷錯誤／平台錯誤。</summary>
+
+  
+
+  **code**: `string`
+
+  識別錯誤類型的 URI。
+
+  **message**: `string`
+
+  易於閱讀的錯誤訊息。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **continuation_token**: `string`
+
+  用來恢復長時間解碼的不透明權杖。輸出：當狀態為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中將最新權杖原封不動地傳回，以繼續解碼。
+
+  
+
+---
+
+
+  **stream**: `boolean`
+
+  僅供輸入。互動是否以串流方式傳輸。
+
+  
+
+---
+
+
+  **store**: `boolean`
+
+  僅供輸入。是否儲存回應與請求，以供日後擷取。
+
+  
+
+---
+
+
+  **background**: `boolean`
+
+  僅供輸入。是否在背景執行模型互動。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**agent**: `AgentOption` 用來生成互動的 `Agent` 名稱。</summary>
+
+  
+
+  可能的值：
+
+  - `deep-research-preview-04-2026`: Gemini Deep Research Agent
+  - `deep-research-max-preview-04-2026`: Gemini Deep Research Max Agent
+  - `antigravity-preview-05-2026`：使用 Antigravity 代管代理執行需要推理、檔案操作與工具使用的多步驟任務。
+  - `antigravity-preview-09-2026`：使用 Antigravity 代管代理執行需要推理、檔案操作與工具使用的多步驟任務。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**agent_config**: `AntigravityAgentConfig` or `DeepResearchAgentConfig` or `DynamicAgentConfig` 代理互動的設定參數。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**AntigravityAgentConfig**</summary>
+
+  
+
+  Antigravity 代理執行階段的設定。提供伺服器端對代理執行環境與工具設定的控制。
+
+  **type**: required `object`
+
+  Value: `antigravity`
+
+  **model**: `string`
+
+  代理推理所使用的模型。
+
+  **max_total_tokens**: `string`
+
+  代理執行的權杖總數上限。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**DeepResearchAgentConfig**</summary>
+
+  
+
+  Deep Research 代理的設定。
+
+  **type**: required `object`
+
+  Value: `deep-research`
+
+  
+
+<details>
+<summary>**thinking_summaries**: `ThinkingSummaries` 是否在回應中包含思考摘要。
+
+  
+
+  可能的值：
+
+  - `auto`：自動思考摘要。
+  - `none`：不含思考摘要。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**visualization**: `string enum` 是否在回應中包含視覺化內容。</summary>
+
+  
+
+  可能的值：
+
+  - `off`：不包含視覺化內容。
+  - `auto`：自動包含視覺化內容。
+
+  
+
+</details>
+
+
+  **collaborative_planning**: `boolean`
+
+  為 Deep Research 代理啟用人機協作規劃。設為 true 時，Deep Research 代理會在回應中提供研究計畫。之後只有在使用者於下一個回合確認計畫時，代理才會繼續執行。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**DynamicAgentConfig**</summary>
+
+  
+
+  動態代理的設定。
+
+  **type**: required `object`
+
+  Value: `dynamic`
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **max_total_tokens**: `string`
+
+  代理執行的權杖總數上限。
+
+  
+
+  
+
+  
+  **範例**
+
+  ```json
+  {
+    "created": "2025-12-04T15:01:45Z",
+    "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+    "model": "gemini-3.8-flash",
+    "object": "interaction",
+    "status": "completed",
+    "steps": [
+      {
+        "type": "model_output",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hello! I'm doing well, functioning as expected. Thank you for asking! How are you doing today?"
+          }
+        ]
+      }
+    ],
+    "updated": "2025-12-04T15:01:45Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 7
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 7,
+      "total_output_tokens": 23,
+      "total_thought_tokens": 49,
+      "total_tokens": 79,
+      "total_tool_use_tokens": 0
+    }
+  }
+  ```
+
+  
+
+
+## 資料模型 {#data-models}
+
+### Content {#Resource:Content}
+
+回應的內容。
+
+**多型類型**：
+
+
+<details>
+<summary>**AudioContent**</summary>
+
+  
+
+  音訊內容區塊。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `audio`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  音訊內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  音訊的 URI。
+
+  
+
+---
+
+
+  **channels**: `integer`
+
+  音訊聲道數量。
+
+  
+
+---
+
+
+  **sample_rate**: `integer`
+
+  音訊的取樣率。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 音訊的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `audio/wav`：WAV 音訊格式
+  - `audio/mp3`：MP3 音訊格式
+  - `audio/aiff`：AIFF 音訊格式
+  - `audio/aac`：AAC 音訊格式
+  - `audio/ogg`：OGG 音訊格式
+  - `audio/flac`：FLAC 音訊格式
+  - `audio/mpeg`：MPEG 音訊格式
+  - `audio/m4a`：M4A 音訊格式
+  - `audio/l16`：L16 音訊格式
+  - `audio/opus`：OPUS 音訊格式
+  - `audio/alaw`：ALAW 音訊格式
+  - `audio/mulaw`：MULAW 音訊格式
+  - `audio/webm`：WEBM 音訊格式
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **音訊**
+
+  ```json
+  {
+    "type": "audio",
+    "data": "BASE64_ENCODED_AUDIO",
+    "mime_type": "audio/wav"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**DocumentContent**</summary>
+
+  
+
+  文件內容區塊。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `document`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  文件內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  文件的 URI。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 文件的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `application/pdf`：PDF 文件格式
+  - `text/csv`：CSV 文件格式
+  - `application/vnd.openxmlformats-officedocument.presentationml.presentation`：PPTX 簡報格式
+  - `application/vnd.ms-powerpoint`：PPT 簡報格式
+  - `application/vnd.oasis.opendocument.presentation`：ODP 簡報格式
+  - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`：DOCX 文件格式
+  - `application/msword`：DOC 文件格式
+  - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`：DOTX 文件範本格式
+  - `application/vnd.oasis.opendocument.text`：ODT 文件格式
+  - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`：XLSX 試算表格式
+  - `application/vnd.ms-excel`：XLS 試算表格式
+  - `application/vnd.oasis.opendocument.spreadsheet`：ODS 試算表格式
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **文件**
+
+  ```json
+  {
+    "type": "document",
+    "data": "BASE64_ENCODED_DOCUMENT",
+    "mime_type": "application/pdf"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**[ImageContent](/api-reference/interactions-api/#Resource:ImageContent)**</summary>
+
+  
+
+  圖片內容區塊。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `image`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  圖片內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  圖片的 URI。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+
+  
+
+  可能的值：
+
+  - `low`：低解析度。
+  - `medium`：中解析度。
+  - `high`：高解析度。
+  - `ultra_high`：超高解析度。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 圖片的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `image/png`：PNG 圖片格式
+  - `image/jpeg`：JPEG 圖片格式
+  - `image/webp`：WebP 圖片格式
+  - `image/heic`：HEIC 圖片格式
+  - `image/heif`：HEIF 圖片格式
+  - `image/gif`：GIF 圖片格式
+  - `image/bmp`：BMP 圖片格式
+  - `image/tiff`：TIFF 圖片格式
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **圖片**
+
+  ```json
+  {
+    "type": "image",
+    "data": "BASE64_ENCODED_IMAGE",
+    "mime_type": "image/png"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**[TextContent](/api-reference/interactions-api/#Resource:TextContent)**</summary>
+
+  
+
+  文字內容區塊。
+
+  
+  
+  
+  **text**: required `string`
+
+  文字內容。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `text`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**FileCitation**</summary>
+
+  
+
+  檔案引用註記。
+
+  **type**: required `object`
+
+  Value: `file_citation`
+
+  **document_uri**: `string`
+
+  檔案的 URI。
+
+  **file_name**: `string`
+
+  檔案的名稱。
+
+  **source**: `string`
+
+  文字某一部分所歸因的來源。
+
+  **custom_metadata**: `object`
+
+  使用者提供的、關於所擷取上下文的中繼資料。
+
+  **page_number**: `integer`
+
+  所引用文件的頁碼（如適用）。
+
+  **media_id**: `string`
+
+  圖片引用時的媒體 ID（如適用）。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**PlaceCitation**</summary>
+
+  
+
+  地點引用註記。
+
+  **type**: required `object`
+
+  Value: `place_citation`
+
+  **place_id**: `string`
+
+  地點的 ID，格式為 `places/{place_id}`。
+
+  **name**: `string`
+
+  地點的標題。
+
+  **url**: `string`
+
+  地點的 URI 參照。
+
+  
+
+<details>
+<summary>**review_snippets**: `ReviewSnippet array` 評論摘要，用來生成關於 Google 地圖中特定地點特色的回答。</summary>
+
+  
+
+  **title**: `string`
+
+  評論的標題。
+
+  **url**: `string`
+
+  對應至 Google 地圖上使用者評論的連結。
+
+  **review_id**: `string`
+
+  評論摘要的 ID。
+
+  
+
+</details>
+
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**SpeechAnnotation**</summary>
+
+  
+
+  文字內容的語音註記。
+
+  **type**: required `object`
+
+  Value: `speech_metadata`
+
+  **speaker**: `string`
+
+  要與此回合相關聯的說話者。
+
+  **style**: `string`
+
+  語音合成的風格指令。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**UrlCitation**</summary>
+
+  
+
+  URL 引用註記。
+
+  **type**: required `object`
+
+  Value: `url_citation`
+
+  **url**: `string`
+
+  URL。
+
+  **title**: `string`
+
+  URL 的標題。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**WordInfo**</summary>
+
+  
+
+  轉錄輸出使用的字詞層級 ASR 註記，包含字詞文字、選用的時間資訊，以及選用的說話者歸屬。
+
+  **type**: required `object`
+
+  Value: `word_info`
+
+  **text**: `string`
+
+  轉錄出的字詞。
+
+  **start_offset**: `string`
+
+  字詞相對於音訊起點的開始時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **end_offset**: `string`
+
+  字詞相對於音訊起點的結束時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **speaker**: `string`
+
+  選用。此字詞的說話者標籤（例如 "spk_1"、"spk_2"）。當 TranscriptionConfig 中設定了 diarization_mode 時提供。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **文字**
+
+  ```json
+  {
+    "type": "text",
+    "text": "Hello, how are you?"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**VideoContent**</summary>
+
+  
+
+  影片內容區塊。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `video`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  影片內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  影片的 URI。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+
+  
+
+  可能的值：
+
+  - `low`：低解析度。
+  - `medium`：中解析度。
+  - `high`：高解析度。
+  - `ultra_high`：超高解析度。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**processing**: `MediaProcessing` or `string enum` 模型如何處理此影片以進行理解。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**MediaProcessing**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `static`
+
+  **start_offset**: `string`
+
+  選用。片段開始時間。以十進位秒數加上 's' 後綴指定，例如 "10.5s"。必須為非負數。
+
+  **end_offset**: `string`
+
+  選用。片段結束時間。以十進位秒數加上 's' 後綴指定，例如 "30s"。必須為非負數，且在設定了 `start_offset` 時必須大於 `start_offset`。
+
+  **fps**: `number`
+
+  選用。影片影格率取樣密度。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `static`：固定速率擷取影格。所有影格都放入上下文。
+  - `agentic`：由模型驅動的動態導覽。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **name**: `string`
+
+  此內容區塊的使用者自訂名稱。模型可在最終回應中參照此名稱。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 影片的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `video/mp4`：MP4 影片格式
+  - `video/mpeg`：MPEG 影片格式
+  - `video/mpg`：MPG 影片格式
+  - `video/mov`：MOV 影片格式
+  - `video/avi`：AVI 影片格式
+  - `video/x-flv`：FLV 影片格式
+  - `video/webm`：WebM 影片格式
+  - `video/wmv`：WMV 影片格式
+  - `video/3gpp`：3GPP 影片格式
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **影片**
+
+  ```json
+  {
+    "type": "video",
+    "uri": "https://www.youtube.com/watch?v=9hE5-98ZeCg"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+### Tool {#Resource:Tool}
+
+模型可使用的工具。
+
+**多型類型**：
+
+
+<details>
+<summary>**CodeExecution**</summary>
+
+  
+
+  模型可用來執行程式碼的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `code_execution`
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "code_execution"
+          }],
+          "input": "Calculate the first 10 Fibonacci numbers"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{"type": "code_execution"}],
+          input="Calculate the first 10 Fibonacci numbers",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [{type: 'code_execution'}],
+        input: 'Calculate the first 10 Fibonacci numbers',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.interactions.CodeExecution;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+
+      Client client = new Client();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(new CodeExecution()))
+              .input(InteractionsInput.of("Calculate the first 10 Fibonacci numbers"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "code_execution"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          tool := gaos_interactions.NewTool(gaos_interactions.CodeExecution{})
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("Calculate the first 10 Fibonacci numbers")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**ComputerUse**</summary>
+
+  
+
+  模型可用來與電腦互動的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `computer_use`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**environment**: `string enum` 正在操作的環境。</summary>
+
+  
+
+  可能的值：
+
+  - `browser`：在網頁瀏覽器中操作。
+  - `mobile`：在行動環境中操作。
+  - `desktop`：在桌面環境中操作。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **excluded_predefined_functions**: `string array`
+
+  從模型呼叫中排除的預先定義函式清單。
+
+  
+
+---
+
+
+  **enable_prompt_injection_detection**: `boolean`
+
+  是否對電腦使用請求啟用提示詞注入偵測檢查。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**disabled_safety_policies**: `string enum array` 選用。電腦使用已停用的安全政策。</summary>
+
+  
+
+  可能的值：
+
+  - `financial_transactions`：金融交易的安全政策。
+  - `sensitive_data_modification`：敏感資料修改的安全政策。
+  - `communication_tool`：通訊工具（例如 Gmail、Chat、Meet）的安全政策。
+  - `account_creation`：帳號建立的安全政策。
+  - `data_modification`：資料修改的安全政策。
+  - `user_consent_management`：使用者同意管理的安全政策。
+  - `legal_terms_and_agreements`：法律條款與協議的安全政策。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "computer_use"
+          }],
+          "input": "Find a flight to Tokyo"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{"type": "computer_use"}],
+          input="Find a flight to Tokyo",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [{type: 'computer_use'}],
+        input: 'Find a flight to Tokyo',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.interactions.ComputerUse;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+
+      Client client = new Client();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(new ComputerUse()))
+              .input(InteractionsInput.of("Find a flight to Tokyo"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "computer_use"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          tool := gaos_interactions.NewTool(gaos_interactions.ComputerUse{})
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("Find a flight to Tokyo")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**FileSearch**</summary>
+
+  
+
+  模型可用來搜尋檔案的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `file_search`
+
+  
+
+---
+
+
+  **file_search_store_names**: `string array`
+
+  要搜尋的 File Search 存放區名稱。
+
+  
+
+---
+
+
+  **top_k**: `integer`
+
+  要擷取的語意擷取區塊數量。
+
+  
+
+---
+
+
+  **metadata_filter**: `string`
+
+  要套用至語意擷取文件與區塊的中繼資料篩選器。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "file_search",
+            "file_search_store_names": ["fileSearchStores/m64d1sevsr4y-xfyawui3fxqg"]
+          }],
+          "input": "Who is the author of the book?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+
+      # Create a file search store so we have a valid one to use.
+      store = client.file_search_stores.create()
+
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[
+              {"type": "file_search", "file_search_store_names": [store.name]}
+          ],
+          input="What documents are available?",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+
+      // Create a file search store so we have a valid one to use.
+      const store = await ai.fileSearchStores.create({});
+      if (!store.name) {
+        throw new Error('Store creation failed: Name is undefined');
+      }
+
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [
+          {
+            type: 'file_search',
+            file_search_store_names: [store.name],
+          },
+        ],
+        input: 'What documents are available?',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.types.CreateFileSearchStoreConfig;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.FileSearch;
+      import com.google.genai.types.FileSearchStore;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+
+      Client client = new Client();
+
+      // Create a file search store so we have a valid one to use.
+      FileSearchStore store =
+          client.fileSearchStores.create(CreateFileSearchStoreConfig.builder().build());
+      String storeName = store.name().orElseThrow();
+
+      FileSearch tool = FileSearch.builder().fileSearchStoreNames(List.of(storeName)).build();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(tool))
+              .input(InteractionsInput.of("What documents are available?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "file_search"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+
+          tool := gaos_interactions.NewTool(gaos_interactions.FileSearch{
+              FileSearchStoreNames: []string{store.Name},
+          })
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("What documents are available?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**Function**</summary>
+
+  
+
+  模型可使用的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `function`
+
+  
+
+---
+
+
+  **name**: `string`
+
+  函式的名稱。
+
+  
+
+---
+
+
+  **description**: `string`
+
+  函式的說明。
+
+  
+
+---
+
+
+  **parameters**: `object`
+
+  函式參數的 JSON Schema。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "function",
+            "name": "get_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "type": "string",
+                  "description": "The city and state, e.g. San Francisco, CA"
+                }
+              },
+              "required": ["location"]
+            }
+          }],
+          "input": "What is the weather like in Boston, MA?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{
+              "type": "function",
+              "name": "get_weather",
+              "description": "Get the current weather in a given location",
+              "parameters": {
+                  "type": "object",
+                  "properties": {
+                      "location": {
+                          "type": "string",
+                          "description": (
+                              "The city and state, e.g. San Francisco, CA"
+                          ),
+                      }
+                  },
+                  "required": ["location"],
+              },
+          }],
+          input="What is the weather like in Boston?",
+      )
+      print(response.steps[-1])
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [
+          {
+            type: 'function',
+            name: 'get_weather',
+            description: 'Get the current weather in a given location',
+            parameters: {
+              type: 'object',
+              properties: {
+                location: {
+                  type: 'string',
+                  description: 'The city and state, e.g. San Francisco, CA',
+                },
+              },
+              required: ['location'],
+            },
+          },
+        ],
+        input: 'What is the weather like in Boston?',
+      });
+      console.log(interaction.steps.at(-1));
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Function;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+      import com.google.genai.gaos.models.interactions.Step;
+
+      Client client = new Client();
+      Map<String, Object> parameters =
+          Map.of(
+              "type", "object",
+              "properties",
+                  Map.of(
+                      "location",
+                      Map.of(
+                          "type", "string",
+                          "description", "The city and state, e.g. San Francisco, CA")),
+              "required", List.of("location"));
+      Function functionTool =
+          Function.builder()
+              .name("get_weather")
+              .description("Get the current weather in a given location")
+              .parameters(parameters)
+              .build();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(functionTool))
+              .input(InteractionsInput.of("What is the weather like in Boston?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      List<Step> steps = interaction.steps().orElse(List.of());
+      if (!steps.isEmpty()) {
+        System.out.println(steps.get(steps.size() - 1));
+      }
+      ```
+
+=== "function_calling"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          function := gaos_interactions.Function{
+              Name:        genai.Ptr("get_weather"),
+              Description: genai.Ptr("Get the current weather in a given location"),
+              Parameters: map[string]any{
+                  "type": "object",
+                  "properties": map[string]any{
+                      "location": map[string]any{
+                          "type":        "string",
+                          "description": "The city and state, e.g. San Francisco, CA",
+                      },
+                  },
+                  "required": []string{"location"},
+              },
+          }
+
+          tool := gaos_interactions.NewTool(function)
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("What is the weather like in Boston, MA?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil {
+              for _, step := range res.Interaction.Steps {
+                  if step.FunctionCallStep != nil {
+                      fmt.Println("Function Call:", step.FunctionCallStep.Name)
+                      fmt.Println("Arguments:", step.FunctionCallStep.Arguments)
+                  }
+              }
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleMaps**</summary>
+
+  
+
+  模型可用來呼叫 Google 地圖的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `google_maps`
+
+  
+
+---
+
+
+  **enable_widget**: `boolean`
+
+  是否在回應的工具呼叫結果中回傳小工具上下文權杖。
+
+  
+
+---
+
+
+  **latitude**: `number`
+
+  使用者位置的緯度。
+
+  
+
+---
+
+
+  **longitude**: `number`
+
+  使用者位置的經度。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "google_maps",
+            "latitude": 37.7749,
+            "longitude": -122.4194
+          }],
+          "input": "What is the best food near me?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[
+              {"type": "google_maps", "latitude": 37.7749, "longitude": -122.4194}
+          ],
+          input="What is the best food near me?",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [
+          {
+            type: 'google_maps',
+            latitude: 37.7749,
+            longitude: -122.4194,
+          },
+        ],
+        input: 'What is the best food near me?',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.GoogleMaps;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+
+      Client client = new Client();
+      GoogleMaps tool = GoogleMaps.builder().latitude(37.7749).longitude(-122.4194).build();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(tool))
+              .input(InteractionsInput.of("What is the best food near me?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "google_maps"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          tool := gaos_interactions.NewTool(gaos_interactions.GoogleMaps{
+              Latitude:  genai.Ptr(37.7749),
+              Longitude: genai.Ptr(-122.4194),
+          })
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("What is the best food near me?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleSearch**</summary>
+
+  
+
+  模型可用來搜尋 Google 的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `google_search`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**search_types**: `string enum array` 要啟用的搜尋接地類型。</summary>
+
+  
+
+  可能的值：
+
+  - `web_search`：設定此欄位可啟用網路搜尋。僅回傳文字結果。
+  - `image_search`：設定此欄位可啟用圖片搜尋。會回傳圖片位元組。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "google_search"
+          }],
+          "input": "Who is the current president of France?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{"type": "google_search"}],
+          input="Who is the current president of France?",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [{type: 'google_search'}],
+        input: 'Who is the current president of France?',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.GoogleSearch;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+
+      Client client = new Client();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(new GoogleSearch()))
+              .input(InteractionsInput.of("Who is the current president of France?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "google_search"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          tool := gaos_interactions.NewTool(gaos_interactions.GoogleSearch{})
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("Who is the current president of France?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**McpServer**</summary>
+
+  
+
+  MCPServer 是模型可呼叫來執行動作的伺服器。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `mcp_server`
+
+  
+
+---
+
+
+  **name**: `string`
+
+  MCPServer 的名稱。
+
+  
+
+---
+
+
+  **url**: `string`
+
+  MCPServer 端點的完整 URL。範例："https://api.example.com/mcp"
+
+  
+
+---
+
+
+  **headers**: `object`
+
+  選用：如有需要，提供驗證標頭、逾時等欄位。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**allowed_tools**: `AllowedTools array` 允許使用的工具。</summary>
+
+  
+
+  
+
+<details>
+<summary>**mode**: `string enum` 工具選擇的模式。</summary>
+
+  
+
+  可能的值：
+
+  - `auto`：自動工具選擇。
+  - `any`：任意工具選擇。
+  - `none`：不選擇工具。
+  - `validated`：已驗證的工具選擇。
+
+  
+
+</details>
+
+
+  **tools**: `string array`
+
+  允許使用的工具名稱。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "mcp_server",
+            "name": "weather_service",
+            "url": "https://gemini-api-demos.uc.r.appspot.com/mcp"
+          }],
+          "input": "Today is 12-05-2025, what is the temperature today in London?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      import os
+
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{
+              "type": "mcp_server",
+              "name": "weather_service",
+              "url": "https://gemini-api-demos.uc.r.appspot.com/mcp",
+          }],
+          input="Today is 12-05-2025, what is the temperature today in London?",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [
+          {
+            type: 'mcp_server',
+            name: 'weather_service',
+            url: 'https://gemini-api-demos.uc.r.appspot.com/mcp',
+          },
+        ],
+        input: 'Today is 12-05-2025, what is the temperature today in London?',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+      import com.google.genai.gaos.models.interactions.MCPServer;
+
+      Client client = new Client();
+      MCPServer mcpTool =
+          MCPServer.builder()
+              .name("weather_service")
+              .url("https://gemini-api-demos.uc.r.appspot.com/mcp")
+              .build();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(mcpTool))
+              .input(
+                  InteractionsInput.of(
+                      "Today is 12-05-2025, what is the temperature today in London?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "mcp_server"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "os"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          mcpServer := gaos_interactions.MCPServer{
+              Name: genai.Ptr("weather_service"),
+              URL:  genai.Ptr("https://gemini-api-demos.uc.r.appspot.com/mcp"),
+          }
+          tool := gaos_interactions.NewTool(mcpServer)
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("Today is 12-05-2025, what is the temperature today in London?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**UrlContext**</summary>
+
+  
+
+  模型可用來擷取 URL 上下文的工具。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `url_context`
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "url_context"
+          }],
+          "input": "Summarize https://www.example.com"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{"type": "url_context"}],
+          input="Summarize https://www.example.com",
+      )
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [{type: 'url_context'}],
+        input: 'Summarize https://www.example.com',
+      });
+      console.log(interaction.output_text);
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+      import com.google.genai.gaos.models.interactions.URLContext;
+
+      Client client = new Client();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(new URLContext()))
+              .input(InteractionsInput.of("Summarize https://www.example.com"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      System.out.println(interaction.outputText().orElse(""));
+      ```
+
+=== "url_context"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          tool := gaos_interactions.NewTool(gaos_interactions.URLContext{})
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("Summarize https://www.example.com")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil && res.Interaction.OutputText != nil {
+              fmt.Println(*res.Interaction.OutputText)
+          }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+### InteractionSseEvent {#Resource:InteractionSseEvent}
+
+**多型類型**：
+
+
+<details>
+<summary>**ErrorEvent**</summary>
+
+  
+
+  
+  
+  
+  **event_type**: required `object`
+
+  Value: `error`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**error**: `Error`</summary>
+
+  
+
+  **code**: `string`
+
+  識別錯誤類型的 URI。
+
+  **message**: `string`
+
+  易於閱讀的錯誤訊息。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Error Event**
+
+  ```json
+  {
+    "error": {
+      "code": "not_found",
+      "message": "Failed to get completed interaction: Result not found."
+    },
+    "event_type": "error"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**InteractionCompletedEvent**</summary>
+
+  
+
+  表示 Interaction 已完成。當 Interaction 收到
+  Complete/Cancel 或自然結束時送出。此後無法再向
+  Interaction 傳送輸入。
+
+  
+  
+  
+  
+
+<details>
+<summary>**interaction**: required `InteractionSseEventInteraction` 在串流結束時發出的部分已完成互動資源。</summary>
+
+  
+
+  **id**: required `string`
+
+  僅供輸出。互動完成的專屬識別碼。
+
+  
+
+<details>
+<summary>**status**: required `string enum` 僅供輸出。互動的狀態。</summary>
+
+  
+
+  可能的值：
+
+  - `in_progress`：互動進行中。
+  - `requires_action`：互動需要使用者採取動作／提供輸入。
+  - `completed`：互動已完成。
+  - `failed`：互動失敗。
+  - `cancelled`：互動已取消。
+  - `incomplete`：互動已完成，但結果不完整（例如達到 max_tokens）。
+
+  
+
+</details>
+
+
+  **model**: `string`
+
+  將完成你的提示詞的模型。
+
+  **created**: `string`
+
+  僅供輸出。回應的建立時間，採用 ISO 8601 格式。
+
+  **updated**: `string`
+
+  僅供輸出。回應的最後更新時間，採用 ISO 8601 格式。
+
+  
+
+<details>
+<summary>**usage**: `Usage` 僅供輸出。互動請求的權杖用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**service_tier**: `ServiceTier` 互動的服務層級。
+
+  
+
+  可能的值：
+
+  - `flex`：Flex 服務層級。
+  - `standard`：Standard 服務層級。
+  - `priority`：Priority 服務層級。
+
+  
+
+</details>
+
+
+  **steps**: [`Step`](/api-reference/interactions-api/#Resource:Step) `array`
+
+  僅供輸出。組成互動的步驟（若包含在此事件中）。
+
+  **continuation_token**: `string`
+
+  用來恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中將最新權杖原封不動地傳回，以繼續解碼。
+
+  **agent**: `string`
+
+  要互動的代理。
+
+  **object**: `string`
+
+  僅供輸出。資源類型。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `interaction.completed`
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "Interaction Completed"
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.completed",
+        "interaction": {
+          "created": "2025-12-04T15:01:45Z",
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3.8-flash",
+          "status": "completed",
+          "updated": "2025-12-04T15:01:45Z"
+        }
+      }
+      ```
+
+=== "Interaction Completed"
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.completed",
+        "interaction": {
+          "created": "2025-12-04T15:01:45Z",
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3-flash-preview",
+          "object": "interaction",
+          "status": "completed",
+          "updated": "2025-12-04T15:01:45Z"
+        }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**InteractionCreatedEvent**</summary>
+
+  
+
+  伺服器回應，確認已建立新的互動。
+
+  
+  
+  
+  
+
+<details>
+<summary>**interaction**: required `InteractionSseEventInteraction` 在串流建立時發出的部分互動資源。</summary>
+
+  
+
+  **id**: required `string`
+
+  僅供輸出。互動完成的專屬識別碼。
+
+  
+
+<details>
+<summary>**status**: required `string enum` 僅供輸出。互動的狀態。</summary>
+
+  
+
+  可能的值：
+
+  - `in_progress`：互動進行中。
+  - `requires_action`：互動需要使用者採取動作／提供輸入。
+  - `completed`：互動已完成。
+  - `failed`：互動失敗。
+  - `cancelled`：互動已取消。
+  - `incomplete`：互動已完成，但結果不完整（例如達到 max_tokens）。
+
+  
+
+</details>
+
+
+  **model**: `string`
+
+  將完成你的提示詞的模型。
+
+  **created**: `string`
+
+  僅供輸出。回應的建立時間，採用 ISO 8601 格式。
+
+  **updated**: `string`
+
+  僅供輸出。回應的最後更新時間，採用 ISO 8601 格式。
+
+  
+
+<details>
+<summary>**usage**: `Usage` 僅供輸出。互動請求的權杖用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**service_tier**: `ServiceTier` 互動的服務層級。
+
+  
+
+  可能的值：
+
+  - `flex`：Flex 服務層級。
+  - `standard`：Standard 服務層級。
+  - `priority`：Priority 服務層級。
+
+  
+
+</details>
+
+
+  **steps**: [`Step`](/api-reference/interactions-api/#Resource:Step) `array`
+
+  僅供輸出。組成互動的步驟（若包含在此事件中）。
+
+  **continuation_token**: `string`
+
+  用來恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中將最新權杖原封不動地傳回，以繼續解碼。
+
+  **agent**: `string`
+
+  要互動的代理。
+
+  **object**: `string`
+
+  僅供輸出。資源類型。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `interaction.created`
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "Interaction Created"
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.created",
+        "interaction": {
+          "created": "2025-12-04T15:01:45Z",
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3.8-flash",
+          "status": "in_progress",
+          "updated": "2025-12-04T15:01:45Z"
+        }
+      }
+      ```
+
+=== "Interaction Created"
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.created",
+        "interaction": {
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3-flash-preview",
+          "object": "interaction",
+          "status": "in_progress"
+        }
+      }
+      ```
+
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**InteractionStatusUpdate**</summary>
+
+  
+
+  
+  
+  
+  **interaction_id**: required `string`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**status**: required `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `in_progress`：互動進行中。
+  - `requires_action`：互動需要使用者採取動作／提供輸入。
+  - `completed`：互動已完成。
+  - `failed`：互動失敗。
+  - `cancelled`：互動已取消。
+  - `incomplete`：互動已完成，但結果不完整（例如達到 max_tokens）。
+  - `requires_continuation`：互動至少還需要再發出一次請求才能完成。下一個請求應將 continuation_token 設為本次請求所回傳的值。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `interaction.status_update`
+
+  
+
+---
+
+
+  **continuation_token**: `string`
+
+  選用的不透明接續權杖，用來在串流中斷後從最新檢查點恢復解碼。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**usage**: `Usage` 截至此檢查點的模型用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Interaction Status Update**
+
+  ```json
+  {
+    "event_type": "interaction.status_update",
+    "interaction_id": "v1_ChdTMjQ0YWJ5TUF1TzcxZThQdjRpcnFRcxIXUzI0NGFieU1BdU83MWU4UHY0aXJxUXM",
+    "status": "in_progress"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**StepDelta**</summary>
+
+  
+
+  
+  
+  
+  **index**: required `integer`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**delta**: required `StepDeltaData`</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**ArgumentsDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `arguments_delta`
+
+  **arguments**: `string`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**AudioDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `audio`
+
+  
+
+<details>
+<summary>**mime_type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `audio/wav`：WAV 音訊格式
+  - `audio/mp3`：MP3 音訊格式
+  - `audio/aiff`：AIFF 音訊格式
+  - `audio/aac`：AAC 音訊格式
+  - `audio/ogg`：OGG 音訊格式
+  - `audio/flac`：FLAC 音訊格式
+  - `audio/mpeg`：MPEG 音訊格式
+  - `audio/m4a`：M4A 音訊格式
+  - `audio/l16`：L16 音訊格式
+  - `audio/opus`：OPUS 音訊格式
+  - `audio/alaw`：ALAW 音訊格式
+  - `audio/mulaw`：MULAW 音訊格式
+  - `audio/webm`：WEBM 音訊格式
+
+  
+
+</details>
+
+
+  **data**: `string`
+
+  **uri**: `string`
+
+  **sample_rate**: `integer`
+
+  音訊的取樣率。
+
+  **channels**: `integer`
+
+  音訊聲道數量。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**CodeExecutionCallDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**arguments**: required `CodeExecutionCallArguments`</summary>
+
+  
+
+  
+
+<details>
+<summary>**language**: `string enum` `code` 的程式語言。</summary>
+
+  
+
+  可能的值：
+
+  - `python`：Python >= 3.10，可使用 numpy 與 simpy。
+  - `bash`：Bash。僅適用於 Gemini 3.0 以上模型。
+
+  
+
+</details>
+
+
+  **code**: `string`
+
+  要執行的程式碼。
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `code_execution_call`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**CodeExecutionResultDelta**</summary>
+
+  
+
+  **result**: required `string`
+
+  **type**: required `object`
+
+  Value: `code_execution_result`
+
+  **is_error**: `boolean`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**DocumentDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `document`
+
+  
+
+<details>
+<summary>**mime_type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `application/pdf`：PDF 文件格式
+  - `text/csv`：CSV 文件格式
+  - `application/vnd.openxmlformats-officedocument.presentationml.presentation`：PPTX 簡報格式
+  - `application/vnd.ms-powerpoint`：PPT 簡報格式
+  - `application/vnd.oasis.opendocument.presentation`：ODP 簡報格式
+  - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`：DOCX 文件格式
+  - `application/msword`：DOC 文件格式
+  - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`：DOTX 文件範本格式
+  - `application/vnd.oasis.opendocument.text`：ODT 文件格式
+  - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`：XLSX 試算表格式
+  - `application/vnd.ms-excel`：XLS 試算表格式
+  - `application/vnd.oasis.opendocument.spreadsheet`：ODS 試算表格式
+
+  
+
+</details>
+
+
+  **data**: `string`
+
+  **uri**: `string`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**FileSearchCallDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `file_search_call`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**FileSearchResultDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**result**: required `FileSearchResult array`</summary>
+
+  
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `file_search_result`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**FunctionResultDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**result**: required `(`[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/#Resource:TextContent)`) array` or `object` or `string`</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**([ImageContent](/api-reference/interactions-api/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/#Resource:TextContent)) array**</summary>
+
+  
+
+  清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/#Resource:TextContent)。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `function_result`
+
+  **name**: `string`
+
+  **is_error**: `boolean`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**GoogleMapsCallDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `google_maps_call`
+
+  
+
+<details>
+<summary>**arguments**: `GoogleMapsCallArguments` 要傳遞給 Google 地圖工具的引數。</summary>
+
+  
+
+  **queries**: `string array`
+
+  要執行的查詢。
+
+  
+
+</details>
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**GoogleMapsResultDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `google_maps_result`
+
+  
+
+<details>
+<summary>**result**: `GoogleMapsResult array` Google 地圖的結果。</summary>
+
+  
+
+  
+
+<details>
+<summary>**places**: `Places array` 找到的地點。</summary>
+
+  
+
+  **place_id**: `string`
+
+  地點的 ID，格式為 `places/{place_id}`。
+
+  **name**: `string`
+
+  地點的標題。
+
+  **url**: `string`
+
+  地點的 URI 參照。
+
+  
+
+<details>
+<summary>**review_snippets**: `ReviewSnippet array` 評論摘要，用來生成關於 Google 地圖中特定地點特色的回答。</summary>
+
+  
+
+  **title**: `string`
+
+  評論的標題。
+
+  **url**: `string`
+
+  對應至 Google 地圖上使用者評論的連結。
+
+  **review_id**: `string`
+
+  評論摘要的 ID。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **widget_context_token**: `string`
+
+  Google 地圖小工具上下文權杖的資源名稱。
+
+  
+
+</details>
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**GoogleSearchCallDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**arguments**: required `GoogleSearchCallArguments`</summary>
+
+  
+
+  **queries**: `string array`
+
+  後續網路搜尋所用的網路搜尋查詢。
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `google_search_call`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**GoogleSearchResultDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**result**: required `GoogleSearchResult array`</summary>
+
+  
+
+  **search_suggestions**: `string`
+
+  可嵌入網頁或應用程式 webview 的網路內容摘要。
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `google_search_result`
+
+  **is_error**: `boolean`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**ImageDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `image`
+
+  
+
+<details>
+<summary>**mime_type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `image/png`：PNG 圖片格式
+  - `image/jpeg`：JPEG 圖片格式
+  - `image/webp`：WebP 圖片格式
+  - `image/heic`：HEIC 圖片格式
+  - `image/heif`：HEIF 圖片格式
+  - `image/gif`：GIF 圖片格式
+  - `image/bmp`：BMP 圖片格式
+  - `image/tiff`：TIFF 圖片格式
+
+  
+
+</details>
+
+
+  **data**: `string`
+
+  **uri**: `string`
+
+  
+
+<details>
+<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+
+  
+
+  可能的值：
+
+  - `low`：低解析度。
+  - `medium`：中解析度。
+  - `high`：高解析度。
+  - `ultra_high`：超高解析度。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**McpServerToolCallDelta**</summary>
+
+  
+
+  **name**: required `string`
+
+  **server_name**: required `string`
+
+  **arguments**: required `object`
+
+  **type**: required `object`
+
+  Value: `mcp_server_tool_call`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**McpServerToolResultDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**result**: required `(`[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/#Resource:TextContent)`) array` or `object` or `string`</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**([ImageContent](/api-reference/interactions-api/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/#Resource:TextContent)) array**</summary>
+
+  
+
+  清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/#Resource:TextContent)。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `mcp_server_tool_result`
+
+  **name**: `string`
+
+  **server_name**: `string`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**ProcessingCallDelta**</summary>
+
+  
+
+  伺服器發起之媒體處理步驟的串流增量。
+
+  **type**: required `object`
+
+  Value: `processing_call`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**ProcessingResultDelta**</summary>
+
+  
+
+  伺服器發起之媒體處理步驟結果的串流增量。
+
+  **type**: required `object`
+
+  Value: `processing_result`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**TextAnnotationDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `text_annotation_delta`
+
+  
+
+<details>
+<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**FileCitation**</summary>
+
+  
+
+  檔案引用註記。
+
+  **type**: required `object`
+
+  Value: `file_citation`
+
+  **document_uri**: `string`
+
+  檔案的 URI。
+
+  **file_name**: `string`
+
+  檔案的名稱。
+
+  **source**: `string`
+
+  文字某一部分所歸因的來源。
+
+  **custom_metadata**: `object`
+
+  使用者提供的、關於所擷取上下文的中繼資料。
+
+  **page_number**: `integer`
+
+  所引用文件的頁碼（如適用）。
+
+  **media_id**: `string`
+
+  圖片引用時的媒體 ID（如適用）。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**PlaceCitation**</summary>
+
+  
+
+  地點引用註記。
+
+  **type**: required `object`
+
+  Value: `place_citation`
+
+  **place_id**: `string`
+
+  地點的 ID，格式為 `places/{place_id}`。
+
+  **name**: `string`
+
+  地點的標題。
+
+  **url**: `string`
+
+  地點的 URI 參照。
+
+  
+
+<details>
+<summary>**review_snippets**: `ReviewSnippet array` 評論摘要，用來生成關於 Google 地圖中特定地點特色的回答。</summary>
+
+  
+
+  **title**: `string`
+
+  評論的標題。
+
+  **url**: `string`
+
+  對應至 Google 地圖上使用者評論的連結。
+
+  **review_id**: `string`
+
+  評論摘要的 ID。
+
+  
+
+</details>
+
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**SpeechAnnotation**</summary>
+
+  
+
+  文字內容的語音註記。
+
+  **type**: required `object`
+
+  Value: `speech_metadata`
+
+  **speaker**: `string`
+
+  要與此回合相關聯的說話者。
+
+  **style**: `string`
+
+  語音合成的風格指令。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**UrlCitation**</summary>
+
+  
+
+  URL 引用註記。
+
+  **type**: required `object`
+
+  Value: `url_citation`
+
+  **url**: `string`
+
+  URL。
+
+  **title**: `string`
+
+  URL 的標題。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**WordInfo**</summary>
+
+  
+
+  轉錄輸出使用的字詞層級 ASR 註記，包含字詞文字、選用的時間資訊，以及選用的說話者歸屬。
+
+  **type**: required `object`
+
+  Value: `word_info`
+
+  **text**: `string`
+
+  轉錄出的字詞。
+
+  **start_offset**: `string`
+
+  字詞相對於音訊起點的開始時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **end_offset**: `string`
+
+  字詞相對於音訊起點的結束時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **speaker**: `string`
+
+  選用。此字詞的說話者標籤（例如 "spk_1"、"spk_2"）。當 TranscriptionConfig 中設定了 diarization_mode 時提供。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**TextDelta**</summary>
+
+  
+
+  **text**: required `string`
+
+  **type**: required `object`
+
+  Value: `text`
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**ThoughtSignatureDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `thought_signature`
+
+  **signature**: `string`
+
+  用來與後端來源對應、使其成為生成一部分的簽章。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**ThoughtSummaryDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `thought_summary`
+
+  **content**: [`Content`](/api-reference/interactions-api/#Resource:Content)
+
+  要加入思考的新摘要項目。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**UrlContextCallDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**arguments**: required `UrlContextCallArguments`</summary>
+
+  
+
+  **urls**: `string array`
+
+  要擷取的 URL。
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `url_context_call`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**UrlContextResultDelta**</summary>
+
+  
+
+  
+
+<details>
+<summary>**result**: required `UrlContextResult array`</summary>
+
+  
+
+  **url**: `string`
+
+  已擷取的 URL。
+
+  
+
+<details>
+<summary>**status**: `string enum` URL 擷取的狀態。</summary>
+
+  
+
+  可能的值：
+
+  - `success`：URL 擷取成功。
+  - `error`：URL 擷取因錯誤而失敗。
+  - `paywall`：URL 擷取失敗，因為內容位於付費牆之後。
+  - `unsafe`：URL 擷取失敗，因為內容不安全。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **type**: required `object`
+
+  Value: `url_context_result`
+
+  **is_error**: `boolean`
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**VideoDelta**</summary>
+
+  
+
+  **type**: required `object`
+
+  Value: `video`
+
+  
+
+<details>
+<summary>**mime_type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `video/mp4`：MP4 影片格式
+  - `video/mpeg`：MPEG 影片格式
+  - `video/mpg`：MPG 影片格式
+  - `video/mov`：MOV 影片格式
+  - `video/avi`：AVI 影片格式
+  - `video/x-flv`：FLV 影片格式
+  - `video/webm`：WebM 影片格式
+  - `video/wmv`：WMV 影片格式
+  - `video/3gpp`：3GPP 影片格式
+  - `video/jpeg2000`：JPEG 2000 影片格式
+
+  
+
+</details>
+
+
+  **data**: `string`
+
+  **uri**: `string`
+
+  
+
+<details>
+<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+
+  
+
+  可能的值：
+
+  - `low`：低解析度。
+  - `medium`：中解析度。
+  - `high`：高解析度。
+  - `ultra_high`：超高解析度。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `step.delta`
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**metadata**: `StepDeltaMetadata`</summary>
+
+  
+
+  
+
+<details>
+<summary>**total_usage**: `Usage` 互動請求的權杖用量統計。</summary>
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **Step Delta**
+
+  ```json
+  {
+    "delta": {
+      "type": "text",
+      "text": "Hello"
+    },
+    "event_type": "step.delta",
+    "index": 0
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**StepStart**</summary>
+
+  
+
+  
+  
+  
+  **index**: required `integer`
+
+  
+
+---
+
+
+  **step**: required [`Step`](/api-reference/interactions-api/#Resource:Step)
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `step.start`
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Step Start**
+
+  ```json
+  {
+    "event_type": "step.start",
+    "index": 0,
+    "step": {
+      "type": "model_output"
+    }
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**StepStop**</summary>
+
+  
+
+  
+  
+  
+  **index**: required `integer`
+
+  
+
+---
+
+
+  **event_type**: required `object`
+
+  Value: `step.stop`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**usage**: `Usage` 從工作階段開始累計的模型用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**step_usage**: `Usage` 此特定步驟的模型用量統計。
+
+  
+
+  **total_input_tokens**: `integer`
+
+  提示詞（上下文）中的權杖數量。
+
+  **initial_input_tokens**: `integer`
+
+  此互動第一個回合所使用的輸入權杖數量。
+
+  
+
+<details>
+<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸入權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_cached_tokens**: `integer`
+
+  提示詞中已快取部分（快取內容）的權杖數量。
+
+  
+
+<details>
+<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態細分的快取權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_output_tokens**: `integer`
+
+  所有生成回應的權杖總數。
+
+  
+
+<details>
+<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態細分的輸出權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_tool_use_tokens**: `integer`
+
+  工具使用提示詞中的權杖數量。
+
+  
+
+<details>
+<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態細分的工具使用權杖用量。</summary>
+
+  
+
+  
+
+<details>
+<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+
+  
+
+  可能的值：
+
+  - `text`：表示模型應回傳文字。
+  - `image`：表示模型應回傳圖片。
+  - `audio`：表示模型應回傳音訊。
+  - `video`：表示模型應回傳影片。
+  - `document`：表示模型應回傳文件。
+
+  
+
+</details>
+
+
+  **tokens**: `integer`
+
+  該模態的權杖數量。
+
+  
+
+</details>
+
+
+  **total_thought_tokens**: `integer`
+
+  思考模型所產生的思考權杖數量。
+
+  **total_tokens**: `integer`
+
+  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+  
+
+<details>
+<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum` 與此計數相關聯的接地工具類型。</summary>
+
+  
+
+  可能的值：
+
+  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+  - `google_maps`：使用 Google 地圖接地。
+
+  
+
+</details>
+
+
+  **count**: `integer`
+
+  接地工具的計數數量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **event_id**: `string`
+
+  從此事件取得、用來恢復互動串流的 event_id 權杖。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Step Stop**
+
+  ```json
+  {
+    "event_type": "step.stop",
+    "index": 0
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+### ResponseFormat {#Resource:ResponseFormat}
+
+**多型類型**：
+
+
+<details>
+<summary>**AudioResponseFormat**</summary>
+
+  
+
+  音訊輸出格式的設定。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `audio`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 音訊輸出的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `audio/mp3`：MP3 音訊格式。
+  - `audio/ogg_opus`：OGG Opus 音訊格式。
+  - `audio/l16`：原始 PCM（L16）音訊格式。
+  - `audio/wav`：WAV 音訊格式。
+  - `audio/alaw`：A-law 音訊格式。
+  - `audio/mulaw`：Mu-law 音訊格式。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**delivery**: `string enum` 音訊輸出的傳遞模式。</summary>
+
+  
+
+  可能的值：
+
+  - `inline`：音訊資料以行內方式在回應中回傳。
+  - `uri`：音訊資料以 URI 形式回傳。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **sample_rate**: `integer`
+
+  取樣率，單位為 Hz。
+
+  
+
+---
+
+
+  **bit_rate**: `integer`
+
+  位元率，單位為每秒位元數（bps）。僅適用於壓縮格式（MP3、Opus）。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Audio Output**
+
+  ```json
+  {
+    "type": "audio",
+    "sample_rate": 24000
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**ImageResponseFormat**</summary>
+
+  
+
+  圖片輸出格式的設定。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `image`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 圖片輸出的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `image/jpeg`：JPEG 圖片格式。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**delivery**: `string enum` 圖片輸出的傳遞模式。</summary>
+
+  
+
+  可能的值：
+
+  - `inline`：圖片資料以行內方式在回應中回傳。
+  - `uri`：圖片資料以 URI 形式回傳。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**aspect_ratio**: `string enum` 圖片輸出的長寬比。</summary>
+
+  
+
+  可能的值：
+
+  - `1:1`：1:1 長寬比。
+  - `2:3`：2:3 長寬比。
+  - `3:2`：3:2 長寬比。
+  - `3:4`：3:4 長寬比。
+  - `4:3`：4:3 長寬比。
+  - `4:5`：4:5 長寬比。
+  - `5:4`：5:4 長寬比。
+  - `9:16`：9:16 長寬比。
+  - `16:9`：16:9 長寬比。
+  - `21:9`：21:9 長寬比。
+  - `1:8`：1:8 長寬比。
+  - `8:1`：8:1 長寬比。
+  - `1:4`：1:4 長寬比。
+  - `4:1`：4:1 長寬比。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**image_size**: `string enum` 圖片輸出的大小。</summary>
+
+  
+
+  可能的值：
+
+  - `512`：512px 圖片大小。
+  - `1K`：1K 圖片大小。
+  - `2K`：2K 圖片大小。
+  - `4K`：4K 圖片大小。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **Image Output**
+
+  ```json
+  {
+    "type": "image",
+    "aspect_ratio": "16:9",
+    "image_size": "1K",
+    "mime_type": "image/jpeg"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**TextResponseFormat**</summary>
+
+  
+
+  文字輸出格式的設定。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `text`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 文字輸出的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `application/json`：JSON 輸出格式。
+  - `text/plain`：純文字輸出格式。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **schema**: `object`
+
+  輸出應符合的 JSON 架構。僅在 mime_type 為 application/json 時適用。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行；請在你的應用程式中驗證這些項目。`minItems` 與 `maxItems` 會強制執行。過於複雜而無法強制執行的架構（例如巢狀陣列上過大的 `maxItems`）會回傳 400 INVALID_ARGUMENT 錯誤。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Text Output (JSON Schema)**
+
+  ```json
+  {
+    "type": "text",
+    "mime_type": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recipe_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ingredients",
+        "recipe_name"
+      ]
+    }
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**VideoResponseFormat**</summary>
+
+  
+
+  影片輸出格式的設定。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `video`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**delivery**: `string enum` 影片輸出的傳遞模式。</summary>
+
+  
+
+  可能的值：
+
+  - `inline`：影片資料以行內方式在回應中回傳。
+  - `uri`：影片資料以 URI 形式回傳。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**aspect_ratio**: `string enum` 影片輸出的長寬比。</summary>
+
+  
+
+  可能的值：
+
+  - `16:9`：16:9 長寬比。
+  - `9:16`：9:16 長寬比。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **duration**: `string`
+
+  影片輸出的時長。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**resolution**: `string enum` 影片輸出的解析度。預設為 720p。</summary>
+
+  
+
+  可能的值：
+
+  - `360p`：360p 解析度。
+  - `720p`：720p 解析度。
+  - `1080p`：1080p 解析度。
+  - `4k`：4K 解析度。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **Video Output**
+
+  ```json
+  {
+    "type": "video",
+    "aspect_ratio": "16:9",
+    "delivery": "inline"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+### Step {#Resource:Step}
+
+互動中的一個步驟。
+
+**多型類型**：
+
+
+<details>
+<summary>**CodeExecutionCallStep**</summary>
+
+  
+
+  程式碼執行呼叫步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**arguments**: required `CodeExecutionCallStepArguments` 要傳遞給程式碼執行的引數。</summary>
+
+  
+
+  
+
+<details>
+<summary>**language**: `string enum` `code` 的程式語言。</summary>
+
+  
+
+  可能的值：
+
+  - `python`：Python >= 3.10，可使用 numpy 與 simpy。
+  - `bash`：Bash。僅適用於 Gemini 3.0 以上模型。
+
+  
+
+</details>
+
+
+  **code**: `string`
+
+  要執行的程式碼。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `code_execution_call`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **CodeExecutionCallStep**
+
+  ```json
+  {
+    "type": "code_execution_call",
+    "arguments": {
+      "code": "print(sum(range(1, 11)))"
+    },
+    "id": "code_call_71021"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**CodeExecutionResultStep**</summary>
+
+  
+
+  程式碼執行結果步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required [`Content`](/api-reference/interactions-api/#Resource:Content) `array` or `string` 程式碼執行的輸出。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[Content](/api-reference/interactions-api/#Resource:Content) array**</summary>
+
+  
+
+  清單的內容。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `code_execution_result`
+
+  
+
+---
+
+
+  **is_error**: `boolean`
+
+  程式碼執行是否發生錯誤。
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **CodeExecutionResultStep**
+
+  ```json
+  {
+    "type": "code_execution_result",
+    "call_id": "code_call_71021",
+    "result": "55\n"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**FileSearchCallStep**</summary>
+
+  
+
+  File Search 呼叫步驟。
+
+  
+  
+  
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `file_search_call`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **FileSearchCallStep**
+
+  ```json
+  {
+    "type": "file_search_call",
+    "id": "file_call_88192"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**FileSearchResultStep**</summary>
+
+  
+
+  File Search 結果步驟。
+
+  
+  
+  
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `file_search_result`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **FileSearchResultStep**
+
+  ```json
+  {
+    "type": "file_search_result",
+    "call_id": "file_call_88192"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**FunctionCallStep**</summary>
+
+  
+
+  函式工具呼叫步驟。
+
+  
+  
+  
+  **name**: required `string`
+
+  要呼叫的工具名稱。
+
+  
+
+---
+
+
+  **arguments**: required `object`
+
+  要傳遞給函式的引數。
+
+  
+
+---
+
+
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `function_call`
+
+  
+
+  
+
+  
+  **範例**
+
+  **FunctionCallStep**
+
+  ```json
+  {
+    "name": "get_weather",
+    "type": "function_call",
+    "arguments": {
+      "location": "Boston, MA"
+    },
+    "id": "call_98231"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**FunctionResultStep**</summary>
+
+  
+
+  函式工具呼叫的結果。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required `(`[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/#Resource:TextContent)`) array` or `object` or `string` 工具呼叫的結果。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**([ImageContent](/api-reference/interactions-api/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/#Resource:TextContent)) array**</summary>
+
+  
+
+  清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/#Resource:TextContent)。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `function_result`
+
+  
+
+---
+
+
+  **name**: `string`
+
+  被呼叫的工具名稱。
+
+  
+
+---
+
+
+  **is_error**: `boolean`
+
+  工具呼叫是否發生錯誤。
+
+  
+
+  
+
+  
+  **範例**
+
+  **FunctionResultStep**
+
+  ```json
+  {
+    "name": "get_weather",
+    "type": "function_result",
+    "call_id": "call_98231",
+    "result": [
+      {
+        "type": "text",
+        "text": "{\"weather\":\"sunny\"}"
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleMapsCallStep**</summary>
+
+  
+
+  Google 地圖呼叫步驟。
+
+  
+  
+  
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `google_maps_call`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**arguments**: `GoogleMapsCallStepArguments` 要傳遞給 Google 地圖工具的引數。</summary>
+
+  
+
+  **queries**: `string array`
+
+  要執行的查詢。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **GoogleMapsCallStep**
+
+  ```json
+  {
+    "type": "google_maps_call",
+    "arguments": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "id": "maps_call_39201"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleMapsResultStep**</summary>
+
+  
+
+  Google 地圖結果步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required `GoogleMapsResultItem array`</summary>
+
+  
+
+  
+
+<details>
+<summary>**places**: `GoogleMapsResultPlaces array`</summary>
+
+  
+
+  **place_id**: `string`
+
+  **name**: `string`
+
+  **url**: `string`
+
+  
+
+<details>
+<summary>**review_snippets**: `ReviewSnippet array`</summary>
+
+  
+
+  **title**: `string`
+
+  評論的標題。
+
+  **url**: `string`
+
+  對應至 Google 地圖上使用者評論的連結。
+
+  **review_id**: `string`
+
+  評論摘要的 ID。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  **widget_context_token**: `string`
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `google_maps_result`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **GoogleMapsResultStep**
+
+  ```json
+  {
+    "type": "google_maps_result",
+    "call_id": "maps_call_39201",
+    "result": [
+      {
+        "name": "Golden Gate Park",
+        "place_id": "ChIJIQBpAG2ahYAR9R7bNdTLg8M",
+        "rating": 4.8
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleSearchCallStep**</summary>
+
+  
+
+  Google 搜尋呼叫步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**arguments**: required `GoogleSearchCallStepArguments` 要傳遞給 Google 搜尋的引數。</summary>
+
+  
+
+  **queries**: `string array`
+
+  後續網路搜尋所用的網路搜尋查詢。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `google_search_call`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**search_type**: `string enum` 已啟用的搜尋接地類型。</summary>
+
+  
+
+  可能的值：
+
+  - `web_search`：設定此欄位可啟用網路搜尋。僅回傳文字結果。
+  - `image_search`：設定此欄位可啟用圖片搜尋。會回傳圖片位元組。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **GoogleSearchCallStep**
+
+  ```json
+  {
+    "type": "google_search_call",
+    "arguments": {
+      "query": "Who won the men's 100m in Paris 2024?"
+    },
+    "id": "search_call_19201"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**GoogleSearchResultStep**</summary>
+
+  
+
+  Google 搜尋結果步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required `GoogleSearchResultItem array` Google 搜尋的結果。</summary>
+
+  
+
+  **search_suggestions**: `string`
+
+  可嵌入網頁或應用程式 webview 的網路內容摘要。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `google_search_result`
+
+  
+
+---
+
+
+  **is_error**: `boolean`
+
+  Google 搜尋是否發生錯誤。
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **GoogleSearchResultStep**
+
+  ```json
+  {
+    "type": "google_search_result",
+    "call_id": "search_call_19201",
+    "result": [
+      {
+        "title": "Paris 2024 Olympics: Noah Lyles wins men's 100m gold",
+        "url": "https://olympics.com/en/news/paris-2024-noah-lyles-wins-mens-100m-gold",
+        "snippet": "American Noah Lyles won the Olympic men's 100m gold medal in a photo finish."
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**McpServerToolCallStep**</summary>
+
+  
+
+  MCPServer 工具呼叫步驟。
+
+  
+  
+  
+  **name**: required `string`
+
+  被呼叫的工具名稱。
+
+  
+
+---
+
+
+  **server_name**: required `string`
+
+  所使用的 MCP 伺服器名稱。
+
+  
+
+---
+
+
+  **arguments**: required `object`
+
+  函式引數的 JSON 物件。
+
+  
+
+---
+
+
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `mcp_server_tool_call`
+
+  
+
+  
+
+  
+  **範例**
+
+  **McpServerToolCallStep**
+
+  ```json
+  {
+    "name": "calculate_tax",
+    "type": "mcp_server_tool_call",
+    "arguments": {
+      "income": 120000,
+      "state": "CA"
+    },
+    "id": "mcp_call_29012",
+    "server_name": "financial_mcp_server"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**McpServerToolResultStep**</summary>
+
+  
+
+  MCPServer 工具結果步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required `(`[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/#Resource:TextContent)`) array` or `object` or `string` MCP 伺服器呼叫的輸出。可以是簡單文字或豐富內容。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**([ImageContent](/api-reference/interactions-api/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/#Resource:TextContent)) array**</summary>
+
+  
+
+  清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/#Resource:TextContent)。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `mcp_server_tool_result`
+
+  
+
+---
+
+
+  **name**: `string`
+
+  此特定工具呼叫所呼叫的工具名稱。
+
+  
+
+---
+
+
+  **server_name**: `string`
+
+  所使用的 MCP 伺服器名稱。
+
+  
+
+  
+
+  
+  **範例**
+
+  **McpServerToolResultStep**
+
+  ```json
+  {
+    "name": "calculate_tax",
+    "type": "mcp_server_tool_result",
+    "call_id": "mcp_call_29012",
+    "result": {
+      "tax_due": 32400
+    },
+    "server_name": "financial_mcp_server"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**ModelOutputStep**</summary>
+
+  
+
+  模型生成的輸出。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `model_output`
+
+  
+
+---
+
+
+  **content**: [`Content`](/api-reference/interactions-api/#Resource:Content) `array`
+
+  
+
+  
+
+  
+  **範例**
+
+  **ModelOutputStep**
+
+  ```json
+  {
+    "type": "model_output",
+    "content": [
+      {
+        "type": "text",
+        "text": "The capital of France is Paris."
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**ProcessingCallStep**</summary>
+
+  
+
+  伺服器發起的媒體分析處理步驟（例如影片
+  理解）。
+
+  
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `processing_call`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+<details>
+<summary>**ProcessingResultStep**</summary>
+
+  
+
+  伺服器發起之媒體處理步驟的結果。
+
+  
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `processing_result`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+</details>
+
+
+<details>
+<summary>**ThoughtStep**</summary>
+
+  
+
+  思考步驟。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `thought`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+---
+
+
+  **summary**: [`Content`](/api-reference/interactions-api/#Resource:Content) `array`
+
+  思考的摘要。
+
+  
+
+  
+
+  
+  **範例**
+
+  **ThoughtStep**
+
+  ```json
+  {
+    "type": "thought",
+    "signature": "thought_sig_abcd1234",
+    "summary": [
+      {
+        "type": "text",
+        "text": "The model is searching Google for the capital of France."
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**UrlContextCallStep**</summary>
+
+  
+
+  URL 上下文呼叫步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**arguments**: required `UrlContextCallArguments` 要傳遞給 URL 上下文的引數。</summary>
+
+  
+
+  **urls**: `string array`
+
+  要擷取的 URL。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **id**: required `string`
+
+  此特定工具呼叫的專屬 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `url_context_call`
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **UrlContextCallStep**
+
+  ```json
+  {
+    "type": "url_context_call",
+    "arguments": {
+      "urls": [
+        "https://www.example.com"
+      ]
+    },
+    "id": "url_call_10219"
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**UrlContextResultStep**</summary>
+
+  
+
+  URL 上下文結果步驟。
+
+  
+  
+  
+  
+
+<details>
+<summary>**result**: required `UrlContextResult array` URL 上下文的結果。</summary>
+
+  
+
+  **url**: `string`
+
+  已擷取的 URL。
+
+  
+
+<details>
+<summary>**status**: `string enum` URL 擷取的狀態。</summary>
+
+  
+
+  可能的值：
+
+  - `success`：URL 擷取成功。
+  - `error`：URL 擷取因錯誤而失敗。
+  - `paywall`：URL 擷取失敗，因為內容位於付費牆之後。
+  - `unsafe`：URL 擷取失敗，因為內容不安全。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **call_id**: required `string`
+
+  用來與函式呼叫區塊中的 ID 對應的 ID。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `url_context_result`
+
+  
+
+---
+
+
+  **is_error**: `boolean`
+
+  URL 上下文是否發生錯誤。
+
+  
+
+---
+
+
+  **signature**: `string`
+
+  供後端驗證用的簽章雜湊。
+
+  
+
+  
+
+  
+  **範例**
+
+  **UrlContextResultStep**
+
+  ```json
+  {
+    "type": "url_context_result",
+    "call_id": "url_call_10219",
+    "result": [
+      {
+        "title": "Example Domain",
+        "url": "https://www.example.com",
+        "snippet": "This domain is for use in illustrative examples in documents."
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+<details>
+<summary>**UserInputStep**</summary>
+
+  
+
+  使用者提供的輸入。
+
+  
+  
+  
+  **type**: required `object`
+
+  Value: `user_input`
+
+  
+
+---
+
+
+  **content**: [`Content`](/api-reference/interactions-api/#Resource:Content) `array`
+
+  
+
+  
+
+  
+  **範例**
+
+  **UserInputStep**
+
+  ```json
+  {
+    "type": "user_input",
+    "content": [
+      {
+        "type": "text",
+        "text": "What is the capital of France?"
+      }
+    ]
+  }
+  ```
+
+  
+
+  
+
+</details>
+
+
+### EnvironmentConfig {#Resource:EnvironmentConfig}
+
+自訂環境的設定。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  Value: `remote`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**sources**: `Source array`</summary>
+
+  
+
+  
+
+<details>
+<summary>**type**: `string enum`</summary>
+
+  
+
+  可能的值：
+
+  - `gcs`：Cloud Storage 值區。
+  - `inline`：行內內容。
+  - `repository`：一般存放庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
+
+  
+
+</details>
+
+
+  **source**: `string`
+
+  環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
+
+  **target**: `string`
+
+  來源應在環境中出現的位置。
+
+  **content**: `string`
+
+  當 `type` 為 `INLINE` 時的行內內容。
+
+  **encoding**: `string`
+
+  行內內容的選用編碼（例如 `base64`）。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**network**: [`EnvironmentNetworkEgressAllowlist`](/api-reference/interactions-api/#Resource:EnvironmentNetworkEgressAllowlist) or `string enum` 環境的網路設定。
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**[EnvironmentNetworkEgressAllowlist](/api-reference/interactions-api/#Resource:EnvironmentNetworkEgressAllowlist)**</summary>
+
+  
+
+  環境的網路輸出流量設定。
+
+  
+
+<details>
+<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 可封鎖所有網路輸出流量。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**EgressRule array**</summary>
+
+  
+
+  單一網域允許清單規則，可選擇性注入標頭。
+
+  **domain**: required `string`
+
+  允許發出對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
+
+  **transform**: `object`
+
+  要注入至符合此規則之請求的標頭。Key：標頭名稱（例如 "Authorization"）。Value：標頭值（例如 "Bearer your-token"）。
+
+  **credential**: `string`
+
+  選用。以 ID 參照伺服器代管的 Credential 資源。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `disabled`：封鎖所有網路輸出流量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `disabled`：封鎖所有網路輸出流量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **environment_id**: `string`
+
+  選用。互動的環境 ID。指定時，請求會更新既有環境，而不是建立新環境。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**env**: `object` or `string` 要在沙箱環境中設定的環境變數。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**string**</summary>
+
+  
+
+  直接的字串值。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mode**: `string enum` 此環境的運算生命週期模式。</summary>
+
+  
+
+  可能的值：
+
+  - `on_demand`：此環境的運算生命週期模式。
+  - `self_hosted`：此環境的運算生命週期模式。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  **custom_config**: `object`
+
+  選用。任意的客戶自訂 JSON 設定，會直接傳遞給自託管環境的輪詢器。僅在 `mode` 為 `SELF_HOSTED` 時支援。
+
+  
+
+  
+
+  
+  **範例**
+
+  
+
+=== "行內來源"
+
+      ```json
+      {
+        "type": "remote",
+        "sources": [
+          {
+            "type": "inline",
+            "content": "You are a data analyst. Always include visualizations and export results as PDF.",
+            "target": ".agents/AGENTS.md"
+          },
+          {
+            "type": "inline",
+            "content": "---\nname: slide-maker\ndescription: Create HTML slide decks\n---\n# Slide Maker\n\nWhen asked to create a presentation:\n1. Analyze the input data\n2. Create an HTML slide deck with reveal.js\n3. Save to /workspace/output/slides.html",
+            "target": ".agents/skills/slide-maker/SKILL.md"
+          }
+        ]
+      }
+      ```
+
+=== "外部來源"
+
+      ```json
+      {
+        "type": "remote",
+        "sources": [
+          {
+            "type": "repository",
+            "source": "https://github.com/my-org/my-skills.git",
+            "target": ".agents/skills"
+          },
+          {
+            "type": "gcs",
+            "source": "gs://my-bucket/my-folder",
+            "target": "/workspace/data"
+          }
+        ]
+      }
+      ```
+
+=== "網路允許清單"
+
+      ```json
+      {
+        "type": "remote",
+        "network": {
+          "allowlist": [
+            {
+              "domain": "pypi.org"
+            },
+            {
+              "domain": "*.github.com"
+            }
+          ]
+        }
+      }
+      ```
+
+=== "Proxy 憑證"
+
+      ```json
+      {
+        "type": "remote",
+        "network": {
+          "allowlist": [
+            {
+              "domain": "api.github.com",
+              "transform": {
+                "Authorization": "Bearer YOUR_GITHUB_TOKEN"
+              }
+            }
+          ]
+        }
+      }
+      ```
+
+
+  
+
+
+### EnvironmentNetworkEgressAllowlist {#Resource:EnvironmentNetworkEgressAllowlist}
+
+環境的網路輸出流量設定。
+
+
+  
+  **屬性**：
+
+  
+  
+
+<details>
+<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 可封鎖所有網路輸出流量。</summary>
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**EgressRule array**</summary>
+
+  
+
+  單一網域允許清單規則，可選擇性注入標頭。
+
+  **domain**: required `string`
+
+  允許發出對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
+
+  **transform**: `object`
+
+  要注入至符合此規則之請求的標頭。Key：標頭名稱（例如 "Authorization"）。Value：標頭值（例如 "Bearer your-token"）。
+
+  **credential**: `string`
+
+  選用。以 ID 參照伺服器代管的 Credential 資源。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**string enum**</summary>
+
+  
+
+  可能的值：
+
+  - `disabled`：封鎖所有網路輸出流量。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **Network Allowlist**
+
+  ```json
+  {
+    "allowlist": [
+      {
+        "domain": "github.com",
+        "transform": [
+          {
+            "Authorization": "Bearer your-token"
+          }
+        ]
+      },
+      {
+        "domain": "*.googleapis.com"
+      }
+    ]
+  }
+  ```
+
+  
+
+
+### ToolChoiceConfig {#Resource:ToolChoiceConfig}
+
+包含允許使用之工具的工具選擇設定。
+
+
+  
+  **屬性**：
+
+  
+  
+
+<details>
+<summary>**allowed_tools**: `AllowedTools` 允許使用的工具。</summary>
+
+  
+
+  
+
+<details>
+<summary>**mode**: `string enum` 工具選擇的模式。</summary>
+
+  
+
+  可能的值：
+
+  - `auto`：自動工具選擇。
+  - `any`：任意工具選擇。
+  - `none`：不選擇工具。
+  - `validated`：已驗證的工具選擇。
+
+  
+
+</details>
+
+
+  **tools**: `string array`
+
+  允許使用的工具名稱。
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  ```json
+  {
+    "allowed_tools": {
+      "mode": "any",
+      "tools": [
+        "my_tool"
+      ]
+    }
+  }
+  ```
+
+  
+
+
+### ImageContent {#Resource:ImageContent}
+
+圖片內容區塊。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  Value: `image`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  圖片內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  圖片的 URI。
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+
+  
+
+  可能的值：
+
+  - `low`：低解析度。
+  - `medium`：中解析度。
+  - `high`：高解析度。
+  - `ultra_high`：超高解析度。
+
+  
+
+</details>
+
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**mime_type**: `string enum` 圖片的 MIME 類型。</summary>
+
+  
+
+  可能的值：
+
+  - `image/png`：PNG 圖片格式
+  - `image/jpeg`：JPEG 圖片格式
+  - `image/webp`：WebP 圖片格式
+  - `image/heic`：HEIC 圖片格式
+  - `image/heif`：HEIF 圖片格式
+  - `image/gif`：GIF 圖片格式
+  - `image/bmp`：BMP 圖片格式
+  - `image/tiff`：TIFF 圖片格式
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **圖片**
+
+  ```json
+  {
+    "type": "image",
+    "data": "BASE64_ENCODED_IMAGE",
+    "mime_type": "image/png"
+  }
+  ```
+
+  
+
+
+### TextContent {#Resource:TextContent}
+
+文字內容區塊。
+
+
+  
+  **屬性**：
+
+  
+  **text**: required `string`
+
+  文字內容。
+
+  
+
+---
+
+
+  **type**: required `object`
+
+  Value: `text`
+
+  
+
+---
+
+
+  
+
+<details>
+<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。
+
+  
+
+  **可能的類型**： 
+
+  
+
+<details>
+<summary>**FileCitation**</summary>
+
+  
+
+  檔案引用註記。
+
+  **type**: required `object`
+
+  Value: `file_citation`
+
+  **document_uri**: `string`
+
+  檔案的 URI。
+
+  **file_name**: `string`
+
+  檔案的名稱。
+
+  **source**: `string`
+
+  文字某一部分所歸因的來源。
+
+  **custom_metadata**: `object`
+
+  使用者提供的、關於所擷取上下文的中繼資料。
+
+  **page_number**: `integer`
+
+  所引用文件的頁碼（如適用）。
+
+  **media_id**: `string`
+
+  圖片引用時的媒體 ID（如適用）。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**PlaceCitation**</summary>
+
+  
+
+  地點引用註記。
+
+  **type**: required `object`
+
+  Value: `place_citation`
+
+  **place_id**: `string`
+
+  地點的 ID，格式為 `places/{place_id}`。
+
+  **name**: `string`
+
+  地點的標題。
+
+  **url**: `string`
+
+  地點的 URI 參照。
+
+  
+
+<details>
+<summary>**review_snippets**: `ReviewSnippet array` 評論摘要，用來生成關於 Google 地圖中特定地點特色的回答。</summary>
+
+  
+
+  **title**: `string`
+
+  評論的標題。
+
+  **url**: `string`
+
+  對應至 Google 地圖上使用者評論的連結。
+
+  **review_id**: `string`
+
+  評論摘要的 ID。
+
+  
+
+</details>
+
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**SpeechAnnotation**</summary>
+
+  
+
+  文字內容的語音註記。
+
+  **type**: required `object`
+
+  Value: `speech_metadata`
+
+  **speaker**: `string`
+
+  要與此回合相關聯的說話者。
+
+  **style**: `string`
+
+  語音合成的風格指令。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**UrlCitation**</summary>
+
+  
+
+  URL 引用註記。
+
+  **type**: required `object`
+
+  Value: `url_citation`
+
+  **url**: `string`
+
+  URL。
+
+  **title**: `string`
+
+  URL 的標題。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+<details>
+<summary>**WordInfo**</summary>
+
+  
+
+  轉錄輸出使用的字詞層級 ASR 註記，包含字詞文字、選用的時間資訊，以及選用的說話者歸屬。
+
+  **type**: required `object`
+
+  Value: `word_info`
+
+  **text**: `string`
+
+  轉錄出的字詞。
+
+  **start_offset**: `string`
+
+  字詞相對於音訊起點的開始時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **end_offset**: `string`
+
+  字詞相對於音訊起點的結束時間偏移。當 timestamp_granularities 包含 "word" 時提供。
+
+  **speaker**: `string`
+
+  選用。此字詞的說話者標籤（例如 "spk_1"、"spk_2"）。當 TranscriptionConfig 中設定了 diarization_mode 時提供。
+
+  **start_index**: `integer`
+
+  回應中歸因於此來源的片段起點。索引表示片段的起始位置，以位元組為單位。
+
+  **end_index**: `integer`
+
+  歸因片段的終點（不含）。
+
+  
+
+</details>
+
+
+  
+
+</details>
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **文字**
+
+  ```json
+  {
+    "type": "text",
+    "text": "Hello, how are you?"
+  }
+  ```
+
+  
+
+
