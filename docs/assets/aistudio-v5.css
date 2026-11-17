@@ -152,6 +152,9 @@ body,
   .md-nav--primary .md-nav .md-nav__title { display: none; }
 }
 
+/* sidebar shows only the current top-bar section (docs / api-reference) */
+.ais-offsection { display: none !important; }
+
 /* filter box injected by aistudio.js, mirroring the official "Filter" */
 .ais-filter { padding: 0.35rem 0.55rem 0.7rem 0.15rem; }
 .ais-filter input {

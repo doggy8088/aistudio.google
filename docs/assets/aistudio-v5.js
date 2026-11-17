@@ -15,6 +15,21 @@
     box.appendChild(input);
     wrap.prepend(box);
 
+    /* The top bar already switches between Docs and API reference, so
+       the sidebar shows only the current section's tree (like the
+       official site): hide the other section's group and landing page. */
+    var mode = window.location.pathname.indexOf("/api-reference") === 0 ? "api" : "docs";
+    var otherPrefix = mode === "api" ? "/docs/" : "/api-reference/";
+    var rootList = wrap.querySelector(".md-nav--primary > .md-nav__list");
+    if (rootList) {
+      Array.prototype.forEach.call(rootList.children, function (li) {
+        var a = li.querySelector(":scope > a.md-nav__link") || li.querySelector("a.md-nav__link");
+        if (!a) return;
+        var p = new URL(a.getAttribute("href"), window.location.href).pathname;
+        if (p.indexOf(otherPrefix) === 0) li.classList.add("ais-offsection");
+      });
+    }
+
     var items = Array.prototype.slice.call(wrap.querySelectorAll(".md-nav__item"));
     var toggles = Array.prototype.slice.call(wrap.querySelectorAll(".md-nav__toggle"));
     var initialFold = toggles.map(function (t) { return t.checked; });
