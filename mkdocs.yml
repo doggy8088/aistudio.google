@@ -9,6 +9,7 @@ theme:
   custom_dir: overrides
   features:
     - navigation.sections
+    - navigation.indexes
     - navigation.top
     - search.suggest
     - search.highlight
@@ -46,13 +47,13 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
-  - assets/aistudio-v6.css
+  - assets/aistudio-v7.css
 extra_javascript:
-  - assets/aistudio-v6.js
+  - assets/aistudio-v7.js
 extra:
   generator: false
 
-# === generated nav (build_site.py, from llms.txt) ===
+# === generated nav (build_site.py, from nav-tree.json) ===
 nav:
   - docs.md
   - Get started:
@@ -62,105 +63,117 @@ nav:
       - docs/coding-agents.md
       - docs/cli.md
   - Models:
-      - docs/latest-model.md
-      - docs/whats-new-gemini-4-carbon.md
-      - docs/whats-new-gemini-4-argon.md
-      - docs/whats-new-gemini-4-hydrogen.md
-      - docs/whats-new-gemini-3.8.md
-      - docs/whats-new-gemini-3.6.md
-      - docs/whats-new-gemini-3.7.md
-      - docs/whats-new-gemini-3.5.md
-      - docs/models.md
-      - docs/models/gemini-4-hydrogen.md
-      - docs/models/gemini-4-carbon.md
-      - docs/models/gemini-4-argon.md
-      - docs/models/gemini-nano-banana-2.1.md
-      - docs/models/gemini-3.1-flash-image.md
-      - docs/models/gemini-3.1-pro-preview.md
-      - docs/models/gemini-3-pro-preview.md
-      - docs/models/gemini-3-pro-image.md
-      - docs/models/gemini-3.8-flash.md
-      - docs/models/gemini-3.8-flash-tts.md
-      - docs/models/gemini-3.8-flash-lite-tts.md
-      - docs/models/gemini-3.8-live.md
-      - docs/models/gemini-3.8-live-extended-thinking.md
-      - docs/models/gemini-3.7-flash.md
-      - docs/models/gemini-3.6-flash.md
-      - docs/models/gemini-3.5-flash.md
-      - docs/models/gemini-3.5-flash-lite.md
-      - docs/models/gemini-omni-flash.md
-      - docs/models/gemini-3.5-transcribe.md
-      - docs/models/gemini-3.1-flash-lite-image.md
-      - docs/models/gemini-3.5-live-translate-preview.md
-      - docs/models/gemini-3-flash-preview.md
-      - docs/models/gemini-3.1-flash-tts-preview.md
-      - docs/models/veo-3.1-lite-generate-preview.md
-      - docs/models/gemini-3.1-flash-live-preview.md
-      - docs/models/gemini-3.1-flash-lite.md
-      - docs/models/gemini-3.1-flash-lite-preview.md
-      - docs/models/gemini-2.5-flash.md
-      - docs/models/gemini-2.5-flash-preview-09-2025.md
-      - docs/models/gemini-2.5-flash-image.md
-      - docs/models/gemini-2.5-flash-native-audio-preview-12-2025.md
-      - docs/models/gemini-2.5-flash-preview-tts.md
-      - docs/models/gemini-2.5-flash-lite.md
-      - docs/models/gemini-2.5-flash-lite-preview-09-2025.md
-      - docs/models/gemini-2.5-pro.md
-      - docs/models/gemini-2.5-pro-preview-tts.md
-      - docs/models/gemini-2.5-computer-use-preview-10-2025.md
-      - docs/models/gemini-2.0-flash.md
-      - docs/models/gemini-2.0-flash-lite.md
-      - docs/models/imagen.md
-      - docs/models/veo-3.1-generate-preview.md
-      - docs/models/veo-2.0-generate-001.md
-      - docs/models/gemini-embedding-001.md
-      - docs/models/gemini-embedding-2.md
-      - docs/models/gemini-embedding-2-preview.md
-      - docs/models/gemini-decision-1.md
-      - docs/models/gemini-robotics-er-2-preview.md
-      - docs/models/gemini-robotics-er-2-streaming-preview.md
-      - docs/models/gemini-robotics-er-1.5-preview.md
-      - docs/models/gemini-robotics-er-1.6-preview.md
-      - docs/models/deep-research-pro-preview-12-2025.md
-      - docs/models/deep-research-preview-04-2026.md
-      - docs/models/deep-research-max-preview-04-2026.md
-      - docs/models/antigravity-preview-05-2026.md
-      - docs/models/antigravity-preview-09-2026.md
-      - docs/models/lyria-realtime-exp.md
-      - docs/models/lyria-3.5.md
-      - docs/models/lyria-3-clip-preview.md
-      - docs/models/lyria-3-pro-preview.md
+      - 最新 Gemini 模型:
+          - docs/latest-model/index.md
+          - docs/whats-new-gemini-4-carbon.md
+          - docs/whats-new-gemini-4-argon.md
+          - docs/whats-new-gemini-4-hydrogen.md
+          - docs/whats-new-gemini-3.8.md
+          - docs/whats-new-gemini-3.6.md
+          - docs/whats-new-gemini-3.7.md
+          - docs/whats-new-gemini-3.5.md
+      - 模型:
+          - docs/models/index.md
+          - docs/models/gemini-4-hydrogen.md
+          - docs/models/gemini-4-carbon.md
+          - docs/models/gemini-4-argon.md
+          - docs/models/gemini-nano-banana-2.1.md
+          - docs/models/gemini-3.1-flash-image.md
+          - docs/models/gemini-3.1-pro-preview.md
+          - docs/models/gemini-3-pro-preview.md
+          - docs/models/gemini-3-pro-image.md
+          - docs/models/gemini-3.8-flash.md
+          - docs/models/gemini-3.8-flash-tts.md
+          - docs/models/gemini-3.8-flash-lite-tts.md
+          - docs/models/gemini-3.8-live.md
+          - docs/models/gemini-3.8-live-extended-thinking.md
+          - docs/models/gemini-3.7-flash.md
+          - docs/models/gemini-3.6-flash.md
+          - docs/models/gemini-3.5-flash.md
+          - docs/models/gemini-3.5-flash-lite.md
+          - docs/models/gemini-omni-flash.md
+          - docs/models/gemini-3.5-transcribe.md
+          - docs/models/gemini-3.1-flash-lite-image.md
+          - docs/models/gemini-3.5-live-translate-preview.md
+          - docs/models/gemini-3-flash-preview.md
+          - docs/models/gemini-3.1-flash-tts-preview.md
+          - docs/models/veo-3.1-lite-generate-preview.md
+          - docs/models/gemini-3.1-flash-live-preview.md
+          - docs/models/gemini-3.1-flash-lite.md
+          - docs/models/gemini-3.1-flash-lite-preview.md
+          - docs/models/gemini-2.5-flash.md
+          - docs/models/gemini-2.5-flash-preview-09-2025.md
+          - docs/models/gemini-2.5-flash-image.md
+          - docs/models/gemini-2.5-flash-native-audio-preview-12-2025.md
+          - docs/models/gemini-2.5-flash-preview-tts.md
+          - docs/models/gemini-2.5-flash-lite.md
+          - docs/models/gemini-2.5-flash-lite-preview-09-2025.md
+          - docs/models/gemini-2.5-pro.md
+          - docs/models/gemini-2.5-pro-preview-tts.md
+          - docs/models/gemini-2.5-computer-use-preview-10-2025.md
+          - docs/models/gemini-2.0-flash.md
+          - docs/models/gemini-2.0-flash-lite.md
+          - docs/models/imagen.md
+          - docs/models/veo-3.1-generate-preview.md
+          - docs/models/veo-2.0-generate-001.md
+          - docs/models/gemini-embedding-001.md
+          - docs/models/gemini-embedding-2.md
+          - docs/models/gemini-embedding-2-preview.md
+          - docs/models/gemini-decision-1.md
+          - docs/models/gemini-robotics-er-2-preview.md
+          - docs/models/gemini-robotics-er-2-streaming-preview.md
+          - docs/models/gemini-robotics-er-1.5-preview.md
+          - docs/models/gemini-robotics-er-1.6-preview.md
+          - docs/models/deep-research-pro-preview-12-2025.md
+          - docs/models/deep-research-preview-04-2026.md
+          - docs/models/deep-research-max-preview-04-2026.md
+          - docs/models/antigravity-preview-05-2026.md
+          - docs/models/antigravity-preview-09-2026.md
+          - docs/models/lyria-realtime-exp.md
+          - docs/models/lyria-3.5.md
+          - docs/models/lyria-3-clip-preview.md
+          - docs/models/lyria-3-pro-preview.md
       - docs/image-generation.md
       - docs/veo.md
       - docs/omni.md
-      - docs/music-generation.md
-      - docs/realtime-music-generation.md
-      - docs/lyria-prompt-guide.md
+      - Lyria 3.5:
+          - docs/music-generation.md
+          - docs/realtime-music-generation.md
+          - docs/lyria-prompt-guide.md
       - docs/imagen.md
-      - docs/speech-generation.md
-      - docs/voice-design.md
-      - docs/voice-replication.md
-      - docs/voice-remixing.md
+      - 文字轉語音:
+          - docs/speech-generation.md
+          - docs/voice-design.md
+          - docs/voice-replication.md
+          - docs/voice-remixing.md
       - docs/transcribe.md
       - docs/live-api.md
       - docs/live-api/live-translate.md
       - docs/embeddings.md
       - docs/decisions-api.md
-      - docs/robotics-overview.md
-      - docs/robotics-spatial.md
-      - docs/robotics-agentic.md
-      - docs/robotics-orchestration.md
-      - docs/robotics-streaming.md
-      - docs/robotics-video-progress.md
+      - Gemini Robotics ER:
+          - docs/robotics-overview/index.md
+          - docs/robotics-spatial.md
+          - docs/robotics-agentic.md
+          - docs/robotics-orchestration.md
+          - docs/robotics-streaming.md
+          - docs/robotics-video-progress.md
   - Core capabilities:
       - docs/text-generation.md
-      - docs/image-understanding.md
-      - docs/video.md
-      - docs/video-understanding.md
+      - 圖片:
+          - docs/image-generation.md
+          - docs/image-understanding.md
+      - Gemini API 中的影片生成:
+          - docs/video/index.md
+          - docs/video-understanding.md
       - docs/document-processing.md
-      - docs/audio.md
-      - docs/thinking.md
-      - docs/thought-signatures.md
+      - 語音與音訊:
+          - docs/speech-generation.md
+          - docs/audio.md
+          - docs/transcribe.md
+      - Gemini 思考:
+          - docs/thinking/index.md
+          - docs/thought-signatures.md
       - docs/structured-output.md
       - docs/function-calling.md
       - docs/long-context.md
@@ -184,11 +197,14 @@ nav:
       - docs/file-search.md
       - docs/tool-combination.md
   - Live API:
-      - docs/live-api/get-started-sdk.md
-      - docs/live-api/get-started-websocket.md
+      - docs/live-api.md
+      - 開始使用:
+          - docs/live-api/get-started-sdk.md
+          - docs/live-api/get-started-websocket.md
       - docs/live-api/capabilities.md
       - docs/live-api/thinking.md
       - docs/live-api/live-transcribe.md
+      - docs/live-api/live-translate.md
       - docs/live-api/tools.md
       - docs/live-api/session-management.md
       - docs/live-api/ephemeral-tokens.md
@@ -204,178 +220,203 @@ nav:
       - docs/interactions-overview.md
       - docs/streaming.md
       - docs/background-execution.md
-      - docs/file-input-methods.md
-      - docs/files.md
+      - 檔案輸入:
+          - docs/file-input-methods.md
+          - docs/files.md
       - docs/openai.md
       - docs/media-resolution.md
       - docs/tokens.md
       - docs/prompting-strategies.md
-      - docs/logs-datasets.md
-      - docs/logs-policy.md
-      - docs/safety-settings.md
-      - docs/safety-guidance.md
-      - docs/langgraph-example.md
-      - docs/crewai-example.md
-      - docs/llama-index.md
-      - docs/vercel-ai-sdk-example.md
-      - docs/temporal-example.md
+      - 記錄與資料集:
+          - docs/logs-datasets.md
+          - docs/logs-policy.md
+      - 安全:
+          - docs/safety-settings.md
+          - docs/safety-guidance.md
+      - 框架:
+          - docs/langgraph-example.md
+          - docs/crewai-example.md
+          - docs/llama-index.md
+          - docs/vercel-ai-sdk-example.md
+          - docs/temporal-example.md
   - Resources:
       - docs/changelog.md
       - docs/deprecations.md
       - docs/libraries.md
-      - docs/migrate.md
-      - docs/migrate-to-interactions.md
-      - docs/interactions-breaking-changes-may-2026.md
+      - 遷移:
+          - docs/migrate.md
+          - docs/migrate-to-interactions.md
+          - docs/interactions-breaking-changes-may-2026.md
       - docs/rate-limits.md
       - docs/billing.md
       - docs/verification.md
       - docs/troubleshooting.md
       - docs/api-errors.md
       - docs/partner-integration.md
-      - docs/ai-studio-quickstart.md
-      - docs/google-ai-plans.md
-      - docs/aistudio-build-mode.md
-      - docs/aistudio-fullstack.md
-      - docs/aistudio-android.md
-      - docs/aistudio-deploying.md
-      - docs/aistudio-custom-domains.md
-      - docs/aistudio-agents.md
-      - docs/learnlm.md
-      - docs/troubleshoot-ai-studio.md
-      - docs/workspace.md
-      - docs/migrate-to-cloud.md
-      - docs/oauth.md
+      - Google AI Studio:
+          - docs/ai-studio-quickstart.md
+          - docs/google-ai-plans.md
+          - docs/aistudio-build-mode.md
+          - docs/aistudio-fullstack.md
+          - docs/aistudio-android.md
+          - docs/aistudio-deploying.md
+          - docs/aistudio-custom-domains.md
+          - docs/aistudio-agents.md
+          - docs/learnlm.md
+          - docs/troubleshoot-ai-studio.md
+          - docs/workspace.md
+      - Google Cloud Platform:
+          - docs/migrate-to-cloud.md
+          - docs/oauth.md
+      - docs/gemini-for-research.md
+      - docs/model-tuning.md
   - Policies:
       - docs/terms.md
-      - docs/terms-archive/index.md
+      - Additional Terms of Service archive:
+          - docs/terms-archive/index/index.md
+          - docs/terms-archive/terms_12_18_25.md
+          - docs/terms-archive/terms_11_20_25.md
+          - docs/terms-archive/terms_10_17_25.md
+          - docs/terms-archive/terms_10_07_25.md
+          - docs/terms-archive/terms_09_25_25.md
+          - docs/terms-archive/terms_05_20_25.md
+          - docs/terms-archive/terms_04_03_25.md
+          - docs/terms-archive/terms_02_05_25.md
+          - docs/terms-archive/terms_12_20_24.md
+          - docs/terms-archive/terms_05_14_24.md
+          - docs/terms-archive/terms_05_02_24.md
+          - docs/terms-archive/terms_03_20_24.md
+          - docs/terms-archive/terms_02_15_24.md
+          - docs/terms-archive/terms_12_13_23.md
+          - docs/terms-archive/terms_09_20_23.md
+          - docs/terms-archive/terms_08_28_23.md
+          - docs/terms-archive/terms_05_10_23.md
+      - docs/terms-preview.md
       - docs/available-regions.md
       - docs/usage-policies.md
       - docs/feedback-policies.md
       - docs/documentation-policy.md
-  - Terms Archive:
-      - docs/terms-archive/terms_02_05_25.md
-      - docs/terms-archive/terms_02_15_24.md
-      - docs/terms-archive/terms_03_20_24.md
-      - docs/terms-archive/terms_04_03_25.md
-      - docs/terms-archive/terms_05_02_24.md
-      - docs/terms-archive/terms_05_10_23.md
-      - docs/terms-archive/terms_05_14_24.md
-      - docs/terms-archive/terms_05_20_25.md
-      - docs/terms-archive/terms_08_28_23.md
-      - docs/terms-archive/terms_09_20_23.md
-      - docs/terms-archive/terms_09_25_25.md
-      - docs/terms-archive/terms_10_07_25.md
-      - docs/terms-archive/terms_10_17_25.md
-      - docs/terms-archive/terms_11_20_25.md
-      - docs/terms-archive/terms_12_13_23.md
-      - docs/terms-archive/terms_12_18_25.md
-      - docs/terms-archive/terms_12_20_24.md
-  - docs/gemini-for-research.md
-  - docs/model-tuning.md
-  - docs/terms-preview.md
-  - docs/zdr.md
+      - docs/zdr.md
   - api-reference.md
-  - API reference:
-      - api-reference/api-versions.md
+  - api-reference/api-versions.md
   - Core APIs:
-      - api-reference/interactions-api.md
-      - api-reference/interactions-api/create-interaction.md
-      - api-reference/interactions-api/cancel-interaction-by-id.md
-      - api-reference/interactions-api/get-interaction-by-id.md
-      - api-reference/interactions-api/delete-interaction.md
-      - api-reference/generate-content.md
-      - api-reference/generate-content/generate-content.md
-      - api-reference/generate-content/stream-generate-content.md
-      - api-reference/generate-content/create-token.md
+      - Gemini Interactions API:
+          - api-reference/interactions-api/index.md
+          - api-reference/interactions-api/create-interaction.md
+          - api-reference/interactions-api/cancel-interaction-by-id.md
+          - api-reference/interactions-api/get-interaction-by-id.md
+          - api-reference/interactions-api/delete-interaction.md
+      - 產生內容:
+          - api-reference/generate-content/index.md
+          - api-reference/generate-content/generate-content.md
+          - api-reference/generate-content/stream-generate-content.md
+          - api-reference/generate-content/create-token.md
   - Real-time APIs:
-      - api-reference/live.md
-      - api-reference/live/bidi-generate-content.md
-      - api-reference/live-music.md
-      - api-reference/live-music/bidi-generate-music.md
+      - Live API - WebSockets API 參考文件:
+          - api-reference/live/index.md
+          - api-reference/live/bidi-generate-content.md
+      - Live Music API - WebSockets API 參考文件:
+          - api-reference/live-music/index.md
+          - api-reference/live-music/bidi-generate-music.md
   - Agent APIs:
-      - api-reference/agents.md
-      - api-reference/agents/create-agent.md
-      - api-reference/agents/list-agents.md
-      - api-reference/agents/get-agent.md
-      - api-reference/agents/delete-agent.md
-      - api-reference/environments.md
-      - api-reference/environments/create-environment.md
-      - api-reference/environments/list-environments.md
-      - api-reference/environments/get-environment-files.md
-      - api-reference/environments/get-environment.md
-      - api-reference/environments/start-environment-file-upload.md
-      - api-reference/environments/delete-environment.md
-      - api-reference/triggers.md
-      - api-reference/triggers/create-trigger.md
-      - api-reference/triggers/run-trigger.md
-      - api-reference/triggers/list-triggers.md
-      - api-reference/triggers/get-trigger.md
-      - api-reference/triggers/list-trigger-executions.md
-      - api-reference/triggers/update-trigger.md
-      - api-reference/triggers/delete-trigger.md
-      - api-reference/webhooks.md
-      - api-reference/webhooks/create-webhook.md
-      - api-reference/webhooks/ping-webhook.md
-      - api-reference/webhooks/rotate-signing-secret.md
-      - api-reference/webhooks/list-webhooks.md
-      - api-reference/webhooks/get-webhook.md
-      - api-reference/webhooks/update-webhook.md
-      - api-reference/webhooks/delete-webhook.md
-      - api-reference/credentials.md
-      - api-reference/credentials/create-credential.md
-      - api-reference/credentials/list-credentials.md
-      - api-reference/credentials/get-credential.md
-      - api-reference/credentials/update-credential.md
-      - api-reference/credentials/delete-credential.md
+      - Gemini Agents API:
+          - api-reference/agents/index.md
+          - api-reference/agents/create-agent.md
+          - api-reference/agents/list-agents.md
+          - api-reference/agents/get-agent.md
+          - api-reference/agents/delete-agent.md
+      - Gemini Environments API:
+          - api-reference/environments/index.md
+          - api-reference/environments/create-environment.md
+          - api-reference/environments/list-environments.md
+          - api-reference/environments/get-environment-files.md
+          - api-reference/environments/get-environment.md
+          - api-reference/environments/start-environment-file-upload.md
+          - api-reference/environments/delete-environment.md
+      - Gemini Triggers API:
+          - api-reference/triggers/index.md
+          - api-reference/triggers/create-trigger.md
+          - api-reference/triggers/run-trigger.md
+          - api-reference/triggers/list-triggers.md
+          - api-reference/triggers/get-trigger.md
+          - api-reference/triggers/list-trigger-executions.md
+          - api-reference/triggers/update-trigger.md
+          - api-reference/triggers/delete-trigger.md
+      - Gemini Webhooks API:
+          - api-reference/webhooks/index.md
+          - api-reference/webhooks/create-webhook.md
+          - api-reference/webhooks/ping-webhook.md
+          - api-reference/webhooks/rotate-signing-secret.md
+          - api-reference/webhooks/list-webhooks.md
+          - api-reference/webhooks/get-webhook.md
+          - api-reference/webhooks/update-webhook.md
+          - api-reference/webhooks/delete-webhook.md
+      - Gemini Credentials API:
+          - api-reference/credentials/index.md
+          - api-reference/credentials/create-credential.md
+          - api-reference/credentials/list-credentials.md
+          - api-reference/credentials/get-credential.md
+          - api-reference/credentials/update-credential.md
+          - api-reference/credentials/delete-credential.md
   - Platform APIs:
-      - api-reference/files.md
-      - api-reference/files/get-file.md
-      - api-reference/files/list-files.md
-      - api-reference/files/delete-file.md
-      - api-reference/files/register-files.md
-      - api-reference/files/create-file.md
-      - api-reference/file-search/file-search-stores.md
-      - api-reference/file-search/file-search-stores/create-file-search-store.md
-      - api-reference/file-search/file-search-stores/delete-file-search-store.md
-      - api-reference/file-search/file-search-stores/get-file-search-store.md
-      - api-reference/file-search/file-search-stores/list-file-search-stores.md
-      - api-reference/file-search/file-search-stores/import-file.md
-      - api-reference/file-search/file-search-stores/get-file-search-store-operation.md
-      - api-reference/file-search/file-search-stores/get-file-search-store-upload-operation.md
-      - api-reference/file-search/file-search-stores/upload-to-file-search-store.md
-      - api-reference/file-search/documents.md
-      - api-reference/file-search/documents/delete-document.md
-      - api-reference/file-search/documents/get-document.md
-      - api-reference/file-search/documents/list-documents.md
-      - api-reference/caching.md
-      - api-reference/caching/create-cached-content.md
-      - api-reference/caching/list-cached-contents.md
-      - api-reference/caching/get-cached-content.md
-      - api-reference/caching/update-cached-content.md
-      - api-reference/caching/delete-cached-content.md
-      - api-reference/embeddings.md
-      - api-reference/embeddings/embed-content.md
-      - api-reference/embeddings/batch-embed-contents.md
-      - api-reference/embeddings/async-batch-embed-content.md
-      - api-reference/batch-api.md
-      - api-reference/batch-api/batch-generate-content.md
-      - api-reference/batch-api/async-batch-embed-content.md
-      - api-reference/batch-api/get-batch.md
-      - api-reference/batch-api/list-batches.md
-      - api-reference/batch-api/cancel-batch.md
-      - api-reference/batch-api/delete-batch.md
-      - api-reference/batch-api/update-generate-content-batch.md
-      - api-reference/batch-api/update-embed-content-batch.md
-      - api-reference/tokens.md
-      - api-reference/tokens/count-tokens.md
-      - api-reference/voices.md
-      - api-reference/voices/create-voice.md
-      - api-reference/voices/list-voices.md
-      - api-reference/voices/get-voice.md
-      - api-reference/voices/delete-voice.md
-      - api-reference/models.md
-      - api-reference/models/get-model.md
-      - api-reference/models/list-models.md
-      - api-reference/decisions.md
-      - api-reference/decisions/create-decision.md
+      - 使用檔案:
+          - api-reference/files/index.md
+          - api-reference/files/get-file.md
+          - api-reference/files/list-files.md
+          - api-reference/files/delete-file.md
+          - api-reference/files/register-files.md
+          - api-reference/files/create-file.md
+      - 檔案搜尋儲存庫:
+          - api-reference/file-search/file-search-stores/index.md
+          - api-reference/file-search/file-search-stores/create-file-search-store.md
+          - api-reference/file-search/file-search-stores/delete-file-search-store.md
+          - api-reference/file-search/file-search-stores/get-file-search-store.md
+          - api-reference/file-search/file-search-stores/list-file-search-stores.md
+          - api-reference/file-search/file-search-stores/import-file.md
+          - api-reference/file-search/file-search-stores/get-file-search-store-operation.md
+          - api-reference/file-search/file-search-stores/get-file-search-store-upload-operation.md
+          - api-reference/file-search/file-search-stores/upload-to-file-search-store.md
+      - 文件:
+          - api-reference/file-search/documents/index.md
+          - api-reference/file-search/documents/delete-document.md
+          - api-reference/file-search/documents/get-document.md
+          - api-reference/file-search/documents/list-documents.md
+      - 快取:
+          - api-reference/caching/index.md
+          - api-reference/caching/create-cached-content.md
+          - api-reference/caching/list-cached-contents.md
+          - api-reference/caching/get-cached-content.md
+          - api-reference/caching/update-cached-content.md
+          - api-reference/caching/delete-cached-content.md
+      - 嵌入向量:
+          - api-reference/embeddings/index.md
+          - api-reference/embeddings/embed-content.md
+          - api-reference/embeddings/batch-embed-contents.md
+          - api-reference/embeddings/async-batch-embed-content.md
+      - Batch API:
+          - api-reference/batch-api/index.md
+          - api-reference/batch-api/batch-generate-content.md
+          - api-reference/batch-api/async-batch-embed-content.md
+          - api-reference/batch-api/get-batch.md
+          - api-reference/batch-api/list-batches.md
+          - api-reference/batch-api/cancel-batch.md
+          - api-reference/batch-api/delete-batch.md
+          - api-reference/batch-api/update-generate-content-batch.md
+          - api-reference/batch-api/update-embed-content-batch.md
+      - 計算權杖數:
+          - api-reference/tokens/index.md
+          - api-reference/tokens/count-tokens.md
+      - Gemini Voices API:
+          - api-reference/voices/index.md
+          - api-reference/voices/create-voice.md
+          - api-reference/voices/list-voices.md
+          - api-reference/voices/get-voice.md
+          - api-reference/voices/delete-voice.md
+      - 模型:
+          - api-reference/models/index.md
+          - api-reference/models/get-model.md
+          - api-reference/models/list-models.md
+      - Gemini Decisions API:
+          - api-reference/decisions/index.md
+          - api-reference/decisions/create-decision.md
       - api-reference/all-methods.md

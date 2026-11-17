@@ -154,10 +154,9 @@ body,
 
 /* sidebar shows only the current top-bar section (docs / api-reference) */
 .ais-offsection { display: none !important; }
-/* current section: no group header (top bar names it), no first-level
-   guide line, children sit at the top level */
-.ais-rootsection > .md-nav__link { display: none !important; }
-.md-nav--primary .ais-rootsection > .md-nav > .md-nav__list {
+/* group children sit flush under their group header (official look);
+   indentation + guide line start one level deeper, under parents */
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav > .md-nav__list {
   margin-left: 0;
   padding-left: 0;
   border-left: none !important;
@@ -182,9 +181,11 @@ body,
 }
 .ais-filter input:focus { border-color: #1a73e8; }
 
-/* section headers: small, uppercase, gray, spaced — unmistakable */
-.md-nav--primary .md-nav__item--section > .md-nav__link,
-.md-nav--primary .md-nav__item--section > label.md-nav__link {
+/* group headers (top level only): small, uppercase, gray, spaced.
+   Nested parent sections keep the regular item look, like the official
+   site's expandable parents. */
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link,
+.md-nav--primary > .md-nav__list > .md-nav__item--section > label.md-nav__link {
   text-transform: uppercase;
   letter-spacing: 0.09em;
   font-size: 0.68rem;
@@ -193,8 +194,8 @@ body,
   padding-left: 0.9rem;
   cursor: pointer;
 }
-[data-md-color-scheme="default"] .md-nav--primary .md-nav__item--section > .md-nav__link { color: #5f6368; }
-[data-md-color-scheme="slate"] .md-nav--primary .md-nav__item--section > .md-nav__link { color: #9aa0a6; }
+[data-md-color-scheme="default"] .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link { color: #5f6368; }
+[data-md-color-scheme="slate"] .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link { color: #9aa0a6; }
 
 /* page links: pills */
 .md-nav--primary .md-nav__link {
@@ -202,6 +203,18 @@ body,
   padding: 0.34rem 0.9rem;
   margin: 1px 0.55rem 1px 0;
   font-size: 0.8rem;
+}
+/* linked parent sections (navigation.indexes): the container wraps a
+   page link + a chevron toggle; the link alone carries the pill look */
+.md-nav--primary .md-nav__link.md-nav__container {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+.md-nav--primary .md-nav__container > a.md-nav__link { flex: 1; }
+.md-nav--primary .md-nav__container > label.md-nav__link {
+  padding: 0.34rem 0.35rem;
+  margin: 0;
 }
 [data-md-color-scheme="default"] .md-nav--primary .md-nav__link { color: #3c4043; }
 [data-md-color-scheme="default"] .md-nav--primary .md-nav__link:hover { background: #eef0f2; color: #1f1f1f; }

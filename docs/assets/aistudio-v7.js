@@ -29,12 +29,6 @@
         var p = new URL(a.getAttribute("href"), window.location.href).pathname;
         if (p.indexOf(otherPrefix) === 0) {
           li.classList.add("ais-offsection");
-        } else if (p.indexOf(keepPrefix) === 0 && li.classList.contains("md-nav__item--section")) {
-          /* current section: drop its redundant group header (the top
-             bar already names the section) and flatten its children */
-          li.classList.add("ais-rootsection");
-          var toggle = li.querySelector(":scope > .md-nav__toggle");
-          if (toggle) toggle.checked = true;
         }
       });
     }
