@@ -1,6 +1,7 @@
 /* Inject a "Filter" box at the top of the primary sidebar, mirroring
    aistudio.google.com/docs. Typing hides nav items that (and whose
-   descendants) do not match. */
+   descendants) do not match; sections containing matches are expanded
+   while filtering, and the original fold state is restored on clear. */
 (function () {
   function init() {
     var wrap = document.querySelector(".md-sidebar--primary .md-sidebar__scrollwrap");
@@ -15,10 +16,14 @@
     wrap.prepend(box);
 
     var items = Array.prototype.slice.call(wrap.querySelectorAll(".md-nav__item"));
+    var toggles = Array.prototype.slice.call(wrap.querySelectorAll(".md-nav__toggle"));
+    var initialFold = toggles.map(function (t) { return t.checked; });
+
     input.addEventListener("input", function () {
       var q = input.value.trim().toLowerCase();
       if (!q) {
         items.forEach(function (it) { it.style.display = ""; });
+        toggles.forEach(function (t, i) { t.checked = initialFold[i]; });
         return;
       }
       var match = new Map();
@@ -31,7 +36,14 @@
           .forEach(function (child) { if (match.get(child)) childHit = true; });
         match.set(it, own || childHit);
       });
-      items.forEach(function (it) { it.style.display = match.get(it) ? "" : "none"; });
+      items.forEach(function (it) {
+        var hit = !!match.get(it);
+        it.style.display = hit ? "" : "none";
+        if (hit) {
+          var toggle = it.querySelector(":scope > .md-nav__toggle");
+          if (toggle) toggle.checked = true;
+        }
+      });
     });
   }
   if (document.readyState === "loading") {

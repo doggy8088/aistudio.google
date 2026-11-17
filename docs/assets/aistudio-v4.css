@@ -146,7 +146,11 @@ body,
 /* ================= left navigation: clarity first ================= */
 .md-sidebar--primary .md-sidebar__scrollwrap { background: transparent; }
 .md-nav--primary > .md-nav__title { display: none; }
-.md-nav--primary .md-nav .md-nav__title { display: none; }
+@media screen and (min-width: 76.25em) {
+  /* nested layer titles duplicate the section header on desktop;
+     keep them in the mobile drawer where they act as back headers */
+  .md-nav--primary .md-nav .md-nav__title { display: none; }
+}
 
 /* filter box injected by aistudio.js, mirroring the official "Filter" */
 .ais-filter { padding: 0.35rem 0.55rem 0.7rem 0.15rem; }
@@ -176,7 +180,7 @@ body,
   font-weight: 500;
   margin-top: 1.25rem;
   padding-left: 0.9rem;
-  cursor: default;
+  cursor: pointer;
 }
 [data-md-color-scheme="default"] .md-nav--primary .md-nav__item--section > .md-nav__link { color: #5f6368; }
 [data-md-color-scheme="slate"] .md-nav--primary .md-nav__item--section > .md-nav__link { color: #9aa0a6; }

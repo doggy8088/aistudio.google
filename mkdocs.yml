@@ -9,7 +9,6 @@ theme:
   custom_dir: overrides
   features:
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
@@ -47,8 +46,8 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
-  - assets/aistudio-v3.css
+  - assets/aistudio-v4.css
 extra_javascript:
-  - assets/aistudio-v3.js
+  - assets/aistudio-v4.js
 extra:
   generator: false
