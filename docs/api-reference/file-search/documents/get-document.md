@@ -66,56 +66,36 @@
 
   
 
-<details>
-<summary>**customMetadata**: `CustomMetadata array` 選填。使用者提供的自訂中繼資料，以鍵值對形式儲存，用於查詢。一個 [`Document`](/api-reference/file-search/documents/#Resource:Document) 最多可有 20 個 `CustomMetadata`。</summary>
+??? note "**customMetadata**: `CustomMetadata array` 選填。使用者提供的自訂中繼資料，以鍵值對形式儲存，用於查詢。一個 [`Document`](/api-reference/file-search/documents/#Resource:Document) 最多可有 20 個 `CustomMetadata`。"
 
-  
+      **key**: required `string`
 
-  **key**: required `string`
-
-  要儲存的中繼資料的鍵。
-
-  
-
-<details>
-<summary>**value**: `Union type`</summary>
-
-  
-
-  聯集欄位 `value` 只能是下列其中之一：
-
-  **stringValue**: `string`
-
-  要儲存的中繼資料的字串值。
-
-  
-
-<details>
-<summary>**stringListValue**: `StringList` 要儲存的中繼資料的 StringList 值。</summary>
-
-  
-
-  **values**: `string array`
-
-  要儲存的中繼資料的字串值。
-
-  
-
-</details>
+      要儲存的中繼資料的鍵。
 
 
-  **numericValue**: `number`
 
-  要儲存的中繼資料的數值。
+    ??? note "**value**: `Union type`"
 
-  
+          聯集欄位 `value` 只能是下列其中之一：
 
-</details>
+          **stringValue**: `string`
+
+          要儲存的中繼資料的字串值。
 
 
-  
 
-</details>
+        ??? note "**stringListValue**: `StringList` 要儲存的中繼資料的 StringList 值。"
+
+            **values**: `string array`
+
+            要儲存的中繼資料的字串值。
+
+
+
+          **numericValue**: `number`
+
+          要儲存的中繼資料的數值。
+
 
 
   
@@ -143,21 +123,15 @@
 
   
 
-<details>
-<summary>**state**: `string enum` 僅供輸出。[`Document`](/api-reference/file-search/documents/#Resource:Document) 目前的狀態。</summary>
+??? note "**state**: `string enum` 僅供輸出。[`Document`](/api-reference/file-search/documents/#Resource:Document) 目前的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `STATE_UNSPECIFIED`：預設值。省略狀態時使用此值。
+    - `STATE_PENDING`：`Chunks` 有部分正在處理中（嵌入與向量儲存），屬於該 [`Document`](/api-reference/file-search/documents/#Resource:Document)。
+    - `STATE_ACTIVE`：`Chunks` 全部已處理完成，該 [`Document`](/api-reference/file-search/documents/#Resource:Document) 可供查詢。
+    - `STATE_FAILED`：`Chunks` 有部分處理失敗，屬於該 [`Document`](/api-reference/file-search/documents/#Resource:Document)。
 
-  - `STATE_UNSPECIFIED`：預設值。省略狀態時使用此值。
-  - `STATE_PENDING`：`Chunks` 有部分正在處理中（嵌入與向量儲存），屬於該 [`Document`](/api-reference/file-search/documents/#Resource:Document)。
-  - `STATE_ACTIVE`：`Chunks` 全部已處理完成，該 [`Document`](/api-reference/file-search/documents/#Resource:Document) 可供查詢。
-  - `STATE_FAILED`：`Chunks` 有部分處理失敗，屬於該 [`Document`](/api-reference/file-search/documents/#Resource:Document)。
-
-  
-
-</details>
 
 
   

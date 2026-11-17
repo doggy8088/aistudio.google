@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block extrahead %}
+  {% set og_title = config.site_name %}
+  {% set og_desc = config.site_description %}
+  {% if page and page.title and page.url %}
+    {% set og_title = page.title ~ "｜" ~ config.site_name %}
+    {% set og_desc = page.title ~ " — Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。" %}
+  {% endif %}
+  {% set og_url = page.canonical_url if page and page.canonical_url else config.site_url %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name | e }}">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="{{ og_title | e }}">
+  <meta property="og:description" content="{{ og_desc | e }}">
+  <meta property="og:url" content="{{ og_url | e }}">
+  <meta property="og:image" content="{{ config.site_url }}assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Google AI Studio 文件｜繁體中文版">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title | e }}">
+  <meta name="twitter:description" content="{{ og_desc | e }}">
+  <meta name="twitter:image" content="{{ config.site_url }}assets/og-image.png">
+  <meta name="theme-color" content="#1a73e8">
+{% endblock %}

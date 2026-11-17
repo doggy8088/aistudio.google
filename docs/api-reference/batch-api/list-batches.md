@@ -66,54 +66,40 @@
   
   
 
-<details>
-<summary>**operations**: `Operation array` 符合請求中指定篩選條件的作業清單。</summary>
+??? note "**operations**: `Operation array` 符合請求中指定篩選條件的作業清單。"
 
-  
+    ??? note "**error**: `Status` 作業失敗或取消時的錯誤結果。"
 
-  
+        **code**: `integer`
 
-<details>
-<summary>**error**: `Status` 作業失敗或取消時的錯誤結果。</summary>
+        狀態碼，應為 google.rpc.Code 的列舉值。
 
-  
+        **message**: `string`
 
-  **code**: `integer`
+        面向開發人員的錯誤訊息，應以英文撰寫。任何面向使用者的錯誤訊息都應本地化，並透過 google.rpc.Status.details 欄位傳送，或由用戶端本地化。
 
-  狀態碼，應為 google.rpc.Code 的列舉值。
+        **details**: `object array`
 
-  **message**: `string`
-
-  面向開發人員的錯誤訊息，應以英文撰寫。任何面向使用者的錯誤訊息都應本地化，並透過 google.rpc.Status.details 欄位傳送，或由用戶端本地化。
-
-  **details**: `object array`
-
-  承載錯誤詳細資訊的訊息清單。API 可使用一組通用的訊息類型。
-
-  
-
-</details>
+        承載錯誤詳細資訊的訊息清單。API 可使用一組通用的訊息類型。
 
 
-  **response**: `object`
 
-  作業正常且成功的回應。如果原始方法在成功時不傳回資料（例如 `Delete`），回應為 `google.protobuf.Empty`。如果原始方法是標準的 `Get`/`Create`/`Update`，回應應為該資源。對於其他方法，回應的類型應為 `XxxResponse`，其中 `Xxx` 是原始方法名稱。例如，如果原始方法名稱為 `TakeSnapshot()`，推斷的回應類型即為 `TakeSnapshotResponse`。
+      **response**: `object`
 
-  **name**: `string`
+      作業正常且成功的回應。如果原始方法在成功時不傳回資料（例如 `Delete`），回應為 `google.protobuf.Empty`。如果原始方法是標準的 `Get`/`Create`/`Update`，回應應為該資源。對於其他方法，回應的類型應為 `XxxResponse`，其中 `Xxx` 是原始方法名稱。例如，如果原始方法名稱為 `TakeSnapshot()`，推斷的回應類型即為 `TakeSnapshotResponse`。
 
-  由伺服器指派的名稱，僅在最初傳回它的同一個服務內具唯一性。如果使用預設的 HTTP 對應，`name` 應為以 `operations/{unique_id}` 結尾的資源名稱。
+      **name**: `string`
 
-  **metadata**: `object`
+      由伺服器指派的名稱，僅在最初傳回它的同一個服務內具唯一性。如果使用預設的 HTTP 對應，`name` 應為以 `operations/{unique_id}` 結尾的資源名稱。
 
-  與作業相關聯的服務專屬中繼資料。通常包含進度資訊，以及建立時間等常見中繼資料。有些服務可能不提供這類中繼資料。任何傳回長時間執行作業的方法，都應記錄其中繼資料類型（如有）。
+      **metadata**: `object`
 
-  **done**: `boolean`
+      與作業相關聯的服務專屬中繼資料。通常包含進度資訊，以及建立時間等常見中繼資料。有些服務可能不提供這類中繼資料。任何傳回長時間執行作業的方法，都應記錄其中繼資料類型（如有）。
 
-  如果值為 `false`，表示作業仍在進行中。如果為 `true`，表示作業已完成，且可取得 `error` 或 `response`。
+      **done**: `boolean`
 
-  
+      如果值為 `false`，表示作業仍在進行中。如果為 `true`，表示作業已完成，且可取得 `error` 或 `response`。
 
-</details>
 
 
   

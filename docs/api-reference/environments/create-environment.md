@@ -17,102 +17,60 @@
   
   
 
-<details>
-<summary>**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。</summary>
+??? note "**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。"
 
-  
-
-  **可能的類型**： 
-
-  
-
-<details>
-<summary>**EnvironmentNetworkEgressAllowlist**</summary>
-
-  
-
-  環境的網路輸出設定。
-
-  
-
-<details>
-<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域清單及其設定。設為 `"disabled"` 可封鎖所有網路輸出。</summary>
-
-  
-
-  **可能的類型**： 
-
-  
-
-<details>
-<summary>**EgressRule array**</summary>
-
-  
-
-  單一網域允許清單規則，可選擇性注入標頭。
-
-  **domain**: required `string`
-
-  允許對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
-
-  **transform**: `object`
-
-  要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
-
-  **credential**: `string`
-
-  選填。依 ID 參照伺服器代管的 Credential 資源。
-
-  
-
-</details>
+      **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**string enum**</summary>
+    ??? note "**EnvironmentNetworkEgressAllowlist**"
 
-  
-
-  可能的值：
-
-  - `disabled`: 所有網路輸出皆被封鎖。
-
-  
-
-</details>
+          環境的網路輸出設定。
 
 
-  
 
-</details>
+        ??? note "**allowlist**: `EgressRule array` or `string enum` 允許的網域清單及其設定。設為 `"disabled"` 可封鎖所有網路輸出。"
 
-
-  
-
-</details>
+              **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**string enum**</summary>
+            ??? note "**EgressRule array**"
 
-  
+                單一網域允許清單規則，可選擇性注入標頭。
 
-  可能的值：
+                **domain**: required `string`
 
-  - `disabled`: 所有網路輸出皆被封鎖。
+                允許對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
 
-  
+                **transform**: `object`
 
-</details>
+                要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
+
+                **credential**: `string`
+
+                選填。依 ID 參照伺服器代管的 Credential 資源。
 
 
-  
 
-</details>
+
+
+            ??? note "**string enum**"
+
+                可能的值：
+
+                - `disabled`: 所有網路輸出皆被封鎖。
+
+
+
+
+
+    ??? note "**string enum**"
+
+        可能的值：
+
+        - `disabled`: 所有網路輸出皆被封鎖。
+
 
 
   
@@ -122,48 +80,34 @@
 
   
 
-<details>
-<summary>**sources**: `Source array` 要掛載至環境的來源。</summary>
+??? note "**sources**: `Source array` 要掛載至環境的來源。"
 
-  
+    ??? note "**type**: `string enum`"
 
-  
+        可能的值：
 
-<details>
-<summary>**type**: `string enum`</summary>
-
-  
-
-  可能的值：
-
-  - `gcs`: Cloud Storage 值區。
-  - `inline`: 內嵌內容。
-  - `repository`: 一般儲存庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
-
-  
-
-</details>
+        - `gcs`: Cloud Storage 值區。
+        - `inline`: 內嵌內容。
+        - `repository`: 一般儲存庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
 
 
-  **source**: `string`
 
-  環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
+      **source**: `string`
 
-  **target**: `string`
+      環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
 
-  來源在環境中應出現的位置。
+      **target**: `string`
 
-  **content**: `string`
+      來源在環境中應出現的位置。
 
-  當 `type` 為 `INLINE` 時的內嵌內容。
+      **content**: `string`
 
-  **encoding**: `string`
+      當 `type` 為 `INLINE` 時的內嵌內容。
 
-  內嵌內容的選填編碼（例如 `base64`）。
+      **encoding**: `string`
 
-  
+      內嵌內容的選填編碼（例如 `base64`）。
 
-</details>
 
 
   
@@ -173,19 +117,13 @@
 
   
 
-<details>
-<summary>**mode**: `string enum` 此環境的運算生命週期模式。</summary>
+??? note "**mode**: `string enum` 此環境的運算生命週期模式。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `on_demand`: 此環境的運算生命週期模式。
+    - `self_hosted`: 此環境的運算生命週期模式。
 
-  - `on_demand`: 此環境的運算生命週期模式。
-  - `self_hosted`: 此環境的運算生命週期模式。
-
-  
-
-</details>
 
 
   
@@ -476,48 +414,34 @@
 
   
 
-<details>
-<summary>**sources**: `Source array` 要掛載至環境的來源。</summary>
+??? note "**sources**: `Source array` 要掛載至環境的來源。"
 
-  
+    ??? note "**type**: `string enum`"
 
-  
+        可能的值：
 
-<details>
-<summary>**type**: `string enum`</summary>
-
-  
-
-  可能的值：
-
-  - `gcs`: Cloud Storage 值區。
-  - `inline`: 內嵌內容。
-  - `repository`: 一般儲存庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
-
-  
-
-</details>
+        - `gcs`: Cloud Storage 值區。
+        - `inline`: 內嵌內容。
+        - `repository`: 一般儲存庫。來源 URL 中的通訊協定前綴可識別提供者（例如 github://、gcs://）。
 
 
-  **source**: `string`
 
-  環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
+      **source**: `string`
 
-  **target**: `string`
+      環境的來源。對 Cloud Storage 而言，這是 Cloud Storage 路徑；對 GitHub 而言，這是 GitHub 路徑。
 
-  來源在環境中應出現的位置。
+      **target**: `string`
 
-  **content**: `string`
+      來源在環境中應出現的位置。
 
-  當 `type` 為 `INLINE` 時的內嵌內容。
+      **content**: `string`
 
-  **encoding**: `string`
+      當 `type` 為 `INLINE` 時的內嵌內容。
 
-  內嵌內容的選填編碼（例如 `base64`）。
+      **encoding**: `string`
 
-  
+      內嵌內容的選填編碼（例如 `base64`）。
 
-</details>
 
 
   
@@ -554,19 +478,13 @@
 
   
 
-<details>
-<summary>**status**: `string enum` 僅供輸出。環境容器的狀態。</summary>
+??? note "**status**: `string enum` 僅供輸出。環境容器的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `active`: 僅供輸出。環境容器的狀態。
+    - `expired`: 僅供輸出。環境容器的狀態。
 
-  - `active`: 僅供輸出。環境容器的狀態。
-  - `expired`: 僅供輸出。環境容器的狀態。
-
-  
-
-</details>
 
 
   
@@ -576,102 +494,60 @@
 
   
 
-<details>
-<summary>**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。</summary>
+??? note "**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。"
 
-  
-
-  **可能的類型**： 
-
-  
-
-<details>
-<summary>**EnvironmentNetworkEgressAllowlist**</summary>
-
-  
-
-  環境的網路輸出設定。
-
-  
-
-<details>
-<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域清單及其設定。設為 `"disabled"` 可封鎖所有網路輸出。</summary>
-
-  
-
-  **可能的類型**： 
-
-  
-
-<details>
-<summary>**EgressRule array**</summary>
-
-  
-
-  單一網域允許清單規則，可選擇性注入標頭。
-
-  **domain**: required `string`
-
-  允許對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
-
-  **transform**: `object`
-
-  要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
-
-  **credential**: `string`
-
-  選填。依 ID 參照伺服器代管的 Credential 資源。
-
-  
-
-</details>
+      **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**string enum**</summary>
+    ??? note "**EnvironmentNetworkEgressAllowlist**"
 
-  
-
-  可能的值：
-
-  - `disabled`: 所有網路輸出皆被封鎖。
-
-  
-
-</details>
+          環境的網路輸出設定。
 
 
-  
 
-</details>
+        ??? note "**allowlist**: `EgressRule array` or `string enum` 允許的網域清單及其設定。設為 `"disabled"` 可封鎖所有網路輸出。"
 
-
-  
-
-</details>
+              **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**string enum**</summary>
+            ??? note "**EgressRule array**"
 
-  
+                單一網域允許清單規則，可選擇性注入標頭。
 
-  可能的值：
+                **domain**: required `string`
 
-  - `disabled`: 所有網路輸出皆被封鎖。
+                允許對外請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
 
-  
+                **transform**: `object`
 
-</details>
+                要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
+
+                **credential**: `string`
+
+                選填。依 ID 參照伺服器代管的 Credential 資源。
 
 
-  
 
-</details>
+
+
+            ??? note "**string enum**"
+
+                可能的值：
+
+                - `disabled`: 所有網路輸出皆被封鎖。
+
+
+
+
+
+    ??? note "**string enum**"
+
+        可能的值：
+
+        - `disabled`: 所有網路輸出皆被封鎖。
+
 
 
   
@@ -699,19 +575,13 @@
 
   
 
-<details>
-<summary>**mode**: `string enum` 僅供輸出。此環境的運算生命週期模式。</summary>
+??? note "**mode**: `string enum` 僅供輸出。此環境的運算生命週期模式。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `on_demand`: 僅供輸出。此環境的運算生命週期模式。
+    - `self_hosted`: 僅供輸出。此環境的運算生命週期模式。
 
-  - `on_demand`: 僅供輸出。此環境的運算生命週期模式。
-  - `self_hosted`: 僅供輸出。此環境的運算生命週期模式。
-
-  
-
-</details>
 
 
   
@@ -731,5 +601,4 @@
   **environment_key**: `string`
 
   僅供輸出。在建立環境時為 self_hosted 環境產生的秘密權杖。自行託管的沙箱常駐程式會使用此權杖驗證輪詢與串流請求。僅在 CreateEnvironment 回應中傳回，後續的 GetEnvironment 與 ListEnvironments 呼叫不會包含此欄位。
-
 

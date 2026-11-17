@@ -101,20 +101,14 @@
 
   
 
-<details>
-<summary>**type**: required `VoiceType` 語音的類型。在 `CreateVoice` 中，必須是 `"replicated"` 或 `"prompted"`。在 `ListVoices` 回應中，也可以是 `"prebuilt"`。</summary>
+??? note "**type**: required `VoiceType` 語音的類型。在 `CreateVoice` 中，必須是 `"replicated"` 或 `"prompted"`。在 `ListVoices` 回應中，也可以是 `"prebuilt"`。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `replicated`：根據參考音訊範本與說話者同意錄音複製出的自訂語音。
+    - `prompted`：根據自然語言文字提示詞產生的自訂語音（可選擇編輯或混音 `base_voice`）。
+    - `prebuilt`：Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中傳回；無法在 `CreateVoice` 中指定為類型。
 
-  - `replicated`：根據參考音訊範本與說話者同意錄音複製出的自訂語音。
-  - `prompted`：根據自然語言文字提示詞產生的自訂語音（可選擇編輯或混音 `base_voice`）。
-  - `prebuilt`：Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中傳回；無法在 `CreateVoice` 中指定為類型。
-
-  
-
-</details>
 
 
   
@@ -173,22 +167,16 @@
 
   
 
-<details>
-<summary>**prompted**: `PromptedVoice` 提示詞語音產生的參數。在 `CreateVoice` 中，當 `type` 為 `"prompted"` 時必填。會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中針對提示詞語音傳回。</summary>
+??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。在 `CreateVoice` 中，當 `type` 為 `"prompted"` 時必填。會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中針對提示詞語音傳回。"
 
-  
+    **input**: required `string`
 
-  **input**: required `string`
+    描述目標語音的自然語言提示詞，例如 "A deep, booming male voice of a massive evil ogre in his middle years."
 
-  描述目標語音的自然語言提示詞，例如 "A deep, booming male voice of a massive evil ogre in his middle years."
+    **base_voice**: `string`
 
-  **base_voice**: `string`
+    選填。要編輯或混音的既有基礎語音的名稱或 ID。預建語音使用語音名稱（例如 `Puck`），先前建立的語音使用語音 ID（例如 `voice_abc123`）。可以是使用者有權存取的任何提示詞語音或複製語音。設定此欄位時，`input` 描述要對基礎語音做的相對調整。
 
-  選填。要編輯或混音的既有基礎語音的名稱或 ID。預建語音使用語音名稱（例如 `Puck`），先前建立的語音使用語音 ID（例如 `voice_abc123`）。可以是使用者有權存取的任何提示詞語音或複製語音。設定此欄位時，`input` 描述要對基礎語音做的相對調整。
-
-  
-
-</details>
 
 
   
@@ -252,20 +240,14 @@
 
   
 
-<details>
-<summary>**pitch**: `Pitch` 選填。語音音高分類。</summary>
+??? note "**pitch**: `Pitch` 選填。語音音高分類。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `low`：音高較低的語音。
+    - `medium`：音高適中的語音。
+    - `high`：音高較高的語音。
 
-  - `low`：音高較低的語音。
-  - `medium`：音高適中的語音。
-  - `high`：音高較高的語音。
-
-  
-
-</details>
 
 
   
@@ -284,219 +266,141 @@
 
   
 
-<details>
-<summary>**usage**: `Usage` 僅供輸出。語音建立請求的權杖用量統計。僅在 `CreateVoice` 的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及 `GetVoice` 與 `ListVoices` 回應中不會設定。</summary>
+??? note "**usage**: `Usage` 僅供輸出。語音建立請求的權杖用量統計。僅在 `CreateVoice` 的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及 `GetVoice` 與 `ListVoices` 回應中不會設定。"
 
-  
+      **total_input_tokens**: `integer`
 
-  **total_input_tokens**: `integer`
+      提示詞（上下文）中的權杖數量。
 
-  提示詞（上下文）中的權杖數量。
+      **initial_input_tokens**: `integer`
 
-  **initial_input_tokens**: `integer`
+      此互動第一輪使用的輸入權杖數量。
 
-  此互動第一輪使用的輸入權杖數量。
 
-  
 
-<details>
-<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。</summary>
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
 
-  
+            可能的值：
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-</details>
 
 
-  **tokens**: `integer`
+      **total_cached_tokens**: `integer`
 
-  該模態的權杖數量。
+      提示詞中已快取部分的權杖數量（快取內容）。
 
-  
 
-</details>
 
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
 
-  **total_cached_tokens**: `integer`
+        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
 
-  提示詞中已快取部分的權杖數量（快取內容）。
+            可能的值：
 
-  
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-<details>
-<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。</summary>
 
-  
 
-  
+          **tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+          該模態的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+      **total_output_tokens**: `integer`
 
-  
+      所有產生回應的權杖總數。
 
-</details>
 
 
-  **tokens**: `integer`
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
 
-  該模態的權杖數量。
+        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
 
-  
+            可能的值：
 
-</details>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
 
-  **total_output_tokens**: `integer`
 
-  所有產生回應的權杖總數。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-<details>
-<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。</summary>
 
-  
 
-  
+      **total_tool_use_tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
+      工具使用提示詞中存在的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
 
-</details>
+            可能的值：
 
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  **tokens**: `integer`
 
-  該模態的權杖數量。
 
-  
+          **tokens**: `integer`
 
-</details>
+          該模態的權杖數量。
 
 
-  **total_tool_use_tokens**: `integer`
 
-  工具使用提示詞中存在的權杖數量。
+      **total_thought_tokens**: `integer`
 
-  
+      思考模型的思考權杖數量。
 
-<details>
-<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。</summary>
+      **total_tokens**: `integer`
 
-  
+      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
 
-  
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量相關聯的模態。</summary>
 
-  
+    ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
 
-  可能的值：
+        ??? note "**type**: `string enum` 與計數相關聯的接地工具類型。"
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+            可能的值：
 
-  
+            - `google_search`：使用 Google Web Search 與 Image Search 接地，以及 Web Grounding for Enterprise。
+            - `google_maps`：使用 Google Maps 接地。
 
-</details>
 
 
-  **tokens**: `integer`
+          **count**: `integer`
 
-  該模態的權杖數量。
+          接地工具計數的數量。
 
-  
-
-</details>
-
-
-  **total_thought_tokens**: `integer`
-
-  思考模型的思考權杖數量。
-
-  **total_tokens**: `integer`
-
-  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
-
-  
-
-<details>
-<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
-
-  
-
-  
-
-<details>
-<summary>**type**: `string enum` 與計數相關聯的接地工具類型。</summary>
-
-  
-
-  可能的值：
-
-  - `google_search`：使用 Google Web Search 與 Image Search 接地，以及 Web Grounding for Enterprise。
-  - `google_maps`：使用 Google Maps 接地。
-
-  
-
-</details>
-
-
-  **count**: `integer`
-
-  接地工具計數的數量。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -506,19 +410,12 @@
 
   
 
-<details>
-<summary>**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在 `CreateVoice` 與 `GetVoice` 回應中，當 `type` 為 `"prompted"` 時填入；`ListVoices` 回應以及 `"replicated"` 或 `"prebuilt"` 語音不會設定。</summary>
+??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在 `CreateVoice` 與 `GetVoice` 回應中，當 `type` 為 `"prompted"` 時填入；`ListVoices` 回應以及 `"replicated"` 或 `"prebuilt"` 語音不會設定。"
 
-  
+    **mime_type**: required `string`
 
-  **mime_type**: required `string`
+    音訊資料的 IANA MIME 類型（例如 `audio/wav` 或 `audio/mpeg`）。
 
-  音訊資料的 IANA MIME 類型（例如 `audio/wav` 或 `audio/mpeg`）。
+    **data**: required `string`
 
-  **data**: required `string`
-
-  原始音訊位元組。
-
-  
-
-</details>
+    原始音訊位元組。

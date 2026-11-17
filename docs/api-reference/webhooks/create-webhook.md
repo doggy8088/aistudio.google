@@ -116,22 +116,16 @@
 
   
 
-<details>
-<summary>**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。</summary>
+??? note "**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。"
 
-  
+    **truncated_secret**: `string`
 
-  **truncated_secret**: `string`
+    僅供輸出。簽章密鑰的截斷版本。
 
-  僅供輸出。簽章密鑰的截斷版本。
+    **expire_time**: `string`
 
-  **expire_time**: `string`
+    僅供輸出。簽章密鑰的到期日。
 
-  僅供輸出。簽章密鑰的到期日。
-
-  
-
-</details>
 
 
   
@@ -141,20 +135,14 @@
 
   
 
-<details>
-<summary>**state**: `string enum` 僅供輸出。webhook 的狀態。</summary>
+??? note "**state**: `string enum` 僅供輸出。webhook 的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `enabled`：webhook 已啟用。
+    - `disabled`：webhook 已由使用者停用。
+    - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
 
-  - `enabled`：webhook 已啟用。
-  - `disabled`：webhook 已由使用者停用。
-  - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
-
-  
-
-</details>
 
 
   
@@ -270,22 +258,16 @@ Webhook 資源。
 
   
 
-<details>
-<summary>**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。</summary>
+??? note "**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。"
 
-  
+    **truncated_secret**: `string`
 
-  **truncated_secret**: `string`
+    僅供輸出。簽章密鑰的截斷版本。
 
-  僅供輸出。簽章密鑰的截斷版本。
+    **expire_time**: `string`
 
-  **expire_time**: `string`
+    僅供輸出。簽章密鑰的到期日。
 
-  僅供輸出。簽章密鑰的到期日。
-
-  
-
-</details>
 
 
   
@@ -295,20 +277,14 @@ Webhook 資源。
 
   
 
-<details>
-<summary>**state**: `string enum` 僅供輸出。webhook 的狀態。</summary>
+??? note "**state**: `string enum` 僅供輸出。webhook 的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `enabled`：webhook 已啟用。
+    - `disabled`：webhook 已由使用者停用。
+    - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
 
-  - `enabled`：webhook 已啟用。
-  - `disabled`：webhook 已由使用者停用。
-  - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
-
-  
-
-</details>
 
 
   

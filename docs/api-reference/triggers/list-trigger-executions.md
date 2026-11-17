@@ -73,66 +73,54 @@
 
 
 
-<details>
-<summary>**trigger_executions**: `TriggerExecution array` 觸發器執行記錄的清單。</summary>
+??? note "**trigger_executions**: `TriggerExecution array` 觸發器執行記錄的清單。"
+
+      **id**: required `string`
+
+      僅供輸出。識別碼。此觸發器執行記錄的 ID。
+
+      **trigger_id**: required `string`
+
+      僅供輸出。識別碼。建立此執行記錄的觸發器 ID。
+
+      **scheduled_time**: `string`
+
+      僅供輸出。此執行記錄排定執行的時間。
+
+      **start_time**: `string`
+
+      僅供輸出。此執行記錄開始執行的時間。
+
+      **end_time**: `string`
+
+      僅供輸出。此執行記錄結束的時間。
 
 
 
-  **id**: required `string`
+    ??? note "**status**: `string enum` 僅供輸出。此執行記錄的狀態。"
 
-  僅供輸出。識別碼。此觸發器執行記錄的 ID。
+        可能的值：
 
-  **trigger_id**: required `string`
-
-  僅供輸出。識別碼。建立此執行記錄的觸發器 ID。
-
-  **scheduled_time**: `string`
-
-  僅供輸出。此執行記錄排定執行的時間。
-
-  **start_time**: `string`
-
-  僅供輸出。此執行記錄開始執行的時間。
-
-  **end_time**: `string`
-
-  僅供輸出。此執行記錄結束的時間。
+        - `in_progress`: 此執行記錄目前正在進行中。
+        - `completed`: 此執行記錄已成功完成。
+        - `failed`: 此執行記錄失敗。
+        - `skipped`: 此執行記錄已略過（例如前一次執行仍在進行中）。
+        - `timed_out`: 此執行記錄已逾時。
 
 
 
-<details>
-<summary>**status**: `string enum` 僅供輸出。此執行記錄的狀態。</summary>
+      **interaction_id**: `string`
 
+      僅供輸出。此執行記錄建立的互動 ID（如有）。
 
+      **environment_id**: `string`
 
-  可能的值：
+      僅供輸出。此執行記錄所使用的環境 ID。
 
-  - `in_progress`: 此執行記錄目前正在進行中。
-  - `completed`: 此執行記錄已成功完成。
-  - `failed`: 此執行記錄失敗。
-  - `skipped`: 此執行記錄已略過（例如前一次執行仍在進行中）。
-  - `timed_out`: 此執行記錄已逾時。
+      **error**: `string`
 
+      僅供輸出。此執行記錄失敗時的錯誤訊息。
 
-
-</details>
-
-
-  **interaction_id**: `string`
-
-  僅供輸出。此執行記錄建立的互動 ID（如有）。
-
-  **environment_id**: `string`
-
-  僅供輸出。此執行記錄所使用的環境 ID。
-
-  **error**: `string`
-
-  僅供輸出。此執行記錄失敗時的錯誤訊息。
-
-
-
-</details>
 
 
 
@@ -169,4 +157,3 @@
     "next_page_token": "string"
   }
   ```
-

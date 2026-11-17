@@ -146,20 +146,14 @@
 
   
 
-<details>
-<summary>**expiration**：`Union type`，指定此資源何時到期。</summary>
+??? note "**expiration**：`Union type`，指定此資源何時到期。"
 
-  
+    聯集欄位 `expiration` 只能是下列其中一項：
 
-  聯集欄位 `expiration` 只能是下列其中一項：
+    **expireTime**: `string`
 
-  **expireTime**: `string`
+    以 UTC 表示的時間戳，代表此資源被視為到期的時間。此欄位在輸出時*一律*會提供，無論輸入時送了什麼。
 
-  以 UTC 表示的時間戳，代表此資源被視為到期的時間。此欄位在輸出時*一律*會提供，無論輸入時送了什麼。
-
-  
-
-</details>
 
 
   
@@ -205,17 +199,10 @@
 
   
 
-<details>
-<summary>**usageMetadata**：`CachedContentUsageMetadata`，僅供輸出。快取內容使用情形的中繼資料。</summary>
+??? note "**usageMetadata**：`CachedContentUsageMetadata`，僅供輸出。快取內容使用情形的中繼資料。"
 
-  
+    **totalTokenCount**: `integer`
 
-  **totalTokenCount**: `integer`
-
-  快取內容所消耗的權杖總數。
-
-  
-
-</details>
+    快取內容所消耗的權杖總數。
 
 

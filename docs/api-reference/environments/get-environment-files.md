@@ -320,55 +320,43 @@
 
   
 
-<details>
-<summary>**files**: `EnvironmentFile array` 若請求的路徑是目錄，此欄位包含其內容；若請求的路徑是檔案，此欄位包含單一項目，即該檔案的中繼資料；若指定了 alt=media，此欄位為空（內容透過 `blob` 提供）。</summary>
+??? note "**files**: `EnvironmentFile array` 若請求的路徑是目錄，此欄位包含其內容；若請求的路徑是檔案，此欄位包含單一項目，即該檔案的中繼資料；若指定了 alt=media，此欄位為空（內容透過 `blob` 提供）。"
 
-  
+      **name**: `string`
 
-  **name**: `string`
+      僅供輸出。檔案或目錄的名稱（例如 "main.py" 或 "src"）。
 
-  僅供輸出。檔案或目錄的名稱（例如 "main.py" 或 "src"）。
+      **path**: `string`
 
-  **path**: `string`
-
-  僅供輸出。環境內的完整相對路徑（例如 "workspace/src/main.py"）。
-
-  
-
-<details>
-<summary>**type**: `string enum` 僅供輸出。此項目的類型。</summary>
-
-  
-
-  可能的值：
-
-  - `file`: 一般檔案。
-  - `directory`: 目錄。
-
-  
-
-</details>
+      僅供輸出。環境內的完整相對路徑（例如 "workspace/src/main.py"）。
 
 
-  **size_bytes**: `string`
 
-  僅供輸出。檔案／目錄的大小（以位元組計）。NOLINT
+    ??? note "**type**: `string enum` 僅供輸出。此項目的類型。"
 
-  **mime_type**: `string`
+        可能的值：
 
-  僅供輸出。檔案的 MIME 類型（例如 "text/python"、"image/png"）。目錄則為空。NOLINT
+        - `file`: 一般檔案。
+        - `directory`: 目錄。
 
-  **created**: `string`
 
-  僅供輸出。檔案／目錄的建立時間。
 
-  **modified**: `string`
+      **size_bytes**: `string`
 
-  僅供輸出。檔案／目錄的修改時間。
+      僅供輸出。檔案／目錄的大小（以位元組計）。NOLINT
 
-  
+      **mime_type**: `string`
 
-</details>
+      僅供輸出。檔案的 MIME 類型（例如 "text/python"、"image/png"）。目錄則為空。NOLINT
+
+      **created**: `string`
+
+      僅供輸出。檔案／目錄的建立時間。
+
+      **modified**: `string`
+
+      僅供輸出。檔案／目錄的修改時間。
+
 
 
   
@@ -379,5 +367,4 @@
   **next_page_token**: `string`
 
   目錄清單的分頁權杖。NOLINT
-
 

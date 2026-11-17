@@ -22,612 +22,398 @@
   
   
 
-<details>
-<summary>**contents**: `Content array` 選用。作為提示詞提供給模型的輸入。設定 `generate_content_request` 時會忽略此欄位。</summary>
+??? note "**contents**: `Content array` 選用。作為提示詞提供給模型的輸入。設定 `generate_content_request` 時會忽略此欄位。"
 
-  
+    ??? note "**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。"
 
-  
+        ??? note "**data**: `Union type`"
 
-<details>
-<summary>**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。</summary>
+              聯集欄位 `data` 只能是下列其中之一：
 
-  
+              **text**: `string`
 
-  
+              行內文字。
 
-<details>
-<summary>**data**: `Union type`</summary>
 
-  
 
-  聯集欄位 `data` 只能是下列其中之一：
+            ??? note "**inlineData**: `Blob` 行內媒體位元組。"
 
-  **text**: `string`
+                **mimeType**: `string`
 
-  行內文字。
+                來源資料的 IANA 標準 MIME 類型。支援的類型範例：
 
-  
+                - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
+                - 音訊：audio/*, video/audio/s16le, video/audio/wav
+                - 影片：video/*
+                - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
+                - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-<details>
-<summary>**inlineData**: `Blob` 行內媒體位元組。</summary>
+                **data**: `string`
 
-  
+                媒體格式的原始位元組。
 
-  **mimeType**: `string`
+                **displayName**: `string`
 
-  來源資料的 IANA 標準 MIME 類型。支援的類型範例：
+                選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
 
-  - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
-  - 音訊：audio/*, video/audio/s16le, video/audio/wav
-  - 影片：video/*
-  - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
-  - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **data**: `string`
 
-  媒體格式的原始位元組。
 
-  **displayName**: `string`
 
-  選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
+            ??? note "**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。"
 
-  
+                **name**: required `string`
 
-</details>
+                要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
+                **id**: `string`
 
-  
+                選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-<details>
-<summary>**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。</summary>
+                **args**: `object`
 
-  
+                選用。JSON 物件格式的函式參數與值。
 
-  **name**: required `string`
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-  **id**: `string`
 
-  選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-  **args**: `object`
+            ??? note "**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。"
 
-  選用。JSON 物件格式的函式參數與值。
+                  **name**: required `string`
 
-  
+                  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-</details>
+                  **response**: required `object`
 
+                  JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
 
-  
+                  **id**: `string`
 
-<details>
-<summary>**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。</summary>
+                  選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  
 
-  **name**: required `string`
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
+                ??? note "**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。"
 
-  **response**: required `object`
+                    ??? note "**data**: `Union type` 函式回應部分的資料。"
 
-  JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
+                          聯集欄位 `data` 只能是下列其中之一：
 
-  **id**: `string`
 
-  選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  
+                        ??? note "**inlineData**: `FunctionResponseBlob` 行內媒體位元組。"
 
-<details>
-<summary>**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。</summary>
+                            **mimeType**: `string`
 
-  
+                            來源資料的 IANA 標準 MIME 類型。範例：
 
-  
+                            - image/png
+                            - image/jpeg
 
-<details>
-<summary>**data**: `Union type` 函式回應部分的資料。</summary>
+                            若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                            **data**: `string`
 
-  聯集欄位 `data` 只能是下列其中之一：
+                            媒體格式的原始位元組。
 
-  
+                            **displayName**: `string`
 
-<details>
-<summary>**inlineData**: `FunctionResponseBlob` 行內媒體位元組。</summary>
+                            選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
-  
 
-  **mimeType**: `string`
 
-  來源資料的 IANA 標準 MIME 類型。範例：
 
-  - image/png
-  - image/jpeg
 
-  若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
+                        ??? note "**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。"
 
-  **data**: `string`
+                            **fileUri**: required `string`
 
-  媒體格式的原始位元組。
+                            URI.
 
-  **displayName**: `string`
+                            **mimeType**: `string`
 
-  選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
+                            來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                            **displayName**: `string`
 
-</details>
+                            選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
 
-  
 
-<details>
-<summary>**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。</summary>
 
-  
 
-  **fileUri**: required `string`
+                    ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-  URI.
+                        可能的值：
 
-  **mimeType**: `string`
+                        - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+                        - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+                        - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
-  來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **displayName**: `string`
 
-  選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
+                  **willContinue**: `boolean`
 
-  
+                  選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-</details>
 
 
-  
+                ??? note "**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。"
 
-</details>
+                    可能的值：
 
+                    - `SCHEDULING_UNSPECIFIED`: 此值未使用。
+                    - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
+                    - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
+                    - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
 
-  
 
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
 
-  
 
-  可能的值：
 
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
+            ??? note "**fileData**: `FileData` 以 URI 為基礎的資料。"
 
-  
+                **fileUri**: required `string`
 
-</details>
+                URI.
 
+                **mimeType**: `string`
 
-  
+                選用。來源資料的 IANA 標準 MIME 類型。
 
-</details>
+                **displayName**: `string`
 
+                選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
 
-  **willContinue**: `boolean`
 
-  選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-  
 
-<details>
-<summary>**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。</summary>
 
-  
+            ??? note "**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。"
 
-  可能的值：
+                ??? note "**language**: required `string enum` `code` 的程式語言。"
 
-  - `SCHEDULING_UNSPECIFIED`: 此值未使用。
-  - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
-  - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
-  - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
+                    可能的值：
 
-  
+                    - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
+                    - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
 
-</details>
 
 
-  
+                  **code**: required `string`
 
-</details>
+                  要執行的程式碼。
 
+                  **id**: `string`
 
-  
+                  選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
 
-<details>
-<summary>**fileData**: `FileData` 以 URI 為基礎的資料。</summary>
 
-  
 
-  **fileUri**: required `string`
 
-  URI.
 
-  **mimeType**: `string`
+            ??? note "**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。"
 
-  選用。來源資料的 IANA 標準 MIME 類型。
+                ??? note "**outcome**: required `string enum` 程式碼執行的結果。"
 
-  **displayName**: `string`
+                    可能的值：
 
-  選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
+                    - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
+                    - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
+                    - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
+                    - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
 
-  
 
-</details>
 
+                  **id**: `string`
 
-  
+                  選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
 
-<details>
-<summary>**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。</summary>
+                  **output**: `string`
 
-  
+                  選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
 
-  
 
-<details>
-<summary>**language**: required `string enum` `code` 的程式語言。</summary>
 
-  
 
-  可能的值：
 
-  - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
-  - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
+            ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。"
 
-  
+                ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
 
-</details>
+                    可能的值：
 
+                    - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                    - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                    - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                    - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                    - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                    - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                    - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-  **code**: required `string`
 
-  要執行的程式碼。
 
-  **id**: `string`
+                  **id**: `string`
 
-  選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
+                  選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
 
-  
+                  **toolName**: `string`
 
-</details>
+                  選用。被呼叫的工具名稱。
 
+                  **args**: `object`
 
-  
+                  選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
 
-<details>
-<summary>**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。</summary>
 
-  
 
-  
 
-<details>
-<summary>**outcome**: required `string enum` 程式碼執行的結果。</summary>
 
-  
+            ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。"
 
-  可能的值：
+                ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。"
 
-  - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
-  - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
-  - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
-  - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
+                    可能的值：
 
-  
+                    - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                    - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                    - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                    - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                    - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                    - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                    - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-</details>
 
 
-  **id**: `string`
+                  **id**: `string`
 
-  選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
+                  選用。此回應所對應之工具呼叫的識別碼。
 
-  **output**: `string`
+                  **response**: `object`
 
-  選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
+                  選用。工具回應。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。</summary>
+        ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。"
 
-  
+              聯集欄位 `metadata` 只能是下列其中之一：
 
-  
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型。</summary>
 
-  
+            ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。"
 
-  可能的值：
+                **startOffset**: `string`
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
+                選用。影片的開始偏移。
 
-  
+                **endOffset**: `string`
 
-</details>
+                選用。影片的結束偏移。
 
+                **fps**: `number`
 
-  **id**: `string`
+                選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
-  選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
 
-  **toolName**: `string`
 
-  選用。被呼叫的工具名稱。
+          **thought**: `boolean`
 
-  **args**: `object`
+          選用。表示此部分是否為模型的思考內容。
 
-  選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
+          **thoughtSignature**: `string`
 
-  
+          選用。思考內容的不透明簽章，可在後續要求中重複使用。
 
-</details>
+          **partMetadata**: `object`
 
+          與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  
 
-<details>
-<summary>**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。</summary>
 
-  
+        ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
 
-  
+            ??? note "**value**: `Union type` 媒體解析度等級。"
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。</summary>
+                  聯集欄位 `value` 只能是下列其中之一：
 
-  
 
-  可能的值：
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
+                ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
 
-  
+                    可能的值：
 
-</details>
+                    - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
+                    - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
+                    - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
+                    - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
+                    - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
 
 
-  **id**: `string`
 
-  選用。此回應所對應之工具呼叫的識別碼。
 
-  **response**: `object`
 
-  選用。工具回應。
+        ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-  
+            可能的值：
 
-</details>
+            - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+            - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+            - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
 
-  
 
-</details>
 
 
-  
+        ??? note "**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。"
 
-<details>
-<summary>**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。</summary>
+              **text**: required `string`
 
-  
+              此音訊片段的轉錄文字。
 
-  聯集欄位 `metadata` 只能是下列其中之一：
+              **speakerLabel**: `string`
 
-  
+              選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
 
-<details>
-<summary>**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。</summary>
 
-  
 
-  **startOffset**: `string`
+            ??? note "**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。"
 
-  選用。影片的開始偏移。
+                **word**: required `string`
 
-  **endOffset**: `string`
+                字詞的轉錄。
 
-  選用。影片的結束偏移。
+                **startOffset**: `string`
 
-  **fps**: `number`
+                選用。字詞相對於音訊開頭的開始時間偏移。
 
-  選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+                **endOffset**: `string`
 
-  
+                選用。字詞相對於音訊開頭的結束時間偏移。
 
-</details>
 
 
-  
 
-</details>
 
+        ??? note "**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。"
 
-  **thought**: `boolean`
+            **speaker**: `string`
 
-  選用。表示此部分是否為模型的思考內容。
+            選用。多說話者合成時選用的說話者名稱。
 
-  **thoughtSignature**: `string`
+            **style**: `string`
 
-  選用。思考內容的不透明簽章，可在後續要求中重複使用。
+            選用。語音合成時選用的風格指令。
 
-  **partMetadata**: `object`
 
-  與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  
+      **role**: `string`
 
-<details>
-<summary>**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。</summary>
+      選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
 
-  
-
-  
-
-<details>
-<summary>**value**: `Union type` 媒體解析度等級。</summary>
-
-  
-
-  聯集欄位 `value` 只能是下列其中之一：
-
-  
-
-<details>
-<summary>**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。</summary>
-
-  
-
-  可能的值：
-
-  - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
-  - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
-  - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
-  - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
-  - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
-
-  
-
-  可能的值：
-
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。</summary>
-
-  
-
-  **text**: required `string`
-
-  此音訊片段的轉錄文字。
-
-  **speakerLabel**: `string`
-
-  選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
-
-  
-
-<details>
-<summary>**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。</summary>
-
-  
-
-  **word**: required `string`
-
-  字詞的轉錄。
-
-  **startOffset**: `string`
-
-  選用。字詞相對於音訊開頭的開始時間偏移。
-
-  **endOffset**: `string`
-
-  選用。字詞相對於音訊開頭的結束時間偏移。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。</summary>
-
-  
-
-  **speaker**: `string`
-
-  選用。多說話者合成時選用的說話者名稱。
-
-  **style**: `string`
-
-  選用。語音合成時選用的風格指令。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  **role**: `string`
-
-  選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
-
-  
-
-</details>
 
 
   
@@ -637,2608 +423,1723 @@
 
   
 
-<details>
-<summary>**generateContentRequest**: `GenerateContentRequest` 選用。提供給 `Model` 的整體輸入。包括提示詞，以及其他模型引導資訊，例如[系統指令](/docs/text-generation/#system-instructions)，和/或用於[函式呼叫](/docs/function-calling/)的函式宣告。`Model`/`Content` 與 `generate_content_request` 互斥。可以傳送 `Model` + `Content`，或傳送 `generate_content_request`，但不可兩者同時傳送。</summary>
+??? note "**generateContentRequest**: `GenerateContentRequest` 選用。提供給 `Model` 的整體輸入。包括提示詞，以及其他模型引導資訊，例如[系統指令](/docs/text-generation/#system-instructions)，和/或用於[函式呼叫](/docs/function-calling/)的函式宣告。`Model`/`Content` 與 `generate_content_request` 互斥。可以傳送 `Model` + `Content`，或傳送 `generate_content_request`，但不可兩者同時傳送。"
 
-  
+      **model**: required `string`
 
-  **model**: required `string`
+      用於生成完成內容的 `Model` 名稱。格式：`models/{model}`。
 
-  用於生成完成內容的 `Model` 名稱。格式：`models/{model}`。
 
-  
 
-<details>
-<summary>**contents**: required `Content array` 目前與模型對話的內容。對於單輪查詢，這是單一執行個體。對於多輪查詢（例如[聊天](/docs/text-generation/#multi-turn-conversations)），這是重複欄位，包含對話記錄與最新要求。</summary>
+    ??? note "**contents**: required `Content array` 目前與模型對話的內容。對於單輪查詢，這是單一執行個體。對於多輪查詢（例如[聊天](/docs/text-generation/#multi-turn-conversations)），這是重複欄位，包含對話記錄與最新要求。"
 
-  
+        ??? note "**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。"
 
-  
+            ??? note "**data**: `Union type`"
 
-<details>
-<summary>**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。</summary>
+                  聯集欄位 `data` 只能是下列其中之一：
 
-  
+                  **text**: `string`
 
-  
+                  行內文字。
 
-<details>
-<summary>**data**: `Union type`</summary>
 
-  
 
-  聯集欄位 `data` 只能是下列其中之一：
+                ??? note "**inlineData**: `Blob` 行內媒體位元組。"
 
-  **text**: `string`
+                    **mimeType**: `string`
 
-  行內文字。
+                    來源資料的 IANA 標準 MIME 類型。支援的類型範例：
 
-  
+                    - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
+                    - 音訊：audio/*, video/audio/s16le, video/audio/wav
+                    - 影片：video/*
+                    - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
+                    - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-<details>
-<summary>**inlineData**: `Blob` 行內媒體位元組。</summary>
+                    **data**: `string`
 
-  
+                    媒體格式的原始位元組。
 
-  **mimeType**: `string`
+                    **displayName**: `string`
 
-  來源資料的 IANA 標準 MIME 類型。支援的類型範例：
+                    選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
 
-  - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
-  - 音訊：audio/*, video/audio/s16le, video/audio/wav
-  - 影片：video/*
-  - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
-  - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **data**: `string`
 
-  媒體格式的原始位元組。
 
-  **displayName**: `string`
 
-  選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
+                ??? note "**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。"
 
-  
+                    **name**: required `string`
 
-</details>
+                    要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
+                    **id**: `string`
 
-  
+                    選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-<details>
-<summary>**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。</summary>
+                    **args**: `object`
 
-  
+                    選用。JSON 物件格式的函式參數與值。
 
-  **name**: required `string`
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-  **id**: `string`
 
-  選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-  **args**: `object`
+                ??? note "**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。"
 
-  選用。JSON 物件格式的函式參數與值。
+                      **name**: required `string`
 
-  
+                      要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-</details>
+                      **response**: required `object`
 
+                      JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
 
-  
+                      **id**: `string`
 
-<details>
-<summary>**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。</summary>
+                      選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  
 
-  **name**: required `string`
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
+                    ??? note "**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。"
 
-  **response**: required `object`
+                        ??? note "**data**: `Union type` 函式回應部分的資料。"
 
-  JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
+                              聯集欄位 `data` 只能是下列其中之一：
 
-  **id**: `string`
 
-  選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  
+                            ??? note "**inlineData**: `FunctionResponseBlob` 行內媒體位元組。"
 
-<details>
-<summary>**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。</summary>
+                                **mimeType**: `string`
 
-  
+                                來源資料的 IANA 標準 MIME 類型。範例：
 
-  
+                                - image/png
+                                - image/jpeg
 
-<details>
-<summary>**data**: `Union type` 函式回應部分的資料。</summary>
+                                若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                                **data**: `string`
 
-  聯集欄位 `data` 只能是下列其中之一：
+                                媒體格式的原始位元組。
 
-  
+                                **displayName**: `string`
 
-<details>
-<summary>**inlineData**: `FunctionResponseBlob` 行內媒體位元組。</summary>
+                                選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
-  
 
-  **mimeType**: `string`
 
-  來源資料的 IANA 標準 MIME 類型。範例：
 
-  - image/png
-  - image/jpeg
 
-  若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
+                            ??? note "**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。"
 
-  **data**: `string`
+                                **fileUri**: required `string`
 
-  媒體格式的原始位元組。
+                                URI.
 
-  **displayName**: `string`
+                                **mimeType**: `string`
 
-  選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
+                                來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                                **displayName**: `string`
 
-</details>
+                                選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
 
-  
 
-<details>
-<summary>**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。</summary>
 
-  
 
-  **fileUri**: required `string`
+                        ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-  URI.
+                            可能的值：
 
-  **mimeType**: `string`
+                            - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+                            - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+                            - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
-  來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **displayName**: `string`
 
-  選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
+                      **willContinue**: `boolean`
 
-  
+                      選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-</details>
 
 
-  
+                    ??? note "**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。"
 
-</details>
+                        可能的值：
 
+                        - `SCHEDULING_UNSPECIFIED`: 此值未使用。
+                        - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
+                        - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
+                        - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
 
-  
 
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
 
-  
 
-  可能的值：
 
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
+                ??? note "**fileData**: `FileData` 以 URI 為基礎的資料。"
 
-  
+                    **fileUri**: required `string`
 
-</details>
+                    URI.
 
+                    **mimeType**: `string`
 
-  
+                    選用。來源資料的 IANA 標準 MIME 類型。
 
-</details>
+                    **displayName**: `string`
 
+                    選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
 
-  **willContinue**: `boolean`
 
-  選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-  
 
-<details>
-<summary>**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。</summary>
 
-  
+                ??? note "**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。"
 
-  可能的值：
+                    ??? note "**language**: required `string enum` `code` 的程式語言。"
 
-  - `SCHEDULING_UNSPECIFIED`: 此值未使用。
-  - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
-  - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
-  - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
+                        可能的值：
 
-  
+                        - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
+                        - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
 
-</details>
 
 
-  
+                      **code**: required `string`
 
-</details>
+                      要執行的程式碼。
 
+                      **id**: `string`
 
-  
+                      選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
 
-<details>
-<summary>**fileData**: `FileData` 以 URI 為基礎的資料。</summary>
 
-  
 
-  **fileUri**: required `string`
 
-  URI.
 
-  **mimeType**: `string`
+                ??? note "**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。"
 
-  選用。來源資料的 IANA 標準 MIME 類型。
+                    ??? note "**outcome**: required `string enum` 程式碼執行的結果。"
 
-  **displayName**: `string`
+                        可能的值：
 
-  選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
+                        - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
+                        - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
+                        - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
+                        - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
 
-  
 
-</details>
 
+                      **id**: `string`
 
-  
+                      選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
 
-<details>
-<summary>**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。</summary>
+                      **output**: `string`
 
-  
+                      選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
 
-  
 
-<details>
-<summary>**language**: required `string enum` `code` 的程式語言。</summary>
 
-  
 
-  可能的值：
 
-  - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
-  - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
+                ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。"
 
-  
+                    ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
 
-</details>
+                        可能的值：
 
+                        - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                        - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                        - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                        - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                        - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                        - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                        - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-  **code**: required `string`
 
-  要執行的程式碼。
 
-  **id**: `string`
+                      **id**: `string`
 
-  選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
+                      選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
 
-  
+                      **toolName**: `string`
 
-</details>
+                      選用。被呼叫的工具名稱。
 
+                      **args**: `object`
 
-  
+                      選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
 
-<details>
-<summary>**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。</summary>
 
-  
 
-  
 
-<details>
-<summary>**outcome**: required `string enum` 程式碼執行的結果。</summary>
 
-  
+                ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。"
 
-  可能的值：
+                    ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。"
 
-  - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
-  - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
-  - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
-  - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
+                        可能的值：
 
-  
+                        - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                        - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                        - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                        - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                        - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                        - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                        - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-</details>
 
 
-  **id**: `string`
+                      **id**: `string`
 
-  選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
+                      選用。此回應所對應之工具呼叫的識別碼。
 
-  **output**: `string`
+                      **response**: `object`
 
-  選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
+                      選用。工具回應。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。</summary>
+            ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。"
 
-  
+                  聯集欄位 `metadata` 只能是下列其中之一：
 
-  
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型。</summary>
 
-  
+                ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。"
 
-  可能的值：
+                    **startOffset**: `string`
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
+                    選用。影片的開始偏移。
 
-  
+                    **endOffset**: `string`
 
-</details>
+                    選用。影片的結束偏移。
 
+                    **fps**: `number`
 
-  **id**: `string`
+                    選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
-  選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
 
-  **toolName**: `string`
 
-  選用。被呼叫的工具名稱。
+              **thought**: `boolean`
 
-  **args**: `object`
+              選用。表示此部分是否為模型的思考內容。
 
-  選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
+              **thoughtSignature**: `string`
 
-  
+              選用。思考內容的不透明簽章，可在後續要求中重複使用。
 
-</details>
+              **partMetadata**: `object`
 
+              與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  
 
-<details>
-<summary>**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。</summary>
 
-  
+            ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
 
-  
+                ??? note "**value**: `Union type` 媒體解析度等級。"
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。</summary>
+                      聯集欄位 `value` 只能是下列其中之一：
 
-  
 
-  可能的值：
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
+                    ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
 
-  
+                        可能的值：
 
-</details>
+                        - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
+                        - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
+                        - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
+                        - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
+                        - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
 
 
-  **id**: `string`
 
-  選用。此回應所對應之工具呼叫的識別碼。
 
-  **response**: `object`
 
-  選用。工具回應。
+            ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-  
+                可能的值：
 
-</details>
+                - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+                - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+                - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
 
-  
 
-</details>
 
 
-  
+            ??? note "**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。"
 
-<details>
-<summary>**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。</summary>
+                  **text**: required `string`
 
-  
+                  此音訊片段的轉錄文字。
 
-  聯集欄位 `metadata` 只能是下列其中之一：
+                  **speakerLabel**: `string`
 
-  
+                  選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
 
-<details>
-<summary>**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。</summary>
 
-  
 
-  **startOffset**: `string`
+                ??? note "**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。"
 
-  選用。影片的開始偏移。
+                    **word**: required `string`
 
-  **endOffset**: `string`
+                    字詞的轉錄。
 
-  選用。影片的結束偏移。
+                    **startOffset**: `string`
 
-  **fps**: `number`
+                    選用。字詞相對於音訊開頭的開始時間偏移。
 
-  選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+                    **endOffset**: `string`
 
-  
+                    選用。字詞相對於音訊開頭的結束時間偏移。
 
-</details>
 
 
-  
 
-</details>
 
+            ??? note "**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。"
 
-  **thought**: `boolean`
+                **speaker**: `string`
 
-  選用。表示此部分是否為模型的思考內容。
+                選用。多說話者合成時選用的說話者名稱。
 
-  **thoughtSignature**: `string`
+                **style**: `string`
 
-  選用。思考內容的不透明簽章，可在後續要求中重複使用。
+                選用。語音合成時選用的風格指令。
 
-  **partMetadata**: `object`
 
-  與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  
+          **role**: `string`
 
-<details>
-<summary>**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。</summary>
+          選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
 
-  
 
-  
 
-<details>
-<summary>**value**: `Union type` 媒體解析度等級。</summary>
 
-  
 
-  聯集欄位 `value` 只能是下列其中之一：
+    ??? note "**systemInstruction**: `Content` 選用。開發人員設定的[系統指令](/docs/text-generation/#system-instructions)。目前僅支援文字。"
 
-  
+        ??? note "**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。"
 
-<details>
-<summary>**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。</summary>
+            ??? note "**data**: `Union type`"
 
-  
+                  聯集欄位 `data` 只能是下列其中之一：
 
-  可能的值：
+                  **text**: `string`
 
-  - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
-  - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
-  - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
-  - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
-  - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
+                  行內文字。
 
-  
 
-</details>
 
+                ??? note "**inlineData**: `Blob` 行內媒體位元組。"
 
-  
+                    **mimeType**: `string`
 
-</details>
+                    來源資料的 IANA 標準 MIME 類型。支援的類型範例：
 
+                    - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
+                    - 音訊：audio/*, video/audio/s16le, video/audio/wav
+                    - 影片：video/*
+                    - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
+                    - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                    **data**: `string`
 
-</details>
+                    媒體格式的原始位元組。
 
+                    **displayName**: `string`
 
-  
+                    選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
 
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
 
-  
 
-  可能的值：
 
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
-  
+                ??? note "**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。"
 
-</details>
+                    **name**: required `string`
 
+                    要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-  
+                    **id**: `string`
 
-<details>
-<summary>**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。</summary>
+                    選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-  
+                    **args**: `object`
 
-  **text**: required `string`
+                    選用。JSON 物件格式的函式參數與值。
 
-  此音訊片段的轉錄文字。
 
-  **speakerLabel**: `string`
 
-  選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
 
-  
 
-<details>
-<summary>**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。</summary>
+                ??? note "**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。"
 
-  
+                      **name**: required `string`
 
-  **word**: required `string`
+                      要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-  字詞的轉錄。
+                      **response**: required `object`
 
-  **startOffset**: `string`
+                      JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
 
-  選用。字詞相對於音訊開頭的開始時間偏移。
+                      **id**: `string`
 
-  **endOffset**: `string`
+                      選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  選用。字詞相對於音訊開頭的結束時間偏移。
 
-  
 
-</details>
+                    ??? note "**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。"
 
+                        ??? note "**data**: `Union type` 函式回應部分的資料。"
 
-  
+                              聯集欄位 `data` 只能是下列其中之一：
 
-</details>
 
 
-  
+                            ??? note "**inlineData**: `FunctionResponseBlob` 行內媒體位元組。"
 
-<details>
-<summary>**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。</summary>
+                                **mimeType**: `string`
 
-  
+                                來源資料的 IANA 標準 MIME 類型。範例：
 
-  **speaker**: `string`
+                                - image/png
+                                - image/jpeg
 
-  選用。多說話者合成時選用的說話者名稱。
+                                若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **style**: `string`
+                                **data**: `string`
 
-  選用。語音合成時選用的風格指令。
+                                媒體格式的原始位元組。
 
-  
+                                **displayName**: `string`
 
-</details>
+                                選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
 
-  
 
-</details>
 
 
-  **role**: `string`
+                            ??? note "**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。"
 
-  選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
+                                **fileUri**: required `string`
 
-  
+                                URI.
 
-</details>
+                                **mimeType**: `string`
 
+                                來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  
+                                **displayName**: `string`
 
-<details>
-<summary>**systemInstruction**: `Content` 選用。開發人員設定的[系統指令](/docs/text-generation/#system-instructions)。目前僅支援文字。</summary>
+                                選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
-  
 
-  
 
-<details>
-<summary>**parts**: `Part array` 組成單一訊息的有序 `Parts`。各 Part 的 MIME 類型可能不同。</summary>
 
-  
 
-  
+                        ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-<details>
-<summary>**data**: `Union type`</summary>
+                            可能的值：
 
-  
+                            - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+                            - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+                            - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
-  聯集欄位 `data` 只能是下列其中之一：
 
-  **text**: `string`
 
-  行內文字。
+                      **willContinue**: `boolean`
 
-  
+                      選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-<details>
-<summary>**inlineData**: `Blob` 行內媒體位元組。</summary>
 
-  
 
-  **mimeType**: `string`
+                    ??? note "**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。"
 
-  來源資料的 IANA 標準 MIME 類型。支援的類型範例：
+                        可能的值：
 
-  - 圖片：image/png, image/jpeg, image/jpg, image/webp, image/heic, image/heif, image/gif, image/avif
-  - 音訊：audio/*, video/audio/s16le, video/audio/wav
-  - 影片：video/*
-  - 文字：text/plain, text/html, text/css, text/javascript, text/x-typescript, text/csv, text/markdown, text/x-python, text/xml, text/rtf, video/text/timestamp
-  - 應用程式：application/x-javascript, application/x-typescript, application/x-python-code, application/json, application/x-ipynb+json, application/rtf, application/pdf。更多上下文請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
+                        - `SCHEDULING_UNSPECIFIED`: 此值未使用。
+                        - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
+                        - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
+                        - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
 
-  **data**: `string`
 
-  媒體格式的原始位元組。
 
-  **displayName**: `string`
 
-  選用。指定用來向模型參照此 blob 的名稱（例如 "my_blob.png"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為 blob 的參照識別碼。
 
-  
+                ??? note "**fileData**: `FileData` 以 URI 為基礎的資料。"
 
-</details>
+                    **fileUri**: required `string`
 
+                    URI.
 
-  
+                    **mimeType**: `string`
 
-<details>
-<summary>**functionCall**: `FunctionCall` 模型傳回的預測 `FunctionCall`，其中包含代表 `FunctionDeclaration.name` 的字串，以及其引數與值。</summary>
+                    選用。來源資料的 IANA 標準 MIME 類型。
 
-  
+                    **displayName**: `string`
 
-  **name**: required `string`
+                    選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
 
-  **id**: `string`
 
-  選用。函式呼叫的專屬識別碼。若有填入，用戶端應執行 `function_call`，並傳回帶有相符 `id` 的回應。
 
-  **args**: `object`
 
-  選用。JSON 物件格式的函式參數與值。
+                ??? note "**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。"
 
-  
+                    ??? note "**language**: required `string enum` `code` 的程式語言。"
 
-</details>
+                        可能的值：
 
+                        - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
+                        - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
 
-  
 
-<details>
-<summary>**functionResponse**: `FunctionResponse` `FunctionCall` 的結果輸出，其中包含代表 `FunctionDeclaration.name` 的字串，以及包含函式任何輸出的結構化 JSON 物件，作為提供給模型的上下文。</summary>
 
-  
+                      **code**: required `string`
 
-  **name**: required `string`
+                      要執行的程式碼。
 
-  要呼叫的函式名稱。必須是 a-z、A-Z、0-9，或包含底線與連字號，長度上限為 128。
+                      **id**: `string`
 
-  **response**: required `object`
+                      選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
 
-  JSON 物件格式的函式回應。呼叫端可使用任何符合函式語法的自選鍵來傳回函式輸出，例如 "output"、"result" 等。特別是當函式呼叫執行失敗時，回應可包含 "error" 鍵，將錯誤詳細資訊傳回給模型。多媒體內容可透過子物件納入，該子物件包含單一 "$ref" 鍵，其值為 `inline_data.display_name` 或 `file_data.display_name`，屬於持有該多媒體的 `FunctionResponsePart`。請參閱[多模態函式回應](/docs/function-calling/#multimodal)。
 
-  **id**: `string`
 
-  選用。此回應所對應之函式呼叫的識別碼。由用戶端填入，以對應相應函式呼叫的 `id`。
 
-  
 
-<details>
-<summary>**parts**: `FunctionResponsePart array` 選用。組成函式回應的有序 `Parts`。各 Part 的 IANA MIME 類型可能不同。</summary>
+                ??? note "**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。"
 
-  
+                    ??? note "**outcome**: required `string enum` 程式碼執行的結果。"
 
-  
+                        可能的值：
 
-<details>
-<summary>**data**: `Union type` 函式回應部分的資料。</summary>
+                        - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
+                        - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
+                        - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
+                        - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
 
-  
 
-  聯集欄位 `data` 只能是下列其中之一：
 
-  
+                      **id**: `string`
 
-<details>
-<summary>**inlineData**: `FunctionResponseBlob` 行內媒體位元組。</summary>
+                      選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
 
-  
+                      **output**: `string`
 
-  **mimeType**: `string`
+                      選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
 
-  來源資料的 IANA 標準 MIME 類型。範例：
 
-  - image/png
-  - image/jpeg
 
-  若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **data**: `string`
 
-  媒體格式的原始位元組。
+                ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。"
 
-  **displayName**: `string`
+                    ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
 
-  選用。blob 的顯示名稱。用來提供標籤或檔名以區分各個 blob，並可從 `FunctionResponse.response` 參照該 blob（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
+                        可能的值：
 
-  
+                        - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                        - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                        - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                        - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                        - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                        - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                        - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-</details>
 
 
-  
+                      **id**: `string`
 
-<details>
-<summary>**fileData**: `FunctionResponseFileData` 以 URI 為基礎的資料。</summary>
+                      選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
 
-  
+                      **toolName**: `string`
 
-  **fileUri**: required `string`
+                      選用。被呼叫的工具名稱。
 
-  URI.
+                      **args**: `object`
 
-  **mimeType**: `string`
+                      選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
 
-  來源資料的 IANA 標準 MIME 類型。若提供不支援的 MIME 類型，將傳回錯誤。支援類型的完整清單請參閱[多模態函式回應](/docs/function-calling/#multimodal)與[支援的檔案格式](/docs/file-input-methods/#supported-content-types)。
 
-  **displayName**: `string`
 
-  選用。檔案的顯示名稱。用來提供標籤或檔名以區分檔案資料，並可從 `FunctionResponse.response` 參照該檔案（例如透過 `{"$ref": "DISPLAY_NAME"}`）。
 
-  
 
-</details>
+                ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。"
 
+                    ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。"
 
-  
+                        可能的值：
 
-</details>
+                        - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
+                        - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
+                        - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
+                        - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
+                        - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
+                        - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
+                        - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
 
-  
 
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
+                      **id**: `string`
 
-  
+                      選用。此回應所對應之工具呼叫的識別碼。
 
-  可能的值：
+                      **response**: `object`
 
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
+                      選用。工具回應。
 
-  
 
-</details>
 
 
-  
 
-</details>
+            ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。"
 
+                  聯集欄位 `metadata` 只能是下列其中之一：
 
-  **willContinue**: `boolean`
 
-  選用。表示函式呼叫將繼續，且會傳回更多回應，使函式呼叫成為產生器。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。若設為 false，後續回應將不予考慮。允許傳回空的 `response` 並搭配 `will_continue=False`，表示函式呼叫已完成。這仍可能觸發模型生成。若要避免觸發生成並結束函式呼叫，請另外將 `scheduling` 設為 `SILENT`。
 
-  
+                ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。"
 
-<details>
-<summary>**scheduling**: `string enum` 選用。指定回應在對話中的排程方式。僅適用於 NON_BLOCKING 函式呼叫，其他情況會忽略。預設為 WHEN_IDLE。</summary>
+                    **startOffset**: `string`
 
-  
+                    選用。影片的開始偏移。
 
-  可能的值：
+                    **endOffset**: `string`
 
-  - `SCHEDULING_UNSPECIFIED`: 此值未使用。
-  - `SILENT`: 僅將結果加入對話上下文，不中斷也不觸發生成。
-  - `WHEN_IDLE`: 將結果加入對話上下文，並提示生成輸出，不中斷進行中的生成。
-  - `INTERRUPT`: 將結果加入對話上下文，中斷進行中的生成，並提示生成輸出。
+                    選用。影片的結束偏移。
 
-  
+                    **fps**: `number`
 
-</details>
+                    選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
 
-  
 
-</details>
+              **thought**: `boolean`
 
+              選用。表示此部分是否為模型的思考內容。
 
-  
+              **thoughtSignature**: `string`
 
-<details>
-<summary>**fileData**: `FileData` 以 URI 為基礎的資料。</summary>
+              選用。思考內容的不透明簽章，可在後續要求中重複使用。
 
-  
+              **partMetadata**: `object`
 
-  **fileUri**: required `string`
+              與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  URI.
 
-  **mimeType**: `string`
 
-  選用。來源資料的 IANA 標準 MIME 類型。
+            ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
 
-  **displayName**: `string`
+                ??? note "**value**: `Union type` 媒體解析度等級。"
 
-  選用。指定用來向模型參照此檔案的名稱（例如 "my_file.pdf"）。當 `verbalization_mode` 設為 `REFERENCE_ONLY` 時，作為檔案的參照識別碼。
+                      聯集欄位 `value` 只能是下列其中之一：
 
-  
 
-</details>
 
+                    ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
 
-  
+                        可能的值：
 
-<details>
-<summary>**executableCode**: `ExecutableCode` 模型生成、預定要執行的程式碼。</summary>
+                        - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
+                        - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
+                        - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
+                        - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
+                        - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
 
-  
 
-  
 
-<details>
-<summary>**language**: required `string enum` `code` 的程式語言。</summary>
 
-  
 
-  可能的值：
+            ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。"
 
-  - `LANGUAGE_UNSPECIFIED`: 未指定的語言。不應使用此值。
-  - `PYTHON`: Python >= 3.10，可使用 numpy 與 simpy。Python 是預設語言。
+                可能的值：
 
-  
+                - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
+                - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
+                - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
 
-</details>
 
 
-  **code**: required `string`
 
-  要執行的程式碼。
 
-  **id**: `string`
+            ??? note "**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。"
 
-  選用。`ExecutableCode` 部分的專屬識別碼。伺服器會傳回 `CodeExecutionResult`，其 `id` 與之相符。
+                  **text**: required `string`
 
-  
+                  此音訊片段的轉錄文字。
 
-</details>
+                  **speakerLabel**: `string`
 
+                  選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
 
-  
 
-<details>
-<summary>**codeExecutionResult**: `CodeExecutionResult` 執行 `ExecutableCode` 的結果。</summary>
 
-  
+                ??? note "**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。"
 
-  
+                    **word**: required `string`
 
-<details>
-<summary>**outcome**: required `string enum` 程式碼執行的結果。</summary>
+                    字詞的轉錄。
 
-  
+                    **startOffset**: `string`
 
-  可能的值：
+                    選用。字詞相對於音訊開頭的開始時間偏移。
 
-  - `OUTCOME_UNSPECIFIED`: 未指定的狀態。不應使用此值。
-  - `OUTCOME_OK`: 程式碼執行成功完成。`output` 包含 stdout（如有）。
-  - `OUTCOME_FAILED`: 程式碼執行失敗。`output` 包含 stderr 與 stdout（如有）。
-  - `OUTCOME_DEADLINE_EXCEEDED`: 程式碼執行時間過長，已取消。可能有也可能沒有部分 `output`。
+                    **endOffset**: `string`
 
-  
+                    選用。字詞相對於音訊開頭的結束時間偏移。
 
-</details>
 
 
-  **id**: `string`
 
-  選用。此結果所對應之 `ExecutableCode` 部分的識別碼。僅在對應的 `ExecutableCode` 有 id 時才會填入。
 
-  **output**: `string`
+            ??? note "**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。"
 
-  選用。程式碼執行成功時包含 stdout，否則包含 stderr 或其他說明。
+                **speaker**: `string`
 
-  
+                選用。多說話者合成時選用的說話者名稱。
 
-</details>
+                **style**: `string`
 
+                選用。語音合成時選用的風格指令。
 
-  
 
-<details>
-<summary>**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息回傳給 API。</summary>
 
-  
+          **role**: `string`
 
-  
+          選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型。</summary>
 
-  
 
-  可能的值：
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
 
-  
+    ??? note "**tools**: `Tool array` 選用。以下是 `Tools` 清單，`Model` 可用來生成下一個回應。`Tool` 是一段程式碼，讓系統能與外部系統互動，執行 `Model` 知識與範圍之外的一個或一組動作。支援的 `Tool` 為 `Function` 與 `code_execution`。詳情請參閱[函式呼叫](/docs/function-calling/)與[程式碼執行](/docs/code-execution/)指南。"
 
-</details>
+        ??? note "**functionDeclarations**: `FunctionDeclaration array` 選用。可供模型用於函式呼叫的 `FunctionDeclarations` 清單。模型或系統不會執行函式。改由將定義的函式以帶有引數的 FunctionCall 傳回用戶端執行。模型可決定呼叫這些函式的子集，在回應中填入 FunctionCall。下一個對話輪次可包含 FunctionResponse，作為下一個模型輪次中 Content.role 為 'function' 的生成上下文。"
 
+              **name**: required `string`
 
-  **id**: `string`
+              函式的名稱。必須是 a-z、A-Z、0-9，或包含底線、冒號、句點與連字號，長度上限為 128。
 
-  選用。工具呼叫的專屬識別碼。伺服器會傳回帶有相符 `id` 的工具回應。
+              **description**: required `string`
 
-  **toolName**: `string`
+              函式的簡短說明。
 
-  選用。被呼叫的工具名稱。
 
-  **args**: `object`
 
-  選用。工具呼叫引數。範例：{"arg1" : "value1", "arg2" : "value2" , ...}
+            ??? note "**parameters**: `Schema` 選用。描述此函式的參數。反映 Open API 3.03 Parameter Object：字串 Key 為參數名稱，參數名稱區分大小寫；Schema Value 為定義參數所用類型的 Schema。"
 
-  
+                ??? note "**type**: required `Type` 資料類型。"
 
-</details>
+                    可能的值：
 
+                    - `TYPE_UNSPECIFIED`: 未指定，不應使用。
+                    - `STRING`: 字串類型。
+                    - `NUMBER`: 數字類型。
+                    - `INTEGER`: 整數類型。
+                    - `BOOLEAN`: 布林類型。
+                    - `ARRAY`: 陣列類型。
+                    - `OBJECT`: 物件類型。
+                    - `NULL`: Null 類型。
 
-  
 
-<details>
-<summary>**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。</summary>
 
-  
+                  **format**: `string`
 
-  
+                  選用。資料的格式。允許任何值，但大多數值不會觸發任何特殊功能。
 
-<details>
-<summary>**toolType**: required `V1mainToolType` 被呼叫的工具類型，`tool_type` 與對應 `ToolCall` 中的相符。</summary>
+                  **title**: `string`
 
-  
+                  選用。schema 的標題。
 
-  可能的值：
+                  **description**: `string`
 
-  - `TOOL_TYPE_UNSPECIFIED`: 未指定的工具類型。
-  - `GOOGLE_SEARCH_WEB`: Google 搜尋工具，對應 Tool.google_search.search_types.web_search。
-  - `GOOGLE_SEARCH_IMAGE`: 圖片搜尋工具，對應 Tool.google_search.search_types.image_search。
-  - `URL_CONTEXT`: URL 上下文工具，對應 Tool.url_context。
-  - `GOOGLE_MAPS`: Google 地圖工具，對應 Tool.google_maps。
-  - `FILE_SEARCH`: 檔案搜尋工具，對應 Tool.file_search。
-  - `MEDIA_PROCESSING`: 媒體處理工具類型（例如影片、音訊等），對應多模態理解所使用的隱形工具，如 GOOGLE_UNDERSTANDING_VIDEO。
+                  選用。參數的簡短說明，可包含使用範例。參數說明可使用 Markdown 格式。
 
-  
+                  **nullable**: `boolean`
 
-</details>
+                  選用。表示值是否可為 null。
 
+                  **enum**: `string array`
 
-  **id**: `string`
+                  選用。Type.STRING 元素在 enum 格式下的可能值。例如可將 Enum Direction 定義為：{type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
 
-  選用。此回應所對應之工具呼叫的識別碼。
+                  **items**: `Schema`
 
-  **response**: `object`
+                  選用。Type.ARRAY 元素的 Schema。
 
-  選用。工具回應。
+                  **maxItems**: `string`
 
-  
+                  選用。Type.ARRAY 的元素數量上限。
 
-</details>
+                  **minItems**: `string`
 
+                  選用。Type.ARRAY 的元素數量下限。
 
-  
+                  **properties**: `object`
 
-</details>
+                  選用。Type.OBJECT 的屬性。
 
+                  **required**: `string array`
 
-  
+                  選用。Type.OBJECT 的必填屬性。
 
-<details>
-<summary>**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此欄位，以設定每個部分的靜態媒體預處理。</summary>
+                  **minProperties**: `string`
 
-  
+                  選用。Type.OBJECT 的屬性數量下限。
 
-  聯集欄位 `metadata` 只能是下列其中之一：
+                  **maxProperties**: `string`
 
-  
+                  選用。Type.OBJECT 的屬性數量上限。
 
-<details>
-<summary>**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。僅應在影片資料以 inline_data 或 file_data 呈現時指定此中繼資料。</summary>
+                  **minimum**: `number`
 
-  
+                  選用。TYPE INTEGER 與 NUMBER 的 SCHEMA 欄位：Type.INTEGER 與 Type.NUMBER 的最小值
 
-  **startOffset**: `string`
+                  **maximum**: `number`
 
-  選用。影片的開始偏移。
+                  選用。Type.INTEGER 與 Type.NUMBER 的最大值
 
-  **endOffset**: `string`
+                  **minLength**: `string`
 
-  選用。影片的結束偏移。
+                  選用。TYPE STRING 的 SCHEMA 欄位：Type.STRING 的長度下限
 
-  **fps**: `number`
+                  **maxLength**: `string`
 
-  選用。傳送給模型的影片幀率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+                  選用。Type.STRING 的長度上限
 
-  
+                  **pattern**: `string`
 
-</details>
+                  選用。Type.STRING 的模式，用來將字串限制為正規表示式。
 
+                  **example**: `object`
 
-  
+                  選用。物件的範例。僅在物件為根物件時才會填入。
 
-</details>
+                  **anyOf**: `Schema array`
 
+                  選用。值應對照清單中的任一（一個或多個）子 schema 進行驗證。
 
-  **thought**: `boolean`
+                  **propertyOrdering**: `string array`
 
-  選用。表示此部分是否為模型的思考內容。
+                  選用。屬性的順序。並非 Open API 規格的標準欄位。用來決定回應中屬性的順序。
 
-  **thoughtSignature**: `string`
+                  **default**: `object`
 
-  選用。思考內容的不透明簽章，可在後續要求中重複使用。
+                  選用。欄位的預設值。依據 JSON Schema，此欄位是供文件產生器使用，不影響驗證。因此在此納入並忽略，讓傳送含有 `default` 欄位之 schema 的開發人員不會收到未知欄位錯誤。
 
-  **partMetadata**: `object`
 
-  與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示方式的代理，可能需要追蹤這些額外資訊。例如 Part 來源檔案/來源的名稱，或多工處理多個 Part 串流的方式。
 
-  
+              **parametersJsonSchema**: `object`
 
-<details>
-<summary>**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。</summary>
+              選用。以 JSON Schema 格式描述函式的參數。schema 必須描述一個物件，其屬性即為函式的參數。例如：`{ "type": "object", "properties": { "name": { "type": "string" }, "age": { "type": "integer" } }, "additionalProperties": false, "required": ["name", "age"], "propertyOrdering": ["name", "age"] }` 此欄位與 `parameters` 互斥。
 
-  
 
-  
 
-<details>
-<summary>**value**: `Union type` 媒體解析度等級。</summary>
+            ??? note "**response**: `Schema` 選用。以 JSON Schema 格式描述此函式的輸出。反映 Open API 3.03 Response Object。Schema 定義函式回應值所使用的類型。"
 
-  
+                ??? note "**type**: required `Type` 資料類型。"
 
-  聯集欄位 `value` 只能是下列其中之一：
+                    可能的值：
 
-  
+                    - `TYPE_UNSPECIFIED`: 未指定，不應使用。
+                    - `STRING`: 字串類型。
+                    - `NUMBER`: 數字類型。
+                    - `INTEGER`: 整數類型。
+                    - `BOOLEAN`: 布林類型。
+                    - `ARRAY`: 陣列類型。
+                    - `OBJECT`: 物件類型。
+                    - `NULL`: Null 類型。
 
-<details>
-<summary>**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。</summary>
 
-  
 
-  可能的值：
+                  **format**: `string`
 
-  - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
-  - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低。
-  - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中。
-  - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高。
-  - `MEDIA_RESOLUTION_ULTRA_HIGH`: 媒體解析度設為超高。
+                  選用。資料的格式。允許任何值，但大多數值不會觸發任何特殊功能。
 
-  
+                  **title**: `string`
 
-</details>
+                  選用。schema 的標題。
 
+                  **description**: `string`
 
-  
+                  選用。參數的簡短說明，可包含使用範例。參數說明可使用 Markdown 格式。
 
-</details>
+                  **nullable**: `boolean`
 
+                  選用。表示值是否可為 null。
 
-  
+                  **enum**: `string array`
 
-</details>
+                  選用。Type.STRING 元素在 enum 格式下的可能值。例如可將 Enum Direction 定義為：{type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
 
+                  **items**: `Schema`
 
-  
+                  選用。Type.ARRAY 元素的 Schema。
 
-<details>
-<summary>**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以便理解。僅對影片部分（`inline_data` 或 MIME 為影片的 `file_data`）有意義。非影片部分會忽略此欄位。</summary>
+                  **maxItems**: `string`
 
-  
+                  選用。Type.ARRAY 的元素數量上限。
 
-  可能的值：
+                  **minItems**: `string`
 
-  - `MEDIA_PROCESSING_UNSPECIFIED`: 預設為模型專屬的處理方式。
-  - `STATIC`: 固定速率的幀擷取。所有幀都放入上下文。
-  - `AGENTIC`: 模型驅動的動態導覽。建議用於大多數使用情境。
+                  選用。Type.ARRAY 的元素數量下限。
 
-  
+                  **properties**: `object`
 
-</details>
+                  選用。Type.OBJECT 的屬性。
 
+                  **required**: `string array`
 
-  
+                  選用。Type.OBJECT 的必填屬性。
 
-<details>
-<summary>**audioTranscription**: `AudioTranscription` 選用。音訊（輸入或輸出）轉錄。僅在此 Part 包含音訊資料時設定。</summary>
+                  **minProperties**: `string`
 
-  
+                  選用。Type.OBJECT 的屬性數量下限。
 
-  **text**: required `string`
+                  **maxProperties**: `string`
 
-  此音訊片段的轉錄文字。
+                  選用。Type.OBJECT 的屬性數量上限。
 
-  **speakerLabel**: `string`
+                  **minimum**: `number`
 
-  選用。標示此音訊片段說話者的標籤（例如 "spk_1"、"spk_2"）。設定 diarization 時才會出現。
+                  選用。TYPE INTEGER 與 NUMBER 的 SCHEMA 欄位：Type.INTEGER 與 Type.NUMBER 的最小值
 
-  
+                  **maximum**: `number`
 
-<details>
-<summary>**words**: `WordInfo array` 選用。詳細的字詞層級轉錄與時間詳細資訊。設定 word_timestamp 時才會出現。</summary>
+                  選用。Type.INTEGER 與 Type.NUMBER 的最大值
 
-  
+                  **minLength**: `string`
 
-  **word**: required `string`
+                  選用。TYPE STRING 的 SCHEMA 欄位：Type.STRING 的長度下限
 
-  字詞的轉錄。
+                  **maxLength**: `string`
 
-  **startOffset**: `string`
+                  選用。Type.STRING 的長度上限
 
-  選用。字詞相對於音訊開頭的開始時間偏移。
+                  **pattern**: `string`
 
-  **endOffset**: `string`
+                  選用。Type.STRING 的模式，用來將字串限制為正規表示式。
 
-  選用。字詞相對於音訊開頭的結束時間偏移。
+                  **example**: `object`
 
-  
+                  選用。物件的範例。僅在物件為根物件時才會填入。
 
-</details>
+                  **anyOf**: `Schema array`
 
+                  選用。值應對照清單中的任一（一個或多個）子 schema 進行驗證。
 
-  
+                  **propertyOrdering**: `string array`
 
-</details>
+                  選用。屬性的順序。並非 Open API 規格的標準欄位。用來決定回應中屬性的順序。
 
+                  **default**: `object`
 
-  
+                  選用。欄位的預設值。依據 JSON Schema，此欄位是供文件產生器使用，不影響驗證。因此在此納入並忽略，讓傳送含有 `default` 欄位之 schema 的開發人員不會收到未知欄位錯誤。
 
-<details>
-<summary>**speechMetadata**: `SpeechMetadata` 選用。套用至文字部分的中繼資料，用來自訂其朗讀或合成方式，例如指定說話者身分或說話風格。</summary>
 
-  
 
-  **speaker**: `string`
+              **responseJsonSchema**: `object`
 
-  選用。多說話者合成時選用的說話者名稱。
+              選用。以 JSON Schema 格式描述此函式的輸出。schema 指定的值即為函式的回應值。此欄位與 `response` 互斥。
 
-  **style**: `string`
 
-  選用。語音合成時選用的風格指令。
 
-  
+            ??? note "**behavior**: `string enum` 選用。指定函式的 Behavior。目前僅 BidiGenerateContent 方法支援。"
 
-</details>
+                可能的值：
 
+                - `UNSPECIFIED`: 此值未使用。
+                - `BLOCKING`: 若設定，系統會等待收到函式回應後才繼續對話。
+                - `NON_BLOCKING`: 若設定，系統不會等待收到函式回應。改為在維持使用者與模型對話的同時，嘗試在函式回應可用時加以處理。
 
-  
 
-</details>
 
 
-  **role**: `string`
 
-  選用。內容的產生者。必須是 'user' 或 'model'。設定此欄位有助於多輪對話，否則可留空或不設定。
+        ??? note "**googleSearchRetrieval**: `GoogleSearchRetrieval` 選用。由 Google 搜尋驅動的檢索工具。"
 
-  
+            ??? note "**dynamicRetrievalConfig**: `DynamicRetrievalConfig` 指定指定來源的動態檢索設定。"
 
-</details>
+                ??? note "**mode**: `string enum` 動態檢索要使用的預測器模式。"
 
+                    可能的值：
 
-  
+                    - `MODE_UNSPECIFIED`: 一律觸發檢索。
+                    - `MODE_DYNAMIC`: 僅在系統判斷有必要時才執行檢索。
 
-<details>
-<summary>**tools**: `Tool array` 選用。以下是 `Tools` 清單，`Model` 可用來生成下一個回應。`Tool` 是一段程式碼，讓系統能與外部系統互動，執行 `Model` 知識與範圍之外的一個或一組動作。支援的 `Tool` 為 `Function` 與 `code_execution`。詳情請參閱[函式呼叫](/docs/function-calling/)與[程式碼執行](/docs/code-execution/)指南。</summary>
 
-  
 
-  
+                  **dynamicThreshold**: `number`
 
-<details>
-<summary>**functionDeclarations**: `FunctionDeclaration array` 選用。可供模型用於函式呼叫的 `FunctionDeclarations` 清單。模型或系統不會執行函式。改由將定義的函式以帶有引數的 FunctionCall 傳回用戶端執行。模型可決定呼叫這些函式的子集，在回應中填入 FunctionCall。下一個對話輪次可包含 FunctionResponse，作為下一個模型輪次中 Content.role 為 "function" 的生成上下文。</summary>
+                  動態檢索要使用的閾值。若未設定，使用系統預設值。
 
-  
 
-  **name**: required `string`
 
-  函式的名稱。必須是 a-z、A-Z、0-9，或包含底線、冒號、句點與連字號，長度上限為 128。
 
-  **description**: required `string`
 
-  函式的簡短說明。
+        ??? note "**codeExecution**: `CodeExecution` 選用。讓模型能在生成過程中執行程式碼。"
 
-  
 
-<details>
-<summary>**parameters**: `Schema` 選用。描述此函式的參數。反映 Open API 3.03 Parameter Object：字串 Key 為參數名稱，參數名稱區分大小寫；Schema Value 為定義參數所用類型的 Schema。</summary>
 
-  
 
-  
 
-<details>
-<summary>**type**: required `Type` 資料類型。</summary>
 
-  
+        ??? note "**googleSearch**: `GoogleSearch` 選用。GoogleSearch 工具類型。在 Model 中支援 Google Search 的工具。由 Google 提供。"
 
-  可能的值：
+            ??? note "**timeRangeFilter**: `Interval` 選用。將搜尋結果篩選至特定時間範圍。若客戶設定了開始時間，就必須設定結束時間（反之亦然）。"
 
-  - `TYPE_UNSPECIFIED`: 未指定，不應使用。
-  - `STRING`: 字串類型。
-  - `NUMBER`: 數字類型。
-  - `INTEGER`: 整數類型。
-  - `BOOLEAN`: 布林類型。
-  - `ARRAY`: 陣列類型。
-  - `OBJECT`: 物件類型。
-  - `NULL`: Null 類型。
+                **startTime**: `string`
 
-  
+                選用。區間的含端點起始位置。若有指定，符合此區間的 Timestamp 必須等於或晚於起始位置。
 
-</details>
+                **endTime**: `string`
 
+                選用。區間的不含端點結束位置。若有指定，符合此區間的 Timestamp 必須早於結束位置。
 
-  **format**: `string`
 
-  選用。資料的格式。允許任何值，但大多數值不會觸發任何特殊功能。
 
-  **title**: `string`
 
-  選用。schema 的標題。
 
-  **description**: `string`
+            ??? note "**searchTypes**: `SearchTypes` 選用。要啟用的搜尋類型集合。若未設定，預設啟用網路搜尋。"
 
-  選用。參數的簡短說明，可包含使用範例。參數說明可使用 Markdown 格式。
+                ??? note "**webSearch**: `WebSearch` 選用。啟用網路搜尋。僅傳回文字結果。"
 
-  **nullable**: `boolean`
 
-  選用。表示值是否可為 null。
 
-  **enum**: `string array`
 
-  選用。Type.STRING 元素在 enum 格式下的可能值。例如可將 Enum Direction 定義為：{type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
 
-  **items**: `Schema`
 
-  選用。Type.ARRAY 元素的 Schema。
+                ??? note "**imageSearch**: `ImageSearch` 選用。啟用圖片搜尋。傳回圖片位元組。"
 
-  **maxItems**: `string`
 
-  選用。Type.ARRAY 的元素數量上限。
 
-  **minItems**: `string`
 
-  選用。Type.ARRAY 的元素數量下限。
 
-  **properties**: `object`
+        ??? note "**computerUse**: `ComputerUse` 選用。支援模型直接與電腦互動的工具。啟用後，會自動填入 computer-use 專屬的 Function Declarations。"
 
-  選用。Type.OBJECT 的屬性。
+            ??? note "**environment**: required `string enum` 所操作的環境。"
 
-  **required**: `string array`
+                可能的值：
 
-  選用。Type.OBJECT 的必填屬性。
+                - `ENVIRONMENT_UNSPECIFIED`: 預設為瀏覽器。
+                - `ENVIRONMENT_BROWSER`: 在網路瀏覽器中操作。
+                - `ENVIRONMENT_MOBILE`: 在行動環境中操作。
+                - `ENVIRONMENT_DESKTOP`: 在桌面環境中操作。
 
-  **minProperties**: `string`
 
-  選用。Type.OBJECT 的屬性數量下限。
 
-  **maxProperties**: `string`
+              **excludedPredefinedFunctions**: `string array`
 
-  選用。Type.OBJECT 的屬性數量上限。
+              選用。根據預設，預先定義的函式會納入最終的模型呼叫中。其中部分函式可明確排除、不自動納入。這有兩個用途：1. 使用更受限/不同的動作空間。2. 改善預先定義函式的定義/指令。
 
-  **minimum**: `number`
+              **enablePromptInjectionDetection**: `boolean`
 
-  選用。TYPE INTEGER 與 NUMBER 的 SCHEMA 欄位：Type.INTEGER 與 Type.NUMBER 的最小值
+              選用。是否對 computer-use 要求啟用提示詞注入偵測檢查。
 
-  **maximum**: `number`
 
-  選用。Type.INTEGER 與 Type.NUMBER 的最大值
 
-  **minLength**: `string`
+            ??? note "**disabledSafetyPolicies**: `string enum array` 選用。computer use 已停用的安全政策。"
 
-  選用。TYPE STRING 的 SCHEMA 欄位：Type.STRING 的長度下限
+                可能的值：
 
-  **maxLength**: `string`
+                - `SAFETY_POLICY_UNSPECIFIED`: 未指定的安全政策。
+                - `FINANCIAL_TRANSACTIONS`: 金融交易的安全政策。
+                - `SENSITIVE_DATA_MODIFICATION`: 敏感資料修改的安全政策。
+                - `COMMUNICATION_TOOL`: 通訊工具（例如 Gmail、Chat、Meet）的安全政策。
+                - `ACCOUNT_CREATION`: 帳號建立的安全政策。
+                - `DATA_MODIFICATION`: 資料修改的安全政策。
+                - `USER_CONSENT_MANAGEMENT`: 使用者同意管理的安全政策。
+                - `LEGAL_TERMS_AND_AGREEMENTS`: 法律條款與協議的安全政策。
 
-  選用。Type.STRING 的長度上限
 
-  **pattern**: `string`
 
-  選用。Type.STRING 的模式，用來將字串限制為正規表示式。
 
-  **example**: `object`
 
-  選用。物件的範例。僅在物件為根物件時才會填入。
+        ??? note "**urlContext**: `UrlContext` 選用。支援 URL 上下文檢索的工具。"
 
-  **anyOf**: `Schema array`
 
-  選用。值應對照清單中的任一（一個或多個）子 schema 進行驗證。
 
-  **propertyOrdering**: `string array`
 
-  選用。屬性的順序。並非 Open API 規格的標準欄位。用來決定回應中屬性的順序。
 
-  **default**: `object`
 
-  選用。欄位的預設值。依據 JSON Schema，此欄位是供文件產生器使用，不影響驗證。因此在此納入並忽略，讓傳送含有 `default` 欄位之 schema 的開發人員不會收到未知欄位錯誤。
+        ??? note "**fileSearch**: `FileSearch` 選用。FileSearch 工具類型。從 Semantic Retrieval 語料庫檢索知識的工具。"
 
-  
+            **fileSearchStoreNames**: required `string array`
 
-</details>
+            要從中檢索的 file_search_stores 名稱。範例：`fileSearchStores/my-file-search-store-123`
 
+            **topK**: `integer`
 
-  **parametersJsonSchema**: `object`
+            選用。要檢索的語意檢索區塊數量。
 
-  選用。以 JSON Schema 格式描述函式的參數。schema 必須描述一個物件，其屬性即為函式的參數。例如：`{ "type": "object", "properties": { "name": { "type": "string" }, "age": { "type": "integer" } }, "additionalProperties": false, "required": ["name", "age"], "propertyOrdering": ["name", "age"] }` 此欄位與 `parameters` 互斥。
+            **metadataFilter**: `string`
 
-  
+            選用。要套用至語意檢索文件與區塊的中繼資料篩選條件。
 
-<details>
-<summary>**response**: `Schema` 選用。以 JSON Schema 格式描述此函式的輸出。反映 Open API 3.03 Response Object。Schema 定義函式回應值所使用的類型。</summary>
 
-  
 
-  
 
-<details>
-<summary>**type**: required `Type` 資料類型。</summary>
 
-  
+        ??? note "**mcpServers**: `McpServer array` 選用。要連線的 MCP Servers。"
 
-  可能的值：
+            ??? note "**transport**: `Union type` 用來連線至 MCPServer 的傳輸方式。"
 
-  - `TYPE_UNSPECIFIED`: 未指定，不應使用。
-  - `STRING`: 字串類型。
-  - `NUMBER`: 數字類型。
-  - `INTEGER`: 整數類型。
-  - `BOOLEAN`: 布林類型。
-  - `ARRAY`: 陣列類型。
-  - `OBJECT`: 物件類型。
-  - `NULL`: Null 類型。
+                  聯集欄位 `transport` 只能是下列其中之一：
 
-  
 
-</details>
 
+                ??? note "**streamableHttpTransport**: `StreamableHttpTransport` 可串流 HTTP 要求與回應的傳輸方式。"
 
-  **format**: `string`
+                    **url**: `string`
 
-  選用。資料的格式。允許任何值，但大多數值不會觸發任何特殊功能。
+                    MCPServer 端點的完整 URL。範例："https://api.example.com/mcp"
 
-  **title**: `string`
+                    **headers**: `object`
 
-  選用。schema 的標題。
+                    選用：如有需要，提供驗證標頭、逾時等欄位。
 
-  **description**: `string`
+                    **timeout**: `string`
 
-  選用。參數的簡短說明，可包含使用範例。參數說明可使用 Markdown 格式。
+                    一般操作的 HTTP 逾時。
 
-  **nullable**: `boolean`
+                    **sseReadTimeout**: `string`
 
-  選用。表示值是否可為 null。
+                    SSE 讀取操作的逾時。
 
-  **enum**: `string array`
+                    **terminateOnClose**: `boolean`
 
-  選用。Type.STRING 元素在 enum 格式下的可能值。例如可將 Enum Direction 定義為：{type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+                    傳輸關閉時是否關閉用戶端工作階段。
 
-  **items**: `Schema`
 
-  選用。Type.ARRAY 元素的 Schema。
 
-  **maxItems**: `string`
+              **name**: `string`
 
-  選用。Type.ARRAY 的元素數量上限。
+              MCPServer 的名稱。
 
-  **minItems**: `string`
 
-  選用。Type.ARRAY 的元素數量下限。
 
-  **properties**: `object`
 
-  選用。Type.OBJECT 的屬性。
 
-  **required**: `string array`
+        ??? note "**googleMaps**: `GoogleMaps` 選用。讓模型的回應能以與使用者查詢相關的地理空間上下文接地的工具。"
 
-  選用。Type.OBJECT 的必填屬性。
+            **enableWidget**: `boolean`
 
-  **minProperties**: `string`
+            選用。是否在回應的 GroundingMetadata 中傳回 widget 上下文權杖。開發人員可使用 widget 上下文權杖，算繪與模型在回應中參照之地點相關地理空間上下文的 Google Maps widget。
 
-  選用。Type.OBJECT 的屬性數量下限。
 
-  **maxProperties**: `string`
 
-  選用。Type.OBJECT 的屬性數量上限。
 
-  **minimum**: `number`
 
-  選用。TYPE INTEGER 與 NUMBER 的 SCHEMA 欄位：Type.INTEGER 與 Type.NUMBER 的最小值
+    ??? note "**toolConfig**: `ToolConfig` 選用。要求中指定的任何 `Tool` 的工具設定。使用範例請參閱[函式呼叫指南](/docs/function-calling/#function_calling_modes)。"
 
-  **maximum**: `number`
+        ??? note "**functionCallingConfig**: `FunctionCallingConfig` 選用。函式呼叫設定。"
 
-  選用。Type.INTEGER 與 Type.NUMBER 的最大值
+            ??? note "**mode**: `string enum` 選用。指定函式呼叫應執行的模式。若未指定，預設值為 AUTO。"
 
-  **minLength**: `string`
+                可能的值：
 
-  選用。TYPE STRING 的 SCHEMA 欄位：Type.STRING 的長度下限
+                - `MODE_UNSPECIFIED`: 未指定的函式呼叫模式。不應使用此值。
+                - `AUTO`: 預設模型行為，由模型決定預測函式呼叫或自然語言回應。
+                - `ANY`: 模型被限制為一律僅預測函式呼叫。若設定了 "allowed_function_names"，預測的函式呼叫將限於 "allowed_function_names" 中的任一個，否則預測的函式呼叫將是提供的 "function_declarations" 中的任一個。
+                - `NONE`: 模型不會預測任何函式呼叫。模型行為與未傳入任何函式宣告時相同。
+                - `VALIDATED`: 模型決定預測函式呼叫或自然語言回應，但會以受限解碼驗證函式呼叫。若設定了 "allowed_function_names"，預測的函式呼叫將限於 "allowed_function_names" 中的任一個，否則預測的函式呼叫將是提供的 "function_declarations" 中的任一個。
 
-  **maxLength**: `string`
 
-  選用。Type.STRING 的長度上限
 
-  **pattern**: `string`
+              **allowedFunctionNames**: `string array`
 
-  選用。Type.STRING 的模式，用來將字串限制為正規表示式。
+              選用。函式名稱集合，提供後可限制模型可呼叫的函式。僅應在 Mode 為 ANY 或 VALIDATED 時設定。函式名稱應與 [FunctionDeclaration.name] 相符。設定後，模型只會從允許的函式名稱中預測函式呼叫。
 
-  **example**: `object`
 
-  選用。物件的範例。僅在物件為根物件時才會填入。
 
-  **anyOf**: `Schema array`
 
-  選用。值應對照清單中的任一（一個或多個）子 schema 進行驗證。
 
-  **propertyOrdering**: `string array`
+        ??? note "**retrievalConfig**: `RetrievalConfig` 選用。檢索設定。"
 
-  選用。屬性的順序。並非 Open API 規格的標準欄位。用來決定回應中屬性的順序。
+            ??? note "**latLng**: `LatLng` 選用。使用者的位置。"
 
-  **default**: `object`
+                **latitude**: `number`
 
-  選用。欄位的預設值。依據 JSON Schema，此欄位是供文件產生器使用，不影響驗證。因此在此納入並忽略，讓傳送含有 `default` 欄位之 schema 的開發人員不會收到未知欄位錯誤。
+                緯度（度）。必須在 [-90.0, +90.0] 範圍內。
 
-  
+                **longitude**: `number`
 
-</details>
+                經度（度）。必須在 [-180.0, +180.0] 範圍內。
 
 
-  **responseJsonSchema**: `object`
 
-  選用。以 JSON Schema 格式描述此函式的輸出。schema 指定的值即為函式的回應值。此欄位與 `response` 互斥。
+              **languageCode**: `string`
 
-  
+              選用。使用者的語言代碼。內容的語言代碼。使用 [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) 定義的語言標籤。
 
-<details>
-<summary>**behavior**: `string enum` 選用。指定函式的 Behavior。目前僅 BidiGenerateContent 方法支援。</summary>
 
-  
 
-  可能的值：
+          **includeServerSideToolInvocations**: `boolean`
 
-  - `UNSPECIFIED`: 此值未使用。
-  - `BLOCKING`: 若設定，系統會等待收到函式回應後才繼續對話。
-  - `NON_BLOCKING`: 若設定，系統不會等待收到函式回應。改為在維持使用者與模型對話的同時，嘗試在函式回應可用時加以處理。
+          選用。若為 true，API 回應會在 `Content` 訊息中納入伺服器端工具呼叫與回應，讓用戶端能觀察伺服器的工具互動。
 
-  
 
-</details>
 
 
-  
 
-</details>
+    ??? note "**safetySettings**: `SafetySetting array` 選用。用於封鎖不安全內容的專屬 `SafetySetting` 執行個體清單。會對 `GenerateContentRequest.contents` 與 `GenerateContentResponse.candidates` 強制套用。每個 `SafetyCategory` 類型不應有多個設定。API 會封鎖任何未達到這些設定所定閾值的內容與回應。此清單會覆寫 safety_settings 中指定的每個 `SafetyCategory` 的預設設定。若清單中未提供 `SafetySetting`（針對某個 `SafetyCategory`），API 會使用該類別的預設安全設定。支援的危害類別為 HARM_CATEGORY_HATE_SPEECH、HARM_CATEGORY_SEXUALLY_EXPLICIT、HARM_CATEGORY_DANGEROUS_CONTENT、HARM_CATEGORY_HARASSMENT、HARM_CATEGORY_CIVIC_INTEGRITY、HARM_CATEGORY_JAILBREAK。可用的安全設定的詳細資訊請參閱[指南](/docs/safety-settings/)。另請參閱[安全指南](/docs/safety-guidance/)，瞭解如何將安全考量納入 AI 應用程式。"
 
+        ??? note "**category**: required `HarmCategory` 此設定的類別。"
 
-  
+            可能的值：
 
-<details>
-<summary>**googleSearchRetrieval**: `GoogleSearchRetrieval` 選用。由 Google 搜尋驅動的檢索工具。</summary>
+            - `HARM_CATEGORY_UNSPECIFIED`: 類別未指定。
+            - `HARM_CATEGORY_HARASSMENT`: **Gemini** - 騷擾內容。
+            - `HARM_CATEGORY_HATE_SPEECH`: **Gemini** - 仇恨言論與內容。
+            - `HARM_CATEGORY_SEXUALLY_EXPLICIT`: **Gemini** - 性露骨內容。
+            - `HARM_CATEGORY_DANGEROUS_CONTENT`: **Gemini** - 危險內容。
+            - `HARM_CATEGORY_JAILBREAK`: **Gemini** - 企圖繞過或顛覆模型安全準則的提示詞（越獄嘗試）。
 
-  
 
-  
 
-<details>
-<summary>**dynamicRetrievalConfig**: `DynamicRetrievalConfig` 指定指定來源的動態檢索設定。</summary>
 
-  
 
-  
+        ??? note "**threshold**: required `string enum` 控制封鎖危害的機率閾值。"
 
-<details>
-<summary>**mode**: `string enum` 動態檢索要使用的預測器模式。</summary>
+            可能的值：
 
-  
+            - `HARM_BLOCK_THRESHOLD_UNSPECIFIED`: 閾值未指定。
+            - `BLOCK_LOW_AND_ABOVE`: NEGLIGIBLE 的內容將被允許。
+            - `BLOCK_MEDIUM_AND_ABOVE`: NEGLIGIBLE 與 LOW 的內容將被允許。
+            - `BLOCK_ONLY_HIGH`: NEGLIGIBLE、LOW 與 MEDIUM 的內容將被允許。
+            - `BLOCK_NONE`: 所有內容都將被允許。
+            - `OFF`: 關閉安全篩選器。
 
-  可能的值：
 
-  - `MODE_UNSPECIFIED`: 一律觸發檢索。
-  - `MODE_DYNAMIC`: 僅在系統判斷有必要時才執行檢索。
 
-  
 
-</details>
 
+    ??? note "**generationConfig**: `GenerationConfig` 選用。模型生成與輸出的設定選項。"
 
-  **dynamicThreshold**: `number`
+          **candidateCount**: `integer`
 
-  動態檢索要使用的閾值。若未設定，使用系統預設值。
+          選用。要傳回的生成回應數量。若未設定，預設為 1。請注意，此設定不適用於上一代模型（Gemini 1.0 系列）
 
-  
+          **stopSequences**: `string array`
 
-</details>
+          選用。會停止輸出生成的字元序列集合（最多 5 個）。若有指定，API 會在 `stop_sequence` 首次出現時停止。停止序列不會納入回應中。
 
+          **maxOutputTokens**: `integer`
 
-  
+          選用。回應候選中要納入的權杖數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。
 
-</details>
+          **temperature**: `number`
 
+          選用。控制輸出的隨機程度。注意：預設值因模型而異，請參閱 `Model.temperature` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。值範圍為 [0.0, 2.0]。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
-  
+          **topP**: `number`
 
-<details>
-<summary>**codeExecution**: `CodeExecution` 選用。讓模型能在生成過程中執行程式碼。</summary>
+          選用。取樣時要考量的權杖累積機率上限。模型結合使用 Top-k 與 Top-p（nucleus）取樣。權杖會依其指派的機率排序，僅考量最可能的權杖。Top-k 取樣直接限制考量的權杖數量上限，Nucleus 取樣則依累積機率限制權杖數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
-  
+          **topK**: `integer`
 
-  
+          選用。取樣時要考量的權杖數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考量機率最高的 `top_k` 個權杖組成的集合。使用 nucleus 取樣的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
-</details>
+          **seed**: `integer`
 
+          選用。解碼時使用的種子。若未設定，要求會使用隨機產生的種子。
 
-  
+          **responseMimeType**: `string`
 
-<details>
-<summary>**googleSearch**: `GoogleSearch` 選用。GoogleSearch 工具類型。在 Model 中支援 Google Search 的工具。由 Google 提供。</summary>
+          選用。生成候選文字的 MIME 類型。支援的 MIME 類型如下：`text/plain`：（預設）文字輸出。`application/json`：回應候選中的 JSON 回應。`text/x.enum`：回應候選中以字串形式呈現的 ENUM 回應。所有支援的文字 MIME 類型清單請參閱[文件](/docs/file-input-methods/#text-file-types)。
 
-  
+          **responseJsonSchema**: `object`
 
-  
+          選用。內部細節。請改用 `responseJsonSchema`，不要使用此欄位。
 
-<details>
-<summary>**timeRangeFilter**: `Interval` 選用。將搜尋結果篩選至特定時間範圍。若客戶設定了開始時間，就必須設定結束時間（反之亦然）。</summary>
+          **presencePenalty**: `number`
 
-  
+          選用。若權杖已在回應中出現，套用至下一個權杖 logprobs 的存在懲罰。此懲罰為二元開/關，不取決於權杖的使用次數（第一次之後）。若需要隨使用次數增加的懲罰，請使用 frequency_penalty。正值的懲罰會降低使用已用過權杖的意願，增加詞彙量。負值的懲罰會鼓勵使用已用過的權杖，減少詞彙量。
 
-  **startTime**: `string`
+          **frequencyPenalty**: `number`
 
-  選用。區間的含端點起始位置。若有指定，符合此區間的 Timestamp 必須等於或晚於起始位置。
+          選用。套用至下一個權杖 logprobs 的頻率懲罰，乘以每個權杖到目前為止在回應中出現的次數。正值的懲罰會依權杖已使用的次數比例，降低再次使用已用過權杖的意願：權杖用得越多，模型就越難再次使用該權杖，從而增加回應的詞彙量。注意：*負值*的懲罰會依權杖已使用的次數比例，鼓勵模型重複使用權杖。較小的負值會減少回應的詞彙量；較大的負值會使模型不斷重複某個常見權杖，直到達到 max_output_tokens 上限。
 
-  **endTime**: `string`
+          **responseLogprobs**: `boolean`
 
-  選用。區間的不含端點結束位置。若有指定，符合此區間的 Timestamp 必須早於結束位置。
+          選用。若為 true，在回應中輸出 logprobs 結果。
 
-  
+          **logprobs**: `integer`
 
-</details>
+          選用。僅在 response_logprobs=True 時有效。設定在每個解碼步驟中，於 Candidate.logprobs_result 傳回的頂尖 logprobs 數量（含所選候選）。數值必須在 [0, 20] 範圍內。
 
+          **enableEnhancedCivicAnswers**: `boolean`
 
-  
+          選用。啟用強化公民問答。並非所有模型都提供此功能。
 
-<details>
-<summary>**searchTypes**: `SearchTypes` 選用。要啟用的搜尋類型集合。若未設定，預設啟用網路搜尋。</summary>
 
-  
 
-  
+        ??? note "**responseModalities**: `string enum array` 選用。要求的回應模態。代表模型可傳回、且應在回應中預期出現的模態集合。這與回應的模態完全相符。模型可能有多種支援的模態組合。若要求的模態與任何支援的組合都不相符，將傳回錯誤。空清單等同於僅要求文字。"
 
-<details>
-<summary>**webSearch**: `WebSearch` 選用。啟用網路搜尋。僅傳回文字結果。</summary>
+            可能的值：
 
-  
+            - `MODALITY_UNSPECIFIED`: 預設值。
+            - `TEXT`: 表示模型應傳回文字。
+            - `IMAGE`: 表示模型應傳回圖片。
+            - `AUDIO`: 表示模型應傳回音訊。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**imageSearch**: `ImageSearch` 選用。啟用圖片搜尋。傳回圖片位元組。</summary>
+        ??? note "**speechConfig**: `SpeechConfig` 選用。語音生成設定。"
 
-  
+            ??? note "**voiceConfig**: `VoiceConfig` 單一語音輸出時的設定。"
 
-  
+                ??? note "**voiceConfig**: `Union type` 要使用的說話者設定。"
 
-</details>
+                      聯集欄位 `voiceConfig` 只能是下列其中之一：
 
 
-  
 
-</details>
+                    ??? note "**prebuiltVoiceConfig**: `PrebuiltVoiceConfig` 要使用的預建語音設定。"
 
+                        **voiceName**: `string`
 
-  
+                        選用。要使用的預設語音名稱。
 
-</details>
 
 
-  
+                      **voice**: `string`
 
-<details>
-<summary>**computerUse**: `ComputerUse` 選用。支援模型直接與電腦互動的工具。啟用後，會自動填入 computer-use 專屬的 Function Declarations。</summary>
+                      選用。用於合成的說話者識別碼。支援的格式：
 
-  
+                      - 預建語音的說話者名稱（例如 `Orus` 或 `Kore`）。
+                      - 已儲存語音的 Voice ID（例如 `voice_xxx`）。
+                      - 語音複製金鑰（例如 `voicekey_xxx`）。
 
-  
 
-<details>
-<summary>**environment**: required `string enum` 所操作的環境。</summary>
 
-  
 
-  可能的值：
 
-  - `ENVIRONMENT_UNSPECIFIED`: 預設為瀏覽器。
-  - `ENVIRONMENT_BROWSER`: 在網路瀏覽器中操作。
-  - `ENVIRONMENT_MOBILE`: 在行動環境中操作。
-  - `ENVIRONMENT_DESKTOP`: 在桌面環境中操作。
+            ??? note "**multiSpeakerVoiceConfig**: `MultiSpeakerVoiceConfig` 選用。多說話者設定的設定。與 voice_config 欄位互斥。"
 
-  
+                ??? note "**speakerVoiceConfigs**: required `SpeakerVoiceConfig array` 所有已啟用的說話者語音。"
 
-</details>
+                      **speaker**: required `string`
 
+                      要使用的說話者名稱。應與提示詞中的名稱相同。
 
-  **excludedPredefinedFunctions**: `string array`
 
-  選用。根據預設，預先定義的函式會納入最終的模型呼叫中。其中部分函式可明確排除、不自動納入。這有兩個用途：1. 使用更受限/不同的動作空間。2. 改善預先定義函式的定義/指令。
 
-  **enablePromptInjectionDetection**: `boolean`
+                    ??? note "**voiceConfig**: required `VoiceConfig` 要使用的語音設定。"
 
-  選用。是否對 computer-use 要求啟用提示詞注入偵測檢查。
+                        ??? note "**voiceConfig**: `Union type` 要使用的說話者設定。"
 
-  
+                              聯集欄位 `voiceConfig` 只能是下列其中之一：
 
-<details>
-<summary>**disabledSafetyPolicies**: `string enum array` 選用。computer use 已停用的安全政策。</summary>
 
-  
 
-  可能的值：
+                            ??? note "**prebuiltVoiceConfig**: `PrebuiltVoiceConfig` 要使用的預建語音設定。"
 
-  - `SAFETY_POLICY_UNSPECIFIED`: 未指定的安全政策。
-  - `FINANCIAL_TRANSACTIONS`: 金融交易的安全政策。
-  - `SENSITIVE_DATA_MODIFICATION`: 敏感資料修改的安全政策。
-  - `COMMUNICATION_TOOL`: 通訊工具（例如 Gmail、Chat、Meet）的安全政策。
-  - `ACCOUNT_CREATION`: 帳號建立的安全政策。
-  - `DATA_MODIFICATION`: 資料修改的安全政策。
-  - `USER_CONSENT_MANAGEMENT`: 使用者同意管理的安全政策。
-  - `LEGAL_TERMS_AND_AGREEMENTS`: 法律條款與協議的安全政策。
+                                **voiceName**: `string`
 
-  
+                                選用。要使用的預設語音名稱。
 
-</details>
 
 
-  
+                              **voice**: `string`
 
-</details>
+                              選用。用於合成的說話者識別碼。支援的格式：
 
+                              - 預建語音的說話者名稱（例如 `Orus` 或 `Kore`）。
+                              - 已儲存語音的 Voice ID（例如 `voice_xxx`）。
+                              - 語音複製金鑰（例如 `voicekey_xxx`）。
 
-  
 
-<details>
-<summary>**urlContext**: `UrlContext` 選用。支援 URL 上下文檢索的工具。</summary>
 
-  
+              **languageCode**: `string`
 
-  
+              選用。使用者為應用程式設定的 IETF [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) 語言代碼。用於語音辨識與合成。有效值為：`de-DE`、`en-AU`、`en-GB`、`en-IN`、`en-US`、`es-US`、`fr-FR`、`hi-IN`、`pt-BR`、`ar-XA`、`es-ES`、`fr-CA`、`id-ID`、`it-IT`、`ja-JP`、`tr-TR`、`vi-VN`、`bn-IN`、`gu-IN`、`kn-IN`、`ml-IN`、`mr-IN`、`ta-IN`、`te-IN`、`nl-NL`、`ko-KR`、`cmn-CN`、`pl-PL`、`ru-RU` 以及 `th-TH`。
 
-</details>
 
 
-  
 
-<details>
-<summary>**fileSearch**: `FileSearch` 選用。FileSearch 工具類型。從 Semantic Retrieval 語料庫檢索知識的工具。</summary>
 
-  
+        ??? note "**thinkingConfig**: `ThinkingConfig` 選用。思考功能的設定。若為不支援思考的模型設定此欄位，將傳回錯誤。"
 
-  **fileSearchStoreNames**: required `string array`
+              **includeThoughts**: `boolean`
 
-  要從中檢索的 file_search_stores 名稱。範例：`fileSearchStores/my-file-search-store-123`
+              表示是否在回應中納入思考內容。若為 true，僅在有思考內容時才傳回。
 
-  **topK**: `integer`
+              **thinkingBudget**: `integer`
 
-  選用。要檢索的語意檢索區塊數量。
+              模型應生成的思考權杖數量。
 
-  **metadataFilter**: `string`
 
-  選用。要套用至語意檢索文件與區塊的中繼資料篩選條件。
 
-  
+            ??? note "**thinkingLevel**: `string enum` 選用。控制模型在產生回應前，內部推理過程的最大深度。預設值因模型而異。詳情請參閱[思考等級指南](/docs/thinking/#thinking-levels)。建議用於 Gemini 3 或更新的模型。用於較早的模型會導致錯誤。"
 
-</details>
+                可能的值：
 
+                - `THINKING_LEVEL_UNSPECIFIED`: 預設值。
+                - `MINIMAL`: 幾乎不思考。
+                - `LOW`: 低思考等級。
+                - `MEDIUM`: 中思考等級。
+                - `HIGH`: 高思考等級。
+                - `XHIGH`: 超高思考等級。
 
-  
 
-<details>
-<summary>**mcpServers**: `McpServer array` 選用。要連線的 MCP Servers。</summary>
 
-  
 
-  
 
-<details>
-<summary>**transport**: `Union type` 用來連線至 MCPServer 的傳輸方式。</summary>
+        ??? note "**imageConfig**: `ImageConfig` 選用。圖片生成的設定。若為不支援這些設定選項的模型設定此欄位，將傳回錯誤。"
 
-  
+            **aspectRatio**: `string`
 
-  聯集欄位 `transport` 只能是下列其中之一：
+            選用。要生成的圖片長寬比。支援的長寬比：`1:1`、`1:4`、`4:1`、`1:8`、`8:1`、`2:3`、`3:2`、`3:4`、`4:3`、`4:5`、`5:4`、`9:16`、`16:9` 或 `21:9`。若未指定，模型會依據提供的任何參照圖片選擇預設長寬比。
 
-  
+            **imageSize**: `string`
 
-<details>
-<summary>**streamableHttpTransport**: `StreamableHttpTransport` 可串流 HTTP 要求與回應的傳輸方式。</summary>
+            選用。指定生成圖片的大小。支援的值為 `512`、`1K`、`2K`、`4K`。若未指定，模型會使用預設值 `1K`。
 
-  
 
-  **url**: `string`
 
-  MCPServer 端點的完整 URL。範例："https://api.example.com/mcp"
 
-  **headers**: `object`
 
-  選用：如有需要，提供驗證標頭、逾時等欄位。
+        ??? note "**mediaResolution**: `string enum` 選用。若有指定，將使用指定的媒體解析度。"
 
-  **timeout**: `string`
+            可能的值：
 
-  一般操作的 HTTP 逾時。
+            - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
+            - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低（64 個權杖）。
+            - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中（256 個權杖）。
+            - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高（以 256 個權杖縮放重新取景）。
 
-  **sseReadTimeout**: `string`
 
-  SSE 讀取操作的逾時。
 
-  **terminateOnClose**: `boolean`
+          **enableAffectiveDialog**: `boolean`
 
-  傳輸關閉時是否關閉用戶端工作階段。
+          選用。啟用後，模型會偵測情緒並據此調整回應。
 
-  
 
-</details>
 
+        ??? note "**responseFormat**: `ResponseFormatConfig` 選用。回應輸出格式的設定。可在扁平結構中依模態（文字、音訊、圖片）指定輸出設定。"
 
-  
+            ??? note "**text**: `TextResponseFormat` 選用。文字輸出格式設定。"
 
-</details>
+                ??? note "**mimeType**: `string enum` 選用。文字輸出的 MIME 類型。"
 
+                    可能的值：
 
-  **name**: `string`
+                    - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
+                    - `APPLICATION_JSON`: JSON 輸出格式。
+                    - `TEXT_PLAIN`: 純文字輸出格式。
 
-  MCPServer 的名稱。
 
-  
 
-</details>
+                  **schema**: `object`
 
+                  選用。輸出應符合的 JSON schema。僅在 mime_type 為 APPLICATION_JSON 時適用。
 
-  
 
-<details>
-<summary>**googleMaps**: `GoogleMaps` 選用。讓模型的回應能以與使用者查詢相關的地理空間上下文接地的工具。</summary>
 
-  
 
-  **enableWidget**: `boolean`
 
-  選用。是否在回應的 GroundingMetadata 中傳回 widget 上下文權杖。開發人員可使用 widget 上下文權杖，算繪與模型在回應中參照之地點相關地理空間上下文的 Google Maps widget。
+            ??? note "**audio**: `AudioResponseFormat` 選用。音訊輸出格式設定。"
 
-  
+                ??? note "**mimeType**: `string enum` 選用。音訊輸出的 MIME 類型。"
 
-</details>
+                    可能的值：
 
+                    - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
+                    - `AUDIO_MP3`: MP3 音訊格式。
+                    - `AUDIO_OGG_OPUS`: OGG Opus 音訊格式。
+                    - `AUDIO_L16`: 原始 PCM（L16）音訊格式。
+                    - `AUDIO_WAV`: WAV 音訊格式。
+                    - `AUDIO_ALAW`: A-law 音訊格式。
+                    - `AUDIO_MULAW`: Mu-law 音訊格式。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**toolConfig**: `ToolConfig` 選用。要求中指定的任何 `Tool` 的工具設定。使用範例請參閱[函式呼叫指南](/docs/function-calling/#function_calling_modes)。</summary>
+                ??? note "**delivery**: `string enum` 選用。音訊輸出的傳遞模式。"
 
-  
+                    可能的值：
 
-  
+                    - `DELIVERY_UNSPECIFIED`: 預設值。此值未使用。
+                    - `INLINE`: 音訊資料以行內方式在回應中傳回。
+                    - `URI`: 音訊資料以 URI 形式傳回。
 
-<details>
-<summary>**functionCallingConfig**: `FunctionCallingConfig` 選用。函式呼叫設定。</summary>
 
-  
 
-  
+                  **sampleRate**: `integer`
 
-<details>
-<summary>**mode**: `string enum` 選用。指定函式呼叫應執行的模式。若未指定，預設值為 AUTO。</summary>
+                  選用。取樣率，單位為 Hz。
 
-  
+                  **bitRate**: `integer`
 
-  可能的值：
+                  選用。位元率，單位為每秒位元數（bps）。僅適用於壓縮格式（MP3、Opus）。
 
-  - `MODE_UNSPECIFIED`: 未指定的函式呼叫模式。不應使用此值。
-  - `AUTO`: 預設模型行為，由模型決定預測函式呼叫或自然語言回應。
-  - `ANY`: 模型被限制為一律僅預測函式呼叫。若設定了 "allowed_function_names"，預測的函式呼叫將限於 "allowed_function_names" 中的任一個，否則預測的函式呼叫將是提供的 "function_declarations" 中的任一個。
-  - `NONE`: 模型不會預測任何函式呼叫。模型行為與未傳入任何函式宣告時相同。
-  - `VALIDATED`: 模型決定預測函式呼叫或自然語言回應，但會以受限解碼驗證函式呼叫。若設定了 "allowed_function_names"，預測的函式呼叫將限於 "allowed_function_names" 中的任一個，否則預測的函式呼叫將是提供的 "function_declarations" 中的任一個。
 
-  
 
-</details>
 
 
-  **allowedFunctionNames**: `string array`
+            ??? note "**image**: `ImageResponseFormat` 選用。圖片輸出格式設定。"
 
-  選用。函式名稱集合，提供後可限制模型可呼叫的函式。僅應在 Mode 為 ANY 或 VALIDATED 時設定。函式名稱應與 [FunctionDeclaration.name] 相符。設定後，模型只會從允許的函式名稱中預測函式呼叫。
+                ??? note "**mimeType**: `string enum` 選用。圖片輸出的 MIME 類型。"
 
-  
+                    可能的值：
 
-</details>
+                    - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
+                    - `IMAGE_JPEG`: JPEG 圖片格式。
 
 
-  
 
-<details>
-<summary>**retrievalConfig**: `RetrievalConfig` 選用。檢索設定。</summary>
 
-  
 
-  
+                ??? note "**delivery**: `string enum` 選用。圖片輸出的傳遞模式。"
 
-<details>
-<summary>**latLng**: `LatLng` 選用。使用者的位置。</summary>
+                    可能的值：
 
-  
+                    - `DELIVERY_UNSPECIFIED`: 預設值。此值未使用。
+                    - `INLINE`: 圖片資料以行內方式在回應中傳回。
+                    - `URI`: 圖片資料以 URI 形式傳回。
 
-  **latitude**: `number`
 
-  緯度（度）。必須在 [-90.0, +90.0] 範圍內。
 
-  **longitude**: `number`
 
-  經度（度）。必須在 [-180.0, +180.0] 範圍內。
 
-  
+                ??? note "**aspectRatio**: `string enum` 選用。圖片輸出的長寬比。"
 
-</details>
+                    可能的值：
 
+                    - `ASPECT_RATIO_UNSPECIFIED`: 預設值。此值未使用。
+                    - `ASPECT_RATIO_ONE_BY_ONE`: 1:1 長寬比。
+                    - `ASPECT_RATIO_TWO_BY_THREE`: 2:3 長寬比。
+                    - `ASPECT_RATIO_THREE_BY_TWO`: 3:2 長寬比。
+                    - `ASPECT_RATIO_THREE_BY_FOUR`: 3:4 長寬比。
+                    - `ASPECT_RATIO_FOUR_BY_THREE`: 4:3 長寬比。
+                    - `ASPECT_RATIO_FOUR_BY_FIVE`: 4:5 長寬比。
+                    - `ASPECT_RATIO_FIVE_BY_FOUR`: 5:4 長寬比。
+                    - `ASPECT_RATIO_NINE_BY_SIXTEEN`: 9:16 長寬比。
+                    - `ASPECT_RATIO_SIXTEEN_BY_NINE`: 16:9 長寬比。
+                    - `ASPECT_RATIO_TWENTY_ONE_BY_NINE`: 21:9 長寬比。
+                    - `ASPECT_RATIO_ONE_BY_EIGHT`: 1:8 長寬比。
+                    - `ASPECT_RATIO_EIGHT_BY_ONE`: 8:1 長寬比。
+                    - `ASPECT_RATIO_ONE_BY_FOUR`: 1:4 長寬比。
+                    - `ASPECT_RATIO_FOUR_BY_ONE`: 4:1 長寬比。
 
-  **languageCode**: `string`
 
-  選用。使用者的語言代碼。內容的語言代碼。使用 [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) 定義的語言標籤。
 
-  
 
-</details>
 
+                ??? note "**imageSize**: `string enum` 選用。圖片輸出的大小。"
 
-  **includeServerSideToolInvocations**: `boolean`
+                    可能的值：
 
-  選用。若為 true，API 回應會在 `Content` 訊息中納入伺服器端工具呼叫與回應，讓用戶端能觀察伺服器的工具互動。
+                    - `IMAGE_SIZE_UNSPECIFIED`: 預設值。此值未使用。
+                    - `IMAGE_SIZE_FIVE_TWELVE`: 512px 圖片大小。
+                    - `IMAGE_SIZE_ONE_K`: 1K 圖片大小。
+                    - `IMAGE_SIZE_TWO_K`: 2K 圖片大小。
+                    - `IMAGE_SIZE_FOUR_K`: 4K 圖片大小。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**safetySettings**: `SafetySetting array` 選用。用於封鎖不安全內容的專屬 `SafetySetting` 執行個體清單。會對 `GenerateContentRequest.contents` 與 `GenerateContentResponse.candidates` 強制套用。每個 `SafetyCategory` 類型不應有多個設定。API 會封鎖任何未達到這些設定所定閾值的內容與回應。此清單會覆寫 safety_settings 中指定的每個 `SafetyCategory` 的預設設定。若清單中未提供 `SafetySetting`（針對某個 `SafetyCategory`），API 會使用該類別的預設安全設定。支援的危害類別為 HARM_CATEGORY_HATE_SPEECH、HARM_CATEGORY_SEXUALLY_EXPLICIT、HARM_CATEGORY_DANGEROUS_CONTENT、HARM_CATEGORY_HARASSMENT、HARM_CATEGORY_CIVIC_INTEGRITY、HARM_CATEGORY_JAILBREAK。可用的安全設定的詳細資訊請參閱[指南](/docs/safety-settings/)。另請參閱[安全指南](/docs/safety-guidance/)，瞭解如何將安全考量納入 AI 應用程式。</summary>
+        ??? note "**translationConfig**: `TranslationConfig` 選用。翻譯設定。"
 
-  
+            **targetLanguageCode**: required `string`
 
-  
+            翻譯的目標語言。支援的值為 BCP-47 語言代碼（例如 "en"、"es"、"fr"）。
 
-<details>
-<summary>**category**: required `HarmCategory` 此設定的類別。</summary>
+            **echoTargetLanguage**: `boolean`
 
-  
+            選用。若為 true，當說出目標語言時，模型會產生音訊，基本上就是覆誦輸入內容。若為 false，則不會為目標語言產生音訊。
 
-  可能的值：
 
-  - `HARM_CATEGORY_UNSPECIFIED`: 類別未指定。
-  - `HARM_CATEGORY_HARASSMENT`: **Gemini** - 騷擾內容。
-  - `HARM_CATEGORY_HATE_SPEECH`: **Gemini** - 仇恨言論與內容。
-  - `HARM_CATEGORY_SEXUALLY_EXPLICIT`: **Gemini** - 性露骨內容。
-  - `HARM_CATEGORY_DANGEROUS_CONTENT`: **Gemini** - 危險內容。
-  - `HARM_CATEGORY_JAILBREAK`: **Gemini** - 企圖繞過或顛覆模型安全準則的提示詞（越獄嘗試）。
 
-  
 
-</details>
 
+        ??? note "**audioTranscriptionConfig**: `AudioTranscriptionConfig` 選用。音訊轉錄（語音辨識）設定。"
 
-  
+              **languageCodes**: `string array`
 
-<details>
-<summary>**threshold**: required `string enum` 控制封鎖危害的機率閾值。</summary>
+              選用。BCP-47 語言代碼，提供音訊中所含語言的提示。若省略或留空，預設為自動偵測語言。
 
-  
+              **customVocabulary**: `string array`
 
-  可能的值：
+              選用。自訂詞彙片語清單，用來引導語音辨識模型偏向辨識特定詞彙（產品名稱、專有名詞、術語）。
 
-  - `HARM_BLOCK_THRESHOLD_UNSPECIFIED`: 閾值未指定。
-  - `BLOCK_LOW_AND_ABOVE`: NEGLIGIBLE 的內容將被允許。
-  - `BLOCK_MEDIUM_AND_ABOVE`: NEGLIGIBLE 與 LOW 的內容將被允許。
-  - `BLOCK_ONLY_HIGH`: NEGLIGIBLE、LOW 與 MEDIUM 的內容將被允許。
-  - `BLOCK_NONE`: 所有內容都將被允許。
-  - `OFF`: 關閉安全篩選器。
+              **wordTimestamp**: `boolean`
 
-  
+              選用。設定是否產生字詞層級的時間戳記。
 
-</details>
+              **diarization**: `boolean`
 
+              選用。設定說話者分離（speaker diarization）。
 
-  
+              **sourceText**: `string`
 
-</details>
+              選用。要透過語音指令編輯或改寫的來源文字。在 `SMART` 模式下提供時，模型會對照此文字評估音訊輸入，並在候選回應中輸出完整的取代文字，而不是附加在其後。
 
 
-  
 
-<details>
-<summary>**generationConfig**: `GenerationConfig` 選用。模型生成與輸出的設定選項。</summary>
+            ??? note "**mode**: `string enum` 選用。設定轉錄模式。支援的值：`VERBATIM`、`SMART`。若未指定，預設為 `VERBATIM` 轉錄。在 `SMART` 模式下，模型會進行不流暢內容移除（消除填充詞、重複與錯誤開頭）、輕度文法清理、自動格式化（段落、項目符號、編號清單），以及小幅使用者編輯（行內自我修正）。時間戳記與說話者分離與 `SMART` 模式不相容。"
 
-  
+                可能的值：
 
-  **candidateCount**: `integer`
+                - `MODE_UNSPECIFIED`: 未指定的轉錄模式。
+                - `VERBATIM`: 逐字轉錄模式。
+                - `SMART`: 智慧轉錄模式。
 
-  選用。要傳回的生成回應數量。若未設定，預設為 1。請注意，此設定不適用於上一代模型（Gemini 1.0 系列）
 
-  **stopSequences**: `string array`
 
-  選用。會停止輸出生成的字元序列集合（最多 5 個）。若有指定，API 會在 `stop_sequence` 首次出現時停止。停止序列不會納入回應中。
+      **cachedContent**: `string`
 
-  **maxOutputTokens**: `integer`
+      選用。要作為預測上下文使用的已[快取](/docs/caching/)內容名稱。格式：`cachedContents/{cachedContent}`
 
-  選用。回應候選中要納入的權杖數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。
 
-  **temperature**: `number`
 
-  選用。控制輸出的隨機程度。注意：預設值因模型而異，請參閱 `Model.temperature` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。值範圍為 [0.0, 2.0]。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
+    ??? note "**serviceTier**: `ServiceTier` 選用。要求的服務層級。"
 
-  **topP**: `number`
+        可能的值：
 
-  選用。取樣時要考量的權杖累積機率上限。模型結合使用 Top-k 與 Top-p（nucleus）取樣。權杖會依其指派的機率排序，僅考量最可能的權杖。Top-k 取樣直接限制考量的權杖數量上限，Nucleus 取樣則依累積機率限制權杖數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
+        - `unspecified`: 預設服務層級，即標準層級。
+        - `standard`: 標準服務層級。
+        - `flex`: Flex 服務層級。
+        - `priority`: Priority 服務層級。
 
-  **topK**: `integer`
 
-  選用。取樣時要考量的權杖數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考量機率最高的 `top_k` 個權杖組成的集合。使用 nucleus 取樣的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
-  **seed**: `integer`
+      **store**: `boolean`
 
-  選用。解碼時使用的種子。若未設定，要求會使用隨機產生的種子。
+      選用。設定特定要求的記錄行為。若有設定，優先於專案層級的記錄設定。
 
-  **responseMimeType**: `string`
+      **continuationToken**: `string`
 
-  選用。生成候選文字的 MIME 類型。支援的 MIME 類型如下：`text/plain`：（預設）文字輸出。`application/json`：回應候選中的 JSON 回應。`text/x.enum`：回應候選中以字串形式呈現的 ENUM 回應。所有支援的文字 MIME 類型清單請參閱[文件](/docs/file-input-methods/#text-file-types)。
+      選用。不透明的接續權杖，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應接續生成，該回應先前因 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，在要求中提供接續權杖時，`contents` 為必填，且必須與初始要求的提示詞和對話記錄完全相同。
 
-  **responseJsonSchema**: `object`
+      **labels**: `object`
 
-  選用。內部細節。請改用 `responseJsonSchema`，不要使用此欄位。
+      選用。附有使用者自訂中繼資料的要求標籤。選用。標籤必須符合標準的統一 Cloud 標籤規定：
 
-  **presencePenalty**: `number`
+      - 標籤鍵必須以字母開頭。
+      - 標籤鍵與值的長度不得超過 63 個字元（Unicode 碼位），且只能包含小寫字母、數字字元、底線與連字號。
+      - 允許使用國際字元。
 
-  選用。若權杖已在回應中出現，套用至下一個權杖 logprobs 的存在懲罰。此懲罰為二元開/關，不取決於權杖的使用次數（第一次之後）。若需要隨使用次數增加的懲罰，請使用 frequency_penalty。正值的懲罰會降低使用已用過權杖的意願，增加詞彙量。負值的懲罰會鼓勵使用已用過的權杖，減少詞彙量。
+      用法：
 
-  **frequencyPenalty**: `number`
+      - 來自彙總器的安全識別碼：使用鍵 `safety_identifier`（例如 `{"safety_identifier": "user_session_123"}`）
 
-  選用。套用至下一個權杖 logprobs 的頻率懲罰，乘以每個權杖到目前為止在回應中出現的次數。正值的懲罰會依權杖已使用的次數比例，降低再次使用已用過權杖的意願：權杖用得越多，模型就越難再次使用該權杖，從而增加回應的詞彙量。注意：*負值*的懲罰會依權杖已使用的次數比例，鼓勵模型重複使用權杖。較小的負值會減少回應的詞彙量；較大的負值會使模型不斷重複某個常見權杖，直到達到 max_output_tokens 上限。
-
-  **responseLogprobs**: `boolean`
-
-  選用。若為 true，在回應中輸出 logprobs 結果。
-
-  **logprobs**: `integer`
-
-  選用。僅在 response_logprobs=True 時有效。設定在每個解碼步驟中，於 Candidate.logprobs_result 傳回的頂尖 logprobs 數量（含所選候選）。數值必須在 [0, 20] 範圍內。
-
-  **enableEnhancedCivicAnswers**: `boolean`
-
-  選用。啟用強化公民問答。並非所有模型都提供此功能。
-
-  
-
-<details>
-<summary>**responseModalities**: `string enum array` 選用。要求的回應模態。代表模型可傳回、且應在回應中預期出現的模態集合。這與回應的模態完全相符。模型可能有多種支援的模態組合。若要求的模態與任何支援的組合都不相符，將傳回錯誤。空清單等同於僅要求文字。</summary>
-
-  
-
-  可能的值：
-
-  - `MODALITY_UNSPECIFIED`: 預設值。
-  - `TEXT`: 表示模型應傳回文字。
-  - `IMAGE`: 表示模型應傳回圖片。
-  - `AUDIO`: 表示模型應傳回音訊。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**speechConfig**: `SpeechConfig` 選用。語音生成設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**voiceConfig**: `VoiceConfig` 單一語音輸出時的設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**voiceConfig**: `Union type` 要使用的說話者設定。</summary>
-
-  
-
-  聯集欄位 `voiceConfig` 只能是下列其中之一：
-
-  
-
-<details>
-<summary>**prebuiltVoiceConfig**: `PrebuiltVoiceConfig` 要使用的預建語音設定。</summary>
-
-  
-
-  **voiceName**: `string`
-
-  選用。要使用的預設語音名稱。
-
-  
-
-</details>
-
-
-  **voice**: `string`
-
-  選用。用於合成的說話者識別碼。支援的格式：
-
-  - 預建語音的說話者名稱（例如 `Orus` 或 `Kore`）。
-  - 已儲存語音的 Voice ID（例如 `voice_xxx`）。
-  - 語音複製金鑰（例如 `voicekey_xxx`）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**multiSpeakerVoiceConfig**: `MultiSpeakerVoiceConfig` 選用。多說話者設定的設定。與 voice_config 欄位互斥。</summary>
-
-  
-
-  
-
-<details>
-<summary>**speakerVoiceConfigs**: required `SpeakerVoiceConfig array` 所有已啟用的說話者語音。</summary>
-
-  
-
-  **speaker**: required `string`
-
-  要使用的說話者名稱。應與提示詞中的名稱相同。
-
-  
-
-<details>
-<summary>**voiceConfig**: required `VoiceConfig` 要使用的語音設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**voiceConfig**: `Union type` 要使用的說話者設定。</summary>
-
-  
-
-  聯集欄位 `voiceConfig` 只能是下列其中之一：
-
-  
-
-<details>
-<summary>**prebuiltVoiceConfig**: `PrebuiltVoiceConfig` 要使用的預建語音設定。</summary>
-
-  
-
-  **voiceName**: `string`
-
-  選用。要使用的預設語音名稱。
-
-  
-
-</details>
-
-
-  **voice**: `string`
-
-  選用。用於合成的說話者識別碼。支援的格式：
-
-  - 預建語音的說話者名稱（例如 `Orus` 或 `Kore`）。
-  - 已儲存語音的 Voice ID（例如 `voice_xxx`）。
-  - 語音複製金鑰（例如 `voicekey_xxx`）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  **languageCode**: `string`
-
-  選用。使用者為應用程式設定的 IETF [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) 語言代碼。用於語音辨識與合成。有效值為：`de-DE`、`en-AU`、`en-GB`、`en-IN`、`en-US`、`es-US`、`fr-FR`、`hi-IN`、`pt-BR`、`ar-XA`、`es-ES`、`fr-CA`、`id-ID`、`it-IT`、`ja-JP`、`tr-TR`、`vi-VN`、`bn-IN`、`gu-IN`、`kn-IN`、`ml-IN`、`mr-IN`、`ta-IN`、`te-IN`、`nl-NL`、`ko-KR`、`cmn-CN`、`pl-PL`、`ru-RU` 以及 `th-TH`。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**thinkingConfig**: `ThinkingConfig` 選用。思考功能的設定。若為不支援思考的模型設定此欄位，將傳回錯誤。</summary>
-
-  
-
-  **includeThoughts**: `boolean`
-
-  表示是否在回應中納入思考內容。若為 true，僅在有思考內容時才傳回。
-
-  **thinkingBudget**: `integer`
-
-  模型應生成的思考權杖數量。
-
-  
-
-<details>
-<summary>**thinkingLevel**: `string enum` 選用。控制模型在產生回應前，內部推理過程的最大深度。預設值因模型而異。詳情請參閱[思考等級指南](/docs/thinking/#thinking-levels)。建議用於 Gemini 3 或更新的模型。用於較早的模型會導致錯誤。</summary>
-
-  
-
-  可能的值：
-
-  - `THINKING_LEVEL_UNSPECIFIED`: 預設值。
-  - `MINIMAL`: 幾乎不思考。
-  - `LOW`: 低思考等級。
-  - `MEDIUM`: 中思考等級。
-  - `HIGH`: 高思考等級。
-  - `XHIGH`: 超高思考等級。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**imageConfig**: `ImageConfig` 選用。圖片生成的設定。若為不支援這些設定選項的模型設定此欄位，將傳回錯誤。</summary>
-
-  
-
-  **aspectRatio**: `string`
-
-  選用。要生成的圖片長寬比。支援的長寬比：`1:1`、`1:4`、`4:1`、`1:8`、`8:1`、`2:3`、`3:2`、`3:4`、`4:3`、`4:5`、`5:4`、`9:16`、`16:9` 或 `21:9`。若未指定，模型會依據提供的任何參照圖片選擇預設長寬比。
-
-  **imageSize**: `string`
-
-  選用。指定生成圖片的大小。支援的值為 `512`、`1K`、`2K`、`4K`。若未指定，模型會使用預設值 `1K`。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**mediaResolution**: `string enum` 選用。若有指定，將使用指定的媒體解析度。</summary>
-
-  
-
-  可能的值：
-
-  - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
-  - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低（64 個權杖）。
-  - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中（256 個權杖）。
-  - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高（以 256 個權杖縮放重新取景）。
-
-  
-
-</details>
-
-
-  **enableAffectiveDialog**: `boolean`
-
-  選用。啟用後，模型會偵測情緒並據此調整回應。
-
-  
-
-<details>
-<summary>**responseFormat**: `ResponseFormatConfig` 選用。回應輸出格式的設定。可在扁平結構中依模態（文字、音訊、圖片）指定輸出設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**text**: `TextResponseFormat` 選用。文字輸出格式設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**mimeType**: `string enum` 選用。文字輸出的 MIME 類型。</summary>
-
-  
-
-  可能的值：
-
-  - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
-  - `APPLICATION_JSON`: JSON 輸出格式。
-  - `TEXT_PLAIN`: 純文字輸出格式。
-
-  
-
-</details>
-
-
-  **schema**: `object`
-
-  選用。輸出應符合的 JSON schema。僅在 mime_type 為 APPLICATION_JSON 時適用。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**audio**: `AudioResponseFormat` 選用。音訊輸出格式設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**mimeType**: `string enum` 選用。音訊輸出的 MIME 類型。</summary>
-
-  
-
-  可能的值：
-
-  - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
-  - `AUDIO_MP3`: MP3 音訊格式。
-  - `AUDIO_OGG_OPUS`: OGG Opus 音訊格式。
-  - `AUDIO_L16`: 原始 PCM（L16）音訊格式。
-  - `AUDIO_WAV`: WAV 音訊格式。
-  - `AUDIO_ALAW`: A-law 音訊格式。
-  - `AUDIO_MULAW`: Mu-law 音訊格式。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**delivery**: `string enum` 選用。音訊輸出的傳遞模式。</summary>
-
-  
-
-  可能的值：
-
-  - `DELIVERY_UNSPECIFIED`: 預設值。此值未使用。
-  - `INLINE`: 音訊資料以行內方式在回應中傳回。
-  - `URI`: 音訊資料以 URI 形式傳回。
-
-  
-
-</details>
-
-
-  **sampleRate**: `integer`
-
-  選用。取樣率，單位為 Hz。
-
-  **bitRate**: `integer`
-
-  選用。位元率，單位為每秒位元數（bps）。僅適用於壓縮格式（MP3、Opus）。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**image**: `ImageResponseFormat` 選用。圖片輸出格式設定。</summary>
-
-  
-
-  
-
-<details>
-<summary>**mimeType**: `string enum` 選用。圖片輸出的 MIME 類型。</summary>
-
-  
-
-  可能的值：
-
-  - `MIME_TYPE_UNSPECIFIED`: 預設值。此值未使用。
-  - `IMAGE_JPEG`: JPEG 圖片格式。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**delivery**: `string enum` 選用。圖片輸出的傳遞模式。</summary>
-
-  
-
-  可能的值：
-
-  - `DELIVERY_UNSPECIFIED`: 預設值。此值未使用。
-  - `INLINE`: 圖片資料以行內方式在回應中傳回。
-  - `URI`: 圖片資料以 URI 形式傳回。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**aspectRatio**: `string enum` 選用。圖片輸出的長寬比。</summary>
-
-  
-
-  可能的值：
-
-  - `ASPECT_RATIO_UNSPECIFIED`: 預設值。此值未使用。
-  - `ASPECT_RATIO_ONE_BY_ONE`: 1:1 長寬比。
-  - `ASPECT_RATIO_TWO_BY_THREE`: 2:3 長寬比。
-  - `ASPECT_RATIO_THREE_BY_TWO`: 3:2 長寬比。
-  - `ASPECT_RATIO_THREE_BY_FOUR`: 3:4 長寬比。
-  - `ASPECT_RATIO_FOUR_BY_THREE`: 4:3 長寬比。
-  - `ASPECT_RATIO_FOUR_BY_FIVE`: 4:5 長寬比。
-  - `ASPECT_RATIO_FIVE_BY_FOUR`: 5:4 長寬比。
-  - `ASPECT_RATIO_NINE_BY_SIXTEEN`: 9:16 長寬比。
-  - `ASPECT_RATIO_SIXTEEN_BY_NINE`: 16:9 長寬比。
-  - `ASPECT_RATIO_TWENTY_ONE_BY_NINE`: 21:9 長寬比。
-  - `ASPECT_RATIO_ONE_BY_EIGHT`: 1:8 長寬比。
-  - `ASPECT_RATIO_EIGHT_BY_ONE`: 8:1 長寬比。
-  - `ASPECT_RATIO_ONE_BY_FOUR`: 1:4 長寬比。
-  - `ASPECT_RATIO_FOUR_BY_ONE`: 4:1 長寬比。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**imageSize**: `string enum` 選用。圖片輸出的大小。</summary>
-
-  
-
-  可能的值：
-
-  - `IMAGE_SIZE_UNSPECIFIED`: 預設值。此值未使用。
-  - `IMAGE_SIZE_FIVE_TWELVE`: 512px 圖片大小。
-  - `IMAGE_SIZE_ONE_K`: 1K 圖片大小。
-  - `IMAGE_SIZE_TWO_K`: 2K 圖片大小。
-  - `IMAGE_SIZE_FOUR_K`: 4K 圖片大小。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**translationConfig**: `TranslationConfig` 選用。翻譯設定。</summary>
-
-  
-
-  **targetLanguageCode**: required `string`
-
-  翻譯的目標語言。支援的值為 BCP-47 語言代碼（例如 "en"、"es"、"fr"）。
-
-  **echoTargetLanguage**: `boolean`
-
-  選用。若為 true，當說出目標語言時，模型會產生音訊，基本上就是覆誦輸入內容。若為 false，則不會為目標語言產生音訊。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**audioTranscriptionConfig**: `AudioTranscriptionConfig` 選用。音訊轉錄（語音辨識）設定。</summary>
-
-  
-
-  **languageCodes**: `string array`
-
-  選用。BCP-47 語言代碼，提供音訊中所含語言的提示。若省略或留空，預設為自動偵測語言。
-
-  **customVocabulary**: `string array`
-
-  選用。自訂詞彙片語清單，用來引導語音辨識模型偏向辨識特定詞彙（產品名稱、專有名詞、術語）。
-
-  **wordTimestamp**: `boolean`
-
-  選用。設定是否產生字詞層級的時間戳記。
-
-  **diarization**: `boolean`
-
-  選用。設定說話者分離（speaker diarization）。
-
-  **sourceText**: `string`
-
-  選用。要透過語音指令編輯或改寫的來源文字。在 `SMART` 模式下提供時，模型會對照此文字評估音訊輸入，並在候選回應中輸出完整的取代文字，而不是附加在其後。
-
-  
-
-<details>
-<summary>**mode**: `string enum` 選用。設定轉錄模式。支援的值：`VERBATIM`、`SMART`。若未指定，預設為 `VERBATIM` 轉錄。在 `SMART` 模式下，模型會進行不流暢內容移除（消除填充詞、重複與錯誤開頭）、輕度文法清理、自動格式化（段落、項目符號、編號清單），以及小幅使用者編輯（行內自我修正）。時間戳記與說話者分離與 `SMART` 模式不相容。</summary>
-
-  
-
-  可能的值：
-
-  - `MODE_UNSPECIFIED`: 未指定的轉錄模式。
-  - `VERBATIM`: 逐字轉錄模式。
-  - `SMART`: 智慧轉錄模式。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  **cachedContent**: `string`
-
-  選用。要作為預測上下文使用的已[快取](/docs/caching/)內容名稱。格式：`cachedContents/{cachedContent}`
-
-  
-
-<details>
-<summary>**serviceTier**: `ServiceTier` 選用。要求的服務層級。</summary>
-
-  
-
-  可能的值：
-
-  - `unspecified`: 預設服務層級，即標準層級。
-  - `standard`: 標準服務層級。
-  - `flex`: Flex 服務層級。
-  - `priority`: Priority 服務層級。
-
-  
-
-</details>
-
-
-  **store**: `boolean`
-
-  選用。設定特定要求的記錄行為。若有設定，優先於專案層級的記錄設定。
-
-  **continuationToken**: `string`
-
-  選用。不透明的接續權杖，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應接續生成，該回應先前因 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，在要求中提供接續權杖時，`contents` 為必填，且必須與初始要求的提示詞和對話記錄完全相同。
-
-  **labels**: `object`
-
-  選用。附有使用者自訂中繼資料的要求標籤。選用。標籤必須符合標準的統一 Cloud 標籤規定：
-
-  - 標籤鍵必須以字母開頭。
-  - 標籤鍵與值的長度不得超過 63 個字元（Unicode 碼位），且只能包含小寫字母、數字字元、底線與連字號。
-  - 允許使用國際字元。
-
-  用法：
-
-  - 來自彙總器的安全識別碼：使用鍵 `safety_identifier`（例如 `{"safety_identifier": "user_session_123"}`）
-
-  
-
-</details>
 
 
   
@@ -4007,39 +2908,25 @@
 
   
 
-<details>
-<summary>**promptTokensDetails**: `ModalityTokenCount array` 僅供輸出。要求輸入中處理的模態清單。</summary>
+??? note "**promptTokensDetails**: `ModalityTokenCount array` 僅供輸出。要求輸入中處理的模態清單。"
 
-  
+    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。"
 
-  
+        可能的值：
 
-<details>
-<summary>**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。</summary>
-
-  
-
-  可能的值：
-
-  - `MODALITY_UNSPECIFIED`: 未指定的模態。
-  - `TEXT`: 純文字。
-  - `IMAGE`: 圖片。
-  - `VIDEO`: 影片。
-  - `AUDIO`: 音訊。
-  - `DOCUMENT`: 文件，例如 PDF。
-
-  
-
-</details>
+        - `MODALITY_UNSPECIFIED`: 未指定的模態。
+        - `TEXT`: 純文字。
+        - `IMAGE`: 圖片。
+        - `VIDEO`: 影片。
+        - `AUDIO`: 音訊。
+        - `DOCUMENT`: 文件，例如 PDF。
 
 
-  **tokenCount**: `integer`
 
-  權杖數量。
+      **tokenCount**: `integer`
 
-  
+      權杖數量。
 
-</details>
 
 
   
@@ -4049,38 +2936,23 @@
 
   
 
-<details>
-<summary>**cacheTokensDetails**: `ModalityTokenCount array` 僅供輸出。快取內容中處理的模態清單。</summary>
+??? note "**cacheTokensDetails**: `ModalityTokenCount array` 僅供輸出。快取內容中處理的模態清單。"
 
-  
+    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。"
 
-  
+        可能的值：
 
-<details>
-<summary>**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。</summary>
-
-  
-
-  可能的值：
-
-  - `MODALITY_UNSPECIFIED`: 未指定的模態。
-  - `TEXT`: 純文字。
-  - `IMAGE`: 圖片。
-  - `VIDEO`: 影片。
-  - `AUDIO`: 音訊。
-  - `DOCUMENT`: 文件，例如 PDF。
-
-  
-
-</details>
+        - `MODALITY_UNSPECIFIED`: 未指定的模態。
+        - `TEXT`: 純文字。
+        - `IMAGE`: 圖片。
+        - `VIDEO`: 影片。
+        - `AUDIO`: 音訊。
+        - `DOCUMENT`: 文件，例如 PDF。
 
 
-  **tokenCount**: `integer`
 
-  權杖數量。
+      **tokenCount**: `integer`
 
-  
-
-</details>
+      權杖數量。
 
 

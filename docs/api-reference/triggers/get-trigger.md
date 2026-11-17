@@ -64,1182 +64,792 @@
 
 
 
-<details>
-<summary>**interaction**: required `CreateAgentInteractionParams` 要執行的互動要求範本。</summary>
+??? note "**interaction**: required `CreateAgentInteractionParams` 要執行的互動要求範本。"
 
+    ??? note "**agent**: required `AgentOption` 用來產生互動的 `Agent` 名稱。"
 
+        可能的值：
 
+        - `deep-research-preview-04-2026`: Gemini Deep Research Agent
+        - `deep-research-max-preview-04-2026`: Gemini Deep Research Max Agent
+        - `antigravity-preview-05-2026`: 使用 Antigravity 受管理的代理，執行需要推理、檔案操作與工具使用的多步驟工作。
+        - `antigravity-preview-09-2026`: 使用 Antigravity 受管理的代理，執行需要推理、檔案操作與工具使用的多步驟工作。
 
 
-<details>
-<summary>**agent**: required `AgentOption` 用來產生互動的 `Agent` 名稱。</summary>
 
+      **input**: required `Content` or `Content array` or `Step array` or `string`
 
+      互動的輸入內容。
 
-  可能的值：
 
-  - `deep-research-preview-04-2026`: Gemini Deep Research Agent
-  - `deep-research-max-preview-04-2026`: Gemini Deep Research Max Agent
-  - `antigravity-preview-05-2026`: 使用 Antigravity 受管理的代理，執行需要推理、檔案操作與工具使用的多步驟工作。
-  - `antigravity-preview-09-2026`: 使用 Antigravity 受管理的代理，執行需要推理、檔案操作與工具使用的多步驟工作。
 
+    ??? note "**agent_config**: `AntigravityAgentConfig` or `DeepResearchAgentConfig` or `DynamicAgentConfig` 代理互動的設定參數。"
 
+          **可能的類型**：
 
-</details>
 
 
-  **input**: required `Content` or `Content array` or `Step array` or `string`
+        ??? note "**AntigravityAgentConfig**"
 
-  互動的輸入內容。
+            Antigravity 代理執行階段的設定。提供伺服器端對代理執行環境與工具設定的控制。
 
+            **type**: required `object`
 
+            值：`antigravity`
 
-<details>
-<summary>**agent_config**: `AntigravityAgentConfig` or `DeepResearchAgentConfig` or `DynamicAgentConfig` 代理互動的設定參數。</summary>
+            **model**: `string`
 
+            用於代理推理的模型。
 
+            **max_total_tokens**: `string`
 
-  **可能的類型**：
+            代理執行可使用的權杖總數上限。
 
 
 
-<details>
-<summary>**AntigravityAgentConfig**</summary>
 
 
+        ??? note "**DeepResearchAgentConfig**"
 
-  Antigravity 代理執行階段的設定。提供伺服器端對代理執行環境與工具設定的控制。
+              Deep Research 代理的設定。
 
-  **type**: required `object`
+              **type**: required `object`
 
-  值：`antigravity`
+              值：`deep-research`
 
-  **model**: `string`
 
-  用於代理推理的模型。
 
-  **max_total_tokens**: `string`
+            ??? note "**thinking_summaries**: `ThinkingSummaries` 是否在回應中加入思考摘要。"
 
-  代理執行可使用的權杖總數上限。
+                可能的值：
 
+                - `auto`: 自動加入思考摘要。
+                - `none`: 不加入思考摘要。
 
 
-</details>
 
 
 
+            ??? note "**visualization**: `string enum` 是否在回應中加入視覺化呈現。"
 
-<details>
-<summary>**DeepResearchAgentConfig**</summary>
+                可能的值：
 
+                - `off`: 不加入視覺化呈現。
+                - `auto`: 自動加入視覺化呈現。
 
 
-  Deep Research 代理的設定。
 
-  **type**: required `object`
+              **collaborative_planning**: `boolean`
 
-  值：`deep-research`
+              為 Deep Research 代理啟用人機協作規劃。若設為 true，Deep Research 代理會在回應中提供一份研究計畫；之後只有在使用者於下一輪確認該計畫時，代理才會繼續進行。
 
 
 
-<details>
-<summary>**thinking_summaries**: `ThinkingSummaries` 是否在回應中加入思考摘要。</summary>
 
 
+        ??? note "**DynamicAgentConfig**"
 
-  可能的值：
+            動態代理的設定。
 
-  - `auto`: 自動加入思考摘要。
-  - `none`: 不加入思考摘要。
+            **type**: required `object`
 
+            值：`dynamic`
 
 
-</details>
 
+      **id**: `string`
 
+      必要。僅供輸出。互動完成的專屬識別碼。
 
 
-<details>
-<summary>**visualization**: `string enum` 是否在回應中加入視覺化呈現。</summary>
 
+    ??? note "**status**: `string enum` 必要。僅供輸出。互動的狀態。"
 
+        可能的值：
 
-  可能的值：
+        - `in_progress`: 互動正在進行中。
+        - `requires_action`: 互動需要使用者採取行動或提供輸入。
+        - `completed`: 互動已完成。
+        - `failed`: 互動失敗。
+        - `cancelled`: 互動已取消。
+        - `incomplete`: 互動已完成，但結果不完整（例如達到 max_tokens 上限）。
+        - `requires_continuation`: 互動至少還需要一次要求才能完成。下一次要求應將 continuation_token 設為本次要求傳回的權杖。
 
-  - `off`: 不加入視覺化呈現。
-  - `auto`: 自動加入視覺化呈現。
 
 
+      **created**: `string`
 
-</details>
+      必要。僅供輸出。回應建立的時間，格式為 ISO 8601（YYYY-MM-DDThh:mm:ssZ）。
 
+      **updated**: `string`
 
-  **collaborative_planning**: `boolean`
+      必要。僅供輸出。回應最後更新的時間，格式為 ISO 8601（YYYY-MM-DDThh:mm:ssZ）。
 
-  為 Deep Research 代理啟用人機協作規劃。若設為 true，Deep Research 代理會在回應中提供一份研究計畫；之後只有在使用者於下一輪確認該計畫時，代理才會繼續進行。
+      **system_instruction**: `string`
 
+      互動的系統指令。
 
 
-</details>
 
 
+    ??? note "**tools**: `Tool array` 模型在互動期間可能呼叫的工具宣告清單。"
 
+          **可能的類型**：
 
-<details>
-<summary>**DynamicAgentConfig**</summary>
 
 
+        ??? note "**CodeExecution**"
 
-  動態代理的設定。
+            模型可用來執行程式碼的工具。
 
-  **type**: required `object`
+            **type**: required `object`
 
-  值：`dynamic`
+            值：`code_execution`
 
 
 
-</details>
 
 
+        ??? note "**ComputerUse**"
 
+              模型可用來與電腦互動的工具。
 
-</details>
+              **type**: required `object`
 
+              值：`computer_use`
 
-  **id**: `string`
 
-  必要。僅供輸出。互動完成的專屬識別碼。
 
+            ??? note "**environment**: `string enum` 正在操作的環境。"
 
+                可能的值：
 
-<details>
-<summary>**status**: `string enum` 必要。僅供輸出。互動的狀態。</summary>
+                - `browser`: 在網頁瀏覽器中操作。
+                - `mobile`: 在行動環境中操作。
+                - `desktop`: 在桌面環境中操作。
 
 
 
-  可能的值：
+              **excluded_predefined_functions**: `string array`
 
-  - `in_progress`: 互動正在進行中。
-  - `requires_action`: 互動需要使用者採取行動或提供輸入。
-  - `completed`: 互動已完成。
-  - `failed`: 互動失敗。
-  - `cancelled`: 互動已取消。
-  - `incomplete`: 互動已完成，但結果不完整（例如達到 max_tokens 上限）。
-  - `requires_continuation`: 互動至少還需要一次要求才能完成。下一次要求應將 continuation_token 設為本次要求傳回的權杖。
+              從模型呼叫中排除的預先定義函式清單。
 
+              **enable_prompt_injection_detection**: `boolean`
 
+              是否對 computer-use 要求啟用提示詞注入偵測檢查。
 
-</details>
 
 
-  **created**: `string`
+            ??? note "**disabled_safety_policies**: `string enum array` 選用。電腦使用功能已停用的安全政策。"
 
-  必要。僅供輸出。回應建立的時間，格式為 ISO 8601（YYYY-MM-DDThh:mm:ssZ）。
+                可能的值：
 
-  **updated**: `string`
+                - `financial_transactions`: 金融交易的安全政策。
+                - `sensitive_data_modification`: 敏感資料修改的安全政策。
+                - `communication_tool`: 通訊工具的安全政策（例如 Gmail、Chat、Meet）。
+                - `account_creation`: 帳號建立的安全政策。
+                - `data_modification`: 資料修改的安全政策。
+                - `user_consent_management`: 使用者同意管理的安全政策。
+                - `legal_terms_and_agreements`: 法律條款與協議的安全政策。
 
-  必要。僅供輸出。回應最後更新的時間，格式為 ISO 8601（YYYY-MM-DDThh:mm:ssZ）。
 
-  **system_instruction**: `string`
 
-  互動的系統指令。
 
 
+        ??? note "**FileSearch**"
 
+            模型可用來搜尋檔案的工具。
 
-<details>
-<summary>**tools**: `Tool array` 模型在互動期間可能呼叫的工具宣告清單。</summary>
+            **type**: required `object`
 
+            值：`file_search`
 
+            **file_search_store_names**: `string array`
 
-  **可能的類型**：
+            要搜尋的檔案搜尋存放區名稱。
 
+            **top_k**: `integer`
 
+            要擷取的語意檢索區塊數量。
 
-<details>
-<summary>**CodeExecution**</summary>
+            **metadata_filter**: `string`
 
+            要套用到語意檢索文件與區塊的中繼資料篩選條件。
 
 
-  模型可用來執行程式碼的工具。
 
-  **type**: required `object`
 
-  值：`code_execution`
 
+        ??? note "**Function**"
 
+            模型可使用的工具。
 
-</details>
+            **type**: required `object`
 
+            值：`function`
 
+            **name**: `string`
 
+            函式的名稱。
 
-<details>
-<summary>**ComputerUse**</summary>
+            **description**: `string`
 
+            函式的說明。
 
+            **parameters**: `object`
 
-  模型可用來與電腦互動的工具。
+            函式參數的 JSON Schema。支援 JSON Schema 的一部分。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略，不會強制執行。
 
-  **type**: required `object`
 
-  值：`computer_use`
 
 
 
-<details>
-<summary>**environment**: `string enum` 正在操作的環境。</summary>
+        ??? note "**GoogleMaps**"
 
+            模型可用來呼叫 Google Maps 的工具。
 
+            **type**: required `object`
 
-  可能的值：
+            值：`google_maps`
 
-  - `browser`: 在網頁瀏覽器中操作。
-  - `mobile`: 在行動環境中操作。
-  - `desktop`: 在桌面環境中操作。
+            **enable_widget**: `boolean`
 
+            是否在回應的工具呼叫結果中傳回 widget 上下文權杖。
 
+            **latitude**: `number`
 
-</details>
+            使用者所在位置的緯度。
 
+            **longitude**: `number`
 
-  **excluded_predefined_functions**: `string array`
+            使用者所在位置的經度。
 
-  從模型呼叫中排除的預先定義函式清單。
 
-  **enable_prompt_injection_detection**: `boolean`
 
-  是否對 computer-use 要求啟用提示詞注入偵測檢查。
 
 
+        ??? note "**GoogleSearch**"
 
-<details>
-<summary>**disabled_safety_policies**: `string enum array` 選用。電腦使用功能已停用的安全政策。</summary>
+              模型可用來搜尋 Google 的工具。
 
+              **type**: required `object`
 
+              值：`google_search`
 
-  可能的值：
 
-  - `financial_transactions`: 金融交易的安全政策。
-  - `sensitive_data_modification`: 敏感資料修改的安全政策。
-  - `communication_tool`: 通訊工具的安全政策（例如 Gmail、Chat、Meet）。
-  - `account_creation`: 帳號建立的安全政策。
-  - `data_modification`: 資料修改的安全政策。
-  - `user_consent_management`: 使用者同意管理的安全政策。
-  - `legal_terms_and_agreements`: 法律條款與協議的安全政策。
 
+            ??? note "**search_types**: `string enum array` 要啟用的搜尋接地類型。"
 
+                可能的值：
 
-</details>
+                - `web_search`: 設定此欄位即可啟用網路搜尋。僅傳回文字結果。
+                - `image_search`: 設定此欄位即可啟用圖片搜尋。傳回圖片位元組。
 
 
 
 
-</details>
 
+        ??? note "**McpServer**"
 
+              MCPServer 是模型可呼叫來執行動作的伺服器。
 
+              **type**: required `object`
 
-<details>
-<summary>**FileSearch**</summary>
+              值：`mcp_server`
 
+              **name**: `string`
 
+              MCPServer 的名稱。
 
-  模型可用來搜尋檔案的工具。
+              **url**: `string`
 
-  **type**: required `object`
+              MCPServer 端點的完整 URL。範例："https://api.example.com/mcp"
 
-  值：`file_search`
+              **headers**: `object`
 
-  **file_search_store_names**: `string array`
+              選用：驗證標頭、逾時等欄位（如有需要）。
 
-  要搜尋的檔案搜尋存放區名稱。
 
-  **top_k**: `integer`
 
-  要擷取的語意檢索區塊數量。
+            ??? note "**allowed_tools**: `AllowedTools array` 允許使用的工具。"
 
-  **metadata_filter**: `string`
+                ??? note "**mode**: `string enum` 工具選擇的模式。"
 
-  要套用到語意檢索文件與區塊的中繼資料篩選條件。
+                    可能的值：
 
+                    - `auto`: 自動選擇工具。
+                    - `any`: 任意工具選擇。
+                    - `none`: 不選擇工具。
+                    - `validated`: 經驗證的工具選擇。
 
 
-</details>
 
+                  **tools**: `string array`
 
+                  允許使用的工具名稱。
 
 
-<details>
-<summary>**Function**</summary>
 
 
 
-  模型可使用的工具。
+        ??? note "**UrlContext**"
 
-  **type**: required `object`
+            模型可用來擷取 URL 上下文的工具。
 
-  值：`function`
+            **type**: required `object`
 
-  **name**: `string`
+            值：`url_context`
 
-  函式的名稱。
 
-  **description**: `string`
 
-  函式的說明。
 
-  **parameters**: `object`
 
-  函式參數的 JSON Schema。支援 JSON Schema 的一部分。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略，不會強制執行。
+    ??? note "**response_format**: `ResponseFormat` or `ResponseFormat array` 強制產生的回應為符合此欄位所指定 JSON schema 的 JSON 物件。"
 
+          **可能的類型**：
 
 
-</details>
 
+        ??? note "**AudioResponseFormat**"
 
+              音訊輸出格式的設定。
 
+              **type**: required `object`
 
-<details>
-<summary>**GoogleMaps**</summary>
+              值：`audio`
 
 
 
-  模型可用來呼叫 Google Maps 的工具。
+            ??? note "**mime_type**: `string enum` 音訊輸出的 MIME 類型。"
 
-  **type**: required `object`
+                可能的值：
 
-  值：`google_maps`
+                - `audio/mp3`: MP3 音訊格式。
+                - `audio/ogg_opus`: OGG Opus 音訊格式。
+                - `audio/l16`: 原始 PCM (L16) 音訊格式。
+                - `audio/wav`: WAV 音訊格式。
+                - `audio/alaw`: A-law 音訊格式。
+                - `audio/mulaw`: Mu-law 音訊格式。
 
-  **enable_widget**: `boolean`
 
-  是否在回應的工具呼叫結果中傳回 widget 上下文權杖。
 
-  **latitude**: `number`
 
-  使用者所在位置的緯度。
 
-  **longitude**: `number`
+            ??? note "**delivery**: `string enum` 音訊輸出的傳送方式。"
 
-  使用者所在位置的經度。
+                可能的值：
 
+                - `inline`: 音訊資料以內嵌方式在回應中傳回。
+                - `uri`: 音訊資料以 URI 形式傳回。
 
 
-</details>
 
+              **sample_rate**: `integer`
 
+              取樣率，單位為 Hz。
 
+              **bit_rate**: `integer`
 
-<details>
-<summary>**GoogleSearch**</summary>
+              位元率，單位為每秒位元數 (bps)。僅適用於壓縮格式（MP3、Opus）。
 
 
 
-  模型可用來搜尋 Google 的工具。
 
-  **type**: required `object`
 
-  值：`google_search`
+        ??? note "**ImageResponseFormat**"
 
+              圖片輸出格式的設定。
 
+              **type**: required `object`
 
-<details>
-<summary>**search_types**: `string enum array` 要啟用的搜尋接地類型。</summary>
+              值：`image`
 
 
 
-  可能的值：
+            ??? note "**mime_type**: `string enum` 圖片輸出的 MIME 類型。"
 
-  - `web_search`: 設定此欄位即可啟用網路搜尋。僅傳回文字結果。
-  - `image_search`: 設定此欄位即可啟用圖片搜尋。傳回圖片位元組。
+                可能的值：
 
+                - `image/jpeg`: JPEG 圖片格式。
 
 
-</details>
 
 
 
+            ??? note "**delivery**: `string enum` 圖片輸出的傳送方式。"
 
-</details>
+                可能的值：
 
+                - `inline`: 圖片資料以內嵌方式在回應中傳回。
+                - `uri`: 圖片資料以 URI 形式傳回。
 
 
 
-<details>
-<summary>**McpServer**</summary>
 
 
+            ??? note "**aspect_ratio**: `string enum` 圖片輸出的長寬比。"
 
-  MCPServer 是模型可呼叫來執行動作的伺服器。
+                可能的值：
 
-  **type**: required `object`
+                - `1:1`: 1:1 長寬比。
+                - `2:3`: 2:3 長寬比。
+                - `3:2`: 3:2 長寬比。
+                - `3:4`: 3:4 長寬比。
+                - `4:3`: 4:3 長寬比。
+                - `4:5`: 4:5 長寬比。
+                - `5:4`: 5:4 長寬比。
+                - `9:16`: 9:16 長寬比。
+                - `16:9`: 16:9 長寬比。
+                - `21:9`: 21:9 長寬比。
+                - `1:8`: 1:8 長寬比。
+                - `8:1`: 8:1 長寬比。
+                - `1:4`: 1:4 長寬比。
+                - `4:1`: 4:1 長寬比。
 
-  值：`mcp_server`
 
-  **name**: `string`
 
-  MCPServer 的名稱。
 
-  **url**: `string`
 
-  MCPServer 端點的完整 URL。範例："https://api.example.com/mcp"
+            ??? note "**image_size**: `string enum` 圖片輸出的尺寸。"
 
-  **headers**: `object`
+                可能的值：
 
-  選用：驗證標頭、逾時等欄位（如有需要）。
+                - `512`: 512px 圖片尺寸。
+                - `1K`: 1K 圖片尺寸。
+                - `2K`: 2K 圖片尺寸。
+                - `4K`: 4K 圖片尺寸。
 
 
 
-<details>
-<summary>**allowed_tools**: `AllowedTools array` 允許使用的工具。</summary>
 
 
+        ??? note "**TextResponseFormat**"
 
+              文字輸出格式的設定。
 
+              **type**: required `object`
 
-<details>
-<summary>**mode**: `string enum` 工具選擇的模式。</summary>
+              值：`text`
 
 
 
-  可能的值：
+            ??? note "**mime_type**: `string enum` 文字輸出的 MIME 類型。"
 
-  - `auto`: 自動選擇工具。
-  - `any`: 任意工具選擇。
-  - `none`: 不選擇工具。
-  - `validated`: 經驗證的工具選擇。
+                可能的值：
 
+                - `application/json`: JSON 輸出格式。
+                - `text/plain`: 純文字輸出格式。
 
 
-</details>
 
+              **schema**: `object`
 
-  **tools**: `string array`
+              輸出應符合的 JSON schema。僅在 mime_type 為 application/json 時適用。支援 JSON Schema 的一部分。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略，不會強制執行；這些請在你的應用程式中自行驗證。`minItems` 與 `maxItems` 會強制執行。複雜到無法強制執行的 schema（例如巢狀陣列上設定過大的 `maxItems`）會傳回 400 INVALID_ARGUMENT 錯誤。
 
-  允許使用的工具名稱。
 
 
 
-</details>
 
+        ??? note "**VideoResponseFormat**"
 
+              影片輸出格式的設定。
 
+              **type**: required `object`
 
-</details>
+              值：`video`
 
 
 
+            ??? note "**delivery**: `string enum` 影片輸出的傳送方式。"
 
-<details>
-<summary>**UrlContext**</summary>
+                可能的值：
 
+                - `inline`: 影片資料以內嵌方式在回應中傳回。
+                - `uri`: 影片資料以 URI 形式傳回。
 
 
-  模型可用來擷取 URL 上下文的工具。
 
-  **type**: required `object`
 
-  值：`url_context`
 
+            ??? note "**aspect_ratio**: `string enum` 影片輸出的長寬比。"
 
+                可能的值：
 
-</details>
+                - `16:9`: 16:9 長寬比。
+                - `9:16`: 9:16 長寬比。
 
 
 
+              **duration**: `string`
 
-</details>
+              影片輸出的長度。
 
 
 
+            ??? note "**resolution**: `string enum` 影片輸出的解析度。預設為 720p。"
 
-<details>
-<summary>**response_format**: `ResponseFormat` or `ResponseFormat array` 強制產生的回應為符合此欄位所指定 JSON schema 的 JSON 物件。</summary>
+                可能的值：
 
+                - `360p`: 360p 解析度。
+                - `720p`: 720p 解析度。
+                - `1080p`: 1080p 解析度。
+                - `4k`: 4K 解析度。
 
 
-  **可能的類型**：
 
 
 
-<details>
-<summary>**AudioResponseFormat**</summary>
+        ??? note "**ResponseFormat array**"
 
+            清單中每個項目為下列其中之一：`AudioResponseFormat`、`ImageResponseFormat`、`TextResponseFormat`、`VideoResponseFormat`。
 
 
-  音訊輸出格式的設定。
 
-  **type**: required `object`
 
-  值：`audio`
 
+      **previous_interaction_id**: `string`
 
+      先前互動的 ID（如有）。
 
-<details>
-<summary>**mime_type**: `string enum` 音訊輸出的 MIME 類型。</summary>
 
 
+    ??? note "**environment**: `EnvironmentConfig` or `string` 互動的環境設定。可以是指定遠端環境來源的物件，也可以是參照現有環境 ID 的字串。"
 
-  可能的值：
+          **可能的類型**：
 
-  - `audio/mp3`: MP3 音訊格式。
-  - `audio/ogg_opus`: OGG Opus 音訊格式。
-  - `audio/l16`: 原始 PCM (L16) 音訊格式。
-  - `audio/wav`: WAV 音訊格式。
-  - `audio/alaw`: A-law 音訊格式。
-  - `audio/mulaw`: Mu-law 音訊格式。
 
 
+        ??? note "**EnvironmentConfig**"
 
-</details>
+              自訂環境的設定。
 
+              **type**: required `object`
 
+              值：`remote`
 
 
-<details>
-<summary>**delivery**: `string enum` 音訊輸出的傳送方式。</summary>
 
+            ??? note "**sources**: `Source array`"
 
+                ??? note "**type**: `string enum`"
 
-  可能的值：
+                    可能的值：
 
-  - `inline`: 音訊資料以內嵌方式在回應中傳回。
-  - `uri`: 音訊資料以 URI 形式傳回。
+                    - `gcs`: Cloud Storage 值區。
+                    - `inline`: 內嵌內容。
+                    - `repository`: 一般存放庫。來源 URL 中的通訊協定前置字元可識別供應商（例如 github://、gcs://）。
 
 
 
-</details>
+                  **source**: `string`
 
+                  環境的來源。對於 Cloud Storage，這是 Cloud Storage 路徑。對於 GitHub，這是 GitHub 路徑。
 
-  **sample_rate**: `integer`
+                  **target**: `string`
 
-  取樣率，單位為 Hz。
+                  來源應出現在環境中的位置。
 
-  **bit_rate**: `integer`
+                  **content**: `string`
 
-  位元率，單位為每秒位元數 (bps)。僅適用於壓縮格式（MP3、Opus）。
+                  當 `type` 為 `INLINE` 時的內嵌內容。
 
+                  **encoding**: `string`
 
+                  內嵌內容的選用編碼（例如 `base64`）。
 
-</details>
 
 
 
 
-<details>
-<summary>**ImageResponseFormat**</summary>
+            ??? note "**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。"
 
+                  **可能的類型**：
 
 
-  圖片輸出格式的設定。
 
-  **type**: required `object`
+                ??? note "**EnvironmentNetworkEgressAllowlist**"
 
-  值：`image`
+                      環境的網路輸出設定。
 
 
 
-<details>
-<summary>**mime_type**: `string enum` 圖片輸出的 MIME 類型。</summary>
+                    ??? note "**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 即可封鎖所有網路輸出。"
 
+                          **可能的類型**：
 
 
-  可能的值：
 
-  - `image/jpeg`: JPEG 圖片格式。
+                        ??? note "**EgressRule array**"
 
+                            單一網域的允許清單規則，可選擇性注入標頭。
 
+                            **domain**: required `string`
 
-</details>
+                            允許向外傳送要求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
 
+                            **transform**: `object`
 
+                            要注入符合此規則之要求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
 
+                            **credential**: `string`
 
-<details>
-<summary>**delivery**: `string enum` 圖片輸出的傳送方式。</summary>
+                            選用。以 ID 參照伺服器管理的 Credential 資源。
 
 
 
-  可能的值：
 
-  - `inline`: 圖片資料以內嵌方式在回應中傳回。
-  - `uri`: 圖片資料以 URI 形式傳回。
 
+                        ??? note "**string enum**"
 
+                            可能的值：
 
-</details>
+                            - `disabled`: 所有網路輸出均已封鎖。
 
 
 
 
-<details>
-<summary>**aspect_ratio**: `string enum` 圖片輸出的長寬比。</summary>
 
+                ??? note "**string enum**"
 
+                    可能的值：
 
-  可能的值：
+                    - `disabled`: 所有網路輸出均已封鎖。
 
-  - `1:1`: 1:1 長寬比。
-  - `2:3`: 2:3 長寬比。
-  - `3:2`: 3:2 長寬比。
-  - `3:4`: 3:4 長寬比。
-  - `4:3`: 4:3 長寬比。
-  - `4:5`: 4:5 長寬比。
-  - `5:4`: 5:4 長寬比。
-  - `9:16`: 9:16 長寬比。
-  - `16:9`: 16:9 長寬比。
-  - `21:9`: 21:9 長寬比。
-  - `1:8`: 1:8 長寬比。
-  - `8:1`: 8:1 長寬比。
-  - `1:4`: 1:4 長寬比。
-  - `4:1`: 4:1 長寬比。
 
 
+              **environment_id**: `string`
 
-</details>
+              選用。互動的環境 ID。若有指定，此要求會更新現有的環境，而非建立新環境。
 
 
 
+            ??? note "**env**: `object` or `string` 要在沙箱環境中設定的環境變數。"
 
-<details>
-<summary>**image_size**: `string enum` 圖片輸出的尺寸。</summary>
+                  **可能的類型**：
 
 
 
-  可能的值：
+                ??? note "**string**"
 
-  - `512`: 512px 圖片尺寸。
-  - `1K`: 1K 圖片尺寸。
-  - `2K`: 2K 圖片尺寸。
-  - `4K`: 4K 圖片尺寸。
+                    直接的字串值。
 
 
 
-</details>
 
 
+            ??? note "**mode**: `string enum` 此環境的運算生命週期模式。"
 
+                可能的值：
 
-</details>
+                - `on_demand`: 此環境的運算生命週期模式。
+                - `self_hosted`: 此環境的運算生命週期模式。
 
 
 
+              **custom_config**: `object`
 
-<details>
-<summary>**TextResponseFormat**</summary>
+              選用。由客戶自訂、直接傳遞給自行託管環境輪詢器的任意 JSON 設定。僅在 `mode` 為 `SELF_HOSTED` 時支援。
 
 
 
-  文字輸出格式的設定。
 
-  **type**: required `object`
 
-  值：`text`
+        ??? note "**string**"
 
+            直接的字串值。
 
 
-<details>
-<summary>**mime_type**: `string enum` 文字輸出的 MIME 類型。</summary>
 
+      **environment_id**: `string`
 
+      僅供輸出。互動的環境 ID。僅在要求中設定了環境設定時才會填入。
 
-  可能的值：
 
-  - `application/json`: JSON 輸出格式。
-  - `text/plain`: 純文字輸出格式。
 
+    ??? note "**service_tier**: `ServiceTier` 互動的服務層級。"
 
+        可能的值：
 
-</details>
+        - `flex`: Flex 服務層級。
+        - `standard`: Standard 服務層級。
+        - `priority`: Priority 服務層級。
 
 
-  **schema**: `object`
 
-  輸出應符合的 JSON schema。僅在 mime_type 為 application/json 時適用。支援 JSON Schema 的一部分。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略，不會強制執行；這些請在你的應用程式中自行驗證。`minItems` 與 `maxItems` 會強制執行。複雜到無法強制執行的 schema（例如巢狀陣列上設定過大的 `maxItems`）會傳回 400 INVALID_ARGUMENT 錯誤。
 
 
+    ??? note "**webhook_config**: `WebhookConfig` 選用。在互動完成時接收通知的 Webhook 設定。"
 
-</details>
+        **uris**: `string array`
 
+        選用。若有設定，這些 webhook URI 將用於 webhook 事件，而非已註冊的 webhook。
 
+        **user_metadata**: `object`
 
+        選用。每次向 webhook 發出事件時一併傳回的使用者中繼資料。
 
-<details>
-<summary>**VideoResponseFormat**</summary>
 
 
 
-  影片輸出格式的設定。
 
-  **type**: required `object`
+    ??? note "**safety_settings**: `SafetySetting array` 互動的安全設定。"
 
-  值：`video`
+        ??? note "**type**: required `HarmCategory` 要封鎖的危害類別類型。"
 
+            可能的值：
 
+            - `hate_speech`: 根據某些屬性，宣揚暴力或煽動對個人或群體仇恨的內容。
+            - `dangerous_content`: 宣揚、協助或助長危險活動的內容。
+            - `harassment`: 辱罵、威脅，或意圖霸凌、折磨或嘲弄他人的內容。
+            - `sexually_explicit`: 含有性露骨資料的內容。
+            - `jailbreak`: 旨在繞過安全篩選器的提示詞。
 
-<details>
-<summary>**delivery**: `string enum` 影片輸出的傳送方式。</summary>
 
 
 
-  可能的值：
 
-  - `inline`: 影片資料以內嵌方式在回應中傳回。
-  - `uri`: 影片資料以 URI 形式傳回。
+        ??? note "**threshold**: required `string enum` 封鎖內容的門檻。若危害機率超過此門檻，內容將被封鎖。"
 
+            可能的值：
 
+            - `block_low_and_above`: 封鎖危害機率為低或更高的內容。
+            - `block_medium_and_above`: 封鎖危害機率為中或更高的內容。
+            - `block_only_high`: 僅封鎖危害機率為高的內容。
+            - `off`: 完全關閉安全篩選器。
 
-</details>
 
 
 
 
-<details>
-<summary>**aspect_ratio**: `string enum` 影片輸出的長寬比。</summary>
+        ??? note "**method**: `string enum` 選用。封鎖內容的方法。若未指定，預設行為是使用機率分數。"
 
+            可能的值：
 
+            - `severity`: 危害封鎖方法同時使用機率與嚴重程度分數。
+            - `probability`: 危害封鎖方法使用機率分數。
 
-  可能的值：
 
-  - `16:9`: 16:9 長寬比。
-  - `9:16`: 9:16 長寬比。
 
+      **labels**: `object`
 
+      要求中由使用者定義的中繼資料標籤。標籤鍵與值的長度不得超過 63 個字元（Unicode 碼點），且只能包含小寫字母、數字字元、底線與連字號。允許使用國際字元。標籤值為選用。標籤鍵必須以字母開頭。
 
-</details>
+      **continuation_token**: `string`
 
+      用來恢復長時間解碼的不透明權杖。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
 
-  **duration**: `string`
+      **stream**: `boolean`
 
-  影片輸出的長度。
+      僅供輸入。互動是否以串流方式進行。
 
+      **store**: `boolean`
 
+      僅供輸入。是否儲存回應與要求，以供日後擷取。
 
-<details>
-<summary>**resolution**: `string enum` 影片輸出的解析度。預設為 720p。</summary>
+      **background**: `boolean`
 
+      僅供輸入。是否在背景執行模型互動。
 
-
-  可能的值：
-
-  - `360p`: 360p 解析度。
-  - `720p`: 720p 解析度。
-  - `1080p`: 1080p 解析度。
-  - `4k`: 4K 解析度。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**ResponseFormat array**</summary>
-
-
-
-  清單中每個項目為下列其中之一：`AudioResponseFormat`、`ImageResponseFormat`、`TextResponseFormat`、`VideoResponseFormat`。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-
-
-  **previous_interaction_id**: `string`
-
-  先前互動的 ID（如有）。
-
-
-
-<details>
-<summary>**environment**: `EnvironmentConfig` or `string` 互動的環境設定。可以是指定遠端環境來源的物件，也可以是參照現有環境 ID 的字串。</summary>
-
-
-
-  **可能的類型**：
-
-
-
-<details>
-<summary>**EnvironmentConfig**</summary>
-
-
-
-  自訂環境的設定。
-
-  **type**: required `object`
-
-  值：`remote`
-
-
-
-<details>
-<summary>**sources**: `Source array`</summary>
-
-
-
-
-
-<details>
-<summary>**type**: `string enum`</summary>
-
-
-
-  可能的值：
-
-  - `gcs`: Cloud Storage 值區。
-  - `inline`: 內嵌內容。
-  - `repository`: 一般存放庫。來源 URL 中的通訊協定前置字元可識別供應商（例如 github://、gcs://）。
-
-
-
-</details>
-
-
-  **source**: `string`
-
-  環境的來源。對於 Cloud Storage，這是 Cloud Storage 路徑。對於 GitHub，這是 GitHub 路徑。
-
-  **target**: `string`
-
-  來源應出現在環境中的位置。
-
-  **content**: `string`
-
-  當 `type` 為 `INLINE` 時的內嵌內容。
-
-  **encoding**: `string`
-
-  內嵌內容的選用編碼（例如 `base64`）。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。</summary>
-
-
-
-  **可能的類型**：
-
-
-
-<details>
-<summary>**EnvironmentNetworkEgressAllowlist**</summary>
-
-
-
-  環境的網路輸出設定。
-
-
-
-<details>
-<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 即可封鎖所有網路輸出。</summary>
-
-
-
-  **可能的類型**：
-
-
-
-<details>
-<summary>**EgressRule array**</summary>
-
-
-
-  單一網域的允許清單規則，可選擇性注入標頭。
-
-  **domain**: required `string`
-
-  允許向外傳送要求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
-
-  **transform**: `object`
-
-  要注入符合此規則之要求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
-
-  **credential**: `string`
-
-  選用。以 ID 參照伺服器管理的 Credential 資源。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**string enum**</summary>
-
-
-
-  可能的值：
-
-  - `disabled`: 所有網路輸出均已封鎖。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**string enum**</summary>
-
-
-
-  可能的值：
-
-  - `disabled`: 所有網路輸出均已封鎖。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-  **environment_id**: `string`
-
-  選用。互動的環境 ID。若有指定，此要求會更新現有的環境，而非建立新環境。
-
-
-
-<details>
-<summary>**env**: `object` or `string` 要在沙箱環境中設定的環境變數。</summary>
-
-
-
-  **可能的類型**：
-
-
-
-<details>
-<summary>**string**</summary>
-
-
-
-  直接的字串值。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**mode**: `string enum` 此環境的運算生命週期模式。</summary>
-
-
-
-  可能的值：
-
-  - `on_demand`: 此環境的運算生命週期模式。
-  - `self_hosted`: 此環境的運算生命週期模式。
-
-
-
-</details>
-
-
-  **custom_config**: `object`
-
-  選用。由客戶自訂、直接傳遞給自行託管環境輪詢器的任意 JSON 設定。僅在 `mode` 為 `SELF_HOSTED` 時支援。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**string**</summary>
-
-
-
-  直接的字串值。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-  **environment_id**: `string`
-
-  僅供輸出。互動的環境 ID。僅在要求中設定了環境設定時才會填入。
-
-
-
-<details>
-<summary>**service_tier**: `ServiceTier` 互動的服務層級。</summary>
-
-
-
-  可能的值：
-
-  - `flex`: Flex 服務層級。
-  - `standard`: Standard 服務層級。
-  - `priority`: Priority 服務層級。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**webhook_config**: `WebhookConfig` 選用。在互動完成時接收通知的 Webhook 設定。</summary>
-
-
-
-  **uris**: `string array`
-
-  選用。若有設定，這些 webhook URI 將用於 webhook 事件，而非已註冊的 webhook。
-
-  **user_metadata**: `object`
-
-  選用。每次向 webhook 發出事件時一併傳回的使用者中繼資料。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**safety_settings**: `SafetySetting array` 互動的安全設定。</summary>
-
-
-
-
-
-<details>
-<summary>**type**: required `HarmCategory` 要封鎖的危害類別類型。</summary>
-
-
-
-  可能的值：
-
-  - `hate_speech`: 根據某些屬性，宣揚暴力或煽動對個人或群體仇恨的內容。
-  - `dangerous_content`: 宣揚、協助或助長危險活動的內容。
-  - `harassment`: 辱罵、威脅，或意圖霸凌、折磨或嘲弄他人的內容。
-  - `sexually_explicit`: 含有性露骨資料的內容。
-  - `jailbreak`: 旨在繞過安全篩選器的提示詞。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**threshold**: required `string enum` 封鎖內容的門檻。若危害機率超過此門檻，內容將被封鎖。</summary>
-
-
-
-  可能的值：
-
-  - `block_low_and_above`: 封鎖危害機率為低或更高的內容。
-  - `block_medium_and_above`: 封鎖危害機率為中或更高的內容。
-  - `block_only_high`: 僅封鎖危害機率為高的內容。
-  - `off`: 完全關閉安全篩選器。
-
-
-
-</details>
-
-
-
-
-<details>
-<summary>**method**: `string enum` 選用。封鎖內容的方法。若未指定，預設行為是使用機率分數。</summary>
-
-
-
-  可能的值：
-
-  - `severity`: 危害封鎖方法同時使用機率與嚴重程度分數。
-  - `probability`: 危害封鎖方法使用機率分數。
-
-
-
-</details>
-
-
-
-
-</details>
-
-
-  **labels**: `object`
-
-  要求中由使用者定義的中繼資料標籤。標籤鍵與值的長度不得超過 63 個字元（Unicode 碼點），且只能包含小寫字母、數字字元、底線與連字號。允許使用國際字元。標籤值為選用。標籤鍵必須以字母開頭。
-
-  **continuation_token**: `string`
-
-  用來恢復長時間解碼的不透明權杖。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
-
-  **stream**: `boolean`
-
-  僅供輸入。互動是否以串流方式進行。
-
-  **store**: `boolean`
-
-  僅供輸入。是否儲存回應與要求，以供日後擷取。
-
-  **background**: `boolean`
-
-  僅供輸入。是否在背景執行模型互動。
-
-
-
-</details>
 
 
 
@@ -1366,20 +976,14 @@
 
 
 
-<details>
-<summary>**status**: `string enum` 僅供輸出。觸發器目前的狀態。</summary>
+??? note "**status**: `string enum` 僅供輸出。觸發器目前的狀態。"
 
+    可能的值：
 
+    - `active`: 觸發器已啟用，會依排程觸發。
+    - `paused`: 觸發器已暫停，不會觸發。
+    - `error`: 觸發器因連續失敗而進入錯誤狀態。
 
-  可能的值：
-
-  - `active`: 觸發器已啟用，會依排程觸發。
-  - `paused`: 觸發器已暫停，不會觸發。
-  - `error`: 觸發器因連續失敗而進入錯誤狀態。
-
-
-
-</details>
 
 
 
@@ -1487,4 +1091,3 @@
     "status": "active"
   }
   ```
-

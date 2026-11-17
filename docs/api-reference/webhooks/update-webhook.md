@@ -26,52 +26,38 @@
   
   
 
-<details>
-<summary>**webhook**: required `WebhookUpdate` 要更新的 webhook。</summary>
+??? note "**webhook**: required `WebhookUpdate` 要更新的 webhook。"
 
-  
+      **name**: `string`
 
-  **name**: `string`
+      選用。使用者提供的 webhook 名稱。
 
-  選用。使用者提供的 webhook 名稱。
+      **uri**: `string`
 
-  **uri**: `string`
+      選用。webhook 事件要傳送到的 URI。
 
-  選用。webhook 事件要傳送到的 URI。
+      **subscribed_events**: `string array`
 
-  **subscribed_events**: `string array`
+      選用。此 webhook 所訂閱的事件。可用事件：
 
-  選用。此 webhook 所訂閱的事件。可用事件：
-
-  - batch.succeeded
-  - batch.expired
-  - batch.failed
-  - interaction.requires_action
-  - interaction.completed
-  - interaction.failed
-  - video.generated
-
-  
-
-<details>
-<summary>**state**: `string enum` 選用。webhook 的狀態。</summary>
-
-  
-
-  可能的值：
-
-  - `enabled`：webhook 已啟用。
-  - `disabled`：webhook 已由使用者停用。
-  - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
-
-  
-
-</details>
+      - batch.succeeded
+      - batch.expired
+      - batch.failed
+      - interaction.requires_action
+      - interaction.completed
+      - interaction.failed
+      - video.generated
 
 
-  
 
-</details>
+    ??? note "**state**: `string enum` 選用。webhook 的狀態。"
+
+        可能的值：
+
+        - `enabled`：webhook 已啟用。
+        - `disabled`：webhook 已由使用者停用。
+        - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
+
 
 
   
@@ -178,22 +164,16 @@
 
   
 
-<details>
-<summary>**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。</summary>
+??? note "**signing_secrets**: `SigningSecret array` 僅供輸出。與此 webhook 關聯的簽章密鑰。"
 
-  
+    **truncated_secret**: `string`
 
-  **truncated_secret**: `string`
+    僅供輸出。簽章密鑰的截斷版本。
 
-  僅供輸出。簽章密鑰的截斷版本。
+    **expire_time**: `string`
 
-  **expire_time**: `string`
+    僅供輸出。簽章密鑰的到期日。
 
-  僅供輸出。簽章密鑰的到期日。
-
-  
-
-</details>
 
 
   
@@ -203,20 +183,14 @@
 
   
 
-<details>
-<summary>**state**: `string enum` 僅供輸出。webhook 的狀態。</summary>
+??? note "**state**: `string enum` 僅供輸出。webhook 的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `enabled`：webhook 已啟用。
+    - `disabled`：webhook 已由使用者停用。
+    - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
 
-  - `enabled`：webhook 已啟用。
-  - `disabled`：webhook 已由使用者停用。
-  - `disabled_due_to_failed_deliveries`：webhook 因傳送失敗而停用。
-
-  
-
-</details>
 
 
   

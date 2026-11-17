@@ -90,22 +90,16 @@
 
   
 
-<details>
-<summary>**status**: `string enum` 僅供輸出。執行的狀態。</summary>
+??? note "**status**: `string enum` 僅供輸出。執行的狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `in_progress`: 執行目前正在進行中。
+    - `completed`: 執行已成功完成。
+    - `failed`: 執行失敗。
+    - `skipped`: 執行已略過（例如前一次執行仍在進行中）。
+    - `timed_out`: 執行逾時。
 
-  - `in_progress`: 執行目前正在進行中。
-  - `completed`: 執行已成功完成。
-  - `failed`: 執行失敗。
-  - `skipped`: 執行已略過（例如前一次執行仍在進行中）。
-  - `timed_out`: 執行逾時。
-
-  
-
-</details>
 
 
   

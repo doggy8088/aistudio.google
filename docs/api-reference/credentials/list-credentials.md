@@ -102,20 +102,14 @@
 
 
 
-<details>
-<summary>**type**：必填 `string enum` 僅供輸出。憑證的類型。</summary>
+??? note "**type**：必填 `string enum` 僅供輸出。憑證的類型。"
 
+    可能的值：
 
+    - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
+    - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
+    - `environment_variable`：注入沙箱容器的環境變數。
 
-  可能的值：
-
-  - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
-  - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
-  - `environment_variable`：注入沙箱容器的環境變數。
-
-
-
-</details>
 
 
 
@@ -123,19 +117,13 @@
 ---
 
 
-<details>
-<summary>**status**：`string enum` 僅供輸出。憑證目前的狀態。</summary>
+??? note "**status**：`string enum` 僅供輸出。憑證目前的狀態。"
 
+    可能的值：
 
+    - `active`：憑證處於啟用狀態，可供使用。
+    - `revoked`：憑證已遭撤銷，不再有效。
 
-  可能的值：
-
-  - `active`：憑證處於啟用狀態，可供使用。
-  - `revoked`：憑證已遭撤銷，不再有效。
-
-
-
-</details>
 
 
 

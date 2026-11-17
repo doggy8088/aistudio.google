@@ -48,26 +48,20 @@
   
   
 
-<details>
-<summary>**error**: `Status` 作業失敗或取消時的錯誤結果。</summary>
+??? note "**error**: `Status` 作業失敗或取消時的錯誤結果。"
 
-  
+    **code**: `integer`
 
-  **code**: `integer`
+    狀態碼，應為 google.rpc.Code 的列舉值。
 
-  狀態碼，應為 google.rpc.Code 的列舉值。
+    **message**: `string`
 
-  **message**: `string`
+    給開發人員看的錯誤訊息，應以英文撰寫。任何給使用者看的錯誤訊息都應本地化，並放在 google.rpc.Status.details 欄位中傳送，或由用戶端本地化。
 
-  給開發人員看的錯誤訊息，應以英文撰寫。任何給使用者看的錯誤訊息都應本地化，並放在 google.rpc.Status.details 欄位中傳送，或由用戶端本地化。
+    **details**: `object array`
 
-  **details**: `object array`
+    承載錯誤詳細資訊的訊息清單。API 可使用一組通用的訊息類型。
 
-  承載錯誤詳細資訊的訊息清單。API 可使用一組通用的訊息類型。
-
-  
-
-</details>
 
 
   

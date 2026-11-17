@@ -29,56 +29,36 @@
 
   
 
-<details>
-<summary>**customMetadata**: `CustomMetadata array` 要與資料建立關聯的自訂中繼資料。</summary>
+??? note "**customMetadata**: `CustomMetadata array` 要與資料建立關聯的自訂中繼資料。"
 
-  
+      **key**: 必填 `string`
 
-  **key**: 必填 `string`
-
-  要儲存的中繼資料鍵。
-
-  
-
-<details>
-<summary>**value**: `Union type`</summary>
-
-  
-
-  聯合欄位 `value` 只能是下列其中之一：
-
-  **stringValue**: `string`
-
-  要儲存的中繼資料字串值。
-
-  
-
-<details>
-<summary>**stringListValue**: `StringList` 要儲存的中繼資料 StringList 值。</summary>
-
-  
-
-  **values**: `string array`
-
-  要儲存的中繼資料字串值。
-
-  
-
-</details>
+      要儲存的中繼資料鍵。
 
 
-  **numericValue**: `number`
 
-  要儲存的中繼資料數值。
+    ??? note "**value**: `Union type`"
 
-  
+          聯合欄位 `value` 只能是下列其中之一：
 
-</details>
+          **stringValue**: `string`
+
+          要儲存的中繼資料字串值。
 
 
-  
 
-</details>
+        ??? note "**stringListValue**: `StringList` 要儲存的中繼資料 StringList 值。"
+
+            **values**: `string array`
+
+            要儲存的中繼資料字串值。
+
+
+
+          **numericValue**: `number`
+
+          要儲存的中繼資料數值。
+
 
 
   
@@ -88,48 +68,24 @@
 
   
 
-<details>
-<summary>**chunkingConfig**: `ChunkingConfig` 選填。告訴服務如何分塊資料的設定。若未提供，服務將使用預設參數。</summary>
+??? note "**chunkingConfig**: `ChunkingConfig` 選填。告訴服務如何分塊資料的設定。若未提供，服務將使用預設參數。"
 
-  
+    ??? note "**config**: `Union type` 要使用的分塊設定。"
 
-  
-
-<details>
-<summary>**config**: `Union type` 要使用的分塊設定。</summary>
-
-  
-
-  聯合欄位 `config` 只能是下列其中之一：
-
-  
-
-<details>
-<summary>**whiteSpaceConfig**: `WhiteSpaceConfig` 空白字元分塊設定。</summary>
-
-  
-
-  **maxTokensPerChunk**: `integer`
-
-  每個分塊的權杖數量上限。在此分塊演算法中，權杖定義為單字。注意：這裡將權杖定義為以空白字元切分的單字，而非分詞器的輸出結果。截至 2025-04-17，最新 Gemini 嵌入模型的上下文視窗目前為 8192 個權杖。我們假設平均每個單字為 5 個字元，因此將上限設為 2**9，即 512 個單字，或 2560 個權杖（以最壞情況估算，即每個字元一個權杖）。這是為了防止上下文視窗溢位的保守估計。
-
-  **maxOverlapTokens**: `integer`
-
-  兩個相鄰分塊之間重疊權杖數量的上限。
-
-  
-
-</details>
+          聯合欄位 `config` 只能是下列其中之一：
 
 
-  
 
-</details>
+        ??? note "**whiteSpaceConfig**: `WhiteSpaceConfig` 空白字元分塊設定。"
 
+            **maxTokensPerChunk**: `integer`
 
-  
+            每個分塊的權杖數量上限。在此分塊演算法中，權杖定義為單字。注意：這裡將權杖定義為以空白字元切分的單字，而非分詞器的輸出結果。截至 2025-04-17，最新 Gemini 嵌入模型的上下文視窗目前為 8192 個權杖。我們假設平均每個單字為 5 個字元，因此將上限設為 2**9，即 512 個單字，或 2560 個權杖（以最壞情況估算，即每個字元一個權杖）。這是為了防止上下文視窗溢位的保守估計。
 
-</details>
+            **maxOverlapTokens**: `integer`
+
+            兩個相鄰分塊之間重疊權杖數量的上限。
+
 
 
   
@@ -167,26 +123,20 @@
   
   
 
-<details>
-<summary>**error**: `Status` 作業失敗或取消時的錯誤結果。</summary>
+??? note "**error**: `Status` 作業失敗或取消時的錯誤結果。"
 
-  
+    **code**: `integer`
 
-  **code**: `integer`
+    狀態碼，應為 google.rpc.Code 的列舉值。
 
-  狀態碼，應為 google.rpc.Code 的列舉值。
+    **message**: `string`
 
-  **message**: `string`
+    供開發人員參考的錯誤訊息，應以英文撰寫。任何要給使用者看的錯誤訊息都應本地化，並放在 google.rpc.Status.details 欄位中傳送，或由用戶端本地化。
 
-  供開發人員參考的錯誤訊息，應以英文撰寫。任何要給使用者看的錯誤訊息都應本地化，並放在 google.rpc.Status.details 欄位中傳送，或由用戶端本地化。
+    **details**: `object array`
 
-  **details**: `object array`
+    承載錯誤詳細資訊的訊息清單。API 有一組通用的訊息類型可供使用。
 
-  承載錯誤詳細資訊的訊息清單。API 有一組通用的訊息類型可供使用。
-
-  
-
-</details>
 
 
   
@@ -196,30 +146,24 @@
 
   
 
-<details>
-<summary>**response**: `UploadToFileSearchStoreResponse`</summary>
+??? note "**response**: `UploadToFileSearchStoreResponse`"
 
-  
+    **parent**: `string`
 
-  **parent**: `string`
+    [`FileSearchStore`](/api-reference/file-search/file-search-stores/#Resource:FileSearchStore) 的名稱，該儲存庫包含 `Document`。範例：`fileSearchStores/my-file-search-store-123`
 
-  [`FileSearchStore`](/api-reference/file-search/file-search-stores/#Resource:FileSearchStore) 的名稱，該儲存庫包含 `Document`。範例：`fileSearchStores/my-file-search-store-123`
+    **documentName**: `string`
 
-  **documentName**: `string`
+    不可變動。識別碼。所匯入 `Document` 的識別碼。範例：`fileSearchStores/my-file-search-store-123a456b789c`
 
-  不可變動。識別碼。所匯入 `Document` 的識別碼。範例：`fileSearchStores/my-file-search-store-123a456b789c`
+    **mimeType**: `string`
 
-  **mimeType**: `string`
+    檔案的 MIME 類型。
 
-  檔案的 MIME 類型。
+    **sizeBytes**: `string`
 
-  **sizeBytes**: `string`
+    檔案大小（以位元組計）。
 
-  檔案大小（以位元組計）。
-
-  
-
-</details>
 
 
   
@@ -238,14 +182,9 @@
 
   
 
-<details>
-<summary>**metadata**: `UploadToFileSearchStoreMetadata`</summary>
+??? note "**metadata**: `UploadToFileSearchStoreMetadata`"
 
-  
 
-  
-
-</details>
 
 
   

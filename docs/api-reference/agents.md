@@ -78,26 +78,20 @@ CreateAgent API 的代理定義。
 
   
 
-<details>
-<summary>**agent_config**: `AntigravityAgentConfig` 代理的設定參數。</summary>
+??? note "**agent_config**: `AntigravityAgentConfig` 代理的設定參數。"
 
-  
+    **type**: required `object`
 
-  **type**: required `object`
+    值： `antigravity`
 
-  值： `antigravity`
+    **model**: `string`
 
-  **model**: `string`
+    代理推理所使用的模型。
 
-  代理推理所使用的模型。
+    **max_total_tokens**: `string`
 
-  **max_total_tokens**: `string`
+    代理執行期間的權杖總數上限。
 
-  代理執行期間的權杖總數上限。
-
-  
-
-</details>
 
 
   
@@ -107,247 +101,151 @@ CreateAgent API 的代理定義。
 
   
 
-<details>
-<summary>**base_environment**: `EnvironmentConfig` or `string` 代理的環境設定。</summary>
+??? note "**base_environment**: `EnvironmentConfig` or `string` 代理的環境設定。"
 
-  
+      **可能的類型：** 
 
-  **可能的類型：** 
 
-  
 
-<details>
-<summary>**EnvironmentConfig**</summary>
+    ??? note "**EnvironmentConfig**"
 
-  
+          自訂環境的設定。
 
-  自訂環境的設定。
+          **type**: required `object`
 
-  **type**: required `object`
+          值： `remote`
 
-  值： `remote`
 
-  
 
-<details>
-<summary>**sources**: `Source array`</summary>
+        ??? note "**sources**: `Source array`"
 
-  
+            ??? note "**type**: `string enum`"
 
-  
+                可能的值：
 
-<details>
-<summary>**type**: `string enum`</summary>
+                - `gcs`: Cloud Storage 值區。
+                - `inline`: 行內內容。
+                - `repository`: 一般儲存庫。來源 URL 中的通訊協定前置字元可識別提供者（例如 github://、gcs://）。
 
-  
 
-  可能的值：
 
-  - `gcs`: Cloud Storage 值區。
-  - `inline`: 行內內容。
-  - `repository`: 一般儲存庫。來源 URL 中的通訊協定前置字元可識別提供者（例如 github://、gcs://）。
+              **source**: `string`
 
-  
+              環境的來源。對於 Cloud Storage，這是 Cloud Storage 路徑；對於 GitHub，這是 GitHub 路徑。
 
-</details>
+              **target**: `string`
 
+              來源在環境中應出現的位置。
 
-  **source**: `string`
+              **content**: `string`
 
-  環境的來源。對於 Cloud Storage，這是 Cloud Storage 路徑；對於 GitHub，這是 GitHub 路徑。
+              當 `type` 為 `INLINE` 時的行內內容。
 
-  **target**: `string`
+              **encoding**: `string`
 
-  來源在環境中應出現的位置。
+              行內內容的選用編碼（例如 `base64`）。
 
-  **content**: `string`
 
-  當 `type` 為 `INLINE` 時的行內內容。
 
-  **encoding**: `string`
 
-  行內內容的選用編碼（例如 `base64`）。
 
-  
+        ??? note "**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。"
 
-</details>
+              **可能的類型：** 
 
 
-  
 
-<details>
-<summary>**network**: `EnvironmentNetworkEgressAllowlist` or `string enum` 環境的網路設定。</summary>
+            ??? note "**EnvironmentNetworkEgressAllowlist**"
 
-  
+                  環境的網路輸出設定。
 
-  **可能的類型：** 
 
-  
 
-<details>
-<summary>**EnvironmentNetworkEgressAllowlist**</summary>
+                ??? note "**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 即可封鎖所有網路輸出。"
 
-  
+                      **可能的類型：** 
 
-  環境的網路輸出設定。
 
-  
 
-<details>
-<summary>**allowlist**: `EgressRule array` or `string enum` 允許的網域及其設定清單。設為 `"disabled"` 即可封鎖所有網路輸出。</summary>
+                    ??? note "**EgressRule array**"
 
-  
+                        單一網域允許清單規則，可選擇性注入標頭。
 
-  **可能的類型：** 
+                        **domain**: required `string`
 
-  
+                        允許送出請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
 
-<details>
-<summary>**EgressRule array**</summary>
+                        **transform**: `object`
 
-  
+                        要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
 
-  單一網域允許清單規則，可選擇性注入標頭。
+                        **credential**: `string`
 
-  **domain**: required `string`
+                        選用。透過 ID 參照由伺服器管理的 Credential 資源。
 
-  允許送出請求的網域。支援萬用字元（例如 '*.googleapis.com'）。使用 '*' 可允許所有網域。
 
-  **transform**: `object`
 
-  要注入至符合此規則之請求的標頭。鍵：標頭名稱（例如 "Authorization"）。值：標頭值（例如 "Bearer your-token"）。
 
-  **credential**: `string`
 
-  選用。透過 ID 參照由伺服器管理的 Credential 資源。
+                    ??? note "**string enum**"
 
-  
+                        可能的值：
 
-</details>
+                        - `disabled`: 所有網路輸出皆被封鎖。
 
 
-  
 
-<details>
-<summary>**string enum**</summary>
 
-  
 
-  可能的值：
+            ??? note "**string enum**"
 
-  - `disabled`: 所有網路輸出皆被封鎖。
+                可能的值：
 
-  
+                - `disabled`: 所有網路輸出皆被封鎖。
 
-</details>
 
 
-  
+          **environment_id**: `string`
 
-</details>
+          選用。互動的環境 ID。若有指定，請求將更新現有環境，而非建立新環境。
 
 
-  
 
-</details>
+        ??? note "**env**: `object` or `string` 要在沙箱環境中設定的環境變數。"
 
+              **可能的類型：** 
 
-  
 
-<details>
-<summary>**string enum**</summary>
 
-  
+            ??? note "**string**"
 
-  可能的值：
+                直接的字串值。
 
-  - `disabled`: 所有網路輸出皆被封鎖。
 
-  
 
-</details>
 
 
-  
+        ??? note "**mode**: `string enum` 此環境的運算生命週期模式。"
 
-</details>
+            可能的值：
 
+            - `on_demand`: 此環境的運算生命週期模式。
+            - `self_hosted`: 此環境的運算生命週期模式。
 
-  **environment_id**: `string`
 
-  選用。互動的環境 ID。若有指定，請求將更新現有環境，而非建立新環境。
 
-  
+          **custom_config**: `object`
 
-<details>
-<summary>**env**: `object` or `string` 要在沙箱環境中設定的環境變數。</summary>
+          選用。傳遞至自行託管環境輪詢器的任意客戶自訂 JSON 設定。僅在 `mode` 為 `SELF_HOSTED` 時支援。
 
-  
 
-  **可能的類型：** 
 
-  
 
-<details>
-<summary>**string**</summary>
 
-  
+    ??? note "**string**"
 
-  直接的字串值。
+        直接的字串值。
 
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**mode**: `string enum` 此環境的運算生命週期模式。</summary>
-
-  
-
-  可能的值：
-
-  - `on_demand`: 此環境的運算生命週期模式。
-  - `self_hosted`: 此環境的運算生命週期模式。
-
-  
-
-</details>
-
-
-  **custom_config**: `object`
-
-  選用。傳遞至自行託管環境輪詢器的任意客戶自訂 JSON 設定。僅在 `mode` 為 `SELF_HOSTED` 時支援。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -357,181 +255,118 @@ CreateAgent API 的代理定義。
 
   
 
-<details>
-<summary>**tools**: `AgentTool array` 代理可使用的工具。</summary>
+??? note "**tools**: `AgentTool array` 代理可使用的工具。"
 
-  
+      **可能的類型：** 
 
-  **可能的類型：** 
 
-  
 
-<details>
-<summary>**CodeExecution**</summary>
+    ??? note "**CodeExecution**"
 
-  
+        模型可用來執行程式碼的工具。
 
-  模型可用來執行程式碼的工具。
+        **type**: required `object`
 
-  **type**: required `object`
+        值： `code_execution`
 
-  值： `code_execution`
 
-  
 
-</details>
 
 
-  
+    ??? note "**Function**"
 
-<details>
-<summary>**Function**</summary>
+        模型可使用的工具。
 
-  
+        **type**: required `object`
 
-  模型可使用的工具。
+        值： `function`
 
-  **type**: required `object`
+        **name**: `string`
 
-  值： `function`
+        函式的名稱。
 
-  **name**: `string`
+        **description**: `string`
 
-  函式的名稱。
+        函式的說明。
 
-  **description**: `string`
+        **parameters**: `object`
 
-  函式的說明。
+        函式參數的 JSON Schema。支援 JSON Schema 的子集。 `minLength`, `maxLength`, `minProperties`, `maxProperties`, `uniqueItems`, `contains`, `minContains`, and `maxContains` 會被忽略且不強制執行。
 
-  **parameters**: `object`
 
-  函式參數的 JSON Schema。支援 JSON Schema 的子集。 `minLength`, `maxLength`, `minProperties`, `maxProperties`, `uniqueItems`, `contains`, `minContains`, and `maxContains` 會被忽略且不強制執行。
 
-  
 
-</details>
 
+    ??? note "**GoogleSearch**"
 
-  
+          模型可用來搜尋 Google 的工具。
 
-<details>
-<summary>**GoogleSearch**</summary>
+          **type**: required `object`
 
-  
+          值： `google_search`
 
-  模型可用來搜尋 Google 的工具。
 
-  **type**: required `object`
 
-  值： `google_search`
+        ??? note "**search_types**: `string enum array` 要啟用的搜尋接地類型。"
 
-  
+            可能的值：
 
-<details>
-<summary>**search_types**: `string enum array` 要啟用的搜尋接地類型。</summary>
+            - `web_search`: 設定此欄位可啟用網路搜尋。僅傳回文字結果。
+            - `image_search`: 設定此欄位可啟用圖片搜尋。傳回圖片位元組。
 
-  
 
-  可能的值：
 
-  - `web_search`: 設定此欄位可啟用網路搜尋。僅傳回文字結果。
-  - `image_search`: 設定此欄位可啟用圖片搜尋。傳回圖片位元組。
 
-  
 
-</details>
+    ??? note "**McpServer**"
 
+          MCPServer 是模型可呼叫以執行動作的伺服器。
 
-  
+          **type**: required `object`
 
-</details>
+          值： `mcp_server`
 
+          **name**: `string`
 
-  
+          MCPServer 的名稱。
 
-<details>
-<summary>**McpServer**</summary>
+          **url**: `string`
 
-  
+          MCPServer 端點的完整 URL。範例： "https://api.example.com/mcp"
 
-  MCPServer 是模型可呼叫以執行動作的伺服器。
+          **headers**: `object`
 
-  **type**: required `object`
+          選用：視需要提供驗證標頭、逾時等欄位。
 
-  值： `mcp_server`
 
-  **name**: `string`
 
-  MCPServer 的名稱。
+        ??? note "**allowed_tools**: `AllowedTools array` 允許的工具。"
 
-  **url**: `string`
+            ??? note "**mode**: `string enum` 工具選擇的模式。"
 
-  MCPServer 端點的完整 URL。範例： "https://api.example.com/mcp"
+                可能的值：
 
-  **headers**: `object`
+                - `auto`: 自動選擇工具。
+                - `any`: 任一工具選擇。
+                - `none`: 不選擇工具。
+                - `validated`: 經驗證的工具選擇。
 
-  選用：視需要提供驗證標頭、逾時等欄位。
 
-  
 
-<details>
-<summary>**allowed_tools**: `AllowedTools array` 允許的工具。</summary>
+              **tools**: `string array`
 
-  
+              允許的工具名稱。
 
-  
 
-<details>
-<summary>**mode**: `string enum` 工具選擇的模式。</summary>
 
-  
 
-  可能的值：
 
-  - `auto`: 自動選擇工具。
-  - `any`: 任一工具選擇。
-  - `none`: 不選擇工具。
-  - `validated`: 經驗證的工具選擇。
+    ??? note "**UrlContext**"
 
-  
+        模型可用來取得 URL 內容脈絡的工具。
 
-</details>
+        **type**: required `object`
 
-
-  **tools**: `string array`
-
-  允許的工具名稱。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**UrlContext**</summary>
-
-  
-
-  模型可用來取得 URL 內容脈絡的工具。
-
-  **type**: required `object`
-
-  值： `url_context`
-
-  
-
-</details>
-
-
-  
-
-</details>
+        值： `url_context`
 
 

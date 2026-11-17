@@ -28,617 +28,457 @@
 
   
 
-<details>
-<summary>**input**: required `DecisionInputContent` or `DecisionInputContent array` or `string` 所有決策問題共用的輸入前置內容，只評估一次。</summary>
+??? note "**input**: required `DecisionInputContent` or `DecisionInputContent array` or `string` 所有決策問題共用的輸入前置內容，只評估一次。"
 
-  
+      **可能的類型**：
 
-  **可能的類型**：
 
-  
 
-<details>
-<summary>**AudioContent**</summary>
+    ??? note "**AudioContent**"
 
-  
+          音訊內容區塊。
 
-  音訊內容區塊。
+          **type**: required `object`
 
-  **type**: required `object`
+          值：`audio`
 
-  值：`audio`
+          **data**: `string`
 
-  **data**: `string`
+          音訊內容。
 
-  音訊內容。
+          **uri**: `string`
 
-  **uri**: `string`
+          音訊的 URI。
 
-  音訊的 URI。
+          **channels**: `integer`
 
-  **channels**: `integer`
+          音訊聲道數量。
 
-  音訊聲道數量。
+          **sample_rate**: `integer`
 
-  **sample_rate**: `integer`
+          音訊的取樣率。
 
-  音訊的取樣率。
 
-  
 
-<details>
-<summary>**mime_type**: `string enum` 音訊的 MIME 類型。</summary>
+        ??? note "**mime_type**: `string enum` 音訊的 MIME 類型。"
 
-  
+            可能的值：
 
-  可能的值：
+            - `audio/wav`：WAV 音訊格式。
+            - `audio/mp3`：MP3 音訊格式。
+            - `audio/aiff`：AIFF 音訊格式。
+            - `audio/aac`：AAC 音訊格式。
+            - `audio/ogg`：OGG 音訊格式。
+            - `audio/flac`：FLAC 音訊格式。
+            - `audio/mpeg`：MPEG 音訊格式。
+            - `audio/m4a`：M4A 音訊格式。
+            - `audio/l16`：L16 音訊格式。
+            - `audio/opus`：OPUS 音訊格式。
+            - `audio/alaw`：ALAW 音訊格式。
+            - `audio/mulaw`：MULAW 音訊格式。
+            - `audio/webm`：WEBM 音訊格式。
 
-  - `audio/wav`：WAV 音訊格式。
-  - `audio/mp3`：MP3 音訊格式。
-  - `audio/aiff`：AIFF 音訊格式。
-  - `audio/aac`：AAC 音訊格式。
-  - `audio/ogg`：OGG 音訊格式。
-  - `audio/flac`：FLAC 音訊格式。
-  - `audio/mpeg`：MPEG 音訊格式。
-  - `audio/m4a`：M4A 音訊格式。
-  - `audio/l16`：L16 音訊格式。
-  - `audio/opus`：OPUS 音訊格式。
-  - `audio/alaw`：ALAW 音訊格式。
-  - `audio/mulaw`：MULAW 音訊格式。
-  - `audio/webm`：WEBM 音訊格式。
 
-  
 
-</details>
 
 
-  
+    ??? note "**DocumentContent**"
 
-</details>
+          文件內容區塊。
 
+          **type**: required `object`
 
-  
+          值：`document`
 
-<details>
-<summary>**DocumentContent**</summary>
+          **data**: `string`
 
-  
+          文件內容。
 
-  文件內容區塊。
+          **uri**: `string`
 
-  **type**: required `object`
+          文件的 URI。
 
-  值：`document`
 
-  **data**: `string`
 
-  文件內容。
+        ??? note "**mime_type**: `string enum` 文件的 MIME 類型。"
 
-  **uri**: `string`
+            可能的值：
 
-  文件的 URI。
+            - `application/pdf`：PDF 文件格式。
+            - `text/csv`：CSV 文件格式。
+            - `application/vnd.openxmlformats-officedocument.presentationml.presentation`：PPTX 簡報格式。
+            - `application/vnd.ms-powerpoint`：PPT 簡報格式。
+            - `application/vnd.oasis.opendocument.presentation`：ODP 簡報格式。
+            - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`：DOCX 文件格式。
+            - `application/msword`：DOC 文件格式。
+            - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`：DOTX 文件範本格式。
+            - `application/vnd.oasis.opendocument.text`：ODT 文件格式。
+            - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`：XLSX 試算表格式。
+            - `application/vnd.ms-excel`：XLS 試算表格式。
+            - `application/vnd.oasis.opendocument.spreadsheet`：ODS 試算表格式。
 
-  
 
-<details>
-<summary>**mime_type**: `string enum` 文件的 MIME 類型。</summary>
 
-  
 
-  可能的值：
 
-  - `application/pdf`：PDF 文件格式。
-  - `text/csv`：CSV 文件格式。
-  - `application/vnd.openxmlformats-officedocument.presentationml.presentation`：PPTX 簡報格式。
-  - `application/vnd.ms-powerpoint`：PPT 簡報格式。
-  - `application/vnd.oasis.opendocument.presentation`：ODP 簡報格式。
-  - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`：DOCX 文件格式。
-  - `application/msword`：DOC 文件格式。
-  - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`：DOTX 文件範本格式。
-  - `application/vnd.oasis.opendocument.text`：ODT 文件格式。
-  - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`：XLSX 試算表格式。
-  - `application/vnd.ms-excel`：XLS 試算表格式。
-  - `application/vnd.oasis.opendocument.spreadsheet`：ODS 試算表格式。
+    ??? note "**ImageContent**"
 
-  
+          圖片內容區塊。
 
-</details>
+          **type**: required `object`
 
+          值：`image`
 
-  
+          **data**: `string`
 
-</details>
+          圖片內容。
 
+          **uri**: `string`
 
-  
+          圖片的 URI。
 
-<details>
-<summary>**ImageContent**</summary>
 
-  
 
-  圖片內容區塊。
+        ??? note "**resolution**: `MediaResolution` 媒體的解析度。"
 
-  **type**: required `object`
+            可能的值：
 
-  值：`image`
+            - `low`：低解析度。
+            - `medium`：中解析度。
+            - `high`：高解析度。
+            - `ultra_high`：超高解析度。
 
-  **data**: `string`
 
-  圖片內容。
 
-  **uri**: `string`
 
-  圖片的 URI。
 
-  
+        ??? note "**mime_type**: `string enum` 圖片的 MIME 類型。"
 
-<details>
-<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+            可能的值：
 
-  
+            - `image/png`：PNG 圖片格式。
+            - `image/jpeg`：JPEG 圖片格式。
+            - `image/webp`：WebP 圖片格式。
+            - `image/heic`：HEIC 圖片格式。
+            - `image/heif`：HEIF 圖片格式。
+            - `image/gif`：GIF 圖片格式。
+            - `image/bmp`：BMP 圖片格式。
+            - `image/tiff`：TIFF 圖片格式。
 
-  可能的值：
 
-  - `low`：低解析度。
-  - `medium`：中解析度。
-  - `high`：高解析度。
-  - `ultra_high`：超高解析度。
 
-  
 
-</details>
 
+    ??? note "**TextContent**"
 
-  
+          文字內容區塊。
 
-<details>
-<summary>**mime_type**: `string enum` 圖片的 MIME 類型。</summary>
+          **text**: required `string`
 
-  
+          文字內容。
 
-  可能的值：
+          **type**: required `object`
 
-  - `image/png`：PNG 圖片格式。
-  - `image/jpeg`：JPEG 圖片格式。
-  - `image/webp`：WebP 圖片格式。
-  - `image/heic`：HEIC 圖片格式。
-  - `image/heif`：HEIF 圖片格式。
-  - `image/gif`：GIF 圖片格式。
-  - `image/bmp`：BMP 圖片格式。
-  - `image/tiff`：TIFF 圖片格式。
+          值：`text`
 
-  
 
-</details>
 
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+              **可能的類型**：
 
-</details>
 
 
-  
+            ??? note "**FileCitation**"
 
-<details>
-<summary>**TextContent**</summary>
+                檔案引用註記。
 
-  
+                **type**: required `object`
 
-  文字內容區塊。
+                值：`file_citation`
 
-  **text**: required `string`
+                **document_uri**: `string`
 
-  文字內容。
+                檔案的 URI。
 
-  **type**: required `object`
+                **file_name**: `string`
 
-  值：`text`
+                檔案名稱。
 
-  
+                **source**: `string`
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                這段文字所歸屬的來源。
 
-  
+                **custom_metadata**: `object`
 
-  **可能的類型**：
+                使用者提供的擷取上下文相關中繼資料。
 
-  
+                **page_number**: `integer`
 
-<details>
-<summary>**FileCitation**</summary>
+                所引用文件的頁碼（如適用）。
 
-  
+                **media_id**: `string`
 
-  檔案引用註記。
+                圖片引用時的媒體 ID（如適用）。
 
-  **type**: required `object`
+                **start_index**: `integer`
 
-  值：`file_citation`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **document_uri**: `string`
+                **end_index**: `integer`
 
-  檔案的 URI。
+                所歸屬區段的終點（不含該位置）。
 
-  **file_name**: `string`
 
-  檔案名稱。
 
-  **source**: `string`
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
+            ??? note "**PlaceCitation**"
 
-  使用者提供的擷取上下文相關中繼資料。
+                  地點引用註記。
 
-  **page_number**: `integer`
+                  **type**: required `object`
 
-  所引用文件的頁碼（如適用）。
+                  值：`place_citation`
 
-  **media_id**: `string`
+                  **place_id**: `string`
 
-  圖片引用時的媒體 ID（如適用）。
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  **start_index**: `integer`
+                  **name**: `string`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                  地點的標題。
 
-  **end_index**: `integer`
+                  **url**: `string`
 
-  所歸屬區段的終點（不含該位置）。
+                  地點的 URI 參照。
 
-  
 
-</details>
 
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  
+                    **title**: `string`
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    評論的標題。
 
-  
+                    **url**: `string`
 
-  地點引用註記。
+                    對應到 Google 地圖上使用者評論的連結。
 
-  **type**: required `object`
+                    **review_id**: `string`
 
-  值：`place_citation`
+                    評論片段的 ID。
 
-  **place_id**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
 
-  **name**: `string`
+                  **start_index**: `integer`
 
-  地點的標題。
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **url**: `string`
+                  **end_index**: `integer`
 
-  地點的 URI 參照。
+                  所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
 
-  **title**: `string`
 
-  評論的標題。
+            ??? note "**SpeechAnnotation**"
 
-  **url**: `string`
+                文字內容的語音註記。
 
-  對應到 Google 地圖上使用者評論的連結。
+                **type**: required `object`
 
-  **review_id**: `string`
+                值：`speech_metadata`
 
-  評論片段的 ID。
+                **speaker**: `string`
 
-  
+                要與這個發言回合建立關聯的說話者。
 
-</details>
+                **style**: `string`
 
+                語音合成的風格指令。
 
-  **start_index**: `integer`
+                **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+                **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+            ??? note "**UrlCitation**"
 
-  
+                URL 引用註記。
 
-  文字內容的語音註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`url_citation`
 
-  值：`speech_metadata`
+                **url**: `string`
 
-  **speaker**: `string`
+                URL。
 
-  要與這個發言回合建立關聯的說話者。
+                **title**: `string`
 
-  **style**: `string`
+                URL 的標題。
 
-  語音合成的風格指令。
+                **start_index**: `integer`
 
-  **start_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **end_index**: `integer`
 
-  **end_index**: `integer`
+                所歸屬區段的終點（不含該位置）。
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
+            ??? note "**WordInfo**"
 
-<details>
-<summary>**UrlCitation**</summary>
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  
+                **type**: required `object`
 
-  URL 引用註記。
+                值：`word_info`
 
-  **type**: required `object`
+                **text**: `string`
 
-  值：`url_citation`
+                轉錄出的單字。
 
-  **url**: `string`
+                **start_offset**: `string`
 
-  URL。
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **title**: `string`
+                **end_offset**: `string`
 
-  URL 的標題。
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **start_index**: `integer`
+                **speaker**: `string`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **end_index**: `integer`
+                **start_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  
+                **end_index**: `integer`
 
-</details>
+                所歸屬區段的終點（不含該位置）。
 
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
 
-  
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+    ??? note "**VideoContent**"
 
-  **type**: required `object`
+          影片內容區塊。
 
-  值：`word_info`
+          **type**: required `object`
 
-  **text**: `string`
+          值：`video`
 
-  轉錄出的單字。
+          **data**: `string`
 
-  **start_offset**: `string`
+          影片內容。
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+          **uri**: `string`
 
-  **end_offset**: `string`
+          影片的 URI。
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **speaker**: `string`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+        ??? note "**resolution**: `MediaResolution` 媒體的解析度。"
 
-  **start_index**: `integer`
+            可能的值：
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+            - `low`：低解析度。
+            - `medium`：中解析度。
+            - `high`：高解析度。
+            - `ultra_high`：超高解析度。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
+        ??? note "**processing**: `MediaProcessing` or `string enum` 模型如何處理這部影片以進行理解。"
 
-  
+              **可能的類型**：
 
-</details>
 
 
-  
+            ??? note "**MediaProcessing**"
 
-</details>
+                **type**: required `object`
 
+                值：`static`
 
-  
+                **start_offset**: `string`
 
-<details>
-<summary>**VideoContent**</summary>
+                選填。區段開始時間。以十進位秒數表示，後面加上 's' 後綴，例如 "10.5s"。必須為非負數。
 
-  
+                **end_offset**: `string`
 
-  影片內容區塊。
+                選填。區段結束時間。以十進位秒數表示，後面加上 's' 後綴，例如 "30s"。必須為非負數，且在設定了 `start_offset` 時，必須大於 `start_offset`。
 
-  **type**: required `object`
+                **fps**: `number`
 
-  值：`video`
+                選填。影片影格率取樣密度。
 
-  **data**: `string`
 
-  影片內容。
 
-  **uri**: `string`
 
-  影片的 URI。
 
-  
+            ??? note "**string enum**"
 
-<details>
-<summary>**resolution**: `MediaResolution` 媒體的解析度。</summary>
+                可能的值：
 
-  
+                - `static`：以固定速率擷取影格。所有影格都會放入上下文中。
+                - `agentic`：由模型驅動的動態導覽。
 
-  可能的值：
 
-  - `low`：低解析度。
-  - `medium`：中解析度。
-  - `high`：高解析度。
-  - `ultra_high`：超高解析度。
 
-  
+          **name**: `string`
 
-</details>
+          使用者為此內容區塊定義的名稱。模型可以在最終回應中參照此名稱。
 
 
-  
 
-<details>
-<summary>**processing**: `MediaProcessing` or `string enum` 模型如何處理這部影片以進行理解。</summary>
+        ??? note "**mime_type**: `string enum` 影片的 MIME 類型。"
 
-  
+            可能的值：
 
-  **可能的類型**：
+            - `video/mp4`：MP4 影片格式。
+            - `video/mpeg`：MPEG 影片格式。
+            - `video/mpg`：MPG 影片格式。
+            - `video/mov`：MOV 影片格式。
+            - `video/avi`：AVI 影片格式。
+            - `video/x-flv`：FLV 影片格式。
+            - `video/webm`：WebM 影片格式。
+            - `video/wmv`：WMV 影片格式。
+            - `video/3gpp`：3GPP 影片格式。
 
-  
 
-<details>
-<summary>**MediaProcessing**</summary>
 
-  
 
-  **type**: required `object`
 
-  值：`static`
+    ??? note "**DecisionInputContent array**"
 
-  **start_offset**: `string`
+        清單中的每個項目為下列其中之一：`AudioContent`、`DocumentContent`、`ImageContent`、`TextContent`、`VideoContent`。
 
-  選填。區段開始時間。以十進位秒數表示，後面加上 's' 後綴，例如 "10.5s"。必須為非負數。
 
-  **end_offset**: `string`
 
-  選填。區段結束時間。以十進位秒數表示，後面加上 's' 後綴，例如 "30s"。必須為非負數，且在設定了 `start_offset` 時，必須大於 `start_offset`。
 
-  **fps**: `number`
 
-  選填。影片影格率取樣密度。
+    ??? note "**string**"
 
-  
+        直接的字串值。
 
-</details>
-
-
-  
-
-<details>
-<summary>**string enum**</summary>
-
-  
-
-  可能的值：
-
-  - `static`：以固定速率擷取影格。所有影格都會放入上下文中。
-  - `agentic`：由模型驅動的動態導覽。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  **name**: `string`
-
-  使用者為此內容區塊定義的名稱。模型可以在最終回應中參照此名稱。
-
-  
-
-<details>
-<summary>**mime_type**: `string enum` 影片的 MIME 類型。</summary>
-
-  
-
-  可能的值：
-
-  - `video/mp4`：MP4 影片格式。
-  - `video/mpeg`：MPEG 影片格式。
-  - `video/mpg`：MPG 影片格式。
-  - `video/mov`：MOV 影片格式。
-  - `video/avi`：AVI 影片格式。
-  - `video/x-flv`：FLV 影片格式。
-  - `video/webm`：WebM 影片格式。
-  - `video/wmv`：WMV 影片格式。
-  - `video/3gpp`：3GPP 影片格式。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**DecisionInputContent array**</summary>
-
-  
-
-  清單中的每個項目為下列其中之一：`AudioContent`、`DocumentContent`、`ImageContent`、`TextContent`、`VideoContent`。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -1584,219 +1424,141 @@
 
   
 
-<details>
-<summary>**usage**: `Usage` 僅供輸出。此決策評估請求的權杖用量統計。</summary>
+??? note "**usage**: `Usage` 僅供輸出。此決策評估請求的權杖用量統計。"
 
-  
+      **total_input_tokens**: `integer`
 
-  **total_input_tokens**: `integer`
+      提示詞（上下文）中的權杖數量。
 
-  提示詞（上下文）中的權杖數量。
+      **initial_input_tokens**: `integer`
 
-  **initial_input_tokens**: `integer`
+      此互動第一個回合所使用的輸入權杖數量。
 
-  此互動第一個回合所使用的輸入權杖數量。
 
-  
 
-<details>
-<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。</summary>
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  
+            可能的值：
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-</details>
 
 
-  **tokens**: `integer`
+      **total_cached_tokens**: `integer`
 
-  該模態的權杖數量。
+      提示詞中已快取部分（快取內容）的權杖數量。
 
-  
 
-</details>
 
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
 
-  **total_cached_tokens**: `integer`
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  提示詞中已快取部分（快取內容）的權杖數量。
+            可能的值：
 
-  
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-<details>
-<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。</summary>
 
-  
 
-  
+          **tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+          該模態的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+      **total_output_tokens**: `integer`
 
-  
+      所有生成回應的權杖總數。
 
-</details>
 
 
-  **tokens**: `integer`
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
 
-  該模態的權杖數量。
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  
+            可能的值：
 
-</details>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
 
-  **total_output_tokens**: `integer`
 
-  所有生成回應的權杖總數。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-<details>
-<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。</summary>
 
-  
 
-  
+      **total_tool_use_tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+      工具使用提示詞中的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-</details>
+            可能的值：
 
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  **tokens**: `integer`
 
-  該模態的權杖數量。
 
-  
+          **tokens**: `integer`
 
-</details>
+          該模態的權杖數量。
 
 
-  **total_tool_use_tokens**: `integer`
 
-  工具使用提示詞中的權杖數量。
+      **total_thought_tokens**: `integer`
 
-  
+      思考模型的思考權杖數量。
 
-<details>
-<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。</summary>
+      **total_tokens**: `integer`
 
-  
+      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
 
-  
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
 
-  
+    ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
 
-  可能的值：
+        ??? note "**type**: `string enum` 與計數對應的接地工具類型。"
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+            可能的值：
 
-  
+            - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+            - `google_maps`：使用 Google 地圖接地。
 
-</details>
 
 
-  **tokens**: `integer`
+          **count**: `integer`
 
-  該模態的權杖數量。
+          接地工具的計數數量。
 
-  
-
-</details>
-
-
-  **total_thought_tokens**: `integer`
-
-  思考模型的思考權杖數量。
-
-  **total_tokens**: `integer`
-
-  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
-
-  
-
-<details>
-<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
-
-  
-
-  
-
-<details>
-<summary>**type**: `string enum` 與計數對應的接地工具類型。</summary>
-
-  
-
-  可能的值：
-
-  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
-  - `google_maps`：使用 Google 地圖接地。
-
-  
-
-</details>
-
-
-  **count**: `integer`
-
-  接地工具的計數數量。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -1939,22 +1701,16 @@
 
   
 
-<details>
-<summary>**block_reason**: `string enum` 選填。若有設定，表示輸入已被封鎖，不會傳回任何答案。</summary>
+??? note "**block_reason**: `string enum` 選填。若有設定，表示輸入已被封鎖，不會傳回任何答案。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `safety`：提示詞因安全因素遭到封鎖。
+    - `other`：提示詞因不明原因遭到封鎖。
+    - `blocklist`：提示詞因含有術語封鎖清單中的詞彙遭到封鎖。
+    - `prohibited_content`：提示詞因含有禁止內容遭到封鎖。
+    - `image_safety`：提示詞因圖片內容不安全遭到封鎖。
 
-  - `safety`：提示詞因安全因素遭到封鎖。
-  - `other`：提示詞因不明原因遭到封鎖。
-  - `blocklist`：提示詞因含有術語封鎖清單中的詞彙遭到封鎖。
-  - `prohibited_content`：提示詞因含有禁止內容遭到封鎖。
-  - `image_safety`：提示詞因圖片內容不安全遭到封鎖。
-
-  
-
-</details>
 
 
   
@@ -1965,5 +1721,4 @@
   **block_reason_message**: `string`
 
   選填。詳細說明封鎖原因的訊息（選填）。
-
 

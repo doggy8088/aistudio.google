@@ -104,32 +104,18 @@
 
   
 
-<details>
-<summary>**metadata**: `Union type` 檔案的後設資料。</summary>
+??? note "**metadata**: `Union type` 檔案的後設資料。"
 
-  
-
-  `metadata` 聯合欄位只能是下列其中之一：
-
-  
-
-<details>
-<summary>**videoMetadata**: `VideoFileMetadata` 僅供輸出。影片的後設資料。</summary>
-
-  
-
-  **videoDuration**: `string`
-
-  影片的長度。
-
-  
-
-</details>
+      `metadata` 聯合欄位只能是下列其中之一：
 
 
-  
 
-</details>
+    ??? note "**videoMetadata**: `VideoFileMetadata` 僅供輸出。影片的後設資料。"
+
+        **videoDuration**: `string`
+
+        影片的長度。
+
 
 
   
@@ -229,21 +215,15 @@
 
   
 
-<details>
-<summary>**state**: `string enum` 僅供輸出。檔案的處理狀態。</summary>
+??? note "**state**: `string enum` 僅供輸出。檔案的處理狀態。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `STATE_UNSPECIFIED`：預設值。省略狀態時即使用此值。
+    - `PROCESSING`：檔案正在處理中，尚無法用於推論。
+    - `ACTIVE`：檔案已處理完成，可用於推論。
+    - `FAILED`：檔案處理失敗。
 
-  - `STATE_UNSPECIFIED`：預設值。省略狀態時即使用此值。
-  - `PROCESSING`：檔案正在處理中，尚無法用於推論。
-  - `ACTIVE`：檔案已處理完成，可用於推論。
-  - `FAILED`：檔案處理失敗。
-
-  
-
-</details>
 
 
   
@@ -253,21 +233,15 @@
 
   
 
-<details>
-<summary>**source**: `string enum` 檔案的來源。</summary>
+??? note "**source**: `string enum` 檔案的來源。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `SOURCE_UNSPECIFIED`：未指定來源時使用。
+    - `UPLOADED`：表示檔案由使用者上傳。
+    - `GENERATED`：表示檔案由 Google 產生。
+    - `REGISTERED`：表示檔案為已註冊的檔案，即 Google Cloud Storage 檔案。
 
-  - `SOURCE_UNSPECIFIED`：未指定來源時使用。
-  - `UPLOADED`：表示檔案由使用者上傳。
-  - `GENERATED`：表示檔案由 Google 產生。
-  - `REGISTERED`：表示檔案為已註冊的檔案，即 Google Cloud Storage 檔案。
-
-  
-
-</details>
 
 
   
@@ -313,5 +287,4 @@
   **details**: `object array`
 
   承載錯誤詳細資訊的訊息清單。API 可使用一組通用的訊息類型。
-
 

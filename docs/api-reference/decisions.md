@@ -36,219 +36,141 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**usage**: `Usage` 僅供輸出。此決策評估請求的權杖用量統計。</summary>
+??? note "**usage**: `Usage` 僅供輸出。此決策評估請求的權杖用量統計。"
 
-  
+      **total_input_tokens**: `integer`
 
-  **total_input_tokens**: `integer`
+      提示詞（上下文）中的權杖數量。
 
-  提示詞（上下文）中的權杖數量。
+      **initial_input_tokens**: `integer`
 
-  **initial_input_tokens**: `integer`
+      此互動第一個回合所使用的輸入權杖數量。
 
-  此互動第一個回合所使用的輸入權杖數量。
 
-  
 
-<details>
-<summary>**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。</summary>
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  
+            可能的值：
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-</details>
 
 
-  **tokens**: `integer`
+      **total_cached_tokens**: `integer`
 
-  該模態的權杖數量。
+      提示詞中已快取部分（快取內容）的權杖數量。
 
-  
 
-</details>
 
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
 
-  **total_cached_tokens**: `integer`
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  提示詞中已快取部分（快取內容）的權杖數量。
+            可能的值：
 
-  
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-<details>
-<summary>**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。</summary>
 
-  
 
-  
+          **tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+          該模態的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+      **total_output_tokens**: `integer`
 
-  
+      所有生成回應的權杖總數。
 
-</details>
 
 
-  **tokens**: `integer`
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
 
-  該模態的權杖數量。
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-  
+            可能的值：
 
-</details>
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
 
-  **total_output_tokens**: `integer`
 
-  所有生成回應的權杖總數。
+          **tokens**: `integer`
 
-  
+          該模態的權杖數量。
 
-<details>
-<summary>**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。</summary>
 
-  
 
-  
+      **total_tool_use_tokens**: `integer`
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
+      工具使用提示詞中的權杖數量。
 
-  
 
-  可能的值：
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
 
-  
+        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
 
-</details>
+            可能的值：
 
+            - `text`：表示模型應傳回文字。
+            - `image`：表示模型應傳回圖片。
+            - `audio`：表示模型應傳回音訊。
+            - `video`：表示模型應傳回影片。
+            - `document`：表示模型應傳回文件。
 
-  **tokens**: `integer`
 
-  該模態的權杖數量。
 
-  
+          **tokens**: `integer`
 
-</details>
+          該模態的權杖數量。
 
 
-  **total_tool_use_tokens**: `integer`
 
-  工具使用提示詞中的權杖數量。
+      **total_thought_tokens**: `integer`
 
-  
+      思考模型的思考權杖數量。
 
-<details>
-<summary>**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。</summary>
+      **total_tokens**: `integer`
 
-  
+      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
 
-  
 
-<details>
-<summary>**modality**: `ResponseModality` 與權杖數量對應的模態。</summary>
 
-  
+    ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
 
-  可能的值：
+        ??? note "**type**: `string enum` 與計數對應的接地工具類型。"
 
-  - `text`：表示模型應傳回文字。
-  - `image`：表示模型應傳回圖片。
-  - `audio`：表示模型應傳回音訊。
-  - `video`：表示模型應傳回影片。
-  - `document`：表示模型應傳回文件。
+            可能的值：
 
-  
+            - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+            - `google_maps`：使用 Google 地圖接地。
 
-</details>
 
 
-  **tokens**: `integer`
+          **count**: `integer`
 
-  該模態的權杖數量。
+          接地工具的計數數量。
 
-  
-
-</details>
-
-
-  **total_thought_tokens**: `integer`
-
-  思考模型的思考權杖數量。
-
-  **total_tokens**: `integer`
-
-  互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
-
-  
-
-<details>
-<summary>**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。</summary>
-
-  
-
-  
-
-<details>
-<summary>**type**: `string enum` 與計數對應的接地工具類型。</summary>
-
-  
-
-  可能的值：
-
-  - `google_search`：使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
-  - `google_maps`：使用 Google 地圖接地。
-
-  
-
-</details>
-
-
-  **count**: `integer`
-
-  接地工具的計數數量。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -268,1746 +190,1366 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 **多型類型**：
 
 
-<details>
-<summary>**[ChoiceQuestion](/api-reference/decisions/#Resource:ChoiceQuestion)**</summary>
+??? note "**[ChoiceQuestion](/api-reference/decisions/#Resource:ChoiceQuestion)**"
 
-  
+      在互斥選項中單選的分類決策
+      問題。
 
-  在互斥選項中單選的分類決策
-  問題。
 
-  
-  **criteria**: required `object`
+      **criteria**: required `object`
 
-  可供選擇的互斥選項（2 到 255 個選項），將選項 ID 對應至選填的說明或評分標準。選項 ID 不得為空，且不得包含控制字元或開頭／結尾空白。
+      可供選擇的互斥選項（2 到 255 個選項），將選項 ID 對應至選填的說明或評分標準。選項 ID 不得為空，且不得包含控制字元或開頭／結尾空白。
 
-  
 
----
 
+    ---
 
-  
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
 
-  
 
-  **可能的類型**： 
+    ??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  
+          **可能的類型**： 
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
 
-  
 
-  文字內容區塊。
+        ??? note "**DecisionInstructionContent**"
 
-  **text**: required `string`
+              文字內容區塊。
 
-  文字內容。
+              **text**: required `string`
 
-  **type**: required `object`
+              文字內容。
 
-  值：`text`
+              **type**: required `object`
 
-  
+              值：`text`
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
 
-  
 
-  **可能的類型**： 
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+                  **可能的類型**： 
 
-<details>
-<summary>**FileCitation**</summary>
 
-  
 
-  檔案引用註記。
+                ??? note "**FileCitation**"
 
-  **type**: required `object`
+                    檔案引用註記。
 
-  值：`file_citation`
+                    **type**: required `object`
 
-  **document_uri**: `string`
+                    值：`file_citation`
 
-  檔案的 URI。
+                    **document_uri**: `string`
 
-  **file_name**: `string`
+                    檔案的 URI。
 
-  檔案名稱。
+                    **file_name**: `string`
 
-  **source**: `string`
+                    檔案名稱。
 
-  這段文字所歸屬的來源。
+                    **source**: `string`
 
-  **custom_metadata**: `object`
+                    這段文字所歸屬的來源。
 
-  使用者提供的擷取上下文相關中繼資料。
+                    **custom_metadata**: `object`
 
-  **page_number**: `integer`
+                    使用者提供的擷取上下文相關中繼資料。
 
-  所引用文件的頁碼（如適用）。
+                    **page_number**: `integer`
 
-  **media_id**: `string`
+                    所引用文件的頁碼（如適用）。
 
-  圖片引用時的媒體 ID（如適用）。
+                    **media_id**: `string`
 
-  **start_index**: `integer`
+                    圖片引用時的媒體 ID（如適用）。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **start_index**: `integer`
 
-  **end_index**: `integer`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  所歸屬區段的終點（不含該位置）。
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-<details>
-<summary>**PlaceCitation**</summary>
 
-  
+                ??? note "**PlaceCitation**"
 
-  地點引用註記。
+                      地點引用註記。
 
-  **type**: required `object`
+                      **type**: required `object`
 
-  值：`place_citation`
+                      值：`place_citation`
 
-  **place_id**: `string`
+                      **place_id**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                      地點的 ID，格式為 `places/{place_id}`。
 
-  **name**: `string`
+                      **name**: `string`
 
-  地點的標題。
+                      地點的標題。
 
-  **url**: `string`
+                      **url**: `string`
 
-  地點的 URI 參照。
+                      地點的 URI 參照。
 
-  
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  **title**: `string`
+                        **title**: `string`
 
-  評論的標題。
+                        評論的標題。
 
-  **url**: `string`
+                        **url**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
+                        對應到 Google 地圖上使用者評論的連結。
 
-  **review_id**: `string`
+                        **review_id**: `string`
 
-  評論片段的 ID。
+                        評論片段的 ID。
 
-  
 
-</details>
 
+                      **start_index**: `integer`
 
-  **start_index**: `integer`
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                      **end_index**: `integer`
 
-  **end_index**: `integer`
+                      所歸屬區段的終點（不含該位置）。
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
+                ??? note "**SpeechAnnotation**"
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+                    文字內容的語音註記。
 
-  
+                    **type**: required `object`
 
-  文字內容的語音註記。
+                    值：`speech_metadata`
 
-  **type**: required `object`
+                    **speaker**: `string`
 
-  值：`speech_metadata`
+                    要與這個發言回合建立關聯的說話者。
 
-  **speaker**: `string`
+                    **style**: `string`
 
-  要與這個發言回合建立關聯的說話者。
+                    語音合成的風格指令。
 
-  **style**: `string`
+                    **start_index**: `integer`
 
-  語音合成的風格指令。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **start_index**: `integer`
+                    **end_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    所歸屬區段的終點（不含該位置）。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
+                ??? note "**UrlCitation**"
 
-  
+                    URL 引用註記。
 
-<details>
-<summary>**UrlCitation**</summary>
+                    **type**: required `object`
 
-  
+                    值：`url_citation`
 
-  URL 引用註記。
+                    **url**: `string`
 
-  **type**: required `object`
+                    URL。
 
-  值：`url_citation`
+                    **title**: `string`
 
-  **url**: `string`
+                    URL 的標題。
 
-  URL。
+                    **start_index**: `integer`
 
-  **title**: `string`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  URL 的標題。
+                    **end_index**: `integer`
 
-  **start_index**: `integer`
+                    所歸屬區段的終點（不含該位置）。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
+                ??? note "**WordInfo**"
 
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  
+                    **type**: required `object`
 
-<details>
-<summary>**WordInfo**</summary>
+                    值：`word_info`
 
-  
+                    **text**: `string`
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                    轉錄出的單字。
 
-  **type**: required `object`
+                    **start_offset**: `string`
 
-  值：`word_info`
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **text**: `string`
+                    **end_offset**: `string`
 
-  轉錄出的單字。
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **start_offset**: `string`
+                    **speaker**: `string`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **end_offset**: `string`
+                    **start_index**: `integer`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **speaker**: `string`
+                    **end_index**: `integer`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+                    所歸屬區段的終點（不含該位置）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+        ??? note "**DecisionInstructionContent array**"
 
-</details>
+              文字內容區塊。
 
+              **text**: required `string`
 
-  
+              文字內容。
 
-</details>
+              **type**: required `object`
 
+              值：`text`
 
-  
 
-</details>
 
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+                  **可能的類型**： 
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
 
-  
 
-  文字內容區塊。
+                ??? note "**FileCitation**"
 
-  **text**: required `string`
+                    檔案引用註記。
 
-  文字內容。
+                    **type**: required `object`
 
-  **type**: required `object`
+                    值：`file_citation`
 
-  值：`text`
+                    **document_uri**: `string`
 
-  
+                    檔案的 URI。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                    **file_name**: `string`
 
-  
+                    檔案名稱。
 
-  **可能的類型**： 
+                    **source**: `string`
 
-  
+                    這段文字所歸屬的來源。
 
-<details>
-<summary>**FileCitation**</summary>
+                    **custom_metadata**: `object`
 
-  
+                    使用者提供的擷取上下文相關中繼資料。
 
-  檔案引用註記。
+                    **page_number**: `integer`
 
-  **type**: required `object`
+                    所引用文件的頁碼（如適用）。
 
-  值：`file_citation`
+                    **media_id**: `string`
 
-  **document_uri**: `string`
+                    圖片引用時的媒體 ID（如適用）。
 
-  檔案的 URI。
+                    **start_index**: `integer`
 
-  **file_name**: `string`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  檔案名稱。
+                    **end_index**: `integer`
 
-  **source**: `string`
+                    所歸屬區段的終點（不含該位置）。
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
 
-  **page_number**: `integer`
 
-  所引用文件的頁碼（如適用）。
+                ??? note "**PlaceCitation**"
 
-  **media_id**: `string`
+                      地點引用註記。
 
-  圖片引用時的媒體 ID（如適用）。
+                      **type**: required `object`
 
-  **start_index**: `integer`
+                      值：`place_citation`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                      **place_id**: `string`
 
-  **end_index**: `integer`
+                      地點的 ID，格式為 `places/{place_id}`。
 
-  所歸屬區段的終點（不含該位置）。
+                      **name**: `string`
 
-  
+                      地點的標題。
 
-</details>
+                      **url**: `string`
 
+                      地點的 URI 參照。
 
-  
 
-<details>
-<summary>**PlaceCitation**</summary>
 
-  
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  地點引用註記。
+                        **title**: `string`
 
-  **type**: required `object`
+                        評論的標題。
 
-  值：`place_citation`
+                        **url**: `string`
 
-  **place_id**: `string`
+                        對應到 Google 地圖上使用者評論的連結。
 
-  地點的 ID，格式為 `places/{place_id}`。
+                        **review_id**: `string`
 
-  **name**: `string`
+                        評論片段的 ID。
 
-  地點的標題。
 
-  **url**: `string`
 
-  地點的 URI 參照。
+                      **start_index**: `integer`
 
-  
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                      **end_index**: `integer`
 
-  
+                      所歸屬區段的終點（不含該位置）。
 
-  **title**: `string`
 
-  評論的標題。
 
-  **url**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
 
-  **review_id**: `string`
+                ??? note "**SpeechAnnotation**"
 
-  評論片段的 ID。
+                    文字內容的語音註記。
 
-  
+                    **type**: required `object`
 
-</details>
+                    值：`speech_metadata`
 
+                    **speaker**: `string`
 
-  **start_index**: `integer`
+                    要與這個發言回合建立關聯的說話者。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **style**: `string`
 
-  **end_index**: `integer`
+                    語音合成的風格指令。
 
-  所歸屬區段的終點（不含該位置）。
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-</details>
+                    **end_index**: `integer`
 
+                    所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
 
-  文字內容的語音註記。
 
-  **type**: required `object`
+                ??? note "**UrlCitation**"
 
-  值：`speech_metadata`
+                    URL 引用註記。
 
-  **speaker**: `string`
+                    **type**: required `object`
 
-  要與這個發言回合建立關聯的說話者。
+                    值：`url_citation`
 
-  **style**: `string`
+                    **url**: `string`
 
-  語音合成的風格指令。
+                    URL。
 
-  **start_index**: `integer`
+                    **title**: `string`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    URL 的標題。
 
-  **end_index**: `integer`
+                    **start_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  
+                    **end_index**: `integer`
 
-</details>
+                    所歸屬區段的終點（不含該位置）。
 
 
-  
 
-<details>
-<summary>**UrlCitation**</summary>
 
-  
 
-  URL 引用註記。
+                ??? note "**WordInfo**"
 
-  **type**: required `object`
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  值：`url_citation`
+                    **type**: required `object`
 
-  **url**: `string`
+                    值：`word_info`
 
-  URL。
+                    **text**: `string`
 
-  **title**: `string`
+                    轉錄出的單字。
 
-  URL 的標題。
+                    **start_offset**: `string`
 
-  **start_index**: `integer`
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **end_offset**: `string`
 
-  **end_index**: `integer`
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  所歸屬區段的終點（不含該位置）。
+                    **speaker**: `string`
 
-  
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-</details>
+                    **start_index**: `integer`
 
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  
+                    **end_index**: `integer`
 
-<details>
-<summary>**WordInfo**</summary>
+                    所歸屬區段的終點（不含該位置）。
 
-  
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **type**: required `object`
 
-  值：`word_info`
 
-  **text**: `string`
+        ??? note "**string**"
 
-  轉錄出的單字。
+            直接的字串值。
 
-  **start_offset**: `string`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **end_offset**: `string`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **speaker**: `string`
+    ---
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_index**: `integer`
+      **type**: required `object`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+      值：`choice`
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+??? note "**[NoulQuestion](/api-reference/decisions/#Resource:NoulQuestion)**"
 
-</details>
+      二元（true / false）決策問題。
 
 
-  
 
-</details>
 
+    ??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  
+          **可能的類型**： 
 
-</details>
 
 
-  
+        ??? note "**DecisionInstructionContent**"
 
-<details>
-<summary>**string**</summary>
+              文字內容區塊。
 
-  
+              **text**: required `string`
 
-  直接的字串值。
+              文字內容。
 
-  
+              **type**: required `object`
 
-</details>
+              值：`text`
 
 
-  
 
-</details>
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
+                  **可能的類型**： 
 
-  
 
----
 
+                ??? note "**FileCitation**"
 
-  **type**: required `object`
+                    檔案引用註記。
 
-  值：`choice`
+                    **type**: required `object`
 
-  
+                    值：`file_citation`
 
-</details>
+                    **document_uri**: `string`
 
+                    檔案的 URI。
 
-<details>
-<summary>**[NoulQuestion](/api-reference/decisions/#Resource:NoulQuestion)**</summary>
+                    **file_name**: `string`
 
-  
+                    檔案名稱。
 
-  二元（true / false）決策問題。
+                    **source**: `string`
 
-  
-  
+                    這段文字所歸屬的來源。
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
+                    **custom_metadata**: `object`
 
-  
+                    使用者提供的擷取上下文相關中繼資料。
 
-  **可能的類型**： 
+                    **page_number**: `integer`
 
-  
+                    所引用文件的頁碼（如適用）。
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
+                    **media_id**: `string`
 
-  
+                    圖片引用時的媒體 ID（如適用）。
 
-  文字內容區塊。
+                    **start_index**: `integer`
 
-  **text**: required `string`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  文字內容。
+                    **end_index**: `integer`
 
-  **type**: required `object`
+                    所歸屬區段的終點（不含該位置）。
 
-  值：`text`
 
-  
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
 
-  
 
-  **可能的類型**： 
+                ??? note "**PlaceCitation**"
 
-  
+                      地點引用註記。
 
-<details>
-<summary>**FileCitation**</summary>
+                      **type**: required `object`
 
-  
+                      值：`place_citation`
 
-  檔案引用註記。
+                      **place_id**: `string`
 
-  **type**: required `object`
+                      地點的 ID，格式為 `places/{place_id}`。
 
-  值：`file_citation`
+                      **name**: `string`
 
-  **document_uri**: `string`
+                      地點的標題。
 
-  檔案的 URI。
+                      **url**: `string`
 
-  **file_name**: `string`
+                      地點的 URI 參照。
 
-  檔案名稱。
 
-  **source**: `string`
 
-  這段文字所歸屬的來源。
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  **custom_metadata**: `object`
+                        **title**: `string`
 
-  使用者提供的擷取上下文相關中繼資料。
+                        評論的標題。
 
-  **page_number**: `integer`
+                        **url**: `string`
 
-  所引用文件的頁碼（如適用）。
+                        對應到 Google 地圖上使用者評論的連結。
 
-  **media_id**: `string`
+                        **review_id**: `string`
 
-  圖片引用時的媒體 ID（如適用）。
+                        評論片段的 ID。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+                      **start_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  
+                      **end_index**: `integer`
 
-</details>
+                      所歸屬區段的終點（不含該位置）。
 
 
-  
 
-<details>
-<summary>**PlaceCitation**</summary>
 
-  
 
-  地點引用註記。
+                ??? note "**SpeechAnnotation**"
 
-  **type**: required `object`
+                    文字內容的語音註記。
 
-  值：`place_citation`
+                    **type**: required `object`
 
-  **place_id**: `string`
+                    值：`speech_metadata`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                    **speaker**: `string`
 
-  **name**: `string`
+                    要與這個發言回合建立關聯的說話者。
 
-  地點的標題。
+                    **style**: `string`
 
-  **url**: `string`
+                    語音合成的風格指令。
 
-  地點的 URI 參照。
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-  **title**: `string`
 
-  評論的標題。
 
-  **url**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
 
-  **review_id**: `string`
+                ??? note "**UrlCitation**"
 
-  評論片段的 ID。
+                    URL 引用註記。
 
-  
+                    **type**: required `object`
 
-</details>
+                    值：`url_citation`
 
+                    **url**: `string`
 
-  **start_index**: `integer`
+                    URL。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **title**: `string`
 
-  **end_index**: `integer`
+                    URL 的標題。
 
-  所歸屬區段的終點（不含該位置）。
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-</details>
+                    **end_index**: `integer`
 
+                    所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
 
-  文字內容的語音註記。
 
-  **type**: required `object`
+                ??? note "**WordInfo**"
 
-  值：`speech_metadata`
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **speaker**: `string`
+                    **type**: required `object`
 
-  要與這個發言回合建立關聯的說話者。
+                    值：`word_info`
 
-  **style**: `string`
+                    **text**: `string`
 
-  語音合成的風格指令。
+                    轉錄出的單字。
 
-  **start_index**: `integer`
+                    **start_offset**: `string`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **end_index**: `integer`
+                    **end_offset**: `string`
 
-  所歸屬區段的終點（不含該位置）。
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  
+                    **speaker**: `string`
 
-</details>
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**UrlCitation**</summary>
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-  URL 引用註記。
 
-  **type**: required `object`
 
-  值：`url_citation`
 
-  **url**: `string`
 
-  URL。
+        ??? note "**DecisionInstructionContent array**"
 
-  **title**: `string`
+              文字內容區塊。
 
-  URL 的標題。
+              **text**: required `string`
 
-  **start_index**: `integer`
+              文字內容。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+              **type**: required `object`
 
-  **end_index**: `integer`
+              值：`text`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
+                  **可能的類型**： 
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
 
-  
+                ??? note "**FileCitation**"
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                    檔案引用註記。
 
-  **type**: required `object`
+                    **type**: required `object`
 
-  值：`word_info`
+                    值：`file_citation`
 
-  **text**: `string`
+                    **document_uri**: `string`
 
-  轉錄出的單字。
+                    檔案的 URI。
 
-  **start_offset**: `string`
+                    **file_name**: `string`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                    檔案名稱。
 
-  **end_offset**: `string`
+                    **source**: `string`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                    這段文字所歸屬的來源。
 
-  **speaker**: `string`
+                    **custom_metadata**: `object`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+                    使用者提供的擷取上下文相關中繼資料。
 
-  **start_index**: `integer`
+                    **page_number**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    所引用文件的頁碼（如適用）。
 
-  **end_index**: `integer`
+                    **media_id**: `string`
 
-  所歸屬區段的終點（不含該位置）。
+                    圖片引用時的媒體 ID（如適用）。
 
-  
+                    **start_index**: `integer`
 
-</details>
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-</details>
 
+                ??? note "**PlaceCitation**"
 
-  
+                      地點引用註記。
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
+                      **type**: required `object`
 
-  
+                      值：`place_citation`
 
-  文字內容區塊。
+                      **place_id**: `string`
 
-  **text**: required `string`
+                      地點的 ID，格式為 `places/{place_id}`。
 
-  文字內容。
+                      **name**: `string`
 
-  **type**: required `object`
+                      地點的標題。
 
-  值：`text`
+                      **url**: `string`
 
-  
+                      地點的 URI 參照。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
 
-  
 
-  **可能的類型**： 
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  
+                        **title**: `string`
 
-<details>
-<summary>**FileCitation**</summary>
+                        評論的標題。
 
-  
+                        **url**: `string`
 
-  檔案引用註記。
+                        對應到 Google 地圖上使用者評論的連結。
 
-  **type**: required `object`
+                        **review_id**: `string`
 
-  值：`file_citation`
+                        評論片段的 ID。
 
-  **document_uri**: `string`
 
-  檔案的 URI。
 
-  **file_name**: `string`
+                      **start_index**: `integer`
 
-  檔案名稱。
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **source**: `string`
+                      **end_index**: `integer`
 
-  這段文字所歸屬的來源。
+                      所歸屬區段的終點（不含該位置）。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
 
-  **page_number**: `integer`
 
-  所引用文件的頁碼（如適用）。
 
-  **media_id**: `string`
+                ??? note "**SpeechAnnotation**"
 
-  圖片引用時的媒體 ID（如適用）。
+                    文字內容的語音註記。
 
-  **start_index**: `integer`
+                    **type**: required `object`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    值：`speech_metadata`
 
-  **end_index**: `integer`
+                    **speaker**: `string`
 
-  所歸屬區段的終點（不含該位置）。
+                    要與這個發言回合建立關聯的說話者。
 
-  
+                    **style**: `string`
 
-</details>
+                    語音合成的風格指令。
 
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-  地點引用註記。
 
-  **type**: required `object`
 
-  值：`place_citation`
 
-  **place_id**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                ??? note "**UrlCitation**"
 
-  **name**: `string`
+                    URL 引用註記。
 
-  地點的標題。
+                    **type**: required `object`
 
-  **url**: `string`
+                    值：`url_citation`
 
-  地點的 URI 參照。
+                    **url**: `string`
 
-  
+                    URL。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    **title**: `string`
 
-  
+                    URL 的標題。
 
-  **title**: `string`
+                    **start_index**: `integer`
 
-  評論的標題。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **url**: `string`
+                    **end_index**: `integer`
 
-  對應到 Google 地圖上使用者評論的連結。
+                    所歸屬區段的終點（不含該位置）。
 
-  **review_id**: `string`
 
-  評論片段的 ID。
 
-  
 
-</details>
 
+                ??? note "**WordInfo**"
 
-  **start_index**: `integer`
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **type**: required `object`
 
-  **end_index**: `integer`
+                    值：`word_info`
 
-  所歸屬區段的終點（不含該位置）。
+                    **text**: `string`
 
-  
+                    轉錄出的單字。
 
-</details>
+                    **start_offset**: `string`
 
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  
+                    **end_offset**: `string`
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  
+                    **speaker**: `string`
 
-  文字內容的語音註記。
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **type**: required `object`
+                    **start_index**: `integer`
 
-  值：`speech_metadata`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **speaker**: `string`
+                    **end_index**: `integer`
 
-  要與這個發言回合建立關聯的說話者。
+                    所歸屬區段的終點（不含該位置）。
 
-  **style**: `string`
 
-  語音合成的風格指令。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+        ??? note "**string**"
 
-  所歸屬區段的終點（不含該位置）。
+            直接的字串值。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**UrlCitation**</summary>
+    ---
 
-  
 
-  URL 引用註記。
+      **type**: required `object`
 
-  **type**: required `object`
+      值：`noul`
 
-  值：`url_citation`
 
-  **url**: `string`
 
-  URL。
+    ---
 
-  **title**: `string`
 
-  URL 的標題。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+    ??? note "**criteria**: `Criteria` 選填。`true` 與 `false` 結果的選填條件。"
 
-  **end_index**: `integer`
+        **true_description**: `string`
 
-  所歸屬區段的終點（不含該位置）。
+        選填。`true` 結果的選填條件或說明。
 
-  
+        **false_description**: `string`
 
-</details>
+        選填。`false` 結果的選填條件或說明。
 
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
+??? note "**[ScoreQuestion](/api-reference/decisions/#Resource:ScoreQuestion)**"
 
-  
+      依離散數值等級量化的評分標準問題。
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **type**: required `object`
+      **criteria**: required `string array`
 
-  值：`word_info`
+      評分標準中的離散分數等級（2 到 255 個非空等級），其中以 0 為起始的索引 `i` 對應數值等級值 `i` 與評分說明 `criteria[i]`。
 
-  **text**: `string`
 
-  轉錄出的單字。
 
-  **start_offset**: `string`
+    ---
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **end_offset**: `string`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **speaker**: `string`
+    ??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+          **可能的類型**： 
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+        ??? note "**DecisionInstructionContent**"
 
-  所歸屬區段的終點（不含該位置）。
+              文字內容區塊。
 
-  
+              **text**: required `string`
 
-</details>
+              文字內容。
 
+              **type**: required `object`
 
-  
+              值：`text`
 
-</details>
 
 
-  
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-</details>
+                  **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**string**</summary>
+                ??? note "**FileCitation**"
 
-  
+                    檔案引用註記。
 
-  直接的字串值。
+                    **type**: required `object`
 
-  
+                    值：`file_citation`
 
-</details>
+                    **document_uri**: `string`
 
+                    檔案的 URI。
 
-  
+                    **file_name**: `string`
 
-</details>
+                    檔案名稱。
 
+                    **source**: `string`
 
-  
+                    這段文字所歸屬的來源。
 
----
+                    **custom_metadata**: `object`
 
+                    使用者提供的擷取上下文相關中繼資料。
 
-  **type**: required `object`
+                    **page_number**: `integer`
 
-  值：`noul`
+                    所引用文件的頁碼（如適用）。
 
-  
+                    **media_id**: `string`
 
----
+                    圖片引用時的媒體 ID（如適用）。
 
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**criteria**: `Criteria` 選填。`true` 與 `false` 結果的選填條件。</summary>
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-  **true_description**: `string`
 
-  選填。`true` 結果的選填條件或說明。
 
-  **false_description**: `string`
 
-  選填。`false` 結果的選填條件或說明。
 
-  
+                ??? note "**PlaceCitation**"
 
-</details>
+                      地點引用註記。
 
+                      **type**: required `object`
 
-  
+                      值：`place_citation`
 
-</details>
+                      **place_id**: `string`
 
+                      地點的 ID，格式為 `places/{place_id}`。
 
-<details>
-<summary>**[ScoreQuestion](/api-reference/decisions/#Resource:ScoreQuestion)**</summary>
+                      **name**: `string`
 
-  
+                      地點的標題。
 
-  依離散數值等級量化的評分標準問題。
+                      **url**: `string`
 
-  
-  **criteria**: required `string array`
+                      地點的 URI 參照。
 
-  評分標準中的離散分數等級（2 到 255 個非空等級），其中以 0 為起始的索引 `i` 對應數值等級值 `i` 與評分說明 `criteria[i]`。
 
-  
 
----
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
+                        **title**: `string`
 
-  
+                        評論的標題。
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
+                        **url**: `string`
 
-  
+                        對應到 Google 地圖上使用者評論的連結。
 
-  **可能的類型**： 
+                        **review_id**: `string`
 
-  
+                        評論片段的 ID。
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
 
-  
 
-  文字內容區塊。
+                      **start_index**: `integer`
 
-  **text**: required `string`
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  文字內容。
+                      **end_index**: `integer`
 
-  **type**: required `object`
+                      所歸屬區段的終點（不含該位置）。
 
-  值：`text`
 
-  
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
 
-  
 
-  **可能的類型**： 
+                ??? note "**SpeechAnnotation**"
 
-  
+                    文字內容的語音註記。
 
-<details>
-<summary>**FileCitation**</summary>
+                    **type**: required `object`
 
-  
+                    值：`speech_metadata`
 
-  檔案引用註記。
+                    **speaker**: `string`
 
-  **type**: required `object`
+                    要與這個發言回合建立關聯的說話者。
 
-  值：`file_citation`
+                    **style**: `string`
 
-  **document_uri**: `string`
+                    語音合成的風格指令。
 
-  檔案的 URI。
+                    **start_index**: `integer`
 
-  **file_name**: `string`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  檔案名稱。
+                    **end_index**: `integer`
 
-  **source**: `string`
+                    所歸屬區段的終點（不含該位置）。
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
 
-  **page_number**: `integer`
 
-  所引用文件的頁碼（如適用）。
+                ??? note "**UrlCitation**"
 
-  **media_id**: `string`
+                    URL 引用註記。
 
-  圖片引用時的媒體 ID（如適用）。
+                    **type**: required `object`
 
-  **start_index**: `integer`
+                    值：`url_citation`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **url**: `string`
 
-  **end_index**: `integer`
+                    URL。
 
-  所歸屬區段的終點（不含該位置）。
+                    **title**: `string`
 
-  
+                    URL 的標題。
 
-</details>
+                    **start_index**: `integer`
 
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  
+                    **end_index**: `integer`
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    所歸屬區段的終點（不含該位置）。
 
-  
 
-  地點引用註記。
 
-  **type**: required `object`
 
-  值：`place_citation`
 
-  **place_id**: `string`
+                ??? note "**WordInfo**"
 
-  地點的 ID，格式為 `places/{place_id}`。
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **name**: `string`
+                    **type**: required `object`
 
-  地點的標題。
+                    值：`word_info`
 
-  **url**: `string`
+                    **text**: `string`
 
-  地點的 URI 參照。
+                    轉錄出的單字。
 
-  
+                    **start_offset**: `string`
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  
+                    **end_offset**: `string`
 
-  **title**: `string`
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  評論的標題。
+                    **speaker**: `string`
 
-  **url**: `string`
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  對應到 Google 地圖上使用者評論的連結。
+                    **start_index**: `integer`
 
-  **review_id**: `string`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  評論片段的 ID。
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+        ??? note "**DecisionInstructionContent array**"
 
-  所歸屬區段的終點（不含該位置）。
+              文字內容區塊。
 
-  
+              **text**: required `string`
 
-</details>
+              文字內容。
 
+              **type**: required `object`
 
-  
+              值：`text`
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
 
-  文字內容的語音註記。
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  **type**: required `object`
+                  **可能的類型**： 
 
-  值：`speech_metadata`
 
-  **speaker**: `string`
 
-  要與這個發言回合建立關聯的說話者。
+                ??? note "**FileCitation**"
 
-  **style**: `string`
+                    檔案引用註記。
 
-  語音合成的風格指令。
+                    **type**: required `object`
 
-  **start_index**: `integer`
+                    值：`file_citation`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                    **document_uri**: `string`
 
-  **end_index**: `integer`
+                    檔案的 URI。
 
-  所歸屬區段的終點（不含該位置）。
+                    **file_name**: `string`
 
-  
+                    檔案名稱。
 
-</details>
+                    **source**: `string`
 
+                    這段文字所歸屬的來源。
 
-  
+                    **custom_metadata**: `object`
 
-<details>
-<summary>**UrlCitation**</summary>
+                    使用者提供的擷取上下文相關中繼資料。
 
-  
+                    **page_number**: `integer`
 
-  URL 引用註記。
+                    所引用文件的頁碼（如適用）。
 
-  **type**: required `object`
+                    **media_id**: `string`
 
-  值：`url_citation`
+                    圖片引用時的媒體 ID（如適用）。
 
-  **url**: `string`
+                    **start_index**: `integer`
 
-  URL。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **title**: `string`
+                    **end_index**: `integer`
 
-  URL 的標題。
+                    所歸屬區段的終點（不含該位置）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+                ??? note "**PlaceCitation**"
 
-</details>
+                      地點引用註記。
 
+                      **type**: required `object`
 
-  
+                      值：`place_citation`
 
-<details>
-<summary>**WordInfo**</summary>
+                      **place_id**: `string`
 
-  
+                      地點的 ID，格式為 `places/{place_id}`。
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                      **name**: `string`
 
-  **type**: required `object`
+                      地點的標題。
 
-  值：`word_info`
+                      **url**: `string`
 
-  **text**: `string`
+                      地點的 URI 參照。
 
-  轉錄出的單字。
 
-  **start_offset**: `string`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-  **end_offset**: `string`
+                        **title**: `string`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                        評論的標題。
 
-  **speaker**: `string`
+                        **url**: `string`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+                        對應到 Google 地圖上使用者評論的連結。
 
-  **start_index**: `integer`
+                        **review_id**: `string`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                        評論片段的 ID。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+                      **start_index**: `integer`
 
-</details>
+                      回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
+                      **end_index**: `integer`
 
-  
+                      所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-</details>
 
+                ??? note "**SpeechAnnotation**"
 
-  
+                    文字內容的語音註記。
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
+                    **type**: required `object`
 
-  
+                    值：`speech_metadata`
 
-  文字內容區塊。
+                    **speaker**: `string`
 
-  **text**: required `string`
+                    要與這個發言回合建立關聯的說話者。
 
-  文字內容。
+                    **style**: `string`
 
-  **type**: required `object`
+                    語音合成的風格指令。
 
-  值：`text`
+                    **start_index**: `integer`
 
-  
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                    **end_index**: `integer`
 
-  
+                    所歸屬區段的終點（不含該位置）。
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**FileCitation**</summary>
 
-  
 
-  檔案引用註記。
+                ??? note "**UrlCitation**"
 
-  **type**: required `object`
+                    URL 引用註記。
 
-  值：`file_citation`
+                    **type**: required `object`
 
-  **document_uri**: `string`
+                    值：`url_citation`
 
-  檔案的 URI。
+                    **url**: `string`
 
-  **file_name**: `string`
+                    URL。
 
-  檔案名稱。
+                    **title**: `string`
 
-  **source**: `string`
+                    URL 的標題。
 
-  這段文字所歸屬的來源。
+                    **start_index**: `integer`
 
-  **custom_metadata**: `object`
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  使用者提供的擷取上下文相關中繼資料。
+                    **end_index**: `integer`
 
-  **page_number**: `integer`
+                    所歸屬區段的終點（不含該位置）。
 
-  所引用文件的頁碼（如適用）。
 
-  **media_id**: `string`
 
-  圖片引用時的媒體 ID（如適用）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                ??? note "**WordInfo**"
 
-  **end_index**: `integer`
+                    用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  所歸屬區段的終點（不含該位置）。
+                    **type**: required `object`
 
-  
+                    值：`word_info`
 
-</details>
+                    **text**: `string`
 
+                    轉錄出的單字。
 
-  
+                    **start_offset**: `string`
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  
+                    **end_offset**: `string`
 
-  地點引用註記。
+                    單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **type**: required `object`
+                    **speaker**: `string`
 
-  值：`place_citation`
+                    選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **place_id**: `string`
+                    **start_index**: `integer`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                    回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **name**: `string`
+                    **end_index**: `integer`
 
-  地點的標題。
+                    所歸屬區段的終點（不含該位置）。
 
-  **url**: `string`
 
-  地點的 URI 參照。
 
-  
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
+        ??? note "**string**"
 
-  **title**: `string`
+            直接的字串值。
 
-  評論的標題。
 
-  **url**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
 
-  **review_id**: `string`
 
-  評論片段的 ID。
+    ---
 
-  
 
-</details>
+      **type**: required `object`
 
+      值：`score`
 
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**SpeechAnnotation**</summary>
-
-  
-
-  文字內容的語音註記。
-
-  **type**: required `object`
-
-  值：`speech_metadata`
-
-  **speaker**: `string`
-
-  要與這個發言回合建立關聯的說話者。
-
-  **style**: `string`
-
-  語音合成的風格指令。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**UrlCitation**</summary>
-
-  
-
-  URL 引用註記。
-
-  **type**: required `object`
-
-  值：`url_citation`
-
-  **url**: `string`
-
-  URL。
-
-  **title**: `string`
-
-  URL 的標題。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**WordInfo**</summary>
-
-  
-
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
-
-  **type**: required `object`
-
-  值：`word_info`
-
-  **text**: `string`
-
-  轉錄出的單字。
-
-  **start_offset**: `string`
-
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **end_offset**: `string`
-
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **speaker**: `string`
-
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
----
-
-
-  **type**: required `object`
-
-  值：`score`
-
-  
-
-</details>
 
 
 ### NoulQuestion {#Resource:NoulQuestion}
@@ -2019,546 +1561,428 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
+??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  
+      **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
+    ??? note "**DecisionInstructionContent**"
 
-  
+          文字內容區塊。
 
-  文字內容區塊。
+          **text**: required `string`
 
-  **text**: required `string`
+          文字內容。
 
-  文字內容。
+          **type**: required `object`
 
-  **type**: required `object`
+          值：`text`
 
-  值：`text`
 
-  
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+              **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**FileCitation**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  檔案引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`file_citation`
 
-  值：`file_citation`
+                **document_uri**: `string`
 
-  **document_uri**: `string`
+                檔案的 URI。
 
-  檔案的 URI。
+                **file_name**: `string`
 
-  **file_name**: `string`
+                檔案名稱。
 
-  檔案名稱。
+                **source**: `string`
 
-  **source**: `string`
+                這段文字所歸屬的來源。
 
-  這段文字所歸屬的來源。
+                **custom_metadata**: `object`
 
-  **custom_metadata**: `object`
+                使用者提供的擷取上下文相關中繼資料。
 
-  使用者提供的擷取上下文相關中繼資料。
+                **page_number**: `integer`
 
-  **page_number**: `integer`
+                所引用文件的頁碼（如適用）。
 
-  所引用文件的頁碼（如適用）。
+                **media_id**: `string`
 
-  **media_id**: `string`
+                圖片引用時的媒體 ID（如適用）。
 
-  圖片引用時的媒體 ID（如適用）。
+                **start_index**: `integer`
 
-  **start_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **end_index**: `integer`
 
-  **end_index**: `integer`
+                所歸屬區段的終點（不含該位置）。
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
+            ??? note "**PlaceCitation**"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                  地點引用註記。
 
-  
+                  **type**: required `object`
 
-  地點引用註記。
+                  值：`place_citation`
 
-  **type**: required `object`
+                  **place_id**: `string`
 
-  值：`place_citation`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  **place_id**: `string`
+                  **name**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                  地點的標題。
 
-  **name**: `string`
+                  **url**: `string`
 
-  地點的標題。
+                  地點的 URI 參照。
 
-  **url**: `string`
 
-  地點的 URI 參照。
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  **title**: `string`
+                    **url**: `string`
 
-  評論的標題。
+                    對應到 Google 地圖上使用者評論的連結。
 
-  **url**: `string`
+                    **review_id**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
+                    評論片段的 ID。
 
-  **review_id**: `string`
 
-  評論片段的 ID。
 
-  
+                  **start_index**: `integer`
 
-</details>
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
+                  **end_index**: `integer`
 
-  **start_index**: `integer`
+                  所歸屬區段的終點（不含該位置）。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
+            ??? note "**SpeechAnnotation**"
 
+                文字內容的語音註記。
 
-  
+                **type**: required `object`
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-  文字內容的語音註記。
+                要與這個發言回合建立關聯的說話者。
 
-  **type**: required `object`
+                **style**: `string`
 
-  值：`speech_metadata`
+                語音合成的風格指令。
 
-  **speaker**: `string`
+                **start_index**: `integer`
 
-  要與這個發言回合建立關聯的說話者。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **style**: `string`
+                **end_index**: `integer`
 
-  語音合成的風格指令。
+                所歸屬區段的終點（不含該位置）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+            ??? note "**UrlCitation**"
 
-</details>
+                URL 引用註記。
 
+                **type**: required `object`
 
-  
+                值：`url_citation`
 
-<details>
-<summary>**UrlCitation**</summary>
+                **url**: `string`
 
-  
+                URL。
 
-  URL 引用註記。
+                **title**: `string`
 
-  **type**: required `object`
+                URL 的標題。
 
-  值：`url_citation`
+                **start_index**: `integer`
 
-  **url**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  URL。
+                **end_index**: `integer`
 
-  **title**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  URL 的標題。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-</details>
+                **type**: required `object`
 
+                值：`word_info`
 
-  
+                **text**: `string`
 
-<details>
-<summary>**WordInfo**</summary>
+                轉錄出的單字。
 
-  
+                **start_offset**: `string`
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **type**: required `object`
+                **end_offset**: `string`
 
-  值：`word_info`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **text**: `string`
+                **speaker**: `string`
 
-  轉錄出的單字。
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_offset**: `string`
+                **start_index**: `integer`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_offset**: `string`
+                **end_index**: `integer`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                所歸屬區段的終點（不含該位置）。
 
-  **speaker**: `string`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+    ??? note "**DecisionInstructionContent array**"
 
-  所歸屬區段的終點（不含該位置）。
+          文字內容區塊。
 
-  
+          **text**: required `string`
 
-</details>
+          文字內容。
 
+          **type**: required `object`
 
-  
+          值：`text`
 
-</details>
 
 
-  
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-</details>
+              **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  文字內容區塊。
+                **type**: required `object`
 
-  **text**: required `string`
+                值：`file_citation`
 
-  文字內容。
+                **document_uri**: `string`
 
-  **type**: required `object`
+                檔案的 URI。
 
-  值：`text`
+                **file_name**: `string`
 
-  
+                檔案名稱。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                **source**: `string`
 
-  
+                這段文字所歸屬的來源。
 
-  **可能的類型**： 
+                **custom_metadata**: `object`
 
-  
+                使用者提供的擷取上下文相關中繼資料。
 
-<details>
-<summary>**FileCitation**</summary>
+                **page_number**: `integer`
 
-  
+                所引用文件的頁碼（如適用）。
 
-  檔案引用註記。
+                **media_id**: `string`
 
-  **type**: required `object`
+                圖片引用時的媒體 ID（如適用）。
 
-  值：`file_citation`
+                **start_index**: `integer`
 
-  **document_uri**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  檔案的 URI。
+                **end_index**: `integer`
 
-  **file_name**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  檔案名稱。
 
-  **source**: `string`
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
+            ??? note "**PlaceCitation**"
 
-  **page_number**: `integer`
+                  地點引用註記。
 
-  所引用文件的頁碼（如適用）。
+                  **type**: required `object`
 
-  **media_id**: `string`
+                  值：`place_citation`
 
-  圖片引用時的媒體 ID（如適用）。
+                  **place_id**: `string`
 
-  **start_index**: `integer`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                  **name**: `string`
 
-  **end_index**: `integer`
+                  地點的標題。
 
-  所歸屬區段的終點（不含該位置）。
+                  **url**: `string`
 
-  
+                  地點的 URI 參照。
 
-</details>
 
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  地點引用註記。
+                    **url**: `string`
 
-  **type**: required `object`
+                    對應到 Google 地圖上使用者評論的連結。
 
-  值：`place_citation`
+                    **review_id**: `string`
 
-  **place_id**: `string`
+                    評論片段的 ID。
 
-  地點的 ID，格式為 `places/{place_id}`。
 
-  **name**: `string`
 
-  地點的標題。
+                  **start_index**: `integer`
 
-  **url**: `string`
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  地點的 URI 參照。
+                  **end_index**: `integer`
 
-  
+                  所歸屬區段的終點（不含該位置）。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
 
-  **title**: `string`
 
-  評論的標題。
 
-  **url**: `string`
+            ??? note "**SpeechAnnotation**"
 
-  對應到 Google 地圖上使用者評論的連結。
+                文字內容的語音註記。
 
-  **review_id**: `string`
+                **type**: required `object`
 
-  評論片段的 ID。
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-</details>
+                要與這個發言回合建立關聯的說話者。
 
+                **style**: `string`
 
-  **start_index**: `integer`
+                語音合成的風格指令。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **start_index**: `integer`
 
-  **end_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  所歸屬區段的終點（不含該位置）。
+                **end_index**: `integer`
 
-  
+                所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
+            ??? note "**UrlCitation**"
 
-  文字內容的語音註記。
+                URL 引用註記。
 
-  **type**: required `object`
+                **type**: required `object`
 
-  值：`speech_metadata`
+                值：`url_citation`
 
-  **speaker**: `string`
+                **url**: `string`
 
-  要與這個發言回合建立關聯的說話者。
+                URL。
 
-  **style**: `string`
+                **title**: `string`
 
-  語音合成的風格指令。
+                URL 的標題。
 
-  **start_index**: `integer`
+                **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+                **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**UrlCitation**</summary>
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  URL 引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`word_info`
 
-  值：`url_citation`
+                **text**: `string`
 
-  **url**: `string`
+                轉錄出的單字。
 
-  URL。
+                **start_offset**: `string`
 
-  **title**: `string`
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  URL 的標題。
+                **end_offset**: `string`
 
-  **start_index**: `integer`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **speaker**: `string`
 
-  **end_index**: `integer`
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  所歸屬區段的終點（不含該位置）。
+                **start_index**: `integer`
 
-  
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-</details>
+                **end_index**: `integer`
 
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
 
-  
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **type**: required `object`
+    ??? note "**string**"
 
-  值：`word_info`
+        直接的字串值。
 
-  **text**: `string`
-
-  轉錄出的單字。
-
-  **start_offset**: `string`
-
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **end_offset**: `string`
-
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **speaker**: `string`
-
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -2577,22 +2001,16 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**criteria**: `Criteria` 選填。`true` 與 `false` 結果的選填條件。</summary>
+??? note "**criteria**: `Criteria` 選填。`true` 與 `false` 結果的選填條件。"
 
-  
+    **true_description**: `string`
 
-  **true_description**: `string`
+    選填。`true` 結果的選填條件或說明。
 
-  選填。`true` 結果的選填條件或說明。
+    **false_description**: `string`
 
-  **false_description**: `string`
+    選填。`false` 結果的選填條件或說明。
 
-  選填。`false` 結果的選填條件或說明。
-
-  
-
-</details>
 
 
 ### ChoiceQuestion {#Resource:ChoiceQuestion}
@@ -2614,546 +2032,428 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
+??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  
+      **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
+    ??? note "**DecisionInstructionContent**"
 
-  
+          文字內容區塊。
 
-  文字內容區塊。
+          **text**: required `string`
 
-  **text**: required `string`
+          文字內容。
 
-  文字內容。
+          **type**: required `object`
 
-  **type**: required `object`
+          值：`text`
 
-  值：`text`
 
-  
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+              **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**FileCitation**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  檔案引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`file_citation`
 
-  值：`file_citation`
+                **document_uri**: `string`
 
-  **document_uri**: `string`
+                檔案的 URI。
 
-  檔案的 URI。
+                **file_name**: `string`
 
-  **file_name**: `string`
+                檔案名稱。
 
-  檔案名稱。
+                **source**: `string`
 
-  **source**: `string`
+                這段文字所歸屬的來源。
 
-  這段文字所歸屬的來源。
+                **custom_metadata**: `object`
 
-  **custom_metadata**: `object`
+                使用者提供的擷取上下文相關中繼資料。
 
-  使用者提供的擷取上下文相關中繼資料。
+                **page_number**: `integer`
 
-  **page_number**: `integer`
+                所引用文件的頁碼（如適用）。
 
-  所引用文件的頁碼（如適用）。
+                **media_id**: `string`
 
-  **media_id**: `string`
+                圖片引用時的媒體 ID（如適用）。
 
-  圖片引用時的媒體 ID（如適用）。
+                **start_index**: `integer`
 
-  **start_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **end_index**: `integer`
 
-  **end_index**: `integer`
+                所歸屬區段的終點（不含該位置）。
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
+            ??? note "**PlaceCitation**"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                  地點引用註記。
 
-  
+                  **type**: required `object`
 
-  地點引用註記。
+                  值：`place_citation`
 
-  **type**: required `object`
+                  **place_id**: `string`
 
-  值：`place_citation`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  **place_id**: `string`
+                  **name**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                  地點的標題。
 
-  **name**: `string`
+                  **url**: `string`
 
-  地點的標題。
+                  地點的 URI 參照。
 
-  **url**: `string`
 
-  地點的 URI 參照。
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  **title**: `string`
+                    **url**: `string`
 
-  評論的標題。
+                    對應到 Google 地圖上使用者評論的連結。
 
-  **url**: `string`
+                    **review_id**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
+                    評論片段的 ID。
 
-  **review_id**: `string`
 
-  評論片段的 ID。
 
-  
+                  **start_index**: `integer`
 
-</details>
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
+                  **end_index**: `integer`
 
-  **start_index**: `integer`
+                  所歸屬區段的終點（不含該位置）。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
+            ??? note "**SpeechAnnotation**"
 
+                文字內容的語音註記。
 
-  
+                **type**: required `object`
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-  文字內容的語音註記。
+                要與這個發言回合建立關聯的說話者。
 
-  **type**: required `object`
+                **style**: `string`
 
-  值：`speech_metadata`
+                語音合成的風格指令。
 
-  **speaker**: `string`
+                **start_index**: `integer`
 
-  要與這個發言回合建立關聯的說話者。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **style**: `string`
+                **end_index**: `integer`
 
-  語音合成的風格指令。
+                所歸屬區段的終點（不含該位置）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+            ??? note "**UrlCitation**"
 
-</details>
+                URL 引用註記。
 
+                **type**: required `object`
 
-  
+                值：`url_citation`
 
-<details>
-<summary>**UrlCitation**</summary>
+                **url**: `string`
 
-  
+                URL。
 
-  URL 引用註記。
+                **title**: `string`
 
-  **type**: required `object`
+                URL 的標題。
 
-  值：`url_citation`
+                **start_index**: `integer`
 
-  **url**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  URL。
+                **end_index**: `integer`
 
-  **title**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  URL 的標題。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-</details>
+                **type**: required `object`
 
+                值：`word_info`
 
-  
+                **text**: `string`
 
-<details>
-<summary>**WordInfo**</summary>
+                轉錄出的單字。
 
-  
+                **start_offset**: `string`
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **type**: required `object`
+                **end_offset**: `string`
 
-  值：`word_info`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **text**: `string`
+                **speaker**: `string`
 
-  轉錄出的單字。
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_offset**: `string`
+                **start_index**: `integer`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_offset**: `string`
+                **end_index**: `integer`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                所歸屬區段的終點（不含該位置）。
 
-  **speaker**: `string`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+    ??? note "**DecisionInstructionContent array**"
 
-  所歸屬區段的終點（不含該位置）。
+          文字內容區塊。
 
-  
+          **text**: required `string`
 
-</details>
+          文字內容。
 
+          **type**: required `object`
 
-  
+          值：`text`
 
-</details>
 
 
-  
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-</details>
+              **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  文字內容區塊。
+                **type**: required `object`
 
-  **text**: required `string`
+                值：`file_citation`
 
-  文字內容。
+                **document_uri**: `string`
 
-  **type**: required `object`
+                檔案的 URI。
 
-  值：`text`
+                **file_name**: `string`
 
-  
+                檔案名稱。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                **source**: `string`
 
-  
+                這段文字所歸屬的來源。
 
-  **可能的類型**： 
+                **custom_metadata**: `object`
 
-  
+                使用者提供的擷取上下文相關中繼資料。
 
-<details>
-<summary>**FileCitation**</summary>
+                **page_number**: `integer`
 
-  
+                所引用文件的頁碼（如適用）。
 
-  檔案引用註記。
+                **media_id**: `string`
 
-  **type**: required `object`
+                圖片引用時的媒體 ID（如適用）。
 
-  值：`file_citation`
+                **start_index**: `integer`
 
-  **document_uri**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  檔案的 URI。
+                **end_index**: `integer`
 
-  **file_name**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  檔案名稱。
 
-  **source**: `string`
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
+            ??? note "**PlaceCitation**"
 
-  **page_number**: `integer`
+                  地點引用註記。
 
-  所引用文件的頁碼（如適用）。
+                  **type**: required `object`
 
-  **media_id**: `string`
+                  值：`place_citation`
 
-  圖片引用時的媒體 ID（如適用）。
+                  **place_id**: `string`
 
-  **start_index**: `integer`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                  **name**: `string`
 
-  **end_index**: `integer`
+                  地點的標題。
 
-  所歸屬區段的終點（不含該位置）。
+                  **url**: `string`
 
-  
+                  地點的 URI 參照。
 
-</details>
 
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  地點引用註記。
+                    **url**: `string`
 
-  **type**: required `object`
+                    對應到 Google 地圖上使用者評論的連結。
 
-  值：`place_citation`
+                    **review_id**: `string`
 
-  **place_id**: `string`
+                    評論片段的 ID。
 
-  地點的 ID，格式為 `places/{place_id}`。
 
-  **name**: `string`
 
-  地點的標題。
+                  **start_index**: `integer`
 
-  **url**: `string`
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  地點的 URI 參照。
+                  **end_index**: `integer`
 
-  
+                  所歸屬區段的終點（不含該位置）。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
 
-  **title**: `string`
 
-  評論的標題。
 
-  **url**: `string`
+            ??? note "**SpeechAnnotation**"
 
-  對應到 Google 地圖上使用者評論的連結。
+                文字內容的語音註記。
 
-  **review_id**: `string`
+                **type**: required `object`
 
-  評論片段的 ID。
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-</details>
+                要與這個發言回合建立關聯的說話者。
 
+                **style**: `string`
 
-  **start_index**: `integer`
+                語音合成的風格指令。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **start_index**: `integer`
 
-  **end_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  所歸屬區段的終點（不含該位置）。
+                **end_index**: `integer`
 
-  
+                所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
+            ??? note "**UrlCitation**"
 
-  文字內容的語音註記。
+                URL 引用註記。
 
-  **type**: required `object`
+                **type**: required `object`
 
-  值：`speech_metadata`
+                值：`url_citation`
 
-  **speaker**: `string`
+                **url**: `string`
 
-  要與這個發言回合建立關聯的說話者。
+                URL。
 
-  **style**: `string`
+                **title**: `string`
 
-  語音合成的風格指令。
+                URL 的標題。
 
-  **start_index**: `integer`
+                **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+                **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**UrlCitation**</summary>
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  URL 引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`word_info`
 
-  值：`url_citation`
+                **text**: `string`
 
-  **url**: `string`
+                轉錄出的單字。
 
-  URL。
+                **start_offset**: `string`
 
-  **title**: `string`
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  URL 的標題。
+                **end_offset**: `string`
 
-  **start_index**: `integer`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **speaker**: `string`
 
-  **end_index**: `integer`
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  所歸屬區段的終點（不含該位置）。
+                **start_index**: `integer`
 
-  
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-</details>
+                **end_index**: `integer`
 
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
 
-  
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **type**: required `object`
+    ??? note "**string**"
 
-  值：`word_info`
+        直接的字串值。
 
-  **text**: `string`
-
-  轉錄出的單字。
-
-  **start_offset**: `string`
-
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **end_offset**: `string`
-
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **speaker**: `string`
-
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -3184,546 +2484,428 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。</summary>
+??? note "**instructions**: required `DecisionInstructionContent` or `DecisionInstructionContent array` or `string` 供人閱讀的決策指引、評分標準或條件，會針對共用的 `input` 進行評估。至少需要一個內容區塊。"
 
-  
+      **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent**</summary>
+    ??? note "**DecisionInstructionContent**"
 
-  
+          文字內容區塊。
 
-  文字內容區塊。
+          **text**: required `string`
 
-  **text**: required `string`
+          文字內容。
 
-  文字內容。
+          **type**: required `object`
 
-  **type**: required `object`
+          值：`text`
 
-  值：`text`
 
-  
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-  
+              **可能的類型**： 
 
-  **可能的類型**： 
 
-  
 
-<details>
-<summary>**FileCitation**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  檔案引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`file_citation`
 
-  值：`file_citation`
+                **document_uri**: `string`
 
-  **document_uri**: `string`
+                檔案的 URI。
 
-  檔案的 URI。
+                **file_name**: `string`
 
-  **file_name**: `string`
+                檔案名稱。
 
-  檔案名稱。
+                **source**: `string`
 
-  **source**: `string`
+                這段文字所歸屬的來源。
 
-  這段文字所歸屬的來源。
+                **custom_metadata**: `object`
 
-  **custom_metadata**: `object`
+                使用者提供的擷取上下文相關中繼資料。
 
-  使用者提供的擷取上下文相關中繼資料。
+                **page_number**: `integer`
 
-  **page_number**: `integer`
+                所引用文件的頁碼（如適用）。
 
-  所引用文件的頁碼（如適用）。
+                **media_id**: `string`
 
-  **media_id**: `string`
+                圖片引用時的媒體 ID（如適用）。
 
-  圖片引用時的媒體 ID（如適用）。
+                **start_index**: `integer`
 
-  **start_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **end_index**: `integer`
 
-  **end_index**: `integer`
+                所歸屬區段的終點（不含該位置）。
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
+            ??? note "**PlaceCitation**"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                  地點引用註記。
 
-  
+                  **type**: required `object`
 
-  地點引用註記。
+                  值：`place_citation`
 
-  **type**: required `object`
+                  **place_id**: `string`
 
-  值：`place_citation`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  **place_id**: `string`
+                  **name**: `string`
 
-  地點的 ID，格式為 `places/{place_id}`。
+                  地點的標題。
 
-  **name**: `string`
+                  **url**: `string`
 
-  地點的標題。
+                  地點的 URI 參照。
 
-  **url**: `string`
 
-  地點的 URI 參照。
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  **title**: `string`
+                    **url**: `string`
 
-  評論的標題。
+                    對應到 Google 地圖上使用者評論的連結。
 
-  **url**: `string`
+                    **review_id**: `string`
 
-  對應到 Google 地圖上使用者評論的連結。
+                    評論片段的 ID。
 
-  **review_id**: `string`
 
-  評論片段的 ID。
 
-  
+                  **start_index**: `integer`
 
-</details>
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
+                  **end_index**: `integer`
 
-  **start_index**: `integer`
+                  所歸屬區段的終點（不含該位置）。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
+            ??? note "**SpeechAnnotation**"
 
+                文字內容的語音註記。
 
-  
+                **type**: required `object`
 
-<details>
-<summary>**SpeechAnnotation**</summary>
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-  文字內容的語音註記。
+                要與這個發言回合建立關聯的說話者。
 
-  **type**: required `object`
+                **style**: `string`
 
-  值：`speech_metadata`
+                語音合成的風格指令。
 
-  **speaker**: `string`
+                **start_index**: `integer`
 
-  要與這個發言回合建立關聯的說話者。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **style**: `string`
+                **end_index**: `integer`
 
-  語音合成的風格指令。
+                所歸屬區段的終點（不含該位置）。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
 
-  
+            ??? note "**UrlCitation**"
 
-</details>
+                URL 引用註記。
 
+                **type**: required `object`
 
-  
+                值：`url_citation`
 
-<details>
-<summary>**UrlCitation**</summary>
+                **url**: `string`
 
-  
+                URL。
 
-  URL 引用註記。
+                **title**: `string`
 
-  **type**: required `object`
+                URL 的標題。
 
-  值：`url_citation`
+                **start_index**: `integer`
 
-  **url**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  URL。
+                **end_index**: `integer`
 
-  **title**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  URL 的標題。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-</details>
+                **type**: required `object`
 
+                值：`word_info`
 
-  
+                **text**: `string`
 
-<details>
-<summary>**WordInfo**</summary>
+                轉錄出的單字。
 
-  
+                **start_offset**: `string`
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **type**: required `object`
+                **end_offset**: `string`
 
-  值：`word_info`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  **text**: `string`
+                **speaker**: `string`
 
-  轉錄出的單字。
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_offset**: `string`
+                **start_index**: `integer`
 
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_offset**: `string`
+                **end_index**: `integer`
 
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
+                所歸屬區段的終點（不含該位置）。
 
-  **speaker**: `string`
 
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+    ??? note "**DecisionInstructionContent array**"
 
-  所歸屬區段的終點（不含該位置）。
+          文字內容區塊。
 
-  
+          **text**: required `string`
 
-</details>
+          文字內容。
 
+          **type**: required `object`
 
-  
+          值：`text`
 
-</details>
 
 
-  
+        ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
 
-</details>
+              **可能的類型**： 
 
 
-  
 
-<details>
-<summary>**DecisionInstructionContent array**</summary>
+            ??? note "**FileCitation**"
 
-  
+                檔案引用註記。
 
-  文字內容區塊。
+                **type**: required `object`
 
-  **text**: required `string`
+                值：`file_citation`
 
-  文字內容。
+                **document_uri**: `string`
 
-  **type**: required `object`
+                檔案的 URI。
 
-  值：`text`
+                **file_name**: `string`
 
-  
+                檔案名稱。
 
-<details>
-<summary>**annotations**: `Annotation array` 模型生成內容的引用資訊。</summary>
+                **source**: `string`
 
-  
+                這段文字所歸屬的來源。
 
-  **可能的類型**： 
+                **custom_metadata**: `object`
 
-  
+                使用者提供的擷取上下文相關中繼資料。
 
-<details>
-<summary>**FileCitation**</summary>
+                **page_number**: `integer`
 
-  
+                所引用文件的頁碼（如適用）。
 
-  檔案引用註記。
+                **media_id**: `string`
 
-  **type**: required `object`
+                圖片引用時的媒體 ID（如適用）。
 
-  值：`file_citation`
+                **start_index**: `integer`
 
-  **document_uri**: `string`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  檔案的 URI。
+                **end_index**: `integer`
 
-  **file_name**: `string`
+                所歸屬區段的終點（不含該位置）。
 
-  檔案名稱。
 
-  **source**: `string`
 
-  這段文字所歸屬的來源。
 
-  **custom_metadata**: `object`
 
-  使用者提供的擷取上下文相關中繼資料。
+            ??? note "**PlaceCitation**"
 
-  **page_number**: `integer`
+                  地點引用註記。
 
-  所引用文件的頁碼（如適用）。
+                  **type**: required `object`
 
-  **media_id**: `string`
+                  值：`place_citation`
 
-  圖片引用時的媒體 ID（如適用）。
+                  **place_id**: `string`
 
-  **start_index**: `integer`
+                  地點的 ID，格式為 `places/{place_id}`。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                  **name**: `string`
 
-  **end_index**: `integer`
+                  地點的標題。
 
-  所歸屬區段的終點（不含該位置）。
+                  **url**: `string`
 
-  
+                  地點的 URI 參照。
 
-</details>
 
 
-  
+                ??? note "**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。"
 
-<details>
-<summary>**PlaceCitation**</summary>
+                    **title**: `string`
 
-  
+                    評論的標題。
 
-  地點引用註記。
+                    **url**: `string`
 
-  **type**: required `object`
+                    對應到 Google 地圖上使用者評論的連結。
 
-  值：`place_citation`
+                    **review_id**: `string`
 
-  **place_id**: `string`
+                    評論片段的 ID。
 
-  地點的 ID，格式為 `places/{place_id}`。
 
-  **name**: `string`
 
-  地點的標題。
+                  **start_index**: `integer`
 
-  **url**: `string`
+                  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  地點的 URI 參照。
+                  **end_index**: `integer`
 
-  
+                  所歸屬區段的終點（不含該位置）。
 
-<details>
-<summary>**review_snippets**: `ReviewSnippet array` 用來生成 Google 地圖中特定地點特色相關回答的評論片段。</summary>
 
-  
 
-  **title**: `string`
 
-  評論的標題。
 
-  **url**: `string`
+            ??? note "**SpeechAnnotation**"
 
-  對應到 Google 地圖上使用者評論的連結。
+                文字內容的語音註記。
 
-  **review_id**: `string`
+                **type**: required `object`
 
-  評論片段的 ID。
+                值：`speech_metadata`
 
-  
+                **speaker**: `string`
 
-</details>
+                要與這個發言回合建立關聯的說話者。
 
+                **style**: `string`
 
-  **start_index**: `integer`
+                語音合成的風格指令。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **start_index**: `integer`
 
-  **end_index**: `integer`
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  所歸屬區段的終點（不含該位置）。
+                **end_index**: `integer`
 
-  
+                所歸屬區段的終點（不含該位置）。
 
-</details>
 
 
-  
 
-<details>
-<summary>**SpeechAnnotation**</summary>
 
-  
+            ??? note "**UrlCitation**"
 
-  文字內容的語音註記。
+                URL 引用註記。
 
-  **type**: required `object`
+                **type**: required `object`
 
-  值：`speech_metadata`
+                值：`url_citation`
 
-  **speaker**: `string`
+                **url**: `string`
 
-  要與這個發言回合建立關聯的說話者。
+                URL。
 
-  **style**: `string`
+                **title**: `string`
 
-  語音合成的風格指令。
+                URL 的標題。
 
-  **start_index**: `integer`
+                **start_index**: `integer`
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-  **end_index**: `integer`
+                **end_index**: `integer`
 
-  所歸屬區段的終點（不含該位置）。
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-</details>
 
 
-  
 
-<details>
-<summary>**UrlCitation**</summary>
+            ??? note "**WordInfo**"
 
-  
+                用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  URL 引用註記。
+                **type**: required `object`
 
-  **type**: required `object`
+                值：`word_info`
 
-  值：`url_citation`
+                **text**: `string`
 
-  **url**: `string`
+                轉錄出的單字。
 
-  URL。
+                **start_offset**: `string`
 
-  **title**: `string`
+                單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  URL 的標題。
+                **end_offset**: `string`
 
-  **start_index**: `integer`
+                單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
 
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
+                **speaker**: `string`
 
-  **end_index**: `integer`
+                選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
 
-  所歸屬區段的終點（不含該位置）。
+                **start_index**: `integer`
 
-  
+                回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
 
-</details>
+                **end_index**: `integer`
 
+                所歸屬區段的終點（不含該位置）。
 
-  
 
-<details>
-<summary>**WordInfo**</summary>
 
-  
 
-  用於轉錄輸出的單字層級 ASR 註記。包含單字文字、選填的時間資訊，以及選填的說話者歸屬。
 
-  **type**: required `object`
+    ??? note "**string**"
 
-  值：`word_info`
+        直接的字串值。
 
-  **text**: `string`
-
-  轉錄出的單字。
-
-  **start_offset**: `string`
-
-  單字相對於音訊開頭的開始時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **end_offset**: `string`
-
-  單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含 "word" 時才會出現。
-
-  **speaker**: `string`
-
-  選填。此單字的說話者標籤（例如 "spk_1"、"spk_2"）。在 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
-
-  **start_index**: `integer`
-
-  回應中歸屬此來源的區段起點。索引表示區段的開始位置，以位元組為單位。
-
-  **end_index**: `integer`
-
-  所歸屬區段的終點（不含該位置）。
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-</details>
-
-
-  
-
-<details>
-<summary>**string**</summary>
-
-  
-
-  直接的字串值。
-
-  
-
-</details>
-
-
-  
-
-</details>
 
 
   
@@ -3743,148 +2925,130 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 **多型類型**：
 
 
-<details>
-<summary>**[ChoiceAnswer](/api-reference/decisions/#Resource:ChoiceAnswer)**</summary>
+??? note "**[ChoiceAnswer](/api-reference/decisions/#Resource:ChoiceAnswer)**"
 
-  
+      [`ChoiceQuestion`](/api-reference/decisions/#Resource:ChoiceQuestion) 的校準結果。
 
-  [`ChoiceQuestion`](/api-reference/decisions/#Resource:ChoiceQuestion) 的校準結果。
 
-  
-  **choice**: required `string`
+      **choice**: required `string`
 
-  僅供輸出。機率最高的選項 ID。
+      僅供輸出。機率最高的選項 ID。
 
-  
 
----
 
+    ---
 
-  **probabilities**: required `object`
 
-  僅供輸出。每個選項 ID 在 `[0, 1]` 範圍內的封閉世界正規化機率。
+      **probabilities**: required `object`
 
-  
+      僅供輸出。每個選項 ID 在 `[0, 1]` 範圍內的封閉世界正規化機率。
 
----
 
 
-  **confidence**: required `number`
+    ---
 
-  僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
 
-  - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
-  - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
-  - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
+      **confidence**: required `number`
 
-  
+      僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
 
----
+      - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
+      - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
+      - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
 
 
-  **type**: required `object`
 
-  值：`choice`
+    ---
 
-  
 
-</details>
+      **type**: required `object`
 
+      值：`choice`
 
-<details>
-<summary>**[NoulAnswer](/api-reference/decisions/#Resource:NoulAnswer)**</summary>
 
-  
 
-  [`NoulQuestion`](/api-reference/decisions/#Resource:NoulQuestion) 的校準結果。
+??? note "**[NoulAnswer](/api-reference/decisions/#Resource:NoulAnswer)**"
 
-  
-  **noul**: required `number`
+      [`NoulQuestion`](/api-reference/decisions/#Resource:NoulQuestion) 的校準結果。
 
-  僅供輸出。經過校準的機率 `P(true)`，介於 `[0.01, 0.99]` 範圍內。
 
-  
+      **noul**: required `number`
 
----
+      僅供輸出。經過校準的機率 `P(true)`，介於 `[0.01, 0.99]` 範圍內。
 
 
-  **confidence**: required `number`
 
-  僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
+    ---
 
-  - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
-  - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
-  - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
 
-  
+      **confidence**: required `number`
 
----
+      僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
 
+      - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
+      - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
+      - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
 
-  **type**: required `object`
 
-  值：`noul`
 
-  
+    ---
 
-</details>
 
+      **type**: required `object`
 
-<details>
-<summary>**[ScoreAnswer](/api-reference/decisions/#Resource:ScoreAnswer)**</summary>
+      值：`noul`
 
-  
 
-  [`ScoreQuestion`](/api-reference/decisions/#Resource:ScoreQuestion) 的校準結果。
 
-  
-  **score**: required `number`
+??? note "**[ScoreAnswer](/api-reference/decisions/#Resource:ScoreAnswer)**"
 
-  僅供輸出。以機率加權的期望分數（`sum_k k * probability_k`）。
+      [`ScoreQuestion`](/api-reference/decisions/#Resource:ScoreQuestion) 的校準結果。
 
-  
 
----
+      **score**: required `number`
 
+      僅供輸出。以機率加權的期望分數（`sum_k k * probability_k`）。
 
-  **probabilities**: required `object`
 
-  僅供輸出。每個以 0 為起始的等級索引在 `[0, 1]` 範圍內的封閉世界正規化機率。
 
-  
+    ---
 
----
 
+      **probabilities**: required `object`
 
-  **legend**: required `object`
+      僅供輸出。每個以 0 為起始的等級索引在 `[0, 1]` 範圍內的封閉世界正規化機率。
 
-  僅供輸出。每個非空、以 0 為起始的等級索引的評分標準說明。
 
-  
 
----
+    ---
 
 
-  **confidence**: required `number`
+      **legend**: required `object`
 
-  僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
+      僅供輸出。每個非空、以 0 為起始的等級索引的評分標準說明。
 
-  - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
-  - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
-  - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
 
-  
 
----
+    ---
 
 
-  **type**: required `object`
+      **confidence**: required `number`
 
-  值：`score`
+      僅供輸出。`[0, 1]` 範圍內的封閉世界信心分數，等於獲勝結果的校準機率：
 
-  
+      - [`NoulAnswer`](/api-reference/decisions/#Resource:NoulAnswer): `max(noul, 1 - noul)`
+      - [`ChoiceAnswer`](/api-reference/decisions/#Resource:ChoiceAnswer)：`p_max`（`choice` 的機率）
+      - [`ScoreAnswer`](/api-reference/decisions/#Resource:ScoreAnswer)：`p_max`（`probabilities` 中的最高機率）。
 
-</details>
+
+
+    ---
+
+
+      **type**: required `object`
+
+      值：`score`
+
 
 
 ### NoulAnswer {#Resource:NoulAnswer}
@@ -4025,22 +3189,16 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-<details>
-<summary>**block_reason**: `string enum` 選填。若有設定，表示輸入已被封鎖，不會傳回任何答案。</summary>
+??? note "**block_reason**: `string enum` 選填。若有設定，表示輸入已被封鎖，不會傳回任何答案。"
 
-  
+    可能的值：
 
-  可能的值：
+    - `safety`：提示詞因安全因素遭到封鎖。
+    - `other`：提示詞因不明原因遭到封鎖。
+    - `blocklist`：提示詞因含有術語封鎖清單中的詞彙遭到封鎖。
+    - `prohibited_content`：提示詞因含有禁止內容遭到封鎖。
+    - `image_safety`：提示詞因圖片內容不安全遭到封鎖。
 
-  - `safety`：提示詞因安全因素遭到封鎖。
-  - `other`：提示詞因不明原因遭到封鎖。
-  - `blocklist`：提示詞因含有術語封鎖清單中的詞彙遭到封鎖。
-  - `prohibited_content`：提示詞因含有禁止內容遭到封鎖。
-  - `image_safety`：提示詞因圖片內容不安全遭到封鎖。
-
-  
-
-</details>
 
 
   
@@ -4051,5 +3209,4 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
   **block_reason_message**: `string`
 
   選填。詳細說明封鎖原因的訊息（選填）。
-
 

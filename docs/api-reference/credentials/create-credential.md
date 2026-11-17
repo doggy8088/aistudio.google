@@ -19,221 +19,183 @@
 
 
 
-<details>
-<summary>**EnvironmentVariableConfig**</summary>
+??? note "**EnvironmentVariableConfig**"
 
+      環境變數憑證的設定。
 
+      **value**：必填 `string`
 
-  環境變數憑證的設定。
+      僅供輸入。環境變數的機密值。僅供寫入；不會在回應中傳回。
 
-  **value**：必填 `string`
 
-  僅供輸入。環境變數的機密值。僅供寫入；不會在回應中傳回。
 
+    ---
 
 
----
 
+    ??? note "**injection_location**：必填 `InjectionLocation` 或 `InjectionLocation array` 可將環境變數注入外送 HTTP 要求的位置。至少須包含一個位置。可接受單一位置（例如 'header'）或位置陣列。"
 
+          **可能的類型**：
 
-<details>
-<summary>**injection_location**：必填 `InjectionLocation` 或 `InjectionLocation array` 可將環境變數注入外送 HTTP 要求的位置。至少須包含一個位置。可接受單一位置（例如 "header"）或位置陣列。</summary>
 
 
+        ??? note "**InjectionLocation**"
 
-  **可能的類型**：
+            可能的值：
 
+            - `header`：注入 HTTP 要求標頭。
+            - `query`：注入 HTTP URL 查詢參數。
+            - `body`：注入 HTTP 要求主體。
 
 
-<details>
-<summary>**InjectionLocation**</summary>
 
 
 
-  可能的值：
+        ??? note "**InjectionLocation array**"
 
-  - `header`：注入 HTTP 要求標頭。
-  - `query`：注入 HTTP URL 查詢參數。
-  - `body`：注入 HTTP 要求主體。
+            可能的值：
 
+            - `header`：注入 HTTP 要求標頭。
+            - `query`：注入 HTTP URL 查詢參數。
+            - `body`：注入 HTTP 要求主體。
 
 
-</details>
 
 
 
+    ---
 
-<details>
-<summary>**InjectionLocation array**</summary>
 
+      **id**：必填 `string`
 
 
-  可能的值：
 
-  - `header`：注入 HTTP 要求標頭。
-  - `query`：注入 HTTP URL 查詢參數。
-  - `body`：注入 HTTP 要求主體。
+    ---
 
 
+      **type**：必填 `object`
 
-</details>
+      值：`environment_variable`
 
 
 
+    ---
 
-</details>
 
+      **trusted_domains**：`string array`
 
+      選填。允許在 HTTP 要求中接收此環境變數值的網域清單。
 
 
----
 
 
-  **id**：必填 `string`
 
+??? note "**HttpBearerConfig**"
 
+      HTTP Bearer 權杖憑證的設定。
 
----
+      **token**：必填 `string`
 
+      僅供輸入。靜態 Bearer 權杖。僅供寫入；不會在回應中傳回。
 
-  **type**：必填 `object`
 
-  值：`environment_variable`
 
+    ---
 
 
----
+      **id**：必填 `string`
 
 
-  **trusted_domains**：`string array`
 
-  選填。允許在 HTTP 要求中接收此環境變數值的網域清單。
+    ---
 
 
+      **type**：必填 `object`
 
-</details>
+      值：`bearer_token`
 
 
 
+    ---
 
-<details>
-<summary>**HttpBearerConfig**</summary>
 
+      **header_name**：`string`
 
+      選填。要注入權杖的標頭名稱。預設為 'Authorization'。
 
-  HTTP Bearer 權杖憑證的設定。
 
-  **token**：必填 `string`
 
-  僅供輸入。靜態 Bearer 權杖。僅供寫入；不會在回應中傳回。
+    ---
 
 
+      **prefix**：`string`
 
----
+      選填。要加在權杖前面的前綴。預設為 'Bearer'。設為 '' 表示不加前綴。
 
 
-  **id**：必填 `string`
 
 
 
----
+??? note "**OAuth2Config**"
 
+      具備自動權杖更新功能的 OAuth2 憑證設定。
 
-  **type**：必填 `object`
+      **client_id**：必填 `string`
 
-  值：`bearer_token`
+      OAuth2 用戶端 ID。
 
 
 
----
+    ---
 
 
-  **header_name**：`string`
+      **client_secret**：必填 `string`
 
-  選填。要注入權杖的標頭名稱。預設為 'Authorization'。
+      僅供輸入。OAuth2 用戶端密鑰。僅供寫入；不會在回應中傳回。
 
 
 
----
+    ---
 
 
-  **prefix**：`string`
+      **refresh_token**：必填 `string`
 
-  選填。要加在權杖前面的前綴。預設為 'Bearer'。設為 '' 表示不加前綴。
+      僅供輸入。OAuth2 更新權杖。僅供寫入；不會在回應中傳回。
 
 
 
-</details>
+    ---
 
 
+      **token_url**：必填 `string`
 
+      用於更新存取權杖的 OAuth2 權杖端點 URL。
 
-<details>
-<summary>**OAuth2Config**</summary>
 
 
+    ---
 
-  具備自動權杖更新功能的 OAuth2 憑證設定。
 
-  **client_id**：必填 `string`
+      **id**：必填 `string`
 
-  OAuth2 用戶端 ID。
 
 
+    ---
 
----
 
+      **type**：必填 `object`
 
-  **client_secret**：必填 `string`
+      值：`oauth2`
 
-  僅供輸入。OAuth2 用戶端密鑰。僅供寫入；不會在回應中傳回。
 
 
+    ---
 
----
 
+      **scopes**：`string array`
 
-  **refresh_token**：必填 `string`
+      選填。OAuth2 範圍清單。
 
-  僅供輸入。OAuth2 更新權杖。僅供寫入；不會在回應中傳回。
-
-
-
----
-
-
-  **token_url**：必填 `string`
-
-  用於更新存取權杖的 OAuth2 權杖端點 URL。
-
-
-
----
-
-
-  **id**：必填 `string`
-
-
-
----
-
-
-  **type**：必填 `object`
-
-  值：`oauth2`
-
-
-
----
-
-
-  **scopes**：`string array`
-
-  選填。OAuth2 範圍清單。
-
-
-
-</details>
 
 
 
@@ -276,20 +238,14 @@
 
 
 
-<details>
-<summary>**type**：必填 `string enum` 僅供輸出。憑證的類型。</summary>
+??? note "**type**：必填 `string enum` 僅供輸出。憑證的類型。"
 
+    可能的值：
 
+    - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
+    - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
+    - `environment_variable`：注入沙箱容器的環境變數。
 
-  可能的值：
-
-  - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
-  - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
-  - `environment_variable`：注入沙箱容器的環境變數。
-
-
-
-</details>
 
 
 
@@ -297,19 +253,13 @@
 ---
 
 
-<details>
-<summary>**status**：`string enum` 僅供輸出。憑證目前的狀態。</summary>
+??? note "**status**：`string enum` 僅供輸出。憑證目前的狀態。"
 
+    可能的值：
 
+    - `active`：憑證處於啟用狀態，可供使用。
+    - `revoked`：憑證已遭撤銷，不再有效。
 
-  可能的值：
-
-  - `active`：憑證處於啟用狀態，可供使用。
-  - `revoked`：憑證已遭撤銷，不再有效。
-
-
-
-</details>
 
 
 
@@ -344,4 +294,3 @@
     "update_time": "string"
   }
   ```
-
