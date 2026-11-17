@@ -6,6 +6,7 @@ theme:
   name: material
   language: zh-TW
   font: false
+  custom_dir: overrides
   features:
     - navigation.sections
     - navigation.expand
@@ -14,9 +15,24 @@ theme:
     - search.highlight
     - content.code.copy
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 依系統偏好配色
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: white
       accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: 切換至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: 切換至淺色模式
 markdown_extensions:
   - admonition
   - attr_list
@@ -32,5 +48,7 @@ markdown_extensions:
       custom_checkbox: true
 extra_css:
   - assets/aistudio.css
+extra_javascript:
+  - assets/aistudio.js
 extra:
   generator: false

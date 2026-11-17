@@ -1,0 +1,40 @@
+{#- Custom header modeled on aistudio.google.com: wordmark left,
+    Docs / API reference segmented pill in the center, palette toggle,
+    search and a "Get API key" pill on the right. -#}
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
+    <label class="md-header__button md-icon" for="__drawer">
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+    <a href="{{ 'docs/' | url }}" class="ais-wordmark" aria-label="Google AI Studio 文件｜繁體中文版">
+      <span class="ais-wordmark__name">Google AI Studio</span>
+      <span class="ais-wordmark__tag">文件｜繁體中文版</span>
+    </a>
+    {% set is_api = page and page.url and page.url.startswith('api-reference') %}
+    <div class="ais-switch" aria-label="文件／API 參考">
+      <a href="{{ 'docs/' | url }}" class="ais-switch__item{% if not is_api %} ais-switch__item--active{% endif %}">文件</a>
+      <a href="{{ 'api-reference/' | url }}" class="ais-switch__item{% if is_api %} ais-switch__item--active{% endif %}">API 參考</a>
+    </div>
+    <div class="ais-header__spacer"></div>
+    {% if config.theme.palette %}
+      {% if not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+      {% endif %}
+    {% endif %}
+    {% if not config.theme.palette is mapping %}
+      {% include "partials/javascripts/palette.html" %}
+    {% endif %}
+    {% if "material/search" in config.plugins %}
+      {% set search = config.plugins["material/search"] | attr("config") %}
+      {% if search.enabled %}
+        <label class="md-header__button md-icon" for="__search">
+          {% set icon = config.theme.icon.search or "material/magnify" %}
+          {% include ".icons/" ~ icon ~ ".svg" %}
+        </label>
+        {% include "partials/search.html" %}
+      {% endif %}
+    {% endif %}
+    <a class="ais-apikey" href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener">取得 API 金鑰</a>
+  </nav>
+</header>
