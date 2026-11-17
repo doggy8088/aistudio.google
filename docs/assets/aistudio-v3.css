@@ -7,6 +7,20 @@
 :root {
   --md-accent-fg-color: #1a73e8;
   --md-typeset-a-color: #1a73e8;
+  /* code blocks are dark in both schemes: feed Material's own
+     syntax-highlight variables a dark palette */
+  --md-code-hl-comment-color: #9aa0a6;
+  --md-code-hl-keyword-color: #ff7b72;
+  --md-code-hl-string-color: #a5d6ff;
+  --md-code-hl-number-color: #79c0ff;
+  --md-code-hl-function-color: #d2a8ff;
+  --md-code-hl-constant-color: #79c0ff;
+  --md-code-hl-name-color: #e8eaed;
+  --md-code-hl-operator-color: #e8eaed;
+  --md-code-hl-punctuation-color: #e8eaed;
+  --md-code-hl-variable-color: #ffa657;
+  --md-code-hl-generic-color: #e8eaed;
+  --md-code-hl-special-color: #ffa657;
 }
 [data-md-color-scheme="slate"] {
   --md-accent-fg-color: #8ab4f8;
@@ -216,7 +230,9 @@ body,
 }
 [data-md-color-scheme="default"] .md-typeset code { background: #eef0f2; color: #3c4043; }
 [data-md-color-scheme="slate"] .md-typeset code { background: #28292a; color: #e3e3e3; }
-.md-typeset pre > code {
+/* block code must outrank the scheme-qualified inline-code rules above */
+[data-md-color-scheme="default"] .md-typeset pre > code,
+[data-md-color-scheme="slate"] .md-typeset pre > code {
   background: #1e1f20;
   color: #e8eaed;
   border: 1px solid #444746;
