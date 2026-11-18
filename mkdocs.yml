@@ -47,9 +47,9 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
-  - assets/aistudio-v7.css
+  - assets/aistudio-v8.css
 extra_javascript:
-  - assets/aistudio-v7.js
+  - assets/aistudio-v8.js
 extra:
   generator: false
 
@@ -300,32 +300,32 @@ nav:
   - api-reference.md
   - api-reference/api-versions.md
   - Core APIs:
-      - Gemini Interactions API:
+      - Interactions API:
           - api-reference/interactions-api/index.md
           - api-reference/interactions-api/create-interaction.md
           - api-reference/interactions-api/cancel-interaction-by-id.md
           - api-reference/interactions-api/get-interaction-by-id.md
           - api-reference/interactions-api/delete-interaction.md
-      - 產生內容:
+      - GenerateContent:
           - api-reference/generate-content/index.md
           - api-reference/generate-content/generate-content.md
           - api-reference/generate-content/stream-generate-content.md
           - api-reference/generate-content/create-token.md
   - Real-time APIs:
-      - Live API - WebSockets API 參考文件:
+      - Live API:
           - api-reference/live/index.md
           - api-reference/live/bidi-generate-content.md
-      - Live Music API - WebSockets API 參考文件:
+      - Live Music API:
           - api-reference/live-music/index.md
           - api-reference/live-music/bidi-generate-music.md
   - Agent APIs:
-      - Gemini Agents API:
+      - Agents:
           - api-reference/agents/index.md
           - api-reference/agents/create-agent.md
           - api-reference/agents/list-agents.md
           - api-reference/agents/get-agent.md
           - api-reference/agents/delete-agent.md
-      - Gemini Environments API:
+      - Environments:
           - api-reference/environments/index.md
           - api-reference/environments/create-environment.md
           - api-reference/environments/list-environments.md
@@ -333,7 +333,7 @@ nav:
           - api-reference/environments/get-environment.md
           - api-reference/environments/start-environment-file-upload.md
           - api-reference/environments/delete-environment.md
-      - Gemini Triggers API:
+      - Triggers:
           - api-reference/triggers/index.md
           - api-reference/triggers/create-trigger.md
           - api-reference/triggers/run-trigger.md
@@ -342,7 +342,7 @@ nav:
           - api-reference/triggers/list-trigger-executions.md
           - api-reference/triggers/update-trigger.md
           - api-reference/triggers/delete-trigger.md
-      - Gemini Webhooks API:
+      - Webhooks:
           - api-reference/webhooks/index.md
           - api-reference/webhooks/create-webhook.md
           - api-reference/webhooks/ping-webhook.md
@@ -351,7 +351,7 @@ nav:
           - api-reference/webhooks/get-webhook.md
           - api-reference/webhooks/update-webhook.md
           - api-reference/webhooks/delete-webhook.md
-      - Gemini Credentials API:
+      - Credentials:
           - api-reference/credentials/index.md
           - api-reference/credentials/create-credential.md
           - api-reference/credentials/list-credentials.md
@@ -359,14 +359,14 @@ nav:
           - api-reference/credentials/update-credential.md
           - api-reference/credentials/delete-credential.md
   - Platform APIs:
-      - 使用檔案:
+      - Files API:
           - api-reference/files/index.md
           - api-reference/files/get-file.md
           - api-reference/files/list-files.md
           - api-reference/files/delete-file.md
           - api-reference/files/register-files.md
           - api-reference/files/create-file.md
-      - 檔案搜尋儲存庫:
+      - File Search stores:
           - api-reference/file-search/file-search-stores/index.md
           - api-reference/file-search/file-search-stores/create-file-search-store.md
           - api-reference/file-search/file-search-stores/delete-file-search-store.md
@@ -376,19 +376,19 @@ nav:
           - api-reference/file-search/file-search-stores/get-file-search-store-operation.md
           - api-reference/file-search/file-search-stores/get-file-search-store-upload-operation.md
           - api-reference/file-search/file-search-stores/upload-to-file-search-store.md
-      - 文件:
+      - File Search documents:
           - api-reference/file-search/documents/index.md
           - api-reference/file-search/documents/delete-document.md
           - api-reference/file-search/documents/get-document.md
           - api-reference/file-search/documents/list-documents.md
-      - 快取:
+      - Caching:
           - api-reference/caching/index.md
           - api-reference/caching/create-cached-content.md
           - api-reference/caching/list-cached-contents.md
           - api-reference/caching/get-cached-content.md
           - api-reference/caching/update-cached-content.md
           - api-reference/caching/delete-cached-content.md
-      - 嵌入向量:
+      - Embeddings:
           - api-reference/embeddings/index.md
           - api-reference/embeddings/embed-content.md
           - api-reference/embeddings/batch-embed-contents.md
@@ -403,16 +403,16 @@ nav:
           - api-reference/batch-api/delete-batch.md
           - api-reference/batch-api/update-generate-content-batch.md
           - api-reference/batch-api/update-embed-content-batch.md
-      - 計算權杖數:
+      - Tokens:
           - api-reference/tokens/index.md
           - api-reference/tokens/count-tokens.md
-      - Gemini Voices API:
+      - Voices:
           - api-reference/voices/index.md
           - api-reference/voices/create-voice.md
           - api-reference/voices/list-voices.md
           - api-reference/voices/get-voice.md
           - api-reference/voices/delete-voice.md
-      - 模型:
+      - Model API:
           - api-reference/models/index.md
           - api-reference/models/get-model.md
           - api-reference/models/list-models.md

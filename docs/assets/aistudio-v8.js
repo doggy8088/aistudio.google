@@ -13,6 +13,14 @@
     input.placeholder = "篩選";
     input.setAttribute("aria-label", "篩選導覽");
     box.appendChild(input);
+    var icon = document.createElement("span");
+    icon.className = "ais-filter__icon";
+    icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8v5l-4 2v-7L3 5z"/></svg>';
+    box.appendChild(icon);
+    var kbd = document.createElement("kbd");
+    kbd.className = "ais-filter__kbd";
+    kbd.textContent = "/";
+    box.appendChild(kbd);
     wrap.prepend(box);
 
     /* The top bar already switches between Docs and API reference, so
@@ -62,6 +70,49 @@
           if (toggle) toggle.checked = true;
         }
       });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+/* HTTP method badges in the API reference sidebar, mirroring the
+   official site: a small tinted square before each method link —
+   blue ↗ POST, green ↙ GET, red ✕ DELETE, amber ↗ PATCH. */
+(function () {
+  var VERBS = [
+    [/^(get|list)-/, "get"],
+    [/^delete-/, "delete"],
+    [/^update-/, "patch"],
+    [/^(create|cancel|register|import|upload|embed|batch|count|run|ping|rotate|start|generate|stream|async)-/, "post"]
+  ];
+  var PATHS = {
+    post: "M7 17L17 7M9 7h8v8",
+    get: "M17 7L7 17M15 17H7V9",
+    patch: "M7 17L17 7M9 7h8v8",
+    delete: "M6 6l12 12M18 6L6 18"
+  };
+  function init() {
+    document.querySelectorAll(".md-nav--primary a.md-nav__link[href]").forEach(function (a) {
+      var p;
+      try { p = new URL(a.getAttribute("href"), window.location.href).pathname; } catch (e) { return; }
+      if (p.indexOf("/api-reference/") !== 0) return;
+      var seg = p.split("/").filter(Boolean);
+      if (seg.length < 3) return;
+      var last = seg[seg.length - 1];
+      var kind = null;
+      for (var i = 0; i < VERBS.length; i++) {
+        if (VERBS[i][0].test(last)) { kind = VERBS[i][1]; break; }
+      }
+      if (!kind || a.querySelector(".ais-method")) return;
+      var span = document.createElement("span");
+      span.className = "ais-method ais-method--" + kind;
+      span.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="' + PATHS[kind] + '"/></svg>';
+      var label = a.querySelector(".md-ellipsis");
+      a.insertBefore(span, label || a.firstChild);
     });
   }
   if (document.readyState === "loading") {
