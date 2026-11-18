@@ -921,15 +921,15 @@
 === "Java"
 
       ```java
-      import com.google.genai.gaos.models.interactions.AgentOption;
       import com.google.genai.Client;
+      import com.google.genai.gaos.models.interactions.AgentOption;
       import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
       import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
-      import com.google.genai.gaos.models.operations.CreateTriggerResponse;
-      import com.google.genai.types.HttpOptions;
       import com.google.genai.gaos.models.interactions.InteractionsInput;
+      import com.google.genai.gaos.models.operations.CreateTriggerResponse;
       import com.google.genai.gaos.models.triggers.Trigger;
       import com.google.genai.gaos.models.triggers.TriggerCreateParams;
+      import com.google.genai.types.HttpOptions;
 
       Client client =
           Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();

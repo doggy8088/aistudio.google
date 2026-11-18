@@ -88,8 +88,9 @@
       ```java
       import com.google.genai.Client;
       import com.google.genai.gaos.models.environments.Environment;
-      import com.google.genai.types.HttpOptions;
       import com.google.genai.gaos.models.operations.ListEnvironmentsResponse;
+      import com.google.genai.types.HttpOptions;
+      import java.util.List;
 
       Client client =
           Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();

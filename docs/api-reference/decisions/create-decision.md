@@ -60,6 +60,36 @@
 
 
 
+        ??? note "**processing**: `AudioMediaProcessing` or `string enum` 模型如何處理這段音訊以進行理解。"
+
+
+              **可能的類型**：
+
+
+            ??? note "**AudioMediaProcessing**"
+
+
+                  **type**: required `object`
+
+                  值：`static`
+
+                  **start_offset**: `string`
+
+                  選填。區段開始時間，相對於音訊串流的開頭。以十進位秒數表示，後面加上 's' 後綴，例如 "10.5s"。必須為非負數。
+
+                  **end_offset**: `string`
+
+                  選填。區段結束時間，相對於音訊串流的開頭。以十進位秒數表示，後面加上 's' 後綴，例如 "30s"。必須為正數，且在設定了 `start_offset` 時，必須大於 `start_offset`。
+
+
+            ??? note "**string enum**"
+
+
+                  可能的值：
+
+                  - `static`：所有音訊都會放入上下文中。
+
+
         ??? note "**mime_type**: `string enum` 音訊的 MIME 類型。"
 
             可能的值：
@@ -98,6 +128,82 @@
 
           文件的 URI。
 
+
+
+        ??? note "**resolution**: `MediaResolution` 媒體的解析度。當在 content_layers 中選取 PAGE_IMAGE 時適用。"
+
+
+              可能的值：
+
+              - `low`：低解析度。
+              - `medium`：中解析度。
+              - `high`：高解析度。
+              - `ultra_high`：超高解析度。
+
+
+        ??? note "**processing**: `DocumentMediaProcessing` or `string enum` 模型如何處理這份文件以進行理解。"
+
+
+              **可能的類型**：
+
+
+            ??? note "**DocumentMediaProcessing**"
+
+
+                  **type**: required `object`
+
+                  值：`static`
+
+
+                ??? note "**page_options**: `PageProcessingOptions` 分頁文件的選項。僅適用於分頁文件 MIME 類型（例如 PDF、Office 文件與簡報）。"
+
+
+                      **start_page**: `integer`
+
+                      選填。起始頁，以 1 起算，包含起始頁。
+
+                      **end_page**: `integer`
+
+                      選填。結束頁，以 1 起算，包含結束頁。若設定了 `start_page`，必須大於或等於 `start_page`。
+
+
+                    ??? note "**content_layers**: `string enum array` 選填。要從分頁文件中擷取的內容層。"
+
+
+                          可能的值：
+
+                          - `page_image`：頁面的轉譯影像。
+                          - `page_text`：頁面的文字。
+
+
+                ??? note "**spreadsheet_options**: `SpreadsheetProcessingOptions` 試算表的選項。僅適用於試算表 MIME 類型（.xlsx、.xls、.ods）。"
+
+
+                      **visible_cells**: `string`
+
+                      選填。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                      **sheet_index**: `integer`
+
+                      選填。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                    ??? note "**content_layers**: `string enum array` 選填。要從試算表中擷取的內容層。"
+
+
+                          可能的值：
+
+                          - `visual`：工作表的轉譯影像。
+                          - `data`：儲存格值、合併儲存格與格式。
+                          - `formulas`：公式運算式及其計算結果。
+
+
+            ??? note "**string enum**"
+
+
+                  可能的值：
+
+                  - `static`：已擷取的所有頁面都會放入上下文中。
 
 
         ??? note "**mime_type**: `string enum` 文件的 MIME 類型。"
@@ -434,6 +540,16 @@
 
 
 
+                ??? note "**content_layers**: `string enum array` 選填。要從影片中擷取的內容層。"
+
+
+                      可能的值：
+
+                      - `frames`：影片的影格。
+                      - `audio`：影片的音訊。
+                      - `transcript`：音軌的逐字稿。
+
+
             ??? note "**string enum**"
 
                 可能的值：
@@ -595,16 +711,16 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.gaos.models.decisions.CreateDecisionRequest;
-          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.decisions.Input;
           import com.google.genai.gaos.models.decisions.NoulAnswer;
           import com.google.genai.gaos.models.decisions.NoulCriteria;
           import com.google.genai.gaos.models.decisions.NoulQuestion;
           import com.google.genai.gaos.models.decisions.NoulQuestionInstructions;
+          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
+          import com.google.genai.types.HttpOptions;
 
           Client client =
               Client.builder()
@@ -808,15 +924,15 @@
     === "Java"
 
           ```java
+          import com.google.genai.Client;
           import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.gaos.models.decisions.ChoiceAnswer;
           import com.google.genai.gaos.models.decisions.ChoiceQuestion;
           import com.google.genai.gaos.models.decisions.ChoiceQuestionInstructions;
-          import com.google.genai.Client;
           import com.google.genai.gaos.models.decisions.CreateDecisionRequest;
+          import com.google.genai.gaos.models.decisions.Input;
           import com.google.genai.gaos.models.operations.CreateDecisionResponse;
           import com.google.genai.types.HttpOptions;
-          import com.google.genai.gaos.models.decisions.Input;
 
           Client client =
               Client.builder()
@@ -1012,15 +1128,16 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.gaos.models.decisions.CreateDecisionRequest;
-          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.decisions.Input;
           import com.google.genai.gaos.models.decisions.ScoreAnswer;
           import com.google.genai.gaos.models.decisions.ScoreQuestion;
           import com.google.genai.gaos.models.decisions.ScoreQuestionInstructions;
+          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder()
@@ -1259,14 +1376,12 @@
     === "Java"
 
           ```java
+          import com.google.genai.Client;
           import com.google.genai.gaos.models.decisions.Answer;
           import com.google.genai.gaos.models.decisions.ChoiceAnswer;
           import com.google.genai.gaos.models.decisions.ChoiceQuestion;
           import com.google.genai.gaos.models.decisions.ChoiceQuestionInstructions;
-          import com.google.genai.Client;
           import com.google.genai.gaos.models.decisions.CreateDecisionRequest;
-          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.decisions.Input;
           import com.google.genai.gaos.models.decisions.NoulAnswer;
           import com.google.genai.gaos.models.decisions.NoulQuestion;
@@ -1274,6 +1389,9 @@
           import com.google.genai.gaos.models.decisions.ScoreAnswer;
           import com.google.genai.gaos.models.decisions.ScoreQuestion;
           import com.google.genai.gaos.models.decisions.ScoreQuestionInstructions;
+          import com.google.genai.gaos.models.operations.CreateDecisionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder()

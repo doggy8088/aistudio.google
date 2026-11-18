@@ -92,10 +92,10 @@
 
       ```java
       import com.google.genai.Client;
-      import com.google.genai.gaos.models.operations.GetInteractionByIdRequest;
-      import com.google.genai.gaos.models.operations.GetInteractionByIdResponse;
       import com.google.genai.gaos.models.interactions.Interaction;
       import com.google.genai.gaos.models.interactions.InteractionStatus;
+      import com.google.genai.gaos.models.operations.GetInteractionByIdRequest;
+      import com.google.genai.gaos.models.operations.GetInteractionByIdResponse;
 
       Client client = new Client();
 
@@ -1251,6 +1251,39 @@ Interaction 資源。
 
 
 
+    ??? note "**processing**: `AudioMediaProcessing` or `string enum` 模型如何處理此音訊以進行理解。"
+
+
+          **可能類型**：
+
+
+        ??? note "**AudioMediaProcessing**"
+
+
+              **type**: required `object`
+
+              值：`static`
+
+              **start_offset**: `string`
+
+              可選。片段開始時間，相對於音訊串流的開頭。以小數秒數表示，後接 's' 後綴，例如 "10.5s"。必須為非負數。
+
+              **end_offset**: `string`
+
+              可選。片段結束時間，相對於音訊串流的開頭。以小數秒數表示，後接 's' 後綴，例如 "30s"。必須為正數，且在設定 `start_offset` 時必須大於 `start_offset`。
+
+
+        ??? note "**string enum**"
+
+
+              可能值：
+
+              - `static`: 所有音訊皆放入上下文。
+
+
+    ---
+
+
     ??? note "**mime_type**: `string enum` 音訊的 MIME 類型。"
 
         可能值：
@@ -1324,6 +1357,88 @@ Interaction 資源。
     ---
 
 
+
+
+    ??? note "**resolution**: `MediaResolution` 媒體的解析度。當在 content_layers 中選取 PAGE_IMAGE 時適用。"
+
+
+          可能值：
+
+          - `low`: 低解析度。
+          - `medium`: 中解析度。
+          - `high`: 高解析度。
+          - `ultra_high`: 超高解析度。
+
+
+    ---
+
+
+    ??? note "**processing**: `DocumentMediaProcessing` or `string enum` 模型如何處理此文件以進行理解。"
+
+
+          **可能類型**：
+
+
+        ??? note "**DocumentMediaProcessing**"
+
+
+              **type**: required `object`
+
+              值：`static`
+
+
+            ??? note "**page_options**: `PageProcessingOptions` 分頁文件的選項。僅適用於分頁文件 MIME 類型（例如 PDF、Office 文件與簡報）。"
+
+
+                  **start_page**: `integer`
+
+                  可選。起始頁，以 1 起算，包含起始頁。
+
+                  **end_page**: `integer`
+
+                  可選。結束頁，以 1 起算，包含結束頁。若設定了 `start_page`，必須大於或等於 `start_page`。
+
+
+                ??? note "**content_layers**: `string enum array` 可選。要從分頁文件中擷取的內容層。"
+
+
+                      可能值：
+
+                      - `page_image`: 頁面的轉譯影像。
+                      - `page_text`: 頁面的文字。
+
+
+            ??? note "**spreadsheet_options**: `SpreadsheetProcessingOptions` 試算表的選項。僅適用於試算表 MIME 類型（.xlsx、.xls、.ods）。"
+
+
+                  **visible_cells**: `string`
+
+                  可選。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                  **sheet_index**: `integer`
+
+                  可選。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                ??? note "**content_layers**: `string enum array` 可選。要從試算表中擷取的內容層。"
+
+
+                      可能值：
+
+                      - `visual`: 工作表的轉譯影像。
+                      - `data`: 儲存格值、合併儲存格與格式。
+                      - `formulas`: 公式運算式及其計算結果。
+
+
+        ??? note "**string enum**"
+
+
+              可能值：
+
+              - `static`: 已擷取的所有頁面皆放入上下文。
+
+
+    ---
 
 
     ??? note "**mime_type**: `string enum` 文件的 MIME 類型。"
@@ -1769,6 +1884,16 @@ Interaction 資源。
 
 
 
+            ??? note "**content_layers**: `string enum array` 可選。要從影片中擷取的內容層。"
+
+
+                  可能值：
+
+                  - `frames`: 影片的影格。
+                  - `audio`: 影片的音訊。
+                  - `transcript`: 音軌的逐字稿。
+
+
         ??? note "**string enum**"
 
             可能值：
@@ -1903,11 +2028,12 @@ Interaction 資源。
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.interactions.CodeExecution;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -2093,11 +2219,12 @@ Interaction 資源。
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.interactions.ComputerUse;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -2272,14 +2399,15 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.types.CreateFileSearchStoreConfig;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.FileSearch;
-          import com.google.genai.types.FileSearchStore;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.CreateFileSearchStoreConfig;
+          import com.google.genai.types.FileSearchStore;
+          import java.util.List;
 
           Client client = new Client();
 
@@ -2489,13 +2617,14 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Function;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Step;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           Map<String, Object> parameters =
@@ -2700,12 +2829,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.GoogleMaps;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           GoogleMaps tool = GoogleMaps.builder().latitude(37.7749).longitude(-122.4194).build();
@@ -2854,12 +2984,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.GoogleSearch;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -3055,12 +3186,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.MCPServer;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           MCPServer mcpTool =
@@ -3201,12 +3333,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.URLContext;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =

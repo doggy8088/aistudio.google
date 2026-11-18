@@ -43,7 +43,7 @@ Inline Preference Voting 與 Build Arena 模式）。
     應用程式程式碼與輸出、比較投票或評分、隨附的
     留言與使用詳情。
 
-*   **Gemini API Logs**：在 Logs and Datasets 檢視器中，可以針對
+*   **Gemini API Logs**：在 Logs 檢視器中，可以針對
     個別的 Gemini API 請求記錄提交意見回饋。記錄的資料包括
     特定的 API 記錄條目（包括請求酬載、模型回應、
     參數與中繼資料），以及任何意見回饋與使用詳情。記錄資料儲存與資料集共用的詳情，請參閱

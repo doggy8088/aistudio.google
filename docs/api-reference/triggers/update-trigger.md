@@ -1056,6 +1056,11 @@
         "uri": "string",
         "channels": 0,
         "sample_rate": 0,
+        "processing": {
+          "type": "static",
+          "start_offset": "string",
+          "end_offset": "string"
+        },
         "mime_type": "audio/wav"
       },
       "agent_config": {

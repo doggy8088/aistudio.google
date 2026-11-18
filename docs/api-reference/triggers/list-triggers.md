@@ -95,6 +95,7 @@
             "uri": "...",
             "channels": "...",
             "sample_rate": "...",
+            "processing": "...",
             "mime_type": "..."
           },
           "agent_config": {

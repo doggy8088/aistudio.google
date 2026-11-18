@@ -94,9 +94,10 @@
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.environments.EnvironmentFile;
-          import com.google.genai.gaos.models.operations.GetEnvironmentFilesRequest;
           import com.google.genai.gaos.models.environments.GetEnvironmentFilesResponse;
+          import com.google.genai.gaos.models.operations.GetEnvironmentFilesRequest;
           import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -218,9 +219,10 @@
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.environments.EnvironmentFile;
-          import com.google.genai.gaos.models.operations.GetEnvironmentFilesRequest;
           import com.google.genai.gaos.models.environments.GetEnvironmentFilesResponse;
+          import com.google.genai.gaos.models.operations.GetEnvironmentFilesRequest;
           import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();

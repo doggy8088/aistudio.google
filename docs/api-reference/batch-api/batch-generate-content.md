@@ -254,6 +254,96 @@
 
 
 
+                                                    ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                                          聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                                        ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startOffset**: `string`
+
+                                                              選用。影片的開始偏移。
+
+                                                              **endOffset**: `string`
+
+                                                              選用。影片的結束偏移。
+
+                                                              **fps**: `number`
+
+                                                              選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `FRAMES`：擷取影片影格。
+                                                                  - `AUDIO`：擷取音軌。
+                                                                  - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                                        ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startPage**: `integer`
+
+                                                              選用。起始頁，以 1 起算，包含起始頁。
+
+                                                              **endPage**: `integer`
+
+                                                              選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                                  - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                                        ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **visibleCells**: `string`
+
+                                                              選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                              **sheetIndex**: `integer`
+
+                                                              選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `DATA`：儲存格值、合併儲存格與格式。
+                                                                  - `FORMULAS`：公式運算式及其計算結果。
+                                                                  - `VISUAL`：工作表的轉譯影像。
+
+
+                                                        ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startOffset**: `string`
+
+                                                              選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                              **endOffset**: `string`
+
+                                                              選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                                     ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                                         可能的值：
@@ -262,6 +352,27 @@
                                                         - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                                         - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                                    ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                                        ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                              聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                            ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                                  可能的值：
+
+                                                                  - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                                  - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                                  - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                                  - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                                  - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                                   **willContinue**: `boolean`
@@ -429,6 +540,74 @@
 
                                                 選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `FRAMES`：擷取影片影格。
+                                                      - `AUDIO`：擷取音軌。
+                                                      - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                            ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startPage**: `integer`
+
+                                                  選用。起始頁，以 1 起算，包含起始頁。
+
+                                                  **endPage**: `integer`
+
+                                                  選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                      - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                            ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **visibleCells**: `string`
+
+                                                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                  **sheetIndex**: `integer`
+
+                                                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `DATA`：儲存格值、合併儲存格與格式。
+                                                      - `FORMULAS`：公式運算式及其計算結果。
+                                                      - `VISUAL`：工作表的轉譯影像。
+
+
+                                            ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
                                           **thought**: `boolean`
@@ -789,6 +968,96 @@
 
 
 
+                                                        ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                                              聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                                            ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                                  **startOffset**: `string`
+
+                                                                  選用。影片的開始偏移。
+
+                                                                  **endOffset**: `string`
+
+                                                                  選用。影片的結束偏移。
+
+                                                                  **fps**: `number`
+
+                                                                  選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                                      可能的值：
+
+                                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                      - `FRAMES`：擷取影片影格。
+                                                                      - `AUDIO`：擷取音軌。
+                                                                      - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                                            ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                                  **startPage**: `integer`
+
+                                                                  選用。起始頁，以 1 起算，包含起始頁。
+
+                                                                  **endPage**: `integer`
+
+                                                                  選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                                      可能的值：
+
+                                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                      - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                                      - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                                            ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                                  **visibleCells**: `string`
+
+                                                                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                                  **sheetIndex**: `integer`
+
+                                                                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                                      可能的值：
+
+                                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                      - `DATA`：儲存格值、合併儲存格與格式。
+                                                                      - `FORMULAS`：公式運算式及其計算結果。
+                                                                      - `VISUAL`：工作表的轉譯影像。
+
+
+                                                            ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                                  **startOffset**: `string`
+
+                                                                  選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                                  **endOffset**: `string`
+
+                                                                  選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                                         ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                                             可能的值：
@@ -797,6 +1066,27 @@
                                                             - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                                             - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                                        ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                                            ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                                  聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                                      可能的值：
+
+                                                                      - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                                      - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                                      - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                                      - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                                      - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                                       **willContinue**: `boolean`
@@ -964,6 +1254,74 @@
 
                                                     選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
+
+
+                                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                          可能的值：
+
+                                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                          - `FRAMES`：擷取影片影格。
+                                                          - `AUDIO`：擷取音軌。
+                                                          - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                                ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                      **startPage**: `integer`
+
+                                                      選用。起始頁，以 1 起算，包含起始頁。
+
+                                                      **endPage**: `integer`
+
+                                                      選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                          可能的值：
+
+                                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                          - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                          - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                                ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                      **visibleCells**: `string`
+
+                                                      選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                      **sheetIndex**: `integer`
+
+                                                      選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                          可能的值：
+
+                                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                          - `DATA`：儲存格值、合併儲存格與格式。
+                                                          - `FORMULAS`：公式運算式及其計算結果。
+                                                          - `VISUAL`：工作表的轉譯影像。
+
+
+                                                ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                      **startOffset**: `string`
+
+                                                      選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                      **endOffset**: `string`
+
+                                                      選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
                                               **thought**: `boolean`
@@ -1872,6 +2230,96 @@
 
 
 
+                                        ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                              聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                            ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。影片的開始偏移。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。影片的結束偏移。
+
+                                                  **fps**: `number`
+
+                                                  選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `FRAMES`：擷取影片影格。
+                                                      - `AUDIO`：擷取音軌。
+                                                      - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                            ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startPage**: `integer`
+
+                                                  選用。起始頁，以 1 起算，包含起始頁。
+
+                                                  **endPage**: `integer`
+
+                                                  選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                      - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                            ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **visibleCells**: `string`
+
+                                                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                  **sheetIndex**: `integer`
+
+                                                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `DATA`：儲存格值、合併儲存格與格式。
+                                                      - `FORMULAS`：公式運算式及其計算結果。
+                                                      - `VISUAL`：工作表的轉譯影像。
+
+
+                                            ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                         ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                             可能的值：
@@ -1880,6 +2328,27 @@
                                             - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                             - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                        ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                            ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                  聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                      可能的值：
+
+                                                      - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                      - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                      - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                      - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                      - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                       **willContinue**: `boolean`
@@ -2047,6 +2516,74 @@
 
                                     選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `FRAMES`：擷取影片影格。
+                                          - `AUDIO`：擷取音軌。
+                                          - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **startPage**: `integer`
+
+                                      選用。起始頁，以 1 起算，包含起始頁。
+
+                                      **endPage**: `integer`
+
+                                      選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                          - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **visibleCells**: `string`
+
+                                      選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                      **sheetIndex**: `integer`
+
+                                      選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `DATA`：儲存格值、合併儲存格與格式。
+                                          - `FORMULAS`：公式運算式及其計算結果。
+                                          - `VISUAL`：工作表的轉譯影像。
+
+
+                                ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **startOffset**: `string`
+
+                                      選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                      **endOffset**: `string`
+
+                                      選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
                               **thought**: `boolean`
@@ -2268,6 +2805,96 @@
 
 
 
+                                        ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                              聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                            ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。影片的開始偏移。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。影片的結束偏移。
+
+                                                  **fps**: `number`
+
+                                                  選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `FRAMES`：擷取影片影格。
+                                                      - `AUDIO`：擷取音軌。
+                                                      - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                            ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startPage**: `integer`
+
+                                                  選用。起始頁，以 1 起算，包含起始頁。
+
+                                                  **endPage**: `integer`
+
+                                                  選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                      - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                            ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **visibleCells**: `string`
+
+                                                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                  **sheetIndex**: `integer`
+
+                                                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `DATA`：儲存格值、合併儲存格與格式。
+                                                      - `FORMULAS`：公式運算式及其計算結果。
+                                                      - `VISUAL`：工作表的轉譯影像。
+
+
+                                            ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                         ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                             可能的值：
@@ -2276,6 +2903,27 @@
                                             - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                             - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                        ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                            ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                  聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                      可能的值：
+
+                                                      - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                      - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                      - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                      - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                      - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                       **willContinue**: `boolean`
@@ -2443,6 +3091,74 @@
 
                                     選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `FRAMES`：擷取影片影格。
+                                          - `AUDIO`：擷取音軌。
+                                          - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **startPage**: `integer`
+
+                                      選用。起始頁，以 1 起算，包含起始頁。
+
+                                      **endPage**: `integer`
+
+                                      選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                          - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **visibleCells**: `string`
+
+                                      選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                      **sheetIndex**: `integer`
+
+                                      選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                    ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                          可能的值：
+
+                                          - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                          - `DATA`：儲存格值、合併儲存格與格式。
+                                          - `FORMULAS`：公式運算式及其計算結果。
+                                          - `VISUAL`：工作表的轉譯影像。
+
+
+                                ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                      **startOffset**: `string`
+
+                                      選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                      **endOffset**: `string`
+
+                                      選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
                               **thought**: `boolean`
@@ -3655,6 +4371,96 @@
 
 
 
+                                                ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                                      聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                                    ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                          **startOffset**: `string`
+
+                                                          選用。影片的開始偏移。
+
+                                                          **endOffset**: `string`
+
+                                                          選用。影片的結束偏移。
+
+                                                          **fps**: `number`
+
+                                                          選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                        ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                              可能的值：
+
+                                                              - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                              - `FRAMES`：擷取影片影格。
+                                                              - `AUDIO`：擷取音軌。
+                                                              - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                                    ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                          **startPage**: `integer`
+
+                                                          選用。起始頁，以 1 起算，包含起始頁。
+
+                                                          **endPage**: `integer`
+
+                                                          選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                        ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                              可能的值：
+
+                                                              - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                              - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                              - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                                    ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                          **visibleCells**: `string`
+
+                                                          選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                          **sheetIndex**: `integer`
+
+                                                          選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                        ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                              可能的值：
+
+                                                              - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                              - `DATA`：儲存格值、合併儲存格與格式。
+                                                              - `FORMULAS`：公式運算式及其計算結果。
+                                                              - `VISUAL`：工作表的轉譯影像。
+
+
+                                                    ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                          **startOffset**: `string`
+
+                                                          選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                          **endOffset**: `string`
+
+                                                          選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                                 ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                                     可能的值：
@@ -3663,6 +4469,27 @@
                                                     - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                                     - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                                ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                                    ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                          聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                        ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                              可能的值：
+
+                                                              - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                              - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                              - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                              - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                              - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                               **willContinue**: `boolean`
@@ -3830,6 +4657,74 @@
 
                                             選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
 
+
+
+                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                  可能的值：
+
+                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                  - `FRAMES`：擷取影片影格。
+                                                  - `AUDIO`：擷取音軌。
+                                                  - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                        ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                              **startPage**: `integer`
+
+                                              選用。起始頁，以 1 起算，包含起始頁。
+
+                                              **endPage**: `integer`
+
+                                              選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                  可能的值：
+
+                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                  - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                  - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                        ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                              **visibleCells**: `string`
+
+                                              選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                              **sheetIndex**: `integer`
+
+                                              選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                  可能的值：
+
+                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                  - `DATA`：儲存格值、合併儲存格與格式。
+                                                  - `FORMULAS`：公式運算式及其計算結果。
+                                                  - `VISUAL`：工作表的轉譯影像。
+
+
+                                        ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                              **startOffset**: `string`
+
+                                              選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                              **endOffset**: `string`
+
+                                              選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
                                       **thought**: `boolean`
@@ -4190,6 +5085,96 @@
 
 
 
+                                                    ??? note "**metadata**: `Union type` 控制資料的額外預處理。當 `inline_data` 或 `file_data` 存在時設定此項，以設定每個部分的靜態媒體預處理。"
+
+
+                                                          聯合欄位 `metadata` 只能是下列其中之一：
+
+
+                                                        ??? note "**videoMetadata**: `VideoMetadata` 選用。影片中繼資料。中繼資料僅應在影片資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startOffset**: `string`
+
+                                                              選用。影片的開始偏移。
+
+                                                              **endOffset**: `string`
+
+                                                              選用。影片的結束偏移。
+
+                                                              **fps**: `number`
+
+                                                              選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `FRAMES`：擷取影片影格。
+                                                                  - `AUDIO`：擷取音軌。
+                                                                  - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                                        ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startPage**: `integer`
+
+                                                              選用。起始頁，以 1 起算，包含起始頁。
+
+                                                              **endPage**: `integer`
+
+                                                              選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                                  - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                                        ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **visibleCells**: `string`
+
+                                                              選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                              **sheetIndex**: `integer`
+
+                                                              選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                            ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                                  可能的值：
+
+                                                                  - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                                  - `DATA`：儲存格值、合併儲存格與格式。
+                                                                  - `FORMULAS`：公式運算式及其計算結果。
+                                                                  - `VISUAL`：工作表的轉譯影像。
+
+
+                                                        ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                              **startOffset**: `string`
+
+                                                              選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                              **endOffset**: `string`
+
+                                                              選用。音訊的結束偏移，相對於音訊串流的開頭。
+
+
                                                     ??? note "**mediaProcessing**: `string enum` 選用。模型如何處理此部分的媒體以進行理解。僅對影片部分有意義（`inline_data` 或具影片 mime 類型的 `file_data`）。非影片部分會忽略此欄位。"
 
                                                         可能的值：
@@ -4198,6 +5183,27 @@
                                                         - `STATIC`：固定速率影格擷取。所有影格都放入上下文。
                                                         - `AGENTIC`：由模型驅動的動態導覽。建議用於大多數使用情境。
 
+
+
+                                                    ??? note "**mediaResolution**: `V1mainMediaResolution` 選用。輸入媒體的媒體解析度。"
+
+
+                                                        ??? note "**value**: `Union type` 媒體解析度等級。"
+
+
+                                                              聯合欄位 `value` 只能是下列其中之一：
+
+
+                                                            ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+
+
+                                                                  可能的值：
+
+                                                                  - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
+                                                                  - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低。
+                                                                  - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中。
+                                                                  - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高。
+                                                                  - `MEDIA_RESOLUTION_ULTRA_HIGH`：媒體解析度設為超高。
 
 
                                                   **willContinue**: `boolean`
@@ -4364,6 +5370,74 @@
                                                 **fps**: `number`
 
                                                 選用。傳送給模型的影片影格率。若未指定，預設值為 1.0。fps 範圍為 (0.0, 24.0]。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，預設為 [FRAMES, AUDIO]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `FRAMES`：擷取影片影格。
+                                                      - `AUDIO`：擷取音軌。
+                                                      - `TRANSCRIPT`：擷取音訊逐字稿。
+
+
+                                            ??? note "**documentMetadata**: `DocumentMetadata` 選用。文件中繼資料。中繼資料僅應在文件資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startPage**: `integer`
+
+                                                  選用。起始頁，以 1 起算，包含起始頁。
+
+                                                  **endPage**: `integer`
+
+                                                  選用。結束頁，以 1 起算，包含結束頁。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 DocumentMetadata 時預設為 [PAGE_IMAGE]；若未設定 DocumentMetadata，則使用預設的文件處理方式（例如 PDF 的頁面影像）。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `PAGE_IMAGE`：轉譯後的頁面影像。
+                                                      - `PAGE_TEXT`：擷取的頁面文字。
+
+
+                                            ??? note "**spreadsheetMetadata**: `SpreadsheetMetadata` 選用。試算表中繼資料。中繼資料僅應在試算表資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **visibleCells**: `string`
+
+                                                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                                                  **sheetIndex**: `integer`
+
+                                                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                                                ??? note "**contentLayers**: `string enum array` 選用。要傳回的內容層。若為空，當設定了 SpreadsheetMetadata 時預設為 [DATA, FORMULAS]。"
+
+
+                                                      可能的值：
+
+                                                      - `CONTENT_LAYER_UNSPECIFIED`：預設值。
+                                                      - `DATA`：儲存格值、合併儲存格與格式。
+                                                      - `FORMULAS`：公式運算式及其計算結果。
+                                                      - `VISUAL`：工作表的轉譯影像。
+
+
+                                            ??? note "**audioMetadata**: `AudioMetadata` 選用。音訊中繼資料。中繼資料僅應在音訊資料以 inline_data 或 file_data 呈現時指定。"
+
+
+                                                  **startOffset**: `string`
+
+                                                  選用。音訊的開始偏移，相對於音訊串流的開頭。
+
+                                                  **endOffset**: `string`
+
+                                                  選用。音訊的結束偏移，相對於音訊串流的開頭。
 
 
 

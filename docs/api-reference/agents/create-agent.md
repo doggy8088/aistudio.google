@@ -425,12 +425,13 @@
     === "Java"
 
           ```java
+          import com.google.genai.Client;
           import com.google.genai.gaos.models.agents.Agent;
           import com.google.genai.gaos.models.agents.BaseEnvironment;
-          import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateAgentResponse;
           import com.google.genai.gaos.models.interactions.GoogleSearch;
+          import com.google.genai.gaos.models.operations.CreateAgentResponse;
           import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -600,14 +601,15 @@
     === "Java"
 
           ```java
+          import com.google.genai.Client;
           import com.google.genai.gaos.models.agents.Agent;
           import com.google.genai.gaos.models.agents.BaseEnvironment;
-          import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateAgentResponse;
           import com.google.genai.gaos.models.environments.Environment;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.interactions.Source;
           import com.google.genai.gaos.models.interactions.SourceType;
+          import com.google.genai.gaos.models.operations.CreateAgentResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -789,19 +791,19 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.agents.Agent;
-          import com.google.genai.gaos.models.interactions.AgentOption;
-          import com.google.genai.gaos.models.agents.BaseEnvironment;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.agents.Agent;
+          import com.google.genai.gaos.models.agents.BaseEnvironment;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
           import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.Step;
           import com.google.genai.gaos.models.operations.CreateAgentResponse;
           import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
           import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.types.HttpOptions;
-          import com.google.genai.gaos.models.interactions.Interaction;
-          import com.google.genai.gaos.models.interactions.InteractionsInput;
-          import com.google.genai.gaos.models.interactions.Step;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();

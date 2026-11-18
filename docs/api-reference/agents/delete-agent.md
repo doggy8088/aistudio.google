@@ -63,8 +63,8 @@
 === "Java"
 
       ```java
-      import com.google.genai.gaos.models.agents.Agent;
       import com.google.genai.Client;
+      import com.google.genai.gaos.models.agents.Agent;
       import com.google.genai.types.HttpOptions;
 
       Client client =

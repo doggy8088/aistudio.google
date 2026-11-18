@@ -4,11 +4,11 @@
 
 ## 可分享的資料 {#shared-data}
 
-Interactions API 呼叫預設會開啟日誌記錄；對於在 2026 年 10 月 26 日當天或之後建立的專案，Generate Content API 呼叫也會預設開啟。身為專案擁有者，你可以隨時在 AI Studio 的 [Logs and Datasets](https://aistudio.google.com/logs) 頁面中開啟或關閉日誌記錄。日誌是供你自行使用的，你也可以選擇將它們作為回饋分享給 Google，協助我們持續改進模型。
+Interactions API 呼叫預設會開啟日誌記錄；對於在 2026 年 10 月 26 日當天或之後建立的專案，Generate Content API 呼叫也會預設開啟。身為專案擁有者，你可以隨時在 AI Studio 的 [Logs](https://aistudio.google.com/logs) 頁面中開啟或關閉日誌記錄。日誌是供你自行使用的，你也可以選擇將它們作為回饋分享給 Google，協助我們持續改進模型。
 
 啟用日誌記錄後，你可以選擇提供下列資料用於產品改進與模型訓練，協助我們打造在各領域與使用案例中都能持續為開發者帶來價值的 AI 系統：
 
-* **資料集：** 使用 Google AI Studio 的 Logs and Datasets 介面，從受支援的 Gemini API 呼叫中挑選感興趣的日誌（要求、回應、中繼資料等）；透過納入資料集的方式提供，並可在建立資料集時選擇退出。
+* **資料集：** 使用 Google AI Studio 的 Logs 頁面，從受支援的 Gemini API 呼叫中挑選感興趣的日誌（要求、回應、中繼資料等）；透過納入資料集的方式提供，並可在建立資料集時選擇退出。
 
 * **回饋：** 在查看日誌時，你可以提供回饋，包括按讚或倒讚評分，以及你提供的任何文字意見。
 

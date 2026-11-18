@@ -780,11 +780,11 @@
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -915,8 +915,6 @@
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
@@ -924,6 +922,9 @@
           import com.google.genai.gaos.models.interactions.Step;
           import com.google.genai.gaos.models.interactions.TextContent;
           import com.google.genai.gaos.models.interactions.UserInputStep;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           List<Step> conversation =
@@ -1079,14 +1080,15 @@
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.interactions.Content;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.ImageContent;
           import com.google.genai.gaos.models.interactions.ImageContentMimeType;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           List<Content> content =
@@ -1253,13 +1255,14 @@
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Function;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Step;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           Map<String, Object> parameters =
@@ -1401,14 +1404,14 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionStatus;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
 
           Client client = new Client();
           CreateAgentInteraction params =
@@ -1517,15 +1520,15 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
           import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
           import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.types.HttpOptions;
-          import com.google.genai.gaos.models.interactions.Interaction;
-          import com.google.genai.gaos.models.interactions.InteractionsInput;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -1668,17 +1671,17 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.environments.Environment;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
           import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
-          import com.google.genai.gaos.models.environments.Environment;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Step;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -1862,18 +1865,19 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.environments.Environment;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
           import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
-          import com.google.genai.gaos.models.environments.Environment;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Source;
           import com.google.genai.gaos.models.interactions.SourceType;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -2075,21 +2079,22 @@
     === "Java"
 
           ```java
-          import com.google.genai.gaos.models.agents.Agent;
-          import com.google.genai.gaos.models.interactions.AgentOption;
-          import com.google.genai.gaos.models.agents.BaseEnvironment;
           import com.google.genai.Client;
+          import com.google.genai.gaos.models.agents.Agent;
+          import com.google.genai.gaos.models.agents.BaseEnvironment;
+          import com.google.genai.gaos.models.environments.Environment;
+          import com.google.genai.gaos.models.interactions.AgentOption;
           import com.google.genai.gaos.models.interactions.CreateAgentInteraction;
           import com.google.genai.gaos.models.interactions.CreateAgentInteractionEnvironment;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
-          import com.google.genai.gaos.models.environments.Environment;
-          import com.google.genai.types.HttpOptions;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Source;
           import com.google.genai.gaos.models.interactions.SourceType;
           import com.google.genai.gaos.models.interactions.Step;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.util.List;
 
           Client client =
               Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
@@ -2187,6 +2192,1240 @@
                   Agent:       gaos_interactions.AgentOption(agentID),
                   Input:       genai.Ptr(gaos_interactions.NewInteractionsInput("Review the latest changes in /workspace/repo/src and file a summary.")),
                   Environment: genai.Ptr(gaos_interactions.NewCreateAgentInteractionEnvironment("remote")),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "文件"
+
+
+    === "REST"
+
+          ```sh
+          # Write the request to a file: inline base64 data can exceed the shell's
+          # argument size limit.
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "Summarize this document."},
+              {
+                "type": "document",
+                "mime_type": "application/pdf",
+                "data": "$(base64 -w0 report.pdf)"
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client()
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "Summarize this document."},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("report.pdf"),
+                      "mime_type": "application/pdf",
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'Summarize this document.'},
+              {
+                type: 'document',
+                data: fs.readFileSync('report.pdf', 'base64'),
+                mime_type: 'application/pdf',
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client = new Client();
+          Path path = Path.of("report.pdf");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("Summarize this document.").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(DocumentContentMimeType.APPLICATION_PDF)
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, nil)
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("report.pdf")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "Summarize this document.",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationPdf.ToPointer(),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "文件頁面範圍"
+
+
+    === "REST"
+
+          ```sh
+          # Only send pages 2 through 3 (1-indexed, inclusive).
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "Summarize these pages."},
+              {
+                "type": "document",
+                "mime_type": "application/pdf",
+                "data": "$(base64 -w0 report.pdf)",
+                "processing": {
+                  "type": "static",
+                  "page_options": {"start_page": 2, "end_page": 3}
+                }
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client(http_options={"api_version": "v1beta"})
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "Summarize these pages."},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("report.pdf"),
+                      "mime_type": "application/pdf",
+                      # Only send pages 2 through 3 (1-indexed, inclusive).
+                      "processing": {
+                          "type": "static",
+                          "page_options": {"start_page": 2, "end_page": 3},
+                      },
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({apiVersion: 'v1beta'});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'Summarize these pages.'},
+              {
+                type: 'document',
+                data: fs.readFileSync('report.pdf', 'base64'),
+                mime_type: 'application/pdf',
+                // Only send pages 2 through 3 (1-indexed, inclusive).
+                processing: {
+                  type: 'static',
+                  page_options: {start_page: 2, end_page: 3},
+                },
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.DocumentMediaProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentStaticMediaProcessing;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptions;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client =
+              Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+          Path path = Path.of("report.pdf");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("Summarize these pages.").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(DocumentContentMimeType.APPLICATION_PDF)
+                      // Only send pages 2 through 3 (1-indexed, inclusive).
+                      .processing(
+                          DocumentProcessing.of(
+                              DocumentMediaProcessing.of(
+                                  DocumentStaticMediaProcessing.builder()
+                                      .pageOptions(
+                                          PageProcessingOptions.builder().startPage(2).endPage(3).build())
+                                      .build())))
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, &genai.ClientConfig{
+                  HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
+              })
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("report.pdf")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "Summarize these pages.",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationPdf.ToPointer(),
+                      // Only send pages 2 through 3 (1-indexed, inclusive).
+                      Processing: genai.Ptr(gaos_interactions.NewDocumentProcessing(
+                          gaos_interactions.NewDocumentMediaProcessing(gaos_interactions.DocumentStaticMediaProcessing{
+                              PageOptions: &gaos_interactions.PageProcessingOptions{
+                                  StartPage: genai.Ptr(2),
+                                  EndPage:   genai.Ptr(3),
+                              },
+                          }),
+                      )),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "僅文件文字"
+
+
+    === "REST"
+
+          ```sh
+          # Send the extracted page text, without page images.
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "List the section headings."},
+              {
+                "type": "document",
+                "mime_type": "application/pdf",
+                "data": "$(base64 -w0 report.pdf)",
+                "processing": {
+                  "type": "static",
+                  "page_options": {"content_layers": ["page_text"]}
+                }
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client(http_options={"api_version": "v1beta"})
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "List the section headings."},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("report.pdf"),
+                      "mime_type": "application/pdf",
+                      # Send the extracted page text, without page images.
+                      "processing": {
+                          "type": "static",
+                          "page_options": {"content_layers": ["page_text"]},
+                      },
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({apiVersion: 'v1beta'});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'List the section headings.'},
+              {
+                type: 'document',
+                data: fs.readFileSync('report.pdf', 'base64'),
+                mime_type: 'application/pdf',
+                // Send the extracted page text, without page images.
+                processing: {
+                  type: 'static',
+                  page_options: {content_layers: ['page_text']},
+                },
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.DocumentMediaProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentStaticMediaProcessing;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptions;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptionsContentLayer;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client =
+              Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+          Path path = Path.of("report.pdf");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("List the section headings.").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(DocumentContentMimeType.APPLICATION_PDF)
+                      // Send the extracted page text, without page images.
+                      .processing(
+                          DocumentProcessing.of(
+                              DocumentMediaProcessing.of(
+                                  DocumentStaticMediaProcessing.builder()
+                                      .pageOptions(
+                                          PageProcessingOptions.builder()
+                                              .contentLayers(
+                                                  List.of(PageProcessingOptionsContentLayer.PAGE_TEXT))
+                                              .build())
+                                      .build())))
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, &genai.ClientConfig{
+                  HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
+              })
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("report.pdf")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "List the section headings.",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationPdf.ToPointer(),
+                      // Send the extracted page text, without page images.
+                      Processing: genai.Ptr(gaos_interactions.NewDocumentProcessing(
+                          gaos_interactions.NewDocumentMediaProcessing(gaos_interactions.DocumentStaticMediaProcessing{
+                              PageOptions: &gaos_interactions.PageProcessingOptions{
+                                  ContentLayers: []gaos_interactions.PageProcessingOptionsContentLayer{
+                                      gaos_interactions.PageProcessingOptionsContentLayerPageText,
+                                  },
+                              },
+                          }),
+                      )),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "文件解析度"
+
+
+    === "REST"
+
+          ```sh
+          # Skim the page images at low resolution.
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "Which pages contain tables?"},
+              {
+                "type": "document",
+                "mime_type": "application/pdf",
+                "data": "$(base64 -w0 report.pdf)",
+                "resolution": "low",
+                "processing": {
+                  "type": "static",
+                  "page_options": {"content_layers": ["page_image"]}
+                }
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client(http_options={"api_version": "v1beta"})
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "Which pages contain tables?"},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("report.pdf"),
+                      "mime_type": "application/pdf",
+                      # Skim the page images at low resolution.
+                      "resolution": "low",
+                      "processing": {
+                          "type": "static",
+                          "page_options": {"content_layers": ["page_image"]},
+                      },
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({apiVersion: 'v1beta'});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'Which pages contain tables?'},
+              {
+                type: 'document',
+                data: fs.readFileSync('report.pdf', 'base64'),
+                mime_type: 'application/pdf',
+                // Skim the page images at low resolution.
+                resolution: 'low',
+                processing: {
+                  type: 'static',
+                  page_options: {content_layers: ['page_image']},
+                },
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.DocumentMediaProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentStaticMediaProcessing;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.MediaResolution;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptions;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptionsContentLayer;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client =
+              Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+          Path path = Path.of("report.pdf");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("Which pages contain tables?").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(DocumentContentMimeType.APPLICATION_PDF)
+                      // Skim the page images at low resolution.
+                      .resolution(MediaResolution.LOW)
+                      .processing(
+                          DocumentProcessing.of(
+                              DocumentMediaProcessing.of(
+                                  DocumentStaticMediaProcessing.builder()
+                                      .pageOptions(
+                                          PageProcessingOptions.builder()
+                                              .contentLayers(
+                                                  List.of(PageProcessingOptionsContentLayer.PAGE_IMAGE))
+                                              .build())
+                                      .build())))
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, &genai.ClientConfig{
+                  HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
+              })
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("report.pdf")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "Which pages contain tables?",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationPdf.ToPointer(),
+                      // Skim the page images at low resolution.
+                      Resolution: gaos_interactions.MediaResolutionLow.ToPointer(),
+                      Processing: genai.Ptr(gaos_interactions.NewDocumentProcessing(
+                          gaos_interactions.NewDocumentMediaProcessing(gaos_interactions.DocumentStaticMediaProcessing{
+                              PageOptions: &gaos_interactions.PageProcessingOptions{
+                                  ContentLayers: []gaos_interactions.PageProcessingOptionsContentLayer{
+                                      gaos_interactions.PageProcessingOptionsContentLayerPageImage,
+                                  },
+                              },
+                          }),
+                      )),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "Office 文件"
+
+
+    === "REST"
+
+          ```sh
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "Summarize the first page."},
+              {
+                "type": "document",
+                "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "data": "$(base64 -w0 demo.docx)",
+                "processing": {
+                  "type": "static",
+                  "page_options": {"start_page": 1, "end_page": 1}
+                }
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client(http_options={"api_version": "v1beta"})
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "Summarize the first page."},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("demo.docx"),
+                      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "processing": {
+                          "type": "static",
+                          "page_options": {"start_page": 1, "end_page": 1},
+                      },
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({apiVersion: 'v1beta'});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'Summarize the first page.'},
+              {
+                type: 'document',
+                data: fs.readFileSync('demo.docx', 'base64'),
+                mime_type:
+                  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                processing: {
+                  type: 'static',
+                  page_options: {start_page: 1, end_page: 1},
+                },
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.DocumentMediaProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentStaticMediaProcessing;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.PageProcessingOptions;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client =
+              Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+          Path path = Path.of("demo.docx");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("Summarize the first page.").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(
+                          DocumentContentMimeType
+                              .APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSINGML_DOCUMENT)
+                      .processing(
+                          DocumentProcessing.of(
+                              DocumentMediaProcessing.of(
+                                  DocumentStaticMediaProcessing.builder()
+                                      .pageOptions(
+                                          PageProcessingOptions.builder().startPage(1).endPage(1).build())
+                                      .build())))
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, &genai.ClientConfig{
+                  HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
+              })
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("demo.docx")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "Summarize the first page.",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument.ToPointer(),
+                      Processing: genai.Ptr(gaos_interactions.NewDocumentProcessing(
+                          gaos_interactions.NewDocumentMediaProcessing(gaos_interactions.DocumentStaticMediaProcessing{
+                              PageOptions: &gaos_interactions.PageProcessingOptions{
+                                  StartPage: genai.Ptr(1),
+                                  EndPage:   genai.Ptr(1),
+                              },
+                          }),
+                      )),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
+              })
+
+              res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              if res.Interaction != nil && res.Interaction.OutputText != nil {
+                  fmt.Println(*res.Interaction.OutputText)
+              }
+          }
+          ```
+
+=== "試算表文件"
+
+
+    === "REST"
+
+          ```sh
+          cat > request.json <<EOF
+          {
+            "model": "gemini-4-hydrogen",
+            "input": [
+              {"type": "text", "text": "Which country has the highest sales?"},
+              {
+                "type": "document",
+                "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "data": "$(base64 -w0 financials.xlsx)",
+                "processing": {
+                  "type": "static",
+                  "spreadsheet_options": {
+                    "sheet_index": 1,
+                    "visible_cells": "A1:P50",
+                    "content_layers": ["data", "formulas"]
+                  }
+                }
+              }
+            ]
+          }
+          EOF
+
+          curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+            -H "x-goog-api-key: $GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d @request.json
+          ```
+
+    === "Python"
+
+          ```python
+          import pathlib
+          from google import genai
+
+
+          client = genai.Client(http_options={"api_version": "v1beta"})
+          interaction = client.interactions.create(
+              model="gemini-4-hydrogen",
+              input=[
+                  {"type": "text", "text": "Which country has the highest sales?"},
+                  {
+                      "type": "document",
+                      "data": pathlib.Path("financials.xlsx"),
+                      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                      "processing": {
+                          "type": "static",
+                          "spreadsheet_options": {
+                              "sheet_index": 1,
+                              "visible_cells": "A1:P50",
+                              "content_layers": ["data", "formulas"],
+                          },
+                      },
+                  },
+              ],
+          )
+          print(interaction.output_text)
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import {GoogleGenAI} from '@google/genai';
+          import * as fs from 'fs';
+
+          const ai = new GoogleGenAI({apiVersion: 'v1beta'});
+          const interaction = await ai.interactions.create({
+            model: 'gemini-4-hydrogen',
+            input: [
+              {type: 'text', text: 'Which country has the highest sales?'},
+              {
+                type: 'document',
+                data: fs.readFileSync('financials.xlsx', 'base64'),
+                mime_type:
+                  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                processing: {
+                  type: 'static',
+                  spreadsheet_options: {
+                    sheet_index: 1,
+                    visible_cells: 'A1:P50',
+                    content_layers: ['data', 'formulas'],
+                  },
+                },
+              },
+            ],
+          });
+          console.log(interaction.output_text);
+          ```
+
+    === "Java"
+
+          ```java
+          import com.google.genai.Client;
+          import com.google.genai.gaos.models.interactions.Content;
+          import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+          import com.google.genai.gaos.models.interactions.DocumentContent;
+          import com.google.genai.gaos.models.interactions.DocumentContentMimeType;
+          import com.google.genai.gaos.models.interactions.DocumentMediaProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentProcessing;
+          import com.google.genai.gaos.models.interactions.DocumentStaticMediaProcessing;
+          import com.google.genai.gaos.models.interactions.Interaction;
+          import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.interactions.SpreadsheetProcessingOptions;
+          import com.google.genai.gaos.models.interactions.SpreadsheetProcessingOptionsContentLayer;
+          import com.google.genai.gaos.models.interactions.TextContent;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.HttpOptions;
+          import java.nio.file.Files;
+          import java.nio.file.Path;
+          import java.util.Base64;
+          import java.util.List;
+
+          Client client =
+              Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+          Path path = Path.of("financials.xlsx");
+
+
+          String data = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+          List<Content> content =
+              List.of(
+                  TextContent.builder().text("Which country has the highest sales?").build(),
+                  DocumentContent.builder()
+                      .data(data)
+                      .mimeType(
+                          DocumentContentMimeType
+                              .APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_SPREADSHEETML_SHEET)
+                      .processing(
+                          DocumentProcessing.of(
+                              DocumentMediaProcessing.of(
+                                  DocumentStaticMediaProcessing.builder()
+                                      .spreadsheetOptions(
+                                          SpreadsheetProcessingOptions.builder()
+                                              .sheetIndex(1)
+                                              .visibleCells("A1:P50")
+                                              .contentLayers(
+                                                  List.of(
+                                                      SpreadsheetProcessingOptionsContentLayer.DATA,
+                                                      SpreadsheetProcessingOptionsContentLayer.FORMULAS))
+                                              .build())
+                                      .build())))
+                      .build());
+          CreateModelInteraction params =
+              CreateModelInteraction.builder()
+                  .model("gemini-4-hydrogen")
+                  .input(InteractionsInput.ofContent(content))
+                  .build();
+          CreateInteractionResponse response =
+              client.interactions.create(CreateInteractionRequestBody.of(params));
+          Interaction interaction =
+              response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+          System.out.println(interaction.outputText().orElse(""));
+          ```
+
+    === "Go"
+
+          ```go
+          package main
+
+          import (
+              "context"
+              "encoding/base64"
+              "fmt"
+              "log"
+              "os"
+              "google.golang.org/genai"
+              gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+              "google.golang.org/genai/interactions/models/operations"
+          )
+
+          func main() {
+              ctx := context.Background()
+              client, err := genai.NewClient(ctx, &genai.ClientConfig{
+                  HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
+              })
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+
+              data, err := os.ReadFile("financials.xlsx")
+              if err != nil {
+                  log.Fatal(err)
+              }
+
+              contents := []gaos_interactions.Content{
+                  gaos_interactions.NewContent(gaos_interactions.TextContent{
+                      Text: "Which country has the highest sales?",
+                  }),
+                  gaos_interactions.NewContent(gaos_interactions.DocumentContent{
+                      Data:     genai.Ptr(base64.StdEncoding.EncodeToString(data)),
+                      MimeType: gaos_interactions.DocumentContentMimeTypeApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet.ToPointer(),
+                      Processing: genai.Ptr(gaos_interactions.NewDocumentProcessing(
+                          gaos_interactions.NewDocumentMediaProcessing(gaos_interactions.DocumentStaticMediaProcessing{
+                              SpreadsheetOptions: &gaos_interactions.SpreadsheetProcessingOptions{
+                                  SheetIndex:   genai.Ptr(1),
+                                  VisibleCells: genai.Ptr("A1:P50"),
+                                  ContentLayers: []gaos_interactions.SpreadsheetProcessingOptionsContentLayer{
+                                      gaos_interactions.SpreadsheetProcessingOptionsContentLayerData,
+                                      gaos_interactions.SpreadsheetProcessingOptionsContentLayerFormulas,
+                                  },
+                              },
+                          }),
+                      )),
+                  }),
+              }
+
+              body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+                  Model: gaos_interactions.Model("gemini-4-hydrogen"),
+                  Input: genai.Ptr(gaos_interactions.NewInteractionsInput(contents)),
               })
 
               res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{Body: body})
@@ -3571,6 +4810,39 @@ Interaction 資源。
 
 
 
+    ??? note "**processing**：`AudioMediaProcessing` 或 `string enum` 模型如何處理此音訊以進行理解。"
+
+
+          **可能的類型**：
+
+
+        ??? note "**AudioMediaProcessing**"
+
+
+              **type**：必填 `object`
+
+              值：`static`
+
+              **start_offset**：`string`
+
+              選用。區段起始時間，相對於音訊串流的開頭。以十進位秒數加上 's' 後綴指定，例如 "10.5s"。必須為非負數。
+
+              **end_offset**：`string`
+
+              選用。區段結束時間，相對於音訊串流的開頭。以十進位秒數加上 's' 後綴指定，例如 "30s"。必須為正數，且在設定 `start_offset` 時須大於 `start_offset`。
+
+
+        ??? note "**string enum**"
+
+
+              可能的值：
+
+              - `static`：所有音訊皆置於上下文中。
+
+
+    ---
+
+
     ??? note "**mime_type**：`string enum` 音訊的 MIME 類型。"
 
         可能的值：
@@ -3644,6 +4916,88 @@ Interaction 資源。
     ---
 
 
+
+
+    ??? note "**resolution**：`MediaResolution` 媒體的解析度。當在 content_layers 中選取 PAGE_IMAGE 時適用。"
+
+
+          可能的值：
+
+          - `low`：低解析度。
+          - `medium`：中解析度。
+          - `high`：高解析度。
+          - `ultra_high`：超高解析度。
+
+
+    ---
+
+
+    ??? note "**processing**：`DocumentMediaProcessing` 或 `string enum` 模型如何處理此文件以進行理解。"
+
+
+          **可能的類型**：
+
+
+        ??? note "**DocumentMediaProcessing**"
+
+
+              **type**：必填 `object`
+
+              值：`static`
+
+
+            ??? note "**page_options**：`PageProcessingOptions` 分頁文件的選項。僅適用於分頁文件 MIME 類型（例如 PDF、Office 文件與簡報）。"
+
+
+                  **start_page**：`integer`
+
+                  選用。起始頁，以 1 起算，包含起始頁。
+
+                  **end_page**：`integer`
+
+                  選用。結束頁，以 1 起算，包含結束頁。若設定了 `start_page`，必須大於或等於 `start_page`。
+
+
+                ??? note "**content_layers**：`string enum array` 選用。要從分頁文件中擷取的內容層。"
+
+
+                      可能的值：
+
+                      - `page_image`：頁面的轉譯影像。
+                      - `page_text`：頁面的文字。
+
+
+            ??? note "**spreadsheet_options**：`SpreadsheetProcessingOptions` 試算表的選項。僅適用於試算表 MIME 類型（.xlsx、.xls、.ods）。"
+
+
+                  **visible_cells**：`string`
+
+                  選用。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+                  **sheet_index**：`integer`
+
+                  選用。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+                ??? note "**content_layers**：`string enum array` 選用。要從試算表中擷取的內容層。"
+
+
+                      可能的值：
+
+                      - `visual`：工作表的轉譯影像。
+                      - `data`：儲存格值、合併儲存格與格式。
+                      - `formulas`：公式運算式及其計算結果。
+
+
+        ??? note "**string enum**"
+
+
+              可能的值：
+
+              - `static`：已擷取的所有頁面皆置於上下文中。
+
+
+    ---
 
 
     ??? note "**mime_type**：`string enum` 文件的 MIME 類型。"
@@ -4089,6 +5443,16 @@ Interaction 資源。
 
 
 
+            ??? note "**content_layers**：`string enum array` 選用。要從影片中擷取的內容層。"
+
+
+                  可能的值：
+
+                  - `frames`：影片的影格。
+                  - `audio`：影片的音訊。
+                  - `transcript`：音軌的逐字稿。
+
+
         ??? note "**string enum**"
 
             可能的值：
@@ -4222,11 +5586,12 @@ Interaction 資源。
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.interactions.CodeExecution;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -4411,11 +5776,12 @@ Interaction 資源。
           ```java
           import com.google.genai.Client;
           import com.google.genai.gaos.models.interactions.ComputerUse;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -4589,14 +5955,15 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.types.CreateFileSearchStoreConfig;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.FileSearch;
-          import com.google.genai.types.FileSearchStore;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import com.google.genai.types.CreateFileSearchStoreConfig;
+          import com.google.genai.types.FileSearchStore;
+          import java.util.List;
 
           Client client = new Client();
 
@@ -4805,13 +6172,14 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Function;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.Step;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           Map<String, Object> parameters =
@@ -5015,12 +6383,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.GoogleMaps;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           GoogleMaps tool = GoogleMaps.builder().latitude(37.7749).longitude(-122.4194).build();
@@ -5168,12 +6537,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.GoogleSearch;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
@@ -5368,12 +6738,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.MCPServer;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           MCPServer mcpTool =
@@ -5513,12 +6884,13 @@ Interaction 資源。
 
           ```java
           import com.google.genai.Client;
-          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
-          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import com.google.genai.gaos.models.interactions.CreateModelInteraction;
           import com.google.genai.gaos.models.interactions.Interaction;
           import com.google.genai.gaos.models.interactions.InteractionsInput;
           import com.google.genai.gaos.models.interactions.URLContext;
+          import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+          import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+          import java.util.List;
 
           Client client = new Client();
           CreateModelInteraction params =
