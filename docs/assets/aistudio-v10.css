@@ -536,3 +536,7 @@ body[data-md-color-scheme="default"] { background-color: #ffffff; }
 [data-md-color-scheme="slate"] .md-nav--primary .md-nav__list .md-nav__list {
   border-left: 1px solid #444746;
 }
+
+/* the gray chip behind the copy icon is the .md-code__nav container,
+   not the button — make it transparent (icon keeps its hover chip) */
+.md-typeset .md-code__nav { background-color: transparent !important; }

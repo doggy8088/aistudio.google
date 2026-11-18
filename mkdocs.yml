@@ -47,9 +47,9 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
-  - assets/aistudio-v9.css
+  - assets/aistudio-v10.css
 extra_javascript:
-  - assets/aistudio-v9.js
+  - assets/aistudio-v10.js
 extra:
   generator: false
 
