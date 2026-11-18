@@ -11,7 +11,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
 ## gemini-robotics-er-2-streaming-preview {#gemini-robotics-er-2-streaming-preview}
 
 
-=== "Code"
+=== "Gemini Robotics ER 2 Preview"
 
 
     | 屬性 | 說明 |
@@ -26,7 +26,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2) |
 
-=== "Code"
+=== "Gemini Robotics ER 2 Streaming Preview"
 
 
     | 屬性 | 說明 |
@@ -41,7 +41,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2-streaming) |
 
-=== "Code"
+=== "Gemini Robotics ER 1.6 Preview"
 
 
     | 屬性 | 說明 |

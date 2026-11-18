@@ -399,7 +399,7 @@ Interactions API 支援兩種多輪對話方式：
     （包括模型中間的思考與工具步驟）。
 
 
-=== "Code"
+=== "有狀態（建議）"
 
       傳入 `previous_interaction_id` 即可串連多次互動，完整的對話歷史
         由伺服器為你管理。
@@ -566,7 +566,7 @@ Interactions API 支援兩種多輪對話方式：
           gemini-api generate "How many paws are in my house?" --previous-interaction-id "$INTERACTION_ID"
           ```
 
-=== "Code"
+=== "無狀態"
 
       設定 `store=false`，在用戶端管理對話歷史。你必須完整保留模型
         生成的所有步驟（包括 `thought` 與 `function_call` 步驟），並
@@ -1879,7 +1879,7 @@ Gemini 可使用 [Nano Banana](/docs/image-generation/) 圖片模型原生生成
 何時呼叫並回傳結構化引數，你在本機執行後再將結果送回。
 
 
-=== "Code"
+=== "有狀態（建議）"
 
 
     === "Python"
@@ -2219,7 +2219,7 @@ Gemini 可使用 [Nano Banana](/docs/image-generation/) 圖片模型原生生成
             }'
           ```
 
-=== "Code"
+=== "無狀態"
 
       你也可以在無狀態模式下使用函式呼叫：在用戶端管理對話歷史，並
         設定 `store=false`。在無狀態模式中，後續每個請求都必須在

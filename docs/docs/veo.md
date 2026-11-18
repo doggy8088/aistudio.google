@@ -2213,7 +2213,7 @@ Veo 可讓你指定影片的長寬比。
 [速率限制](https://aistudio.google.com/rate-limit)。
 
 
-=== "Code"
+=== "Veo 3.1 Preview (Deprecated)"
 
 
     | 屬性 | 說明 |
@@ -2223,7 +2223,7 @@ Veo 可讓你指定影片的長寬比。
     | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
     | 最新更新 | 2026 年 1 月 |
 
-=== "Code"
+=== "Veo 3.1 Fast Preview (Deprecated)"
 
 
     | 屬性 | 說明 |
@@ -2233,7 +2233,7 @@ Veo 可讓你指定影片的長寬比。
     | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
     | 最新更新 | 2026 年 1 月 |
 
-=== "Code"
+=== "Veo 3.1 Lite Preview (Deprecated)"
 
 
     | 屬性 | 說明 |
@@ -2243,7 +2243,7 @@ Veo 可讓你指定影片的長寬比。
     | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
     | 最新更新 | 2026 年 3 月 |
 
-=== "Code"
+=== "Veo 3 (Deprecated)"
 
 
     | 屬性 | 說明 |
@@ -2253,7 +2253,7 @@ Veo 可讓你指定影片的長寬比。
     | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
     | 最新更新 | 2025 年 7 月 |
 
-=== "Code"
+=== "Veo 3 Fast (Deprecated)"
 
 
     | 屬性 | 說明 |

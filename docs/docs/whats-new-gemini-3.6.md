@@ -15,7 +15,7 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
       你可以使用支援 [skills](/docs/coding-agents/#gemini-api-dev) 的程式設計代理（例如 Antigravity）自動完成這項遷移。
 
 
-=== "Code"
+=== "Gemini 3.6 Flash"
 
       1. 安裝 skill：
 
@@ -29,7 +29,7 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
          /gemini-interactions-api migrate my app to Gemini 3.6 Flash
          ```
 
-=== "Code"
+=== "Gemini 3.5 Flash-Lite"
 
       1. 安裝 skill：
 
@@ -210,7 +210,7 @@ interaction = client.interactions.create(
       你可以使用支援 [skills](/docs/coding-agents/#gemini-api-dev) 的程式設計代理（例如 Antigravity）自動完成這項遷移。
 
 
-=== "Code"
+=== "Gemini 3.6 Flash"
 
       1. 安裝 skill：
 
@@ -224,7 +224,7 @@ interaction = client.interactions.create(
          /gemini-interactions-api migrate my app to Gemini 3.6 Flash
          ```
 
-=== "Code"
+=== "Gemini 3.5 Flash-Lite"
 
       1. 安裝 skill：
 

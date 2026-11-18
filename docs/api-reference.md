@@ -169,7 +169,7 @@ com.google.genai:google-genai
 
 com.google.genai Java SDK 的 Javadoc 參考文件。
 
-**[C#](https://googleapis.github.io/dotnet-genai/)**
+**[C# (.NET)](https://googleapis.github.io/dotnet-genai/)**
 
 dotnet add package Google.GenAI
 

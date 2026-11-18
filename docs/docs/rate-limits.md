@@ -106,7 +106,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
 * **每個模型排入佇列的權杖數：** **Batch enqueued tokens** 表格列出在指定模型下，你所有進行中的批次工作合計可排入批次處理佇列的權杖數上限。
 
 
-=== "Code"
+=== "Tier 1"
 
 
     | 模型 | 批次排入佇列的權杖數 |
@@ -136,7 +136,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
     | Gemini 3 Pro Image Preview 🍌 | 2,000,000 |
     | Gemini Embedding | 500,000 |
 
-=== "Code"
+=== "Tier 2"
 
 
     | 模型 | 批次排入佇列的權杖數 |
@@ -166,7 +166,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
     | Gemini 3 Pro Image Preview 🍌 | 270,000,000 |
     | Gemini Embedding | 5,000,000 |
 
-=== "Code"
+=== "Tier 3"
 
 
     | 模型 | 批次排入佇列的權杖數 |

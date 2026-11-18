@@ -341,7 +341,7 @@ Gemini Robotics ER 在設計時已將安全性納入考量，但維護機器人�
 ## 模型端點 {#model-versions}
 
 
-=== "Code"
+=== "Gemini Robotics ER 2 Preview"
 
 
     | 屬性 | 說明 |
@@ -356,7 +356,7 @@ Gemini Robotics ER 在設計時已將安全性納入考量，但維護機器人�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2) |
 
-=== "Code"
+=== "Gemini Robotics ER 2 Streaming Preview"
 
 
     | 屬性 | 說明 |
@@ -371,7 +371,7 @@ Gemini Robotics ER 在設計時已將安全性納入考量，但維護機器人�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2-streaming) |
 
-=== "Code"
+=== "Gemini Robotics ER 1.6 Preview"
 
 
     | 屬性 | 說明 |

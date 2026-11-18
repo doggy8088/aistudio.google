@@ -1423,7 +1423,7 @@ PDF 可以行內資料形式提供，也可以透過 [Files API](/docs/files/) �
 ## 模型版本 {#model-versions}
 
 
-=== "Code"
+=== "Gemini Embedding 2"
 
 
     | 屬性 | 說明 |
@@ -1435,7 +1435,7 @@ PDF 可以行內資料形式提供，也可以透過 [Files API](/docs/files/) �
     | 最近更新 | 2026 年 4 月 |
     | 定價 | [定價](/docs/pricing/#gemini-embedding-2) |
 
-=== "Code"
+=== "Gemini Embedding"
 
 
     | 屬性 | 說明 |

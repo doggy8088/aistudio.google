@@ -11,7 +11,7 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
 ## gemini-robotics-er-2-preview {#gemini-robotics-er-2-preview}
 
 
-=== "Code"
+=== "Gemini Robotics ER 2 Preview"
 
 
     | 屬性 | 說明 |
@@ -26,7 +26,7 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2) |
 
-=== "Code"
+=== "Gemini Robotics ER 2 Streaming Preview"
 
 
     | 屬性 | 說明 |
@@ -41,7 +41,7 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
     | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2-streaming) |
 
-=== "Code"
+=== "Gemini Robotics ER 1.6 Preview"
 
 
     | 屬性 | 說明 |
