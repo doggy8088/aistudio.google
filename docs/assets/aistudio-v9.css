@@ -491,3 +491,48 @@ body[data-md-color-scheme="default"] { background-color: #ffffff; }
 }
 [data-md-color-scheme="default"] .ais-filter__kbd { border: 1px solid #dadce0; color: #5f6368; background: #f8f9fa; }
 [data-md-color-scheme="slate"] .ais-filter__kbd { border: 1px solid #5f6368; color: #9aa0a6; background: #28292a; }
+
+/* ================= polish fixes (v9) =================
+   Tab labels on the dark tab bar: Material paints the active label
+   with the (dark) foreground color — force light grays/white. */
+.md-typeset .tabbed-labels > label { color: #9aa0a6 !important; }
+.md-typeset .tabbed-labels > label:hover { color: #e8eaed !important; }
+.md-typeset .tabbed-set > input:first-child:checked ~ .tabbed-labels > :first-child,
+.md-typeset .tabbed-set > input:nth-child(2):checked ~ .tabbed-labels > :nth-child(2),
+.md-typeset .tabbed-set > input:nth-child(3):checked ~ .tabbed-labels > :nth-child(3),
+.md-typeset .tabbed-set > input:nth-child(4):checked ~ .tabbed-labels > :nth-child(4),
+.md-typeset .tabbed-set > input:nth-child(5):checked ~ .tabbed-labels > :nth-child(5),
+.md-typeset .tabbed-set > input:nth-child(6):checked ~ .tabbed-labels > :nth-child(6),
+.md-typeset .tabbed-set > input:nth-child(7):checked ~ .tabbed-labels > :nth-child(7),
+.md-typeset .tabbed-set > input:nth-child(8):checked ~ .tabbed-labels > :nth-child(8),
+.md-typeset .tabbed-set > input:nth-child(9):checked ~ .tabbed-labels > :nth-child(9),
+.md-typeset .tabbed-set > input:nth-child(10):checked ~ .tabbed-labels > :nth-child(10) {
+  color: #ffffff !important;
+  border-bottom-color: #ffffff;
+}
+.js .md-typeset .tabbed-labels:before { background-color: #ffffff; }
+
+/* copy button on dark code blocks: bare light icon, no clashing fill */
+.md-typeset .md-clipboard,
+.md-typeset .md-code__button {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #c4c7c5 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+}
+.md-typeset .md-clipboard:hover,
+.md-typeset .md-clipboard:focus,
+.md-typeset .md-code__button:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* submenu guide line: visible soft gray on the panel */
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__list .md-nav__list {
+  border-left: 1px solid #ccd0d5;
+}
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__list .md-nav__list {
+  border-left: 1px solid #444746;
+}
