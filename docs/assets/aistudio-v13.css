@@ -639,3 +639,57 @@ body[data-md-color-scheme="default"] { background-color: #ffffff; }
 [data-md-color-scheme="default"] .md-typeset .admonition.info > .admonition-title::before { background-color: #1a73e8; }
 [data-md-color-scheme="slate"] .md-typeset .admonition.note > .admonition-title::before,
 [data-md-color-scheme="slate"] .md-typeset .admonition.info > .admonition-title::before { background-color: #8ab4f8; }
+
+/* ============ v13: sidebar geometry calibrated to the official docs nav ============
+   Official measurements (aistudio.google.com/docs, 1600x1000):
+   column x=8 w=204 inside the 220px sidebar; filter x=10 w=200 h=32;
+   group header text x=16; L1 link text x=17, box h=32, pitch 34;
+   L2 link text x=30 (+13 per level); links never wrap (ellipsis);
+   idle links #565b61, current page #1b1b1e on #ececef; no guide lines. */
+
+/* zero Material's own offsets so the geometry below is exact */
+.md-sidebar--primary .md-sidebar__scrollwrap { margin: 0; padding: 10px 8px 24px; }
+.md-sidebar--primary .md-nav,
+.md-sidebar--primary .md-nav__list,
+.md-sidebar--primary .md-nav__item { margin: 0; padding: 0; }
+.md-sidebar--primary .md-nav__title { margin: 0; padding: 0; }
+
+/* filter: x=10 w=200 like the official */
+.ais-filter { margin: 0 2px; padding: 0 0 14px; }
+.ais-filter__icon { top: 16px; }
+.ais-filter__kbd { top: 16px; }
+
+/* idle links are gray; only the current page is near-black */
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link { color: #565b61; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link:hover { color: #1b1b1e; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link--active,
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link--active:hover { color: #1b1b1e; }
+
+/* group headers: text x=16 (padding-left 8 inside the x=8 column) */
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link,
+.md-nav--primary > .md-nav__list > .md-nav__item--section > label.md-nav__link {
+  padding: 4px 8px;
+}
+
+/* nested levels: +13px per level, and no vertical guide line */
+.md-nav--primary .md-nav__list .md-nav__list { margin-left: 13px; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__list .md-nav__list { border-left: none; }
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__list .md-nav__list { border-left: none; }
+
+/* one line per row: ellipsis instead of wrapping (JS wraps text in .ais-nav-text) */
+.md-nav--primary .md-nav__link { white-space: nowrap; overflow: hidden; }
+.ais-nav-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* v13 calibration: beat the bundle's own nav offsets (measured in the DOM) —
+   root list padding-left 13.2px, nested-nav margin-left -13.2px,
+   deep list padding-left 6.6px, link margin-right 8.8px */
+.md-sidebar--primary .md-nav--primary > .md-nav__list { padding-left: 0; }
+.md-sidebar--primary .md-nav--primary .md-nav { margin-left: 0; }
+.md-sidebar--primary .md-nav--primary .md-nav__list .md-nav__list { padding-left: 0; margin-left: 13px; }
+.md-sidebar--primary .md-nav--primary .md-nav__link { margin-right: 0 !important; }

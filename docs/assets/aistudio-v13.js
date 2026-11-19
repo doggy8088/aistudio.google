@@ -4,6 +4,18 @@
    while filtering, and the original fold state is restored on clear. */
 (function () {
   function init() {
+  // wrap nav link text so CSS can ellipsis-truncate it (official rows never wrap)
+  document.querySelectorAll(".md-nav--primary .md-nav__link").forEach(function (link) {
+    if (link.querySelector(".ais-nav-text")) return;
+    var nodes = Array.prototype.slice.call(link.childNodes);
+    var hasText = nodes.some(function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+    if (!hasText) return;
+    var span = document.createElement("span");
+    span.className = "ais-nav-text";
+    nodes.forEach(function (n) { if (n.nodeType === 3) span.appendChild(n); });
+    link.insertBefore(span, link.firstChild);
+  });
+
     var wrap = document.querySelector(".md-sidebar--primary .md-sidebar__scrollwrap");
     if (!wrap || wrap.querySelector(".ais-filter")) return;
     var box = document.createElement("div");
