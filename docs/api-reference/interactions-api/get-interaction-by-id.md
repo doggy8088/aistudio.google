@@ -1151,6 +1151,8 @@ Interaction 資源。
   
   **範例**
 
+  **Example**
+
   ```json
   {
     "created": "2025-12-04T15:01:45Z",
@@ -1315,6 +1317,10 @@ Interaction 資源。
 
       **音訊**
 
+      **Example**
+
+      **Audio**
+
       ```json
       {
         "type": "audio",
@@ -1471,6 +1477,10 @@ Interaction 資源。
 
       **文件**
 
+      **Example**
+
+      **Document**
+
       ```json
       {
         "type": "document",
@@ -1558,6 +1568,10 @@ Interaction 資源。
       **範例**
 
       **圖片**
+
+      **Example**
+
+      **Image**
 
       ```json
       {
@@ -1795,6 +1809,10 @@ Interaction 資源。
 
       **文字**
 
+      **Example**
+
+      **Text**
+
       ```json
       {
         "type": "text",
@@ -1946,6 +1964,10 @@ Interaction 資源。
 
       **影片**
 
+      **Example**
+
+      **Video**
+
       ```json
       {
         "type": "video",
@@ -1981,6 +2003,10 @@ Interaction 資源。
       **範例**
 
 
+
+    === "REST"
+
+      **Example**
 
     === "REST"
 
@@ -2175,6 +2201,10 @@ Interaction 資源。
 
     === "REST"
 
+      **Example**
+
+    === "REST"
+
           ```sh
           curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
             -H "x-goog-api-key: $GEMINI_API_KEY" \
@@ -2334,6 +2364,10 @@ Interaction 資源。
       **範例**
 
 
+
+    === "REST"
+
+      **Example**
 
     === "REST"
 
@@ -2527,6 +2561,10 @@ Interaction 資源。
       **範例**
 
 
+
+    === "REST"
+
+      **Example**
 
     === "REST"
 
@@ -2776,6 +2814,10 @@ Interaction 資源。
 
     === "REST"
 
+      **Example**
+
+    === "REST"
+
           ```sh
           curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
             -H "x-goog-api-key: $GEMINI_API_KEY" \
@@ -2938,6 +2980,10 @@ Interaction 資源。
       **範例**
 
 
+
+    === "REST"
+
+      **Example**
 
     === "REST"
 
@@ -3129,6 +3175,10 @@ Interaction 資源。
 
     === "REST"
 
+      **Example**
+
+    === "REST"
+
           ```sh
           curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
             -H "x-goog-api-key: $GEMINI_API_KEY" \
@@ -3290,6 +3340,10 @@ Interaction 資源。
 
     === "REST"
 
+      **Example**
+
+    === "REST"
+
           ```sh
           curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
             -H "x-goog-api-key: $GEMINI_API_KEY" \
@@ -3441,6 +3495,10 @@ Interaction 資源。
       **範例**
 
       **錯誤事件**
+
+      **Example**
+
+      **Error Event**
 
       ```json
       {
@@ -3672,6 +3730,10 @@ Interaction 資源。
       **範例**
 
       **互動已完成**
+
+      **Example**
+
+      **Interaction Completed**
 
       ```json
       {
@@ -3908,6 +3970,10 @@ Interaction 資源。
 
       **互動已建立**
 
+      **Example**
+
+      **Interaction Created**
+
       ```json
       {
         "event_id": "evt_123",
@@ -4109,6 +4175,10 @@ Interaction 資源。
       **範例**
 
       **互動狀態更新**
+
+      **Example**
+
+      **Interaction Status Update**
 
       ```json
       {
@@ -5022,6 +5092,10 @@ Interaction 資源。
 
       **步驟差異**
 
+      **Example**
+
+      **Step Delta**
+
       ```json
       {
         "delta": {
@@ -5065,6 +5139,10 @@ Interaction 資源。
       **範例**
 
       **步驟開始**
+
+      **Example**
+
+      **Step Start**
 
       ```json
       {
@@ -5375,6 +5453,10 @@ Interaction 資源。
 
       **步驟停止**
 
+      **Example**
+
+      **Step Stop**
+
       ```json
       {
         "event_type": "step.stop",
@@ -5464,6 +5546,10 @@ Interaction 資源。
       **範例**
 
       **音訊輸出**
+
+      **Example**
+
+      **Audio Output**
 
       ```json
       {
@@ -5571,6 +5657,10 @@ Interaction 資源。
 
       **圖片輸出**
 
+      **Example**
+
+      **Image Output**
+
       ```json
       {
         "type": "image",
@@ -5626,6 +5716,10 @@ Interaction 資源。
       **範例**
 
       **文字輸出（JSON Schema）**
+
+      **Example**
+
+      **Text Output (JSON Schema)**
 
       ```json
       {
@@ -5733,6 +5827,10 @@ Interaction 資源。
 
       **影片輸出**
 
+      **Example**
+
+      **Video Output**
+
       ```json
       {
         "type": "video",
@@ -5809,6 +5907,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **CodeExecutionCallStep**
+
+      **Example**
 
       **CodeExecutionCallStep**
 
@@ -5898,6 +6000,10 @@ Interaction 資源。
 
       **CodeExecutionResultStep**
 
+      **Example**
+
+      **CodeExecutionResultStep**
+
       ```json
       {
         "type": "code_execution_result",
@@ -5946,6 +6052,10 @@ Interaction 資源。
 
       **FileSearchCallStep**
 
+      **Example**
+
+      **FileSearchCallStep**
+
       ```json
       {
         "type": "file_search_call",
@@ -5990,6 +6100,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **FileSearchResultStep**
+
+      **Example**
 
       **FileSearchResultStep**
 
@@ -6046,6 +6160,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **FunctionCallStep**
+
+      **Example**
 
       **FunctionCallStep**
 
@@ -6136,6 +6254,10 @@ Interaction 資源。
 
       **FunctionResultStep**
 
+      **Example**
+
+      **FunctionResultStep**
+
       ```json
       {
         "name": "get_weather",
@@ -6202,6 +6324,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **GoogleMapsCallStep**
+
+      **Example**
 
       **GoogleMapsCallStep**
 
@@ -6295,6 +6421,10 @@ Interaction 資源。
 
       **GoogleMapsResultStep**
 
+      **Example**
+
+      **GoogleMapsResultStep**
+
       ```json
       {
         "type": "google_maps_result",
@@ -6380,6 +6510,10 @@ Interaction 資源。
 
       **GoogleSearchCallStep**
 
+      **Example**
+
+      **GoogleSearchCallStep**
+
       ```json
       {
         "type": "google_search_call",
@@ -6454,6 +6588,10 @@ Interaction 資源。
 
       **GoogleSearchResultStep**
 
+      **Example**
+
+      **GoogleSearchResultStep**
+
       ```json
       {
         "type": "google_search_result",
@@ -6523,6 +6661,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **McpServerToolCallStep**
+
+      **Example**
 
       **McpServerToolCallStep**
 
@@ -6615,6 +6757,10 @@ Interaction 資源。
 
       **McpServerToolResultStep**
 
+      **Example**
+
+      **McpServerToolResultStep**
+
       ```json
       {
         "name": "calculate_tax",
@@ -6653,6 +6799,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **ModelOutputStep**
+
+      **Example**
 
       **ModelOutputStep**
 
@@ -6767,6 +6917,10 @@ Interaction 資源。
 
       **ThoughtStep**
 
+      **Example**
+
+      **ThoughtStep**
+
       ```json
       {
         "type": "thought",
@@ -6832,6 +6986,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **UrlContextCallStep**
+
+      **Example**
 
       **UrlContextCallStep**
 
@@ -6922,6 +7080,10 @@ Interaction 資源。
 
       **UrlContextResultStep**
 
+      **Example**
+
+      **UrlContextResultStep**
+
       ```json
       {
         "type": "url_context_result",
@@ -6962,6 +7124,10 @@ Interaction 資源。
 
 
       **範例**
+
+      **UserInputStep**
+
+      **Example**
 
       **UserInputStep**
 
@@ -7156,6 +7322,10 @@ Interaction 資源。
 
 === "行內來源"
 
+  **Example**
+
+=== "Inline Sources"
+
       ```json
       {
         "type": "remote",
@@ -7288,6 +7458,10 @@ Interaction 資源。
 
   **網路允許清單**
 
+  **Example**
+
+  **Network Allowlist**
+
   ```json
   {
     "allowlist": [
@@ -7345,6 +7519,8 @@ Interaction 資源。
 
   
   **範例**
+
+  **Example**
 
   ```json
   {
@@ -7439,6 +7615,10 @@ Interaction 資源。
   **範例**
 
   **圖片**
+
+  **Example**
+
+  **Image**
 
   ```json
   {
@@ -7678,6 +7858,10 @@ Interaction 資源。
   **範例**
 
   **文字**
+
+  **Example**
+
+  **Text**
 
   ```json
   {
