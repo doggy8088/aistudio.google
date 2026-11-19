@@ -540,3 +540,102 @@ body[data-md-color-scheme="default"] { background-color: #ffffff; }
 /* the gray chip behind the copy icon is the .md-code__nav container,
    not the button — make it transparent (icon keeps its hover chip) */
 .md-typeset .md-code__nav { background-color: transparent !important; }
+
+/* ============ v11: sidebar + callout measured against the official site ============ */
+
+/* layout: full-width grid; sidebar flush left, 220px like the official */
+@media screen and (min-width: 76.25em) {
+  .md-grid { max-width: none; }
+  .md-sidebar--primary { width: 220px; }
+  .md-sidebar--primary .md-sidebar__scrollwrap { width: 220px; }
+}
+[data-md-color-scheme="default"] .md-sidebar--primary .md-sidebar__scrollwrap { background: #fafafa; }
+.md-sidebar--primary .md-sidebar__scrollwrap { padding: 10px 8px 24px; }
+
+/* nav rows: 32px tall, 14px medium text (official values) */
+.md-nav--primary .md-nav__link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 9px;
+  border-radius: 12px;
+  margin: 1px 0;
+}
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link { color: #1b1b1e; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__container > a.md-nav__link { color: #565b61; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link:hover { background: #f0f0f2; color: #1b1b1e; }
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link--active,
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__link--active:hover { background: #ececef; color: #1b1b1e; }
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link { color: #e3e3e3; }
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__container > a.md-nav__link { color: #9aa0a6; }
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__link--active:hover { background: #3c4043; color: #e3e3e3; }
+.md-nav--primary .md-nav__container > label.md-nav__link { width: 30px; flex: none; padding: 6px 5px; }
+
+/* group headers: 12px, #85898e, letterspaced, uppercase (official values) */
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link,
+.md-nav--primary > .md-nav__list > .md-nav__item--section > label.md-nav__link {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  line-height: 18px;
+  padding: 4px 9px;
+  margin: 16px 0 0;
+}
+[data-md-color-scheme="default"] .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link { color: #85898e; }
+[data-md-color-scheme="slate"] .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link { color: #80868b; }
+
+/* nested children: indent one step; guide line stays */
+.md-nav--primary .md-nav__list .md-nav__list { margin-left: 15px; }
+
+/* filter box: 32px tall, 14px (official values) */
+.ais-filter { padding: 2px 0 10px; }
+.ais-filter input { height: 32px; font-size: 14px; border-radius: 8px; padding: 1px 30px 1px 33px; }
+.ais-filter__icon { left: 9px; top: 18px; width: 16px; height: 16px; }
+.ais-filter__kbd { right: 8px; top: 18px; font-size: 11px; padding: 1px 5px; }
+
+/* method badges: slightly smaller for the 32px rows */
+.ais-method { width: 18px; height: 18px; border-radius: 5px; margin-right: 8px; }
+.ais-method svg { width: 11px; height: 11px; }
+
+/* content type scale: closer to the official */
+.md-typeset { font-size: 0.78rem; line-height: 1.75; }
+.md-typeset h1 { font-size: 1.6rem; }
+.md-typeset h2 { font-size: 1.2rem; }
+.md-typeset h3 { font-size: 0.95rem; }
+
+/* callouts: borderless soft box, icon inline at the left of the text.
+   The blank title element becomes a 46px icon holder at the top-left. */
+.md-typeset .admonition { position: relative; padding: 12px 16px 12px 46px; border-radius: 12px; }
+.md-typeset .admonition, .md-typeset details { border-color: transparent !important; }
+.md-typeset .admonition-title {
+  position: absolute;
+  top: 0; left: 0;
+  width: 46px; height: 42px;
+  margin: 0; padding: 0;
+  background-color: transparent !important;
+  font-size: 0; line-height: 0;
+}
+.md-typeset .admonition-title::before {
+  position: absolute;
+  top: 11px; left: 14px;
+  width: 20px; height: 20px;
+  margin: 0;
+}
+[data-md-color-scheme="default"] .md-typeset .admonition.note,
+[data-md-color-scheme="default"] .md-typeset .admonition.info { background-color: #eef3fe; }
+[data-md-color-scheme="default"] .md-typeset .admonition.tip { background-color: #e6f4ea; }
+[data-md-color-scheme="default"] .md-typeset .admonition.warning { background-color: #fef7e0; }
+[data-md-color-scheme="default"] .md-typeset .admonition.danger,
+[data-md-color-scheme="default"] .md-typeset .admonition.error { background-color: #fce8e6; }
+/* note callouts use the official lightbulb glyph, Google blue */
+.md-typeset .admonition.note > .admonition-title::before,
+.md-typeset .admonition.info > .admonition-title::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%20-960%20960%20960%27%3E%3Cpath%20d%3D%27M480-80q-33%200-56.5-23.5T400-160h160q0%2033-23.5%2056.5T480-80ZM320-200v-80h320v80H320Zm10-120q-69-41-109.5-110T180-580q0-125%2087.5-212.5T480-880q125%200%20212.5%2087.5T780-580q0%2081-40.5%20150T630-320H330Zm24-80h252q45-32%2069.5-79T700-580q0-92-64-156t-156-64q-92%200-156%2064t-64%20156q0%2054%2024.5%20101t69.5%2079Zm126%200Z%27%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%20-960%20960%20960%27%3E%3Cpath%20d%3D%27M480-80q-33%200-56.5-23.5T400-160h160q0%2033-23.5%2056.5T480-80ZM320-200v-80h320v80H320Zm10-120q-69-41-109.5-110T180-580q0-125%2087.5-212.5T480-880q125%200%20212.5%2087.5T780-580q0%2081-40.5%20150T630-320H330Zm24-80h252q45-32%2069.5-79T700-580q0-92-64-156t-156-64q-92%200-156%2064t-64%20156q0%2054%2024.5%20101t69.5%2079Zm126%200Z%27%2F%3E%3C%2Fsvg%3E");
+}
+[data-md-color-scheme="default"] .md-typeset .admonition.note > .admonition-title::before,
+[data-md-color-scheme="default"] .md-typeset .admonition.info > .admonition-title::before { background-color: #1a73e8; }
+[data-md-color-scheme="slate"] .md-typeset .admonition.note > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .admonition.info > .admonition-title::before { background-color: #8ab4f8; }
