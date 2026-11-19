@@ -45,7 +45,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
 
       const ai = new GoogleGenAI({ apiKey: "YOUR_API_KEY", httpOptions: { apiVersion: "v1beta" } });
@@ -96,7 +96,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       session.sendRealtimeInput({
         text: 'Hello, how are you?'
       });
@@ -122,7 +122,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'chunk' is a Buffer of raw PCM audio
       session.sendRealtimeInput({
         audio: {
@@ -154,7 +154,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'frame' is a Buffer of JPEG-encoded image data
       session.sendRealtimeInput({
         video: {
@@ -185,7 +185,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Inside the onmessage callback
       const content = response.serverContent;
       if (content?.modelTurn?.parts) {
@@ -220,7 +220,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Inside the onmessage callback
       const content = response.serverContent;
       if (content?.inputTranscription) {
@@ -260,7 +260,7 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Inside the onmessage callback
       if (response.toolCall) {
         const functionResponses = [];

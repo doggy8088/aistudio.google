@@ -138,6 +138,7 @@ Gemini 3.7 Flash 導入了在 Gemini Managed Agents 中驅動 [Antigravity 代�
 ## 其他模型 {#other-models}
 
 *   [最新 Gemini 模型](/docs/latest-model/)
+*   [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)
 *   [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/)
 *   [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)
 *   [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/)

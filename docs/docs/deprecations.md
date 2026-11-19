@@ -2,7 +2,7 @@
 
 本頁列出 Gemini API 中[穩定版（GA）](/docs/models/#stable)與[預覽版](/docs/models/#preview)模型，以及受管代理的已知淘汰時程。所謂「**淘汰**」，是指我們宣布不再支援某個模型，且該模型將於近期「**關閉**」。模型一旦「**關閉**」，即會完全停止運作，其端點也不再提供服務。
 
-淘汰公告會發布在[版本說明](/docs/changelog/)頁面，而本頁會追蹤公告中最早的關閉日期。已關閉的模型與代理，則分別列於 **Deprecated models** 與 **Deprecated agents** 區段之下。
+淘汰公告會發布在[版本說明](/docs/changelog/)頁面，而本頁會追蹤公告中最早的關閉日期。要為你的工作負載挑選升級目標，請參閱[選擇模型](/docs/choosing-a-model/#upgrade-paths)。已關閉的模型與代理，則分別列於 **Deprecated models** 與 **Deprecated agents** 區段之下。
 
 
 !!! note " "
@@ -15,6 +15,7 @@
 
 | 模型 | 發布日期 | 關閉日期 | 建議替代模型 |
 | --- | --- | --- | --- |
+| `gemini-4-neon` | 2026 年 11 月 18 日 | 尚未公布關閉日期 |  |
 | `gemini-4-hydrogen` | 2026 年 11 月 12 日 | 尚未公布關閉日期 |  |
 | `gemini-4-carbon` | 2026 年 11 月 10 日 | 尚未公布關閉日期 |  |
 | `gemini-4-argon` | 2026 年 10 月 13 日 | 尚未公布關閉日期 |  |

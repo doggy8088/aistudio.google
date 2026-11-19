@@ -1,6 +1,6 @@
 # Gemini API 最佳化與推論
 
-Gemini API 提供多種最佳化機制，協助你依工作負載的需求，在速度、成本與可靠性之間取得平衡。無論是打造即時對話機器人，或是執行繁重的離線資料處理管線，選對模式都能大幅降低成本或提升效能。
+Gemini API 提供多種最佳化機制，協助你依工作負載的需求，在速度、成本與可靠性之間取得平衡。無論是打造即時對話機器人，或是執行繁重的離線資料處理管線，選對模式都能大幅降低成本或提升效能。若要先挑選合適的底層模型，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 | 功能 | Standard | Flex | Priority | Batch | Caching |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -52,7 +52,7 @@ Gemini API 提供多種最佳化機制，協助你依工作負載的需求，在
 
 * **Implicit caching**：在 Gemini 2.5 與更新的模型上自動啟用。若你的要求命中既有快取（依據共同的提示詞前綴），系統會將節省的成本回饋給你。
 
-* **Explicit Caching**：你可以手動建立具有特定存活時間（TTL）的快取物件。建立後，後續要求即可參照已快取的權杖，避免反覆傳送相同的語料酬載。Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`）不支援明確快取。
+* **Explicit Caching**：你可以手動建立具有特定存活時間（TTL）的快取物件。建立後，後續要求即可參照已快取的權杖，避免反覆傳送相同的語料酬載。Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）不支援明確快取。
 
 * **價格**：依快取權杖數量與儲存時間（TTL）計費。
 
@@ -63,6 +63,6 @@ Gemini API 提供多種最佳化機制，協助你依工作負載的需求，在
 
 對於長篇影片內容（超過 5–10 分鐘）或目標明確的查詢，代理處理可將輸入權杖成本降低多達 88%，同時提升回應品質。依預設，所有模型（包括 Gemini 4）都使用[靜態處理](/docs/video-understanding/#agentic-video-understanding)，以 1 FPS 擷取影格。透過代理式影片理解，模型會先檢查影片逐字稿，僅在需要的位置以較高的影格率與解析度動態載入視覺片段。對於短片段（5 分鐘以下）或廣泛的全片摘要，請保留預設的靜態處理模式，以獲得更快的首權杖時間（TTFT）與更低的權杖額外負擔。代理模式在時間軸導覽期間會產生內部推理（`total_thought_tokens`）與工具往返（`total_tool_use_tokens`）。
 
-若要搭配 Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 或 3.5 Flash Lite 使用代理處理，請在影片輸入上設定 `processing: "agentic"`（Interactions API）或 `media_processing: "AGENTIC"`（GenerateContent API）。若模型不支援代理處理，將會回傳錯誤。
+若要搭配 Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 或 3.5 Flash Lite 使用代理處理，請在影片輸入上設定 `processing: "agentic"`（Interactions API）或 `media_processing: "AGENTIC"`（GenerateContent API）。若模型不支援代理處理，將會回傳錯誤。
 
 如需更多資訊，請參閱[代理式影片理解](/docs/video-understanding/#agentic-video-understanding)。

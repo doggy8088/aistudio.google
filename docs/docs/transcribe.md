@@ -129,6 +129,7 @@ Gemini 3.5 Transcribe 專為語音轉文字工作最佳化，能處理多元口�
 *   **說話者分離**：區分多位說話者，並將說話片段歸屬到不同的標籤。
 *   **單字層級時間戳記**：為每個辨識出的單字產生精確的開始與結束時間偏移。
 *   **智慧轉錄**：清除不流暢語句、填充詞與重複內容，並套用結構化格式。
+*   **語音編輯**：在智慧轉錄模式下預設啟用。透過口述指令編輯、改寫或格式化口述內容或現有參考文字（`source_text`）。
 *   **格式設定與正規化**：套用大小寫、標點符號與反文字正規化，例如將「twenty six million dollars」轉換為「$26M」。
 
 如需針對音訊內容進行一般音訊推理或問答，請使用[音訊理解](/docs/audio/)。如需文字轉語音的音訊合成，請使用[文字轉語音](/docs/speech-generation/)。
@@ -752,6 +753,7 @@ Gemini 3.5 Transcribe 透過 `mode` 參數支援兩種轉錄模式：
     *   **行內自我修正**：直接消解口頭修正（例如 *「Let's meet on Tuesday, actually no, Wednesday at two」* 會變成 *「Let's meet on Wednesday at 2:00 PM」*）。
     *   **自動結構化格式**：自動將口述想法整理成段落、編號清單、項目符號，以及格式化的日期、貨幣與數字。
     *   **文法清理**：套用自然的標點符號、句首大寫與流暢度。
+    *   **語音編輯（預設啟用）**：將口述的編輯、改寫與格式設定指令，套用到口述內容或現有參考文字（`source_text`）。
 
 
 | 口述音訊 | `verbatim` 輸出 | `smart`（智慧轉錄）輸出 |
@@ -784,14 +786,20 @@ Gemini 3.5 Transcribe 透過 `mode` 參數支援兩種轉錄模式：
       ```javascript
       const response = await ai.interactions.create({
         model: "gemini-3.5-transcribe",
-        input: [audioFile],
-        generationConfig: {
-          transcriptionConfig: {
+        input: [
+          {
+            type: "audio",
+            uri: audioFile.uri,
+            mime_type: audioFile.mimeType,
+          },
+        ],
+        generation_config: {
+          transcription_config: {
             mode: "smart",
           },
         },
       });
-      console.log(response.outputText);
+      console.log(response.output_text);
       ```
 
 === "Go"
@@ -841,7 +849,9 @@ Gemini 3.5 Transcribe 透過 `mode` 參數支援兩種轉錄模式：
               log.Fatal(err)
           }
 
-          fmt.Println(res.Interaction.GetOutputText())
+          if text := res.Interaction.GetOutputText(); text != nil {
+              fmt.Println(*text)
+          }
       }
       ```
 
@@ -871,6 +881,307 @@ Gemini 3.5 Transcribe 透過 `mode` 參數支援兩種轉錄模式：
 !!! note " "
 
       智慧轉錄（`"smart"`）與 `timestamp_granularities` 及 `diarization_mode` 不相容。若你需要單字時間戳記或說話者分離，請使用逐字模式（預設）。
+
+
+### 語音編輯 {#voice-editing}
+
+只要智慧轉錄模式（`mode: "smart"`）處於啟用狀態，語音編輯預設就會啟用。說話者可以在同一段錄音中口述文字並同時給出口述編輯指令，或在選填的 `source_text` 欄位中傳入既有文字，再以語音指令編輯、改寫或格式化該文字。模型不會只逐字轉錄口述內容，而是會套用口述指令，並在 `response.output_text`（原始 REST 回應中為 `steps[0].content[0].text`）中回傳完整更新後的文字。
+
+#### 啟用語音編輯 {#enable-voice-editing}
+
+設定 `"mode": "smart"`，即可為新的口述內容預設啟用語音編輯。若要編輯或改寫既有文字，請將 `transcription_config` 中的 `mode` 設為帶有 `"type": "smart"` 的物件，並在 `"source_text"` 中提供要修改的文字（上限 64 KiB）：
+
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client(http_options={"api_version": "v1beta"})
+
+      audio_file = client.files.upload(file="path/to/edit_command.mp3")
+
+      response = client.interactions.create(
+          model="gemini-3.5-transcribe",
+          input=[
+              {
+                  "type": "audio",
+                  "uri": audio_file.uri,
+                  "mime_type": audio_file.mime_type,
+              }
+          ],
+          generation_config={
+              "transcription_config": {
+                  "mode": {
+                      "type": "smart",
+                      "source_text": "The meeting is at 2:00 PM tomorrow in building 42.",
+                  }
+              }
+          },
+      )
+
+      print(response.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
+
+      const audioFile = await ai.files.upload({
+        file: "path/to/edit_command.mp3",
+        config: { mimeType: "audio/mp3" },
+      });
+
+      const response = await ai.interactions.create({
+        model: "gemini-3.5-transcribe",
+        input: [
+          {
+            type: "audio",
+            uri: audioFile.uri,
+            mime_type: audioFile.mimeType,
+          },
+        ],
+        generation_config: {
+          transcription_config: {
+            mode: {
+              type: "smart",
+              source_text: "The meeting is at 2:00 PM tomorrow in building 42.",
+            },
+          },
+        },
+      });
+
+      console.log(response.output_text);
+      ```
+
+=== "Go"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+
+          "google.golang.org/genai"
+          "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, &genai.ClientConfig{HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"}})
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          audioFile, err := client.Files.UploadFromPath(ctx, "path/to/edit_command.mp3", nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{
+              Body: operations.NewCreateInteractionRequestBody(interactions.CreateModelInteraction{
+                  Model: interactions.Model("gemini-3.5-transcribe"),
+                  Input: interactions.NewInteractionsInput([]interactions.Content{
+                      interactions.NewContent(interactions.AudioContent{
+                          URI:      genai.Ptr(audioFile.URI),
+                          MimeType: interactions.AudioContentMimeType(audioFile.MIMEType).ToPointer(),
+                      }),
+                  }),
+                  GenerationConfig: &interactions.GenerationConfig{
+                      TranscriptionConfig: &interactions.TranscriptionConfig{
+                          Mode: genai.Ptr(interactions.NewTranscriptionConfigMode(interactions.NewTranscriptionMode(interactions.SmartTranscriptionMode{
+                              SourceText: genai.Ptr("The meeting is at 2:00 PM tomorrow in building 42."),
+                          }))),
+                      },
+                  },
+              }),
+          })
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if text := res.Interaction.GetOutputText(); text != nil {
+              fmt.Println(*text)
+          }
+      }
+      ```
+
+=== "REST"
+
+      ```bash
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.5-transcribe",
+          "input": [
+            {
+              "type": "audio",
+              "uri": "YOUR_FILE_URI",
+              "mime_type": "audio/mp3"
+            }
+          ],
+          "generation_config": {
+            "transcription_config": {
+              "mode": {
+                "type": "smart",
+                "source_text": "The meeting is at 2:00 PM tomorrow in building 42."
+              }
+            }
+          }
+        }'
+      ```
+
+
+#### 語音編輯提示詞範例 {#voice-edit-prompt-examples}
+
+語音編輯支援目標單字替換、語氣調整、結構化格式、附加新的口述文字與刪除：
+
+
+| 編輯類型 | `source_text` | 口述音訊提示詞 | 輸出（`output_text`） |
+| --- | --- | --- | --- |
+| **目標替換** | "The meeting is at 2:00 PM tomorrow in building 42." | "Change the time to 3:30 PM and mention video conferencing is available." | "The meeting is at 3:30 PM tomorrow in building 42, with video conferencing available." |
+| **語氣與風格轉換** | "The new park downtown is finally open, and I've heard it has some really cool features." | "Make it sound more formal." | "The new downtown park has officially opened and reportedly features several impressive amenities." |
+| **結構化格式** | "We need to review the Q3 budget, finalize the launch timeline, and send the recap email." | "Format the action items as a numbered list." | We need to: 1. Review the Q3 budget 2. Finalize the launch timeline 3. Send the recap email |
+| **附加口述內容** | "Hi Alex, thanks for sending over the design doc." | "Add a sentence asking if we can review the latency numbers tomorrow morning." | "Hi Alex, thanks for sending over the design doc. Can we review the latency numbers tomorrow morning?" |
+| **刪除** | "Let's schedule the sync for Monday afternoon. We also need to invite the security team." | "Delete the second sentence." | "Let's schedule the sync for Monday afternoon." |
+
+
+#### 多回合語音編輯 {#multi-turn-voice-editing}
+
+由於每次一元 `interactions.create` 請求都是獨立的，`source_text` 不會在不同的單次 API 呼叫之間自動保留。若要在多個回合中連續套用語音編輯，請將每一回合回傳的 `output_text` 作為下一回合請求的 `source_text` 傳入：
+
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client(http_options={"api_version": "v1beta"})
+
+      current_text = "The new park downtown is finally open, and I've heard it has some really cool features."
+
+      # Turn 1: Spoken instruction "Make it more professional."
+      turn1_audio = client.files.upload(file="path/to/turn1_edit.mp3")
+      turn1_response = client.interactions.create(
+          model="gemini-3.5-transcribe",
+          input=[
+              {
+                  "type": "audio",
+                  "uri": turn1_audio.uri,
+                  "mime_type": turn1_audio.mime_type,
+              }
+          ],
+          generation_config={
+              "transcription_config": {
+                  "mode": {
+                      "type": "smart",
+                      "source_text": current_text,
+                  }
+              }
+          },
+      )
+      current_text = turn1_response.output_text
+      print("After Turn 1:", current_text)
+
+      # Turn 2: Pass Turn 1's output_text as source_text for the next spoken edit
+      # Spoken instruction "Add a sentence inviting the team to visit on Friday."
+      turn2_audio = client.files.upload(file="path/to/turn2_edit.mp3")
+      turn2_response = client.interactions.create(
+          model="gemini-3.5-transcribe",
+          input=[
+              {
+                  "type": "audio",
+                  "uri": turn2_audio.uri,
+                  "mime_type": turn2_audio.mime_type,
+              }
+          ],
+          generation_config={
+              "transcription_config": {
+                  "mode": {
+                      "type": "smart",
+                      "source_text": current_text,
+                  }
+              }
+          },
+      )
+      current_text = turn2_response.output_text
+      print("After Turn 2:", current_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
+
+      let currentText =
+        "The new park downtown is finally open, and I've heard it has some really cool features.";
+
+      // Turn 1: Spoken instruction "Make it more professional."
+      const turn1AudioFile = await ai.files.upload({
+        file: "path/to/turn1_edit.mp3",
+        config: { mimeType: "audio/mp3" },
+      });
+      const turn1Response = await ai.interactions.create({
+        model: "gemini-3.5-transcribe",
+        input: [
+          {
+            type: "audio",
+            uri: turn1AudioFile.uri,
+            mime_type: turn1AudioFile.mimeType,
+          },
+        ],
+        generation_config: {
+          transcription_config: {
+            mode: {
+              type: "smart",
+              source_text: currentText,
+            },
+          },
+        },
+      });
+      currentText = turn1Response.output_text;
+      console.log("After Turn 1:", currentText);
+
+      // Turn 2: Pass Turn 1's output_text as source_text for the next spoken edit
+      const turn2AudioFile = await ai.files.upload({
+        file: "path/to/turn2_edit.mp3",
+        config: { mimeType: "audio/mp3" },
+      });
+      const turn2Response = await ai.interactions.create({
+        model: "gemini-3.5-transcribe",
+        input: [
+          {
+            type: "audio",
+            uri: turn2AudioFile.uri,
+            mime_type: turn2AudioFile.mimeType,
+          },
+        ],
+        generation_config: {
+          transcription_config: {
+            mode: {
+              type: "smart",
+              source_text: currentText,
+            },
+          },
+        },
+      });
+      currentText = turn2Response.output_text;
+      console.log("After Turn 2:", currentText);
+      ```
+
+
+!!! note " "
+
+      在使用 [Live API](/docs/live-api/live-transcribe/#voice-editing) 的雙向串流工作階段中，智慧模式（`mode: "SMART"`）下的多回合語音編輯預設為啟用。你可以從空白文字框開始口述，或在工作階段設定時提供一次初始 `source_text`；伺服器會在每一回合結束後，自動將目前的來源文字更新為最新的定稿轉錄。
 
 
 ## 解析轉錄輸出 {#parsing-output}
@@ -1095,8 +1406,9 @@ Gemini 3.5 Transcribe 支援下列音訊格式 MIME 類型：
 | :--- | :--- | :--- |
 | `language_codes` | 字串陣列 | BCP-47 語言代碼（例如 `["en-US"]`）。若省略或為空（`[]`），模型會自動偵測語言並處理語碼轉換。 |
 | `custom_vocabulary` | 字串陣列 | 多達 1,000 個自訂詞彙、縮寫或專有名詞，用來引導語音辨識的偏向。與說話者分離及單字層級時間戳記不相容。 |
-| `mode` | 物件或字串 | 轉錄模式設定。可接受 `"smart"`，或逐字模式物件（`{"type": "verbatim", ...}`）。預設為逐字轉錄。 |
-| `mode.type` | 字串 | *（僅限逐字模式）*模式識別碼。一律設為 `"verbatim"`。 |
+| `mode` | 物件或字串 | 轉錄模式設定。可接受 `"smart"`（預設啟用智慧轉錄與語音編輯）、智慧模式物件（`{"type": "smart", ...}`），或逐字模式物件（`{"type": "verbatim", ...}`）。預設為逐字轉錄。 |
+| `mode.type` | 字串 | `mode` 為物件時的模式識別碼。設為 `"smart"` 或 `"verbatim"`。 |
+| `mode.source_text` | 字串 | *（僅限智慧模式）*選填的既有參考文字（上限 64 KiB），可透過口述語音指令加以編輯、改寫或格式化。 |
 | `mode.timestamp_granularities` | 字串陣列 | *（僅限逐字模式）*要回傳的時間戳記精細程度。傳入 `["word"]` 即可啟用單字的開始與結束偏移。與自訂詞彙不相容。 |
 | `mode.diarization_mode` | 字串 | *（僅限逐字模式）*分離模式。傳入 `"speaker"` 即可識別並標示不同的說話者。與自訂詞彙不相容。 |
 
@@ -1114,6 +1426,7 @@ Gemini 3.5 Transcribe 支援下列音訊格式 MIME 類型：
 *   **說話者分離**：說話者分離最多支援 8 位說話者。3 位以上說話者的歸屬判定仍屬實驗性質。
 *   **自訂詞彙**：你可以在 `custom_vocabulary` 中提供多達 1,000 個詞彙，但通常以不超過 100 個詞彙時效果最佳。`custom_vocabulary` 無法與說話者分離或單字層級時間戳記併用；若請求同時指定 `custom_vocabulary` 與其中任一功能，API 會拒絕該請求。
 *   **模式相容性**：智慧轉錄（`"smart"`）無法與 `timestamp_granularities` 或 `diarization_mode` 併用。
+*   **語音編輯（`source_text`）**：在 `"smart"` 模式下，語音編輯預設為啟用。傳入既有的 `source_text` 時，須將 `mode` 設為智慧模式物件（`{"type": "smart", "source_text": "..."}`），`source_text` 大小上限為 64 KiB（65,536 位元組）。
 
 ## 後續步驟 {#whats-next}
 

@@ -6,7 +6,7 @@ Gemini 4 Carbon（`gemini-4-carbon`）是我們能力最強的推理模型，專
 
 ## 文件 {#documentation}
 
-如需功能、API 變更與遷移指南的完整說明，請參閱 [What's new in Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 頁面。
+如需功能、API 變更與遷移指南的完整說明，請參閱 [What's new in Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 頁面；如需比較 Carbon 與 Neon、Hydrogen 及 Flash-Lite，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 ## gemini-4-carbon {#gemini-4-carbon}
 

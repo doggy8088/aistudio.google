@@ -26,7 +26,7 @@ Gemini 4 Carbon 可在 Gemini API 的付費層級與 Google AI Studio 中使用�
 閱讀 Gemini 4 Carbon 的實用提示詞與多代理模式。
 
 
-本指南說明 Gemini 4 Carbon 的新功能、如何在 Carbon 與 Argon 之間做選擇、API 變更、程式碼範例，以及遷移指南。
+本指南說明 Gemini 4 Carbon 的新功能、如何在各 Gemini 4 模型之間做選擇、API 變更、程式碼範例，以及遷移指南。
 
 ## 新模型 {#new-model}
 
@@ -93,14 +93,15 @@ Gemini 4 Carbon 可在 Gemini API 的付費層級與 Google AI Studio 中使用�
 * **統一的 1M 上下文視窗與長解碼：** 輸入、思考與輸出權杖共用一個 1,048,576 個權杖的視窗，單一回應現在可超過 64K 個權杖，最多可達 1M 個權杖減去您的輸入。請參閱[長解碼](/docs/long-decode/)。
 * **支援 Managed Agents：** Gemini Managed Agents 中的 [Antigravity 代理](/docs/antigravity-agent/)現已支援 `gemini-4-carbon`。
 
-## 在 Carbon、Argon 與其他模型之間做選擇 {#choosing-between-models}
+## 在 Carbon、Neon、Hydrogen 與其他模型之間做選擇 {#choosing-between-models}
 
-Gemini 4 Carbon 與 [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/) 共用相同的 1M 統一上下文視窗、內建工具與每權杖定價。主要差異在於每個模型每回合花費的思考權杖數量：
+Gemini 4 Carbon、[Gemini 4 Neon](/docs/whats-new-gemini-4-neon/) 與 [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 共用相同的 1M 統一上下文視窗、長解碼架構與內建工具：
 
-* **Gemini 4 Carbon（`gemini-4-carbon`）：** 專為挑戰推理深度極限的任務而打造。Carbon 每回合會花費更多思考權杖，進行徹底探索並驗證其工作成果，因此與 Argon 相比，每回合的權杖用量與延遲都會增加。適用於複雜的根本原因除錯、架構設計、密集的多模態整合、科學證明與安全稽核。
-* **Gemini 4 Argon（`gemini-4-argon`）：** 我們高效能的 Gemini 4 前沿推理模型，適合大多數進階軟體工程與知識工作任務。與 Carbon 相比，它在互動式程式設計、日常功能開發與快速生產迴圈中，能以更快的回應速度和更低的每回合權杖消耗，提供 Gemini 4 等級的智慧。
+* **Gemini 4 Carbon（`gemini-4-carbon`）：** 專為挑戰推理深度極限的任務而打造。Carbon 每回合會花費更多思考權杖，進行徹底探索並驗證其工作成果，因此每回合的權杖用量與延遲都會增加。適用於複雜的根本原因除錯、架構設計、密集的多模態整合、科學證明與安全稽核。
+* **Gemini 4 Neon（`gemini-4-neon`）：** 具備前沿級智慧，端到端任務完成速度快（每 100 萬權杖 $3.00 / $15.00，僅付費層級），適用於複雜的軟體工程、知識工作與科學工作流程。
+* **Gemini 4 Hydrogen（`gemini-4-hydrogen`）：** 速度快且具成本效益（每 100 萬權杖 $1.50 / $7.50，另提供免費層級），適用於日常程式設計、互動式應用程式、多模態文件與平行子代理執行。
 
-如需更多模型選擇指南，請參閱[最新 Gemini 模型](/docs/latest-model/#compare-models)。
+如需並排比較與多模型協調範例，請參閱[選擇模型](/docs/choosing-a-model/)與[最新 Gemini 模型](/docs/latest-model/#compare-models)。
 
 ## 了解思考層級 {#understanding-thinking-levels}
 
@@ -383,7 +384,7 @@ Gemini Managed Agents 中的 [Antigravity 代理](/docs/antigravity-agent/)支�
 
 * **更新模型 ID：** 將模型字串從 `gemini-4-argon` 改為 `gemini-4-carbon`。
 * **考量更長的思考時間：** 在複雜任務上，Carbon 每回合花費的思考權杖比 Argon 更多。請將 `thinking_level` 保留為 `medium`（預設），除非工作負載需要 `high`，並確保您的 `max_output_tokens` 與 HTTP 逾時能容納更長的推理過程。
-* **在重視速度的地方保留 Argon：** 當您在互動式程式設計、日常功能開發與快速生產迴圈中，想要比 Carbon 更快的回應速度和更低的每回合權杖消耗時，請保留 [`gemini-4-argon`](/docs/whats-new-gemini-4-argon/)。
+* **在重視速度的地方使用 Neon 或 Hydrogen：** 當您在複雜的軟體工程、知識工作與科學工作流程中，想要更快的端到端任務完成速度時，請使用 [`gemini-4-neon`](/docs/whats-new-gemini-4-neon/)；日常程式設計與互動式迴圈則使用 [`gemini-4-hydrogen`](/docs/whats-new-gemini-4-hydrogen/)。
 
 ### 從 Gemini 3 與更早版本遷移 {#migrate-to-gemini-4-carbon}
 
@@ -412,7 +413,9 @@ Gemini 4 Carbon 不提供免費層級。如需完整的定價層級，請參閱[
 
 ## 其他模型 {#other-models}
 
+* [選擇模型](/docs/choosing-a-model/)
 * [最新 Gemini 模型](/docs/latest-model/)
+* [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)
 * [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/)
 * [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/)
 * [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)

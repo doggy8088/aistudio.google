@@ -2,7 +2,7 @@
 
 Gemini 4 Hydrogen（`gemini-4-hydrogen`）將尖端智慧帶給所有人，同時兼顧速度與效率，適用於日常程式設計與代理工作流程。
 
-Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費層級皆可使用（同時支援 GenerateContent 與 Interactions API）。與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 和 [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/) 相同，它具備統一的 100 萬權杖上下文視窗，並支援最長 100 萬權杖的長解碼。此外，它還新增了第四個思考層級 [`xhigh`](/docs/thinking/#understanding-thinking-levels)，與 `low`、`medium` 以及預設的 `high` 並列。
+Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費層級皆可使用（同時支援 GenerateContent 與 Interactions API）。與其他 Gemini 4 模型（[Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 與 [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)）相同，它具備統一的 100 萬權杖上下文視窗，並支援最長 100 萬權杖的長解碼。此外，它還新增了第四個思考層級 [`xhigh`](/docs/thinking/#understanding-thinking-levels)，與 `low`、`medium` 以及預設的 `high` 並列。
 
 
   
@@ -89,21 +89,16 @@ Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費�
 
 * **快速的代理執行**：能撰寫更簡潔的程式碼；與 [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/) 相比，透過標示缺少的脈絡而非自行猜測，將捏造說法的情形減少 5 倍以上；能平行批次處理讀取與搜尋工具呼叫，並在工具呼叫失敗時做出更好的調整。
 * **四種可設定的思考層級**：支援 `low`、`medium`、`high`（預設）與全新的 `xhigh` 層級，讓您能更精細地控管延遲與成本，並在任務需要時進行更深入的推理。詳情請參閱[思考層級](/docs/whats-new-gemini-4-hydrogen/#understanding-thinking-levels)一節。
-* **專為多模型協調而設計**：可獨立用於程式設計與代理工作，也可搭配 Carbon 與 Argon，以較低的延遲驅動平行的 worker 與 verifier 代理，且不會推高權杖成本。
+* **專為多模型協調而設計**：可獨立用於程式設計與代理工作，也可搭配 Carbon 與 Neon，以較低的延遲驅動平行的 worker 與 verifier 代理，且不會推高權杖成本。
 * **更強的多模態推理**：能以更高的準確度讀取並綜合表格、圖表、密集的 PDF、圖片、音訊與影片，並使用[代理式影片理解](/docs/video-understanding/#agentic-video-understanding)檢視特定影格與視覺細節。
 * **統一的 100 萬上下文視窗與長解碼**：輸入、思考與輸出權杖共用同一個 1,048,576 權杖的視窗。透過背景執行或用戶端接續，回覆長度可超過 64K，最長可達 100 萬權杖。請參閱[長解碼](/docs/long-decode/)。
 * **Managed Agents 的預設模型**：[Antigravity 代理](/docs/antigravity-agent/) 現在預設使用 Gemini 4 Hydrogen（`gemini-4-hydrogen`）。
 
-## 在 Hydrogen、Carbon、Argon 與其他模型之間做選擇 {#choosing-between-models}
+## 在 Hydrogen、Carbon、Neon 與其他模型之間做選擇 {#choosing-between-models}
 
-Gemini 4 Hydrogen、[Gemini 4 Argon](/docs/whats-new-gemini-4-argon/) 與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 共用相同的 100 萬統一上下文視窗、長解碼架構與內建工具。請依您的推理深度、延遲與成本目標，挑選最合適的模型：
+Gemini 4 Hydrogen 是我們預設的通用模型，適用於日常程式設計、互動式 Web 應用程式、使用工具的代理、多模態文件工作流程與平行子代理執行，也是建議從 [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/) 以及更早的 Gemini 3 與 2.5 模型升級的選擇。困難的架構、除錯、科學與安全驗證請使用 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)；複雜的軟體工程、知識工作與科學工作流程，若需要前沿級智慧並快速完成端到端任務，請使用 [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)。大量分類、路由與次秒級延遲目標則請繼續使用 [Gemini 3.5 Flash-Lite](/docs/whats-new-gemini-3.6/)。
 
-* **Gemini 4 Hydrogen（`gemini-4-hydrogen`）**：在處理複雜的代理工作流程時兼顧速度與效率，價格為每 100 萬輸入權杖 $1.50、每 100 萬輸出權杖 $7.50。適用於日常程式設計、互動式 Web 應用程式、使用工具的代理、多模態文件工作流程，以及平行子代理執行。**建議從 Gemini 3.8 Flash 以及更早的 Gemini 3 與 2.5 模型升級至此模型。**
-* **Gemini 4 Carbon（`gemini-4-carbon`）**：我們最強大的前沿模型。Carbon 會在每一輪投入更多思考權杖，用於測試假設並驗證困難架構、除錯、科學與安全稽核中的邊界情況。
-* **Gemini 4 Argon（`gemini-4-argon`）**：當您希望以比 Carbon 更低的權杖用量處理大多數進階的長程任務時，請使用 Argon。
-* **Gemini 3.5 Flash-Lite（`gemini-3.5-flash-lite`）**：我們速度最快、成本最低的模型。請將 Flash-Lite 用於大量分類、路由，以及次秒級延遲目標。
-
-您也可以在同一個工作流程中搭配使用 Carbon 與 Hydrogen：讓 Carbon 規劃系統介面或解決棘手的阻礙，再將程式碼編輯、平行子代理任務與測試執行委派給 Hydrogen。完整比較請參閱[最新 Gemini 模型](/docs/latest-model/#compare-models)。
+您也可以在同一個工作流程中搭配使用 Carbon 與 Hydrogen：讓 Carbon 規劃系統介面或解決棘手的阻礙，再將程式碼編輯、平行子代理任務與測試執行委派給 Hydrogen。如需並排比較、針對特定情境的模型建議與多模型程式碼範例，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 ## 了解思考層級 {#understanding-thinking-levels}
 
@@ -381,14 +376,14 @@ Gemini 4 Hydrogen 採用與 Carbon 和 Argon 相同的 Gemini 4 API 設計。從
 * **對超過 64K 的輸出使用背景執行**：對於長度超過 64K 權杖的回覆，請將 `background` 設為 `true`，並將 `max_output_tokens` 設為高於 65,536（或在最新版 SDK 中使用用戶端接續）。
 * **檢閱權杖計費估算**：我們會計算並收費模型處理的每一個權杖，包括思考權杖，以及內部的接地系統指令與函式宣告。
 
-### 從 Gemini 4 Carbon 與 Argon 遷移或與其搭配 {#migrate-from-gemini-4-argon}
+### 從其他 Gemini 4 模型遷移或與其搭配 {#migrate-from-gemini-4-argon}
 
-如果您目前執行的是 `gemini-4-carbon` 或 `gemini-4-argon`，新增或切換到 `gemini-4-hydrogen` 時，不需要變更要求結構描述：
+如果您目前執行的是 `gemini-4-carbon`、`gemini-4-neon` 或 `gemini-4-argon`，新增或切換到 `gemini-4-hydrogen` 時，不需要變更要求結構描述：
 
 * **更新模型 ID**：在獨立要求或子代理輪次中，將 `model` 設為 `gemini-4-hydrogen`。
-* **檢查預設思考層級**：Hydrogen 預設為 `high` 並支援 `xhigh`，而 Carbon 與 Argon 預設為 `medium`，上限為 `high`。設定 `thinking_level`，即可取得 `medium` 或 `xhigh` 的行為。
-* **64K 非串流跳躍**：Hydrogen 在 REST 與 SDK 呼叫中，每一跳非串流最多支援 65,536 個權杖；相較之下，Carbon 與 Argon 在每一跳非串流 REST 中最多支援 32,768 個權杖。
-* **跨輪次切換模型**：在同一個多輪工作階段中，將規劃輪次導向 `gemini-4-carbon`、執行輪次導向 `gemini-4-hydrogen`，並使用 `previous_interaction_id` 連接各輪次（或透過保留[無狀態模式下的思考步驟](/docs/thinking/#stateless-mode) 來達成；請參閱[多輪模型相容性](/docs/interactions-overview/#limitations)）。
+* **檢查預設思考層級**：Hydrogen 與 Neon 預設為 `high` 並支援 `xhigh`，而 Carbon 與 Argon 預設為 `medium`，上限為 `high`。設定 `thinking_level`，即可取得 `medium` 或 `xhigh` 的行為。
+* **64K 非串流跳躍**：Hydrogen 與 Neon 在 REST 與 SDK 呼叫中，每一跳非串流最多支援 65,536 個權杖；相較之下，Carbon 與 Argon 在每一跳非串流 REST 中最多支援 32,768 個權杖。
+* **跨輪次切換模型**：在同一個多輪工作階段中，將規劃輪次導向 `gemini-4-carbon`、執行輪次導向 `gemini-4-hydrogen`，並使用 `previous_interaction_id` 連接各輪次（請參閱[在多步驟工作流程中搭配模型使用](/docs/choosing-a-model/#pair-models)，或透過保留[無狀態模式下的思考步驟](/docs/thinking/#stateless-mode) 來達成；請參閱[多輪模型相容性](/docs/interactions-overview/#limitations)）。
 
 ## 定價 {#pricing}
 
@@ -406,9 +401,11 @@ Gemini 4 Hydrogen 可在 Gemini API 與 Google AI Studio 的免費層級使用�
 
 ## 其他模型 {#other-models}
 
+* [選擇模型](/docs/choosing-a-model/)
 * [最新 Gemini 模型](/docs/latest-model/)
 * [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)
 * [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/)
+* [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)
 * [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)
 * [Gemini 3.6 Flash 與 3.5 Flash-Lite](/docs/whats-new-gemini-3.6/)
 * [查看所有模型](/docs/models/)

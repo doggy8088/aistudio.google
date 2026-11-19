@@ -26,7 +26,7 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
 | **主要角色** | 會聆聽、推理並回話的對話助理。 | 即時將輸入音訊轉成文字的語音轉文字管線。 |
 | **回應型態** | 語音與文字（`response_modalities=["AUDIO"]`）。 | 串流文字轉錄（`response_modalities=["TEXT"]`）。 |
 | **互動方式** | 輪流對話，具備停頓偵測與插話處理。 | 說話者講話時即連續處理串流。 |
-| **支援的功能** | 函式呼叫、Google 搜尋、系統指令、在 `gemini-3.8-live` 上支援語音偏置（`custom_vocabulary`）的輸入音訊轉錄。 | 語音偏置（`custom_vocabulary`）、語言偵測、手動與混合 VAD、智慧轉錄。 |
+| **支援的功能** | 函式呼叫、Google 搜尋、系統指令、在 `gemini-3.8-live` 上支援語音偏置（`custom_vocabulary`）的輸入音訊轉錄。 | 語音偏置（`custom_vocabulary`）、語言偵測、手動與混合 VAD、智慧轉錄、語音編輯（`source_text`）。 |
 | **輸入串流** | 多模態：音訊、影片、圖片、文字。 | 音訊輸入（原始 16 位元 PCM）。 |
 
 ## 開始使用 {#get-started}
@@ -142,7 +142,7 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
 音訊串流進入 Live API 時，伺服器會在 `server_content` 中送出兩個互補的轉錄欄位：
 
 *   **`interim_input_transcription`**：低延遲的推測性部分假設，會在說話者持續講話時不斷更新。這些部分更新送出得非常快速、延遲極低。可用 `interim_input_transcription` 呈現反應靈敏的即時 UI 字幕或預覽字幕。
-*   **`input_transcription`**：在說話者停頓、該輪結束或語音定稿時送出的最終轉錄。送出後，這段文字即為模型對該語音片段的權威轉錄結果。在智慧轉錄模式下，這裡會包含清理並格式化後的回應。
+*   **`input_transcription`**：在說話者停頓、該輪結束或語音定稿時送出的最終轉錄。在 `"VERBATIM"` 模式下，這段文字即為模型對該語音片段的權威轉錄結果（呼叫端會將其附加到轉錄緩衝區）。在 `"SMART"` 模式下，這裡回傳的是截至目前為止、經清理與格式化的累計完整工作階段轉錄（會取代用戶端的目前轉錄緩衝區）。
 
 以下範例示範如何顯示串流中的暫時部分結果，並提交最終轉錄：
 
@@ -180,8 +180,8 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
         }
 
         if (content.inputTranscription) {
-          // Append final committed transcript to chat history
-          commitFinalTranscript(content.inputTranscription.text);
+          // Replace active transcript buffer in SMART mode, or append in VERBATIM mode
+          commitFinalTranscript(content.inputTranscription.text ?? '');
         }
       };
       ```
@@ -415,6 +415,7 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
     *   **行內自我修正**：自然地處理口頭修正。
     *   **結構化格式**：自動格式化清單、項目符號、數字、日期與段落分隔。
     *   **文法與大小寫**：套用自然的大小寫與標點潤飾。
+    *   **語音編輯（預設啟用）**：跨回合套用口述的編輯、改寫與格式設定指令，並可選擇以現有的 `source_text` 作為種子。
 
 
 === "Python"
@@ -454,6 +455,288 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
         },
       };
       websocket.send(JSON.stringify(setupMessage));
+      ```
+
+
+!!! warning " "
+
+      切換為 `mode: "SMART"` 後，`server_content.input_transcription.text` 會在每一回合回傳**截至目前為止的完整累計工作階段轉錄**，而非每一段的增量。請更新你的用戶端，以每次定稿的 `input_transcription` **取代**目前的轉錄緩衝區，而非附加，否則先前的回合會重複出現。
+
+
+### 語音編輯 {#voice-editing}
+
+只要 `input_audio_transcription` 中的智慧轉錄模式（`mode: "SMART"`）處於啟用狀態，語音編輯預設就會啟用。在工作階段中，伺服器會維持目前的文字脈絡，並將口述的編輯、格式設定或改寫指令套用到該文字，再於 `server_content.input_transcription` 中送出完整替代文字。
+
+你可以從空白文字框開始語音編輯工作階段（只需設定 `mode: "SMART"`），或使用選填的 `source_text` 欄位預先填入現有參考文字（上限 64 KiB）。請注意，`interim_input_transcription` 會在使用說話時串流口述指令的字面內容；請等到收到 `input_transcription` 再更新文件緩衝區，並將未設定的 `input_transcription.text`（例如在 `"Delete everything"` 之後）視為 `""`。
+
+#### 啟用語音編輯 {#enable-voice-editing}
+
+在 `input_audio_transcription` 中將 `mode` 設為 `"SMART"`，即可跨回合預設啟用語音編輯。若希望使用者的口述指令從第一回合就編輯既有文字，請在工作階段設定時將該文字放在 `source_text`（上限 64 KiB）中傳入。
+
+
+!!! tip " "
+
+      將語音編輯搭配[手動 VAD（按鍵通話）](/docs/live-api/live-transcribe/#manual-vad-push-to-talk)（`automatic_activity_detection.disabled = True`，並明確送出 `activity_start` 與 `activity_end` 訊號）使用，這樣思考編輯指令時的自然停頓就不會過早切斷回合。
+
+
+=== "Python"
+
+      ```python
+      config = types.LiveConnectConfig(
+          response_modalities=["TEXT"],
+          realtime_input_config=types.RealtimeInputConfig(
+              automatic_activity_detection=types.AutomaticActivityDetection(
+                  disabled=True
+              )
+          ),
+          input_audio_transcription=types.AudioTranscriptionConfig(
+              mode="SMART",  # Voice editing is enabled by default in SMART mode
+              # Optional: pre-populate existing text to edit on the first turn
+              source_text="The meeting is at 2:00 PM tomorrow in building 42.",
+          ),
+      )
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      const config = {
+        responseModalities: [Modality.TEXT],
+        realtimeInputConfig: {
+          automaticActivityDetection: {
+            disabled: true,
+          },
+        },
+        inputAudioTranscription: {
+          mode: 'SMART', // Voice editing is enabled by default in SMART mode
+          // Optional: pre-populate existing text to edit on the first turn
+          sourceText: 'The meeting is at 2:00 PM tomorrow in building 42.',
+        },
+      };
+      ```
+
+=== "WebSockets"
+
+      ```javascript
+      const setupMessage = {
+        setup: {
+          model: 'models/gemini-3.5-transcribe-live',
+          generationConfig: {
+            responseModalities: ['TEXT'],
+          },
+          realtimeInputConfig: {
+            automaticActivityDetection: {
+              disabled: true,
+            },
+          },
+          inputAudioTranscription: {
+            mode: 'SMART', // Voice editing is enabled by default in SMART mode
+            // Optional: pre-populate existing text to edit on the first turn
+            sourceText: 'The meeting is at 2:00 PM tomorrow in building 42.',
+          },
+        },
+      };
+      websocket.send(JSON.stringify(setupMessage));
+      ```
+
+
+#### 語音編輯提示詞範例 {#voice-edit-prompt-examples}
+
+語音編輯支援目標替換、語氣調整、清單格式、附加新的口述文字與刪除：
+
+
+| 編輯類型 | 目前的 `source_text` | 口述音訊提示詞 | 輸出（`input_transcription.text`） |
+| --- | --- | --- | --- |
+| **目標替換** | "The meeting is at 2:00 PM tomorrow in building 42." | "Change the time to 3:30 PM and mention video conferencing is available." | "The meeting is at 3:30 PM tomorrow in building 42, with video conferencing available." |
+| **語氣與風格轉換** | "The new park downtown is finally open, and I've heard it has some really cool features." | "Make it sound more formal." | "The new downtown park has officially opened and reportedly features several impressive amenities." |
+| **結構化格式** | "We need to review the Q3 budget, finalize the launch timeline, and send the recap email." | "Format the action items as a numbered list." | We need to: 1. Review the Q3 budget 2. Finalize the launch timeline 3. Send the recap email |
+| **附加口述內容** | "Hi Alex, thanks for sending over the design doc." | "Add a sentence asking if we can review the latency numbers tomorrow morning." | "Hi Alex, thanks for sending over the design doc. Can we review the latency numbers tomorrow morning?" |
+| **刪除** | "Let's schedule the sync for Monday afternoon. We also need to invite the security team." | "Delete the second sentence." | "Let's schedule the sync for Monday afternoon." |
+
+
+#### 多回合語音編輯 {#multi-turn-voice-editing}
+
+將 `mode` 設為 `"SMART"` 時，Live 轉錄工作階段預設會跨回合維持並傳遞目前的文字脈絡——無論是從空白文字框開始（省略 `source_text`），還是以 `source_text` 填入初始文字：
+
+1.  **工作階段設定**：在 `input_audio_transcription` 中設定 `mode: "SMART"`。若使用者要編輯既有文字，可選擇提供初始 `source_text`；若省略 `source_text`，工作階段預設會從空白文字脈絡開始。
+2.  **第一回合**：若省略 `source_text`，第一個口述回合會口述初始文字（並套用任何行內編輯）。若提供了 `source_text`，第一個口述回合會編輯該初始 `source_text`。無論哪種情況，伺服器都會在 `server_content.input_transcription` 中送出完整結果文字。
+3.  **後續回合**：每一回合定稿後，伺服器會自動將目前的文字脈絡推進為上一回合定稿的 `input_transcription`。同一工作階段中的每個新口述回合，都會編輯或附加到最新文字，無需重新連線或再次傳送 `source_text`。請注意，`source_text` 僅在工作階段設定時接受——若使用者在工作階段中以鍵盤手動編輯，請使用更新後的 `source_text` 重新連線以同步狀態。
+
+例如，在以 `source_text` 填入初始文字的多回合工作階段中：
+
+*   **設定中的初始 `source_text`**：`"The new park downtown is finally open, and I've heard it has some really cool features."`（若設定時省略 `source_text`，使用者會在初始回合中口述這句話。）
+*   **第 1 回合口述音訊**：`"Make it more professional."`
+    *   **第 1 回合 `input_transcription.text`**：`"The new downtown park has officially opened and features several impressive amenities."`
+
+*   **第 2 回合口述音訊**：`"Add a sentence inviting the team to visit on Friday."`
+    *   **第 2 回合 `input_transcription.text`**：`"The new downtown park has officially opened and features several impressive amenities. Please join the team for a visit this Friday."`
+
+
+=== "Python"
+
+      ```python
+      config = types.LiveConnectConfig(
+          response_modalities=["TEXT"],
+          realtime_input_config=types.RealtimeInputConfig(
+              automatic_activity_detection=types.AutomaticActivityDetection(
+                  disabled=True
+              )
+          ),
+          input_audio_transcription=types.AudioTranscriptionConfig(
+              mode="SMART",
+              source_text="The new park downtown is finally open, and I've heard it has some really cool features.",
+          ),
+      )
+
+      async with client.aio.live.connect(model=model, config=config) as session:
+          # Turn 1: edits the initial source_text ("Make it more professional.")
+          await session.send_realtime_input(activity_start=types.ActivityStart())
+          for chunk in turn1_pcm_chunks:
+              await session.send_realtime_input(
+                  audio=types.Blob(data=chunk, mime_type="audio/pcm;rate=16000")
+              )
+          await session.send_realtime_input(activity_end=types.ActivityEnd())
+
+          async for response in session.receive():
+              sc = response.server_content
+              if sc and sc.input_transcription:
+                  print("Turn 1 result:", sc.input_transcription.text or "")
+              if sc and (sc.generation_complete or sc.turn_complete):
+                  break
+
+          # Turn 2: automatically edits Turn 1's finalized output
+          # ("Add a sentence inviting the team to visit on Friday.")
+          await session.send_realtime_input(activity_start=types.ActivityStart())
+          for chunk in turn2_pcm_chunks:
+              await session.send_realtime_input(
+                  audio=types.Blob(data=chunk, mime_type="audio/pcm;rate=16000")
+              )
+          await session.send_realtime_input(activity_end=types.ActivityEnd())
+
+          async for response in session.receive():
+              sc = response.server_content
+              if sc and sc.input_transcription:
+                  print("Turn 2 result:", sc.input_transcription.text or "")
+              if sc and (sc.generation_complete or sc.turn_complete):
+                  break
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      let resolveTurnDone;
+      const waitForTurn = () => new Promise((resolve) => { resolveTurnDone = resolve; });
+
+      const session = await ai.live.connect({
+        model,
+        config: {
+          responseModalities: [Modality.TEXT],
+          realtimeInputConfig: {
+            automaticActivityDetection: {
+              disabled: true,
+            },
+          },
+          inputAudioTranscription: {
+            mode: 'SMART',
+            sourceText:
+              "The new park downtown is finally open, and I've heard it has some really cool features.",
+          },
+        },
+        callbacks: {
+          onmessage: (message) => {
+            const sc = message.serverContent;
+            if (sc?.inputTranscription) {
+              console.log('Result:', sc.inputTranscription.text ?? '');
+            }
+            if (sc?.generationComplete || sc?.turnComplete) {
+              resolveTurnDone?.();
+            }
+          },
+        },
+      });
+
+      // Turn 1: edits the initial sourceText ("Make it more professional.")
+      let turnDone = waitForTurn();
+      session.sendRealtimeInput({ activityStart: {} });
+      for (const chunkBase64 of turn1Chunks) {
+        session.sendRealtimeInput({
+          audio: { data: chunkBase64, mimeType: 'audio/pcm;rate=16000' },
+        });
+      }
+      session.sendRealtimeInput({ activityEnd: {} });
+      await turnDone;
+
+      // Turn 2: after Turn 1 completes, Turn 2 automatically edits Turn 1's
+      // finalized transcript without resending sourceText
+      turnDone = waitForTurn();
+      session.sendRealtimeInput({ activityStart: {} });
+      for (const chunkBase64 of turn2Chunks) {
+        session.sendRealtimeInput({
+          audio: { data: chunkBase64, mimeType: 'audio/pcm;rate=16000' },
+        });
+      }
+      session.sendRealtimeInput({ activityEnd: {} });
+      await turnDone;
+      ```
+
+=== "WebSockets"
+
+      ```javascript
+      let resolveTurnDone;
+      const waitForTurn = () => new Promise((resolve) => { resolveTurnDone = resolve; });
+
+      websocket.onmessage = (event) => {
+        const sc = JSON.parse(event.data).serverContent;
+        if (sc?.inputTranscription) {
+          console.log('Result:', sc.inputTranscription.text ?? '');
+        }
+        if (sc?.generationComplete || sc?.turnComplete) {
+          resolveTurnDone?.();
+        }
+      };
+
+      // 1. Seed initial sourceText once in the setup message
+      websocket.send(JSON.stringify({
+        setup: {
+          model: 'models/gemini-3.5-transcribe-live',
+          generationConfig: {
+            responseModalities: ['TEXT'],
+          },
+          realtimeInputConfig: {
+            automaticActivityDetection: {
+              disabled: true,
+            },
+          },
+          inputAudioTranscription: {
+            mode: 'SMART',
+            sourceText:
+              "The new park downtown is finally open, and I've heard it has some really cool features.",
+          },
+        },
+      }));
+
+      // 2. Turn 1: edits the initial sourceText
+      let turnDone = waitForTurn();
+      websocket.send(JSON.stringify({ realtimeInput: { activityStart: {} } }));
+      websocket.send(JSON.stringify({
+        realtimeInput: {
+          audio: { data: turn1ChunkBase64, mimeType: 'audio/pcm;rate=16000' },
+        },
+      }));
+      websocket.send(JSON.stringify({ realtimeInput: { activityEnd: {} } }));
+      await turnDone;
+
+      // 3. Turn 2: after Turn 1 completes, the next spoken turn
+      // automatically operates on Turn 1's finalized output
+      turnDone = waitForTurn();
+      websocket.send(JSON.stringify({ realtimeInput: { activityStart: {} } }));
+      websocket.send(JSON.stringify({
+        realtimeInput: {
+          audio: { data: turn2ChunkBase64, mimeType: 'audio/pcm;rate=16000' },
+        },
+      }));
+      websocket.send(JSON.stringify({ realtimeInput: { activityEnd: {} } }));
+      await turnDone;
       ```
 
 
@@ -770,15 +1053,16 @@ Gemini 3.5 Transcribe Live 支援下列語言與 BCP-47 語言代碼：
 | :--- | :--- | :--- |
 | `language_codes` | 字串陣列 | BCP-47 語言代碼（例如 `["en-US"]`）。若省略或為空（`[]`），模型會自動偵測語言並處理多語言語音。 |
 | `custom_vocabulary` | 字串陣列 | 最多 1,000 個自訂詞彙、縮寫、品牌名稱或專有名詞，用來讓語音辨識產生偏置。 |
-| `mode` | 字串 | 轉錄模式：`"VERBATIM"`（預設）或 `"SMART"`（智慧轉錄）。設為 `"SMART"` 時，模型會移除填充詞、格式化清單並修正不流暢處。 |
+| `mode` | 字串 | 轉錄模式：`"VERBATIM"`（預設）或 `"SMART"`（智慧轉錄）。設為 `"SMART"` 時，模型會移除填充詞、格式化清單、修正不流暢處，並預設跨回合啟用語音編輯。 |
+| `source_text` | 字串 | *（僅限智慧模式）*選填的初始參考文字（上限 64 KiB），可透過口述語音指令加以編輯、改寫或格式化。須將 `mode` 設為 `"SMART"`。會在多回合工作階段中自動更新為上一回合的定稿轉錄。 |
 | `automatic_activity_detection.disabled` | 布林值 | 設為 `true` 可停用自動語音活動偵測，改為手動送出 `activityStart` 與 `activityEnd` 訊號。 |
 
 ### 伺服器回應欄位 {#server-response-fields}
 
 | 欄位 | 說明 |
 | :--- | :--- |
-| `server_content.interim_input_transcription` | 低延遲的暫時部分轉錄假設，會在使用者持續說話時不斷送出。 |
-| `server_content.input_transcription` | 定稿的權威輸入轉錄，會在一輪語音結束時送出。 |
+| `server_content.interim_input_transcription` | 低延遲的暫時部分轉錄假設，會在使用者持續說話時不斷送出。在 `"SMART"` 模式下，這裡串流的是口述指令的字面內容，而非編輯後的文件，因此請勿以暫時文字覆寫目前的文件緩衝區。 |
+| `server_content.input_transcription` | 定稿的權威輸入轉錄，會在一輪語音結束時送出。在 `"SMART"` 模式下，這裡包含截至目前為止、完整更新後的替代文字（會取代先前回合的文字；`"VERBATIM"` 則只送出目前語音片段）。若語音編輯清除了全部文字，`text` 會處於未設定狀態（請視為 `""`）。 |
 
 ## 限制 {#limitations}
 
@@ -787,6 +1071,7 @@ Gemini 3.5 Transcribe Live 支援下列語言與 BCP-47 語言代碼：
 *   **單字層級時間戳記**：Live API 不支援單字層級時間戳記。Live API 送出的是語句層級時間戳記（`interim_input_transcription` 與 `input_transcription`）。
 *   **自訂詞彙**：你可以在 `custom_vocabulary` 中提供最多 1,000 個詞彙，但通常以最多 100 個詞彙時效果最佳。
 *   **模式相容性**：智慧轉錄（`"mode": "SMART"`）會移除填充詞並格式化具意圖感知的文字，但無法與單字註記併用。
+*   **語音編輯（`source_text`）**：將 `mode` 設為 `"SMART"` 時，跨回合的語音編輯預設為啟用。僅當 `mode` 明確設為 `"SMART"` 時，才支援在 `input_audio_transcription` 上傳入初始 `source_text`，`source_text` 大小上限為 64 KiB（65,536 位元組）。
 
 ## 後續步驟 {#whats-next}
 

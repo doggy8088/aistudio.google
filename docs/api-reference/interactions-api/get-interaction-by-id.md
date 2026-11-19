@@ -152,6 +152,8 @@
 
   傳回 [`Interaction`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Interaction) 資源。
 
+  串流時，改為傳回 [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) (`text/event-stream`) 串流，其中每個事件都以 [`InteractionSseEvent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:InteractionSseEvent) 作為其 `data`。
+
   
 
   
@@ -3398,6 +3400,1989 @@ Interaction 資源。
               }
           }
           ```
+
+
+### InteractionSseEvent {#Resource:InteractionSseEvent}
+
+**多型類型**：
+
+
+??? note "**ErrorEvent**"
+
+
+      **event_type**: required `object`
+
+      值：`error`
+
+
+    ---
+
+
+    ??? note "**error**: `Error`"
+
+
+          **code**: `string`
+
+          識別錯誤類型的 URI。
+
+          **message**: `string`
+
+          人類可讀的錯誤訊息。
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **錯誤事件**
+
+      ```json
+      {
+        "error": {
+          "code": "not_found",
+          "message": "Failed to get completed interaction: Result not found."
+        },
+        "event_type": "error"
+      }
+      ```
+
+
+??? note "**InteractionCompletedEvent**"
+
+
+      表示互動已完成。在互動收到 Complete/Cancel 或自然結束時發送。此後無法再向互動傳送輸入。
+
+
+    ??? note "**interaction**: required `InteractionSseEventInteraction` 在串流結束時發出的部分已完成互動資源。"
+
+
+          **id**: required `string`
+
+          僅供輸出。互動完成的唯一識別碼。
+
+
+        ??? note "**status**: required `string enum` 僅供輸出。 互動的狀態。"
+
+
+              可能值：
+
+              - `in_progress`: 互動進行中。
+              - `requires_action`: 互動需要使用者採取行動或提供輸入。
+              - `completed`: 互動已完成。
+              - `failed`: 互動失敗。
+              - `cancelled`: 互動已取消。
+              - `incomplete`: 互動已完成，但包含不完整的結果（例如達到 max_tokens）。
+
+
+          **model**: `string`
+
+          將完成您提示詞的模型。
+
+          **created**: `string`
+
+          僅供輸出。回應的建立時間，採 ISO 8601 格式。
+
+          **updated**: `string`
+
+          僅供輸出。回應的最後更新時間，採 ISO 8601 格式。
+
+
+        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的權杖用量統計。"
+
+
+              **total_input_tokens**: `integer`
+
+              提示詞（上下文）中的權杖數量。
+
+              **initial_input_tokens**: `integer`
+
+              本次互動第一輪所使用的輸入權杖數量。
+
+
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_cached_tokens**: `integer`
+
+              提示詞中已快取部分（快取內容）的權杖數量。
+
+
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_output_tokens**: `integer`
+
+              所有生成回應的權杖總數。
+
+
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_tool_use_tokens**: `integer`
+
+              工具使用提示詞中的權杖數量。
+
+
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_thought_tokens**: `integer`
+
+              思考模型的思考權杖數量。
+
+              **total_tokens**: `integer`
+
+              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+            ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+                ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                      可能值：
+
+                      - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                      - `google_maps`: 使用 Google 地圖接地。
+
+
+                  **count**: `integer`
+
+                  接地工具計數的數量。
+
+
+        ??? note "**service_tier**: `ServiceTier` 互動的服務層級。"
+
+
+              可能值：
+
+              - `flex`: Flex 服務層級。
+              - `standard`: Standard 服務層級。
+              - `priority`: Priority 服務層級。
+
+
+          **steps**: [`Step`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Step) `array`
+
+          僅供輸出。組成互動的步驟（若此事件包含）。
+
+          **continuation_token**: `string`
+
+          用於恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+
+          **agent**: `string`
+
+          要互動的代理。
+
+          **object**: `string`
+
+          僅供輸出。資源類型。
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`interaction.completed`
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **互動已完成**
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.completed",
+        "interaction": {
+          "created": "2025-12-04T15:01:45Z",
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3.8-flash",
+          "status": "completed",
+          "updated": "2025-12-04T15:01:45Z"
+        }
+      }
+      ```
+
+
+??? note "**InteractionCreatedEvent**"
+
+
+      確認已建立新互動的伺服器回應。
+
+
+    ??? note "**interaction**: required `InteractionSseEventInteraction` 在串流建立時發出的部分互動資源。"
+
+
+          **id**: required `string`
+
+          僅供輸出。互動完成的唯一識別碼。
+
+
+        ??? note "**status**: required `string enum` 僅供輸出。 互動的狀態。"
+
+
+              可能值：
+
+              - `in_progress`: 互動進行中。
+              - `requires_action`: 互動需要使用者採取行動或提供輸入。
+              - `completed`: 互動已完成。
+              - `failed`: 互動失敗。
+              - `cancelled`: 互動已取消。
+              - `incomplete`: 互動已完成，但包含不完整的結果（例如達到 max_tokens）。
+
+
+          **model**: `string`
+
+          將完成您提示詞的模型。
+
+          **created**: `string`
+
+          僅供輸出。回應的建立時間，採 ISO 8601 格式。
+
+          **updated**: `string`
+
+          僅供輸出。回應的最後更新時間，採 ISO 8601 格式。
+
+
+        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的權杖用量統計。"
+
+
+              **total_input_tokens**: `integer`
+
+              提示詞（上下文）中的權杖數量。
+
+              **initial_input_tokens**: `integer`
+
+              本次互動第一輪所使用的輸入權杖數量。
+
+
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_cached_tokens**: `integer`
+
+              提示詞中已快取部分（快取內容）的權杖數量。
+
+
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_output_tokens**: `integer`
+
+              所有生成回應的權杖總數。
+
+
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_tool_use_tokens**: `integer`
+
+              工具使用提示詞中的權杖數量。
+
+
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_thought_tokens**: `integer`
+
+              思考模型的思考權杖數量。
+
+              **total_tokens**: `integer`
+
+              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+            ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+                ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                      可能值：
+
+                      - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                      - `google_maps`: 使用 Google 地圖接地。
+
+
+                  **count**: `integer`
+
+                  接地工具計數的數量。
+
+
+        ??? note "**service_tier**: `ServiceTier` 互動的服務層級。"
+
+
+              可能值：
+
+              - `flex`: Flex 服務層級。
+              - `standard`: Standard 服務層級。
+              - `priority`: Priority 服務層級。
+
+
+          **steps**: [`Step`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Step) `array`
+
+          僅供輸出。組成互動的步驟（若此事件包含）。
+
+          **continuation_token**: `string`
+
+          用於恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+
+          **agent**: `string`
+
+          要互動的代理。
+
+          **object**: `string`
+
+          僅供輸出。資源類型。
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`interaction.created`
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **互動已建立**
+
+      ```json
+      {
+        "event_id": "evt_123",
+        "event_type": "interaction.created",
+        "interaction": {
+          "created": "2025-12-04T15:01:45Z",
+          "id": "v1_ChdXS0l4YWZXTk9xbk0xZThQczhEcmlROBIXV0tJeGFmV05PcW5NMWU4UHM4RHJpUTg",
+          "model": "gemini-3.8-flash",
+          "status": "in_progress",
+          "updated": "2025-12-04T15:01:45Z"
+        }
+      }
+      ```
+
+
+??? note "**InteractionStatusUpdate**"
+
+
+      **interaction_id**: required `string`
+
+
+    ---
+
+
+    ??? note "**status**: required `string enum`"
+
+
+          可能值：
+
+          - `in_progress`: 互動進行中。
+          - `requires_action`: 互動需要使用者採取行動或提供輸入。
+          - `completed`: 互動已完成。
+          - `failed`: 互動失敗。
+          - `cancelled`: 互動已取消。
+          - `incomplete`: 互動已完成，但包含不完整的結果（例如達到 max_tokens）。
+          - `requires_continuation`: 互動至少還需要再提出一次請求才能完成。下一次請求應將 continuation_token 設為本次請求傳回的權杖。
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`interaction.status_update`
+
+
+    ---
+
+
+      **continuation_token**: `string`
+
+      選用的不透明接續權杖，用於在串流中斷後從最新檢查點恢復解碼。
+
+
+    ---
+
+
+    ??? note "**usage**: `Usage` 截至此檢查點的模型用量統計。"
+
+
+          **total_input_tokens**: `integer`
+
+          提示詞（上下文）中的權杖數量。
+
+          **initial_input_tokens**: `integer`
+
+          本次互動第一輪所使用的輸入權杖數量。
+
+
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_cached_tokens**: `integer`
+
+          提示詞中已快取部分（快取內容）的權杖數量。
+
+
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_output_tokens**: `integer`
+
+          所有生成回應的權杖總數。
+
+
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_tool_use_tokens**: `integer`
+
+          工具使用提示詞中的權杖數量。
+
+
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_thought_tokens**: `integer`
+
+          思考模型的思考權杖數量。
+
+          **total_tokens**: `integer`
+
+          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+        ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+            ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                  可能值：
+
+                  - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                  - `google_maps`: 使用 Google 地圖接地。
+
+
+              **count**: `integer`
+
+              接地工具計數的數量。
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **互動狀態更新**
+
+      ```json
+      {
+        "event_type": "interaction.status_update",
+        "interaction_id": "v1_ChdTMjQ0YWJ5TUF1TzcxZThQdjRpcnFRcxIXUzI0NGFieU1BdU83MWU4UHY0aXJxUXM",
+        "status": "in_progress"
+      }
+      ```
+
+
+??? note "**StepDelta**"
+
+
+      **index**: required `integer`
+
+
+    ---
+
+
+    ??? note "**delta**: required `StepDeltaData`"
+
+
+          **可能類型**：
+
+
+        ??? note "**ArgumentsDelta**"
+
+
+              **type**: required `object`
+
+              值：`arguments_delta`
+
+              **arguments**: `string`
+
+
+        ??? note "**AudioDelta**"
+
+
+              **type**: required `object`
+
+              值：`audio`
+
+
+            ??? note "**mime_type**: `string enum`"
+
+
+                  可能值：
+
+                  - `audio/wav`: WAV 音訊格式
+                  - `audio/mp3`: MP3 音訊格式
+                  - `audio/aiff`: AIFF 音訊格式
+                  - `audio/aac`: AAC 音訊格式
+                  - `audio/ogg`: OGG 音訊格式
+                  - `audio/flac`: FLAC 音訊格式
+                  - `audio/mpeg`: MPEG 音訊格式
+                  - `audio/m4a`: M4A 音訊格式
+                  - `audio/l16`: L16 音訊格式
+                  - `audio/opus`: OPUS 音訊格式
+                  - `audio/alaw`: ALAW 音訊格式
+                  - `audio/mulaw`: MULAW 音訊格式
+                  - `audio/webm`: WEBM 音訊格式
+
+
+              **data**: `string`
+
+              **uri**: `string`
+
+              **sample_rate**: `integer`
+
+              音訊的取樣率。
+
+              **channels**: `integer`
+
+              音訊聲道數量。
+
+
+        ??? note "**CodeExecutionCallDelta**"
+
+
+            ??? note "**arguments**: required `CodeExecutionCallArguments`"
+
+
+                ??? note "**language**: `string enum` `code` 的程式語言。"
+
+
+                      可能值：
+
+                      - `python`: Python >= 3.10，可使用 numpy 與 simpy。
+                      - `bash`: Bash。僅適用於 Gemini 3.0 以上模型。
+
+
+                  **code**: `string`
+
+                  要執行的程式碼。
+
+
+              **type**: required `object`
+
+              值：`code_execution_call`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**CodeExecutionResultDelta**"
+
+
+              **result**: required `string`
+
+              **type**: required `object`
+
+              值：`code_execution_result`
+
+              **is_error**: `boolean`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**DocumentDelta**"
+
+
+              **type**: required `object`
+
+              值：`document`
+
+
+            ??? note "**mime_type**: `string enum`"
+
+
+                  可能值：
+
+                  - `application/pdf`: PDF 文件格式
+                  - `text/csv`: CSV 文件格式
+                  - `application/vnd.openxmlformats-officedocument.presentationml.presentation`: PPTX 簡報格式
+                  - `application/vnd.ms-powerpoint`: PPT 簡報格式
+                  - `application/vnd.oasis.opendocument.presentation`: ODP 簡報格式
+                  - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`: DOCX 文件格式
+                  - `application/msword`: DOC 文件格式
+                  - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`: DOTX 文件範本格式
+                  - `application/vnd.oasis.opendocument.text`: ODT 文件格式
+                  - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`: XLSX 試算表格式
+                  - `application/vnd.ms-excel`: XLS 試算表格式
+                  - `application/vnd.oasis.opendocument.spreadsheet`: ODS 試算表格式
+
+
+              **data**: `string`
+
+              **uri**: `string`
+
+
+        ??? note "**FileSearchCallDelta**"
+
+
+              **type**: required `object`
+
+              值：`file_search_call`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**FileSearchResultDelta**"
+
+
+            ??? note "**result**: required `FileSearchResult array`"
+
+
+              **type**: required `object`
+
+              值：`file_search_result`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**FunctionResultDelta**"
+
+
+            ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string`"
+
+
+                  **可能類型**：
+
+
+                ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+
+
+                      清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+
+
+                ??? note "**string**"
+
+
+                      直接的字串值。
+
+
+              **type**: required `object`
+
+              值：`function_result`
+
+              **name**: `string`
+
+              **is_error**: `boolean`
+
+
+        ??? note "**GoogleMapsCallDelta**"
+
+
+              **type**: required `object`
+
+              值：`google_maps_call`
+
+
+            ??? note "**arguments**: `GoogleMapsCallArguments` 要傳遞給 Google 地圖工具的引數。"
+
+
+                  **queries**: `string array`
+
+                  要執行的查詢。
+
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**GoogleMapsResultDelta**"
+
+
+              **type**: required `object`
+
+              值：`google_maps_result`
+
+
+            ??? note "**result**: `GoogleMapsResult array` Google Maps 的結果。"
+
+
+                ??? note "**places**: `Places array` 找到的地點。"
+
+
+                      **place_id**: `string`
+
+                      地點的 ID，格式為 `places/{place_id}`。
+
+                      **name**: `string`
+
+                      地點的標題。
+
+                      **url**: `string`
+
+                      地點的 URI 參照。
+
+
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用於生成 Google 地圖中特定地點特色回答的評論片段。"
+
+
+                          **title**: `string`
+
+                          評論的標題。
+
+                          **url**: `string`
+
+                          對應至 Google 地圖上使用者評論的連結。
+
+                          **review_id**: `string`
+
+                          評論片段的 ID。
+
+
+                  **widget_context_token**: `string`
+
+                  Google Maps 小工具內容權杖的資源名稱。
+
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**GoogleSearchCallDelta**"
+
+
+            ??? note "**arguments**: required `GoogleSearchCallArguments`"
+
+
+                  **queries**: `string array`
+
+                  後續網頁搜尋的網頁搜尋查詢。
+
+
+              **type**: required `object`
+
+              值：`google_search_call`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**GoogleSearchResultDelta**"
+
+
+            ??? note "**result**: required `GoogleSearchResult array`"
+
+
+                  **search_suggestions**: `string`
+
+                  可嵌入網頁或應用程式 webview 的網頁內容片段。
+
+
+              **type**: required `object`
+
+              值：`google_search_result`
+
+              **is_error**: `boolean`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**ImageDelta**"
+
+
+              **type**: required `object`
+
+              值：`image`
+
+
+            ??? note "**mime_type**: `string enum`"
+
+
+                  可能值：
+
+                  - `image/png`: PNG 圖片格式
+                  - `image/jpeg`: JPEG 圖片格式
+                  - `image/webp`: WebP 圖片格式
+                  - `image/heic`: HEIC 圖片格式
+                  - `image/heif`: HEIF 圖片格式
+                  - `image/gif`: GIF 圖片格式
+                  - `image/bmp`: BMP 圖片格式
+                  - `image/tiff`: TIFF 圖片格式
+
+
+              **data**: `string`
+
+              **uri**: `string`
+
+
+            ??? note "**resolution**: `MediaResolution` 媒體的解析度。"
+
+
+                  可能值：
+
+                  - `low`: 低解析度。
+                  - `medium`: 中解析度。
+                  - `high`: 高解析度。
+                  - `ultra_high`: 超高解析度。
+
+
+        ??? note "**McpServerToolCallDelta**"
+
+
+              **name**: required `string`
+
+              **server_name**: required `string`
+
+              **arguments**: required `object`
+
+              **type**: required `object`
+
+              值：`mcp_server_tool_call`
+
+
+        ??? note "**McpServerToolResultDelta**"
+
+
+            ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string`"
+
+
+                  **可能類型**：
+
+
+                ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+
+
+                      清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+
+
+                ??? note "**string**"
+
+
+                      直接的字串值。
+
+
+              **type**: required `object`
+
+              值：`mcp_server_tool_result`
+
+              **name**: `string`
+
+              **server_name**: `string`
+
+
+        ??? note "**ProcessingCallDelta**"
+
+
+              伺服器發起的媒體處理步驟的串流差異。
+
+              **type**: required `object`
+
+              值：`processing_call`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**ProcessingResultDelta**"
+
+
+              伺服器發起的媒體處理步驟之結果的串流差異。
+
+              **type**: required `object`
+
+              值：`processing_result`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**TextAnnotationDelta**"
+
+
+              **type**: required `object`
+
+              值：`text_annotation_delta`
+
+
+            ??? note "**annotations**: `Annotation array` 模型生成內容的引用資訊。"
+
+
+                  **可能類型**：
+
+
+                ??? note "**FileCitation**"
+
+
+                      檔案引用註記。
+
+                      **type**: required `object`
+
+                      值：`file_citation`
+
+                      **document_uri**: `string`
+
+                      檔案的 URI。
+
+                      **file_name**: `string`
+
+                      檔案名稱。
+
+                      **source**: `string`
+
+                      文字某部分的出處來源。
+
+                      **custom_metadata**: `object`
+
+                      使用者提供的、關於所擷取上下文的中繼資料。
+
+                      **page_number**: `integer`
+
+                      所引用文件的頁碼（如適用）。
+
+                      **media_id**: `string`
+
+                      圖片引用時的媒體 ID（如適用）。
+
+                      **start_index**: `integer`
+
+                      回應中歸屬於此來源之片段的起始位置。索引表示片段的起點，以位元組為單位。
+
+                      **end_index**: `integer`
+
+                      歸屬片段的結束位置（不含該位置）。
+
+
+                ??? note "**PlaceCitation**"
+
+
+                      地點引用註記。
+
+                      **type**: required `object`
+
+                      值：`place_citation`
+
+                      **place_id**: `string`
+
+                      地點的 ID，格式為 `places/{place_id}`。
+
+                      **name**: `string`
+
+                      地點的標題。
+
+                      **url**: `string`
+
+                      地點的 URI 參照。
+
+
+                    ??? note "**review_snippets**: `ReviewSnippet array` 用於生成 Google 地圖中特定地點特色回答的評論片段。"
+
+
+                          **title**: `string`
+
+                          評論的標題。
+
+                          **url**: `string`
+
+                          對應至 Google 地圖上使用者評論的連結。
+
+                          **review_id**: `string`
+
+                          評論片段的 ID。
+
+
+                      **start_index**: `integer`
+
+                      回應中歸屬於此來源之片段的起始位置。索引表示片段的起點，以位元組為單位。
+
+                      **end_index**: `integer`
+
+                      歸屬片段的結束位置（不含該位置）。
+
+
+                ??? note "**SpeechAnnotation**"
+
+
+                      文字內容的語音註記。
+
+                      **type**: required `object`
+
+                      值：`speech_metadata`
+
+                      **speaker**: `string`
+
+                      要與本輪對話關聯的講者。
+
+                      **style**: `string`
+
+                      語音合成的風格指令。
+
+                      **start_index**: `integer`
+
+                      回應中歸屬於此來源之片段的起始位置。索引表示片段的起點，以位元組為單位。
+
+                      **end_index**: `integer`
+
+                      歸屬片段的結束位置（不含該位置）。
+
+
+                ??? note "**UrlCitation**"
+
+
+                      URL 引用註記。
+
+                      **type**: required `object`
+
+                      值：`url_citation`
+
+                      **url**: `string`
+
+                      URL。
+
+                      **title**: `string`
+
+                      URL 的標題。
+
+                      **start_index**: `integer`
+
+                      回應中歸屬於此來源之片段的起始位置。索引表示片段的起點，以位元組為單位。
+
+                      **end_index**: `integer`
+
+                      歸屬片段的結束位置（不含該位置）。
+
+
+                ??? note "**WordInfo**"
+
+
+                      轉錄輸出的單字級 ASR 註記。包含單字文字、可選的時間資訊，以及可選的講者歸屬。
+
+                      **type**: required `object`
+
+                      值：`word_info`
+
+                      **text**: `string`
+
+                      轉錄出的單字。
+
+                      **start_offset**: `string`
+
+                      單字相對於音訊開頭的起始時間偏移。當 timestamp_granularities 包含「word」時才會出現。
+
+                      **end_offset**: `string`
+
+                      單字相對於音訊開頭的結束時間偏移。當 timestamp_granularities 包含「word」時才會出現。
+
+                      **speaker**: `string`
+
+                      可選。此單字的講者標籤（例如「spk_1」、「spk_2」）。當 TranscriptionConfig 中設定了 diarization_mode 時才會出現。
+
+                      **start_index**: `integer`
+
+                      回應中歸屬於此來源之片段的起始位置。索引表示片段的起點，以位元組為單位。
+
+                      **end_index**: `integer`
+
+                      歸屬片段的結束位置（不含該位置）。
+
+
+        ??? note "**TextDelta**"
+
+
+              **text**: required `string`
+
+              **type**: required `object`
+
+              值：`text`
+
+
+        ??? note "**ThoughtSignatureDelta**"
+
+
+              **type**: required `object`
+
+              值：`thought_signature`
+
+              **signature**: `string`
+
+              用以比對後端來源、將其納入生成內容的簽章。
+
+
+        ??? note "**ThoughtSummaryDelta**"
+
+
+              **type**: required `object`
+
+              值：`thought_summary`
+
+              **content**: [`Content`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Content)
+
+              要加入思考內容的新摘要項目。
+
+
+        ??? note "**UrlContextCallDelta**"
+
+
+            ??? note "**arguments**: required `UrlContextCallArguments`"
+
+
+                  **urls**: `string array`
+
+                  要擷取的 URL。
+
+
+              **type**: required `object`
+
+              值：`url_context_call`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**UrlContextResultDelta**"
+
+
+            ??? note "**result**: required `UrlContextResult array`"
+
+
+                  **url**: `string`
+
+                  被擷取的 URL。
+
+
+                ??? note "**status**: `string enum` URL 擷取的狀態。"
+
+
+                      可能值：
+
+                      - `success`: URL 擷取成功。
+                      - `error`: URL 擷取因錯誤而失敗。
+                      - `paywall`: URL 擷取失敗，因為內容位於付費牆後方。
+                      - `unsafe`: URL 擷取失敗，因為內容不安全。
+
+
+              **type**: required `object`
+
+              值：`url_context_result`
+
+              **is_error**: `boolean`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**VideoDelta**"
+
+
+              **type**: required `object`
+
+              值：`video`
+
+
+            ??? note "**mime_type**: `string enum`"
+
+
+                  可能值：
+
+                  - `video/mp4`: MP4 影片格式
+                  - `video/mpeg`: MPEG 影片格式
+                  - `video/mpg`: MPG 影片格式
+                  - `video/mov`: MOV 影片格式
+                  - `video/avi`: AVI 影片格式
+                  - `video/x-flv`: FLV 影片格式
+                  - `video/webm`: WebM 影片格式
+                  - `video/wmv`: WMV 影片格式
+                  - `video/3gpp`: 3GPP 影片格式
+                  - `video/jpeg2000`: JPEG 2000 影片格式
+
+
+              **data**: `string`
+
+              **uri**: `string`
+
+
+            ??? note "**resolution**: `MediaResolution` 媒體的解析度。"
+
+
+                  可能值：
+
+                  - `low`: 低解析度。
+                  - `medium`: 中解析度。
+                  - `high`: 高解析度。
+                  - `ultra_high`: 超高解析度。
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`step.delta`
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+    ---
+
+
+    ??? note "**metadata**: `StepDeltaMetadata`"
+
+
+        ??? note "**total_usage**: `Usage` 互動請求的權杖用量統計。"
+
+
+              **total_input_tokens**: `integer`
+
+              提示詞（上下文）中的權杖數量。
+
+              **initial_input_tokens**: `integer`
+
+              本次互動第一輪所使用的輸入權杖數量。
+
+
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_cached_tokens**: `integer`
+
+              提示詞中已快取部分（快取內容）的權杖數量。
+
+
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_output_tokens**: `integer`
+
+              所有生成回應的權杖總數。
+
+
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_tool_use_tokens**: `integer`
+
+              工具使用提示詞中的權杖數量。
+
+
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                      可能值：
+
+                      - `text`: 表示模型應傳回文字。
+                      - `image`: 表示模型應傳回圖片。
+                      - `audio`: 表示模型應傳回音訊。
+                      - `video`: 表示模型應傳回影片。
+                      - `document`: 表示模型應傳回文件。
+
+
+                  **tokens**: `integer`
+
+                  此模態的權杖數量。
+
+
+              **total_thought_tokens**: `integer`
+
+              思考模型的思考權杖數量。
+
+              **total_tokens**: `integer`
+
+              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+            ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+                ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                      可能值：
+
+                      - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                      - `google_maps`: 使用 Google 地圖接地。
+
+
+                  **count**: `integer`
+
+                  接地工具計數的數量。
+
+
+      **範例**
+
+      **步驟差異**
+
+      ```json
+      {
+        "delta": {
+          "type": "text",
+          "text": "Hello"
+        },
+        "event_type": "step.delta",
+        "index": 0
+      }
+      ```
+
+
+??? note "**StepStart**"
+
+
+      **index**: required `integer`
+
+
+    ---
+
+
+      **step**: required [`Step`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Step)
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`step.start`
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **步驟開始**
+
+      ```json
+      {
+        "event_type": "step.start",
+        "index": 0,
+        "step": {
+          "type": "model_output"
+        }
+      }
+      ```
+
+
+??? note "**StepStop**"
+
+
+      **index**: required `integer`
+
+
+    ---
+
+
+      **event_type**: required `object`
+
+      值：`step.stop`
+
+
+    ---
+
+
+    ??? note "**usage**: `Usage` 自工作階段開始以來的累計模型用量統計。"
+
+
+          **total_input_tokens**: `integer`
+
+          提示詞（上下文）中的權杖數量。
+
+          **initial_input_tokens**: `integer`
+
+          本次互動第一輪所使用的輸入權杖數量。
+
+
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_cached_tokens**: `integer`
+
+          提示詞中已快取部分（快取內容）的權杖數量。
+
+
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_output_tokens**: `integer`
+
+          所有生成回應的權杖總數。
+
+
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_tool_use_tokens**: `integer`
+
+          工具使用提示詞中的權杖數量。
+
+
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_thought_tokens**: `integer`
+
+          思考模型的思考權杖數量。
+
+          **total_tokens**: `integer`
+
+          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+        ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+            ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                  可能值：
+
+                  - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                  - `google_maps`: 使用 Google 地圖接地。
+
+
+              **count**: `integer`
+
+              接地工具計數的數量。
+
+
+    ---
+
+
+    ??? note "**step_usage**: `Usage` 此特定步驟的模型用量統計。"
+
+
+          **total_input_tokens**: `integer`
+
+          提示詞（上下文）中的權杖數量。
+
+          **initial_input_tokens**: `integer`
+
+          本次互動第一輪所使用的輸入權杖數量。
+
+
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_cached_tokens**: `integer`
+
+          提示詞中已快取部分（快取內容）的權杖數量。
+
+
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_output_tokens**: `integer`
+
+          所有生成回應的權杖總數。
+
+
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_tool_use_tokens**: `integer`
+
+          工具使用提示詞中的權杖數量。
+
+
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+
+
+            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+
+
+                  可能值：
+
+                  - `text`: 表示模型應傳回文字。
+                  - `image`: 表示模型應傳回圖片。
+                  - `audio`: 表示模型應傳回音訊。
+                  - `video`: 表示模型應傳回影片。
+                  - `document`: 表示模型應傳回文件。
+
+
+              **tokens**: `integer`
+
+              此模態的權杖數量。
+
+
+          **total_thought_tokens**: `integer`
+
+          思考模型的思考權杖數量。
+
+          **total_tokens**: `integer`
+
+          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+
+
+        ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
+
+
+            ??? note "**type**: `string enum` 與計數關聯的接地工具類型。"
+
+
+                  可能值：
+
+                  - `google_search`: 使用 Google 網頁搜尋與圖片搜尋接地，以及 Web Grounding for Enterprise。
+                  - `google_maps`: 使用 Google 地圖接地。
+
+
+              **count**: `integer`
+
+              接地工具計數的數量。
+
+
+    ---
+
+
+      **event_id**: `string`
+
+      要用於從此事件恢復互動串流的 event_id 權杖。
+
+
+      **範例**
+
+      **步驟停止**
+
+      ```json
+      {
+        "event_type": "step.stop",
+        "index": 0
+      }
+      ```
+
+
 
 
 

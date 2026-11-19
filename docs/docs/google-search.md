@@ -444,6 +444,7 @@ Citations:
 | --- | :---: |
 | Gemini 4 Carbon | ✔️ |
 | Gemini 4 Argon | ✔️ |
+| Gemini 4 Neon | ✔️ |
 | Gemini 4 Hydrogen | ✔️ |
 | Gemini 3.8 Flash | ✔️ |
 | Gemini 3.6 Flash | ✔️ |

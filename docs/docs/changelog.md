@@ -2,6 +2,39 @@
 
 本頁記錄 Gemini API 的更新內容。
 
+## 2026 年 11 月 18 日 {#11-18-2026}
+
+*   **Gemini 4 Neon（`gemini-4-neon`）正式推出（GA）**：推出
+    [Gemini 4 Neon](/docs/models/gemini-4-neon/)（`gemini-4-neon`），帶來
+    前沿級智慧，端到端任務完成速度快，適用於複雜的軟體工程、知識工作與
+    科學工作流程。付費層級的[定價](/docs/pricing/#gemini-4-neon)為每 100 萬個
+    輸入權杖 $3.00、每 100 萬個輸出權杖 $15.00，`gemini-4-neon` 支援四種
+    [思考等級](/docs/thinking/#understanding-thinking-levels)
+    （`low`、`medium`、預設的 `high` 與 `xhigh`）、統一的 100 萬權杖上下文
+    視窗，以及最高 100 萬權杖的長解碼。請參閱
+    [Gemini 4 Neon 的新功能](/docs/whats-new-gemini-4-neon/)開始使用。
+
+*   **多模態檔案處理與切片**：現在可以直接將 Microsoft Office 與
+    OpenDocument 檔案（Word、PowerPoint 與 Excel）直接傳給 Gemini API，
+    並在使用者提示詞與[函式回應](/docs/function-calling/#file-inspection-options)
+    中切片文件、試算表、影片與音訊。指定頁碼範圍、工作表分頁、儲存格範圍、
+    時間區間或內容圖層（例如頁面圖片、擷取的文字、公式或影片轉錄稿），
+    只處理並支付你需要的內容。
+
+    如需開始使用，請參閱[文件理解](/docs/document-processing/#customize-document-processing)、
+    [影片理解](/docs/video-understanding/#customize-video-processing)
+    與[音訊理解](/docs/audio/#clipping-intervals)。
+
+
+## 2026 年 11 月 17 日 {#11-17-2026}
+
+*   **Gemini 3.5 Transcribe 語音編輯**：
+    [`gemini-3.5-transcribe`](/docs/models/gemini-3.5-transcribe/) 與
+    `gemini-3.5-transcribe-live` 現已支援以語音驅動的方式編輯、改寫
+    口述內容或既有文字（`source_text`）並設定其格式。請參閱
+    [音訊轉錄](/docs/transcribe/#voice-editing)與
+    [即時轉錄](/docs/live-api/live-transcribe/#voice-editing)指南。
+
 ## 2026 年 11 月 12 日 {#11-12-2026}
 
 *   **Gemini 4 Hydrogen（`gemini-4-hydrogen`）正式推出（GA）**：推出

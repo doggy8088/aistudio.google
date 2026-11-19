@@ -204,7 +204,7 @@ Gemini Live API 支援以
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'chunk' is a Buffer of raw PCM audio
       session.sendRealtimeInput({
         audio: {

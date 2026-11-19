@@ -1274,7 +1274,7 @@ JSON Schema。這能確保結果可預測且具備型別安全，也讓從非結
 !!! note " "
 
       預覽：這項功能僅適用於 Gemini 4 與 Gemini 3 系列模型，
-      例如 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-hydrogen` 與 `gemini-3.8-flash`。
+      例如 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon`、`gemini-4-hydrogen` 與 `gemini-3.8-flash`。
 
 
 Gemini 4 與 Gemini 3 讓你能將結構化輸出與內建工具結合使用，包括

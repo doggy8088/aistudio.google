@@ -1918,8 +1918,8 @@ Antigravity 執行階段會掃描 `.agents/`（以及環境的根目錄）來尋
 * **預覽狀態**：受管代理目前為預覽版。功能與結構定義可能會變更。
 *   **基礎代理與模型**：僅支援 `antigravity-preview-09-2026`
     作為 `base_agent`。`agent_config` 中支援的模型選項為
-    `gemini-4-hydrogen`（預設）、`gemini-4-carbon`、`gemini-4-argon`、
-    `gemini-3.8-flash`、`gemini-3.6-flash`，以及
+    `gemini-4-hydrogen`（預設）、`gemini-4-carbon`、`gemini-4-neon`、
+    `gemini-4-argon`、`gemini-3.8-flash`、`gemini-3.6-flash`，以及
     `gemini-3.5-flash-lite`。對於具名代理，無法在
     互動時覆寫模型。
 * **無版本控制**：目前尚不提供代理版本控制與回復功能。

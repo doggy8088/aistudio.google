@@ -1031,7 +1031,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
 
 對於 `antigravity-preview-09-2026`，預設模型為 **Gemini 4 Hydrogen**（`gemini-4-hydrogen`）。若省略 `agent_config`，代理會預設使用 `gemini-4-hydrogen`。
 
-您可以透過 `agent_config` 設定底層的 Gemini 模型，針對速度、成本或推理能力進行最佳化。例如，將 `model` 設為 **Gemini 4 Carbon**（`gemini-4-carbon`），處理複雜的軟體工程與推理任務：
+您可以透過 `agent_config` 設定底層的 Gemini 模型，針對速度、成本或推理能力進行最佳化（比較 Hydrogen、Neon 與 Carbon 三者的取捨，請參閱[選擇模型](/docs/choosing-a-model/)）。例如，將 `model` 設為 **Gemini 4 Carbon**（`gemini-4-carbon`），處理複雜的軟體工程與推理任務：
 
 
 === "Python"
@@ -1170,6 +1170,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
 | **Gemini 4 Hydrogen**（預設） | `gemini-4-hydrogen` | 預設的 Gemini 4 模型，兼具尖端智慧、速度與效率，適合日常程式設計與代理工作流程。 |
 | **Gemini 4 Carbon** | `gemini-4-carbon` | 能力最強的前沿推理模型，適合複雜的軟體工程、深度問題求解與長時程代理任務。 |
 | **Gemini 4 Argon** | `gemini-4-argon` | 高效率的 Gemini 4 前沿推理模型；在軟體工程與代理任務上，相較於 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)，回應更快、每輪的權杖消耗更低。 |
+| **Gemini 4 Neon** | `gemini-4-neon` | 前沿等級的智慧，端到端任務完成速度快，涵蓋複雜的軟體工程、知識工作與科學工作流程。 |
 | **Gemini 3.8 Flash** | `gemini-3.8-flash` | 均衡的 Gemini 3.8 Flash 模型，適合推理、程式設計與工具使用。 |
 | **Gemini 3.6 Flash** | `gemini-3.6-flash` | 均衡的 Flash 模型，適合一般代理工作流程。 |
 | **Gemini 3.5 Flash-Lite** | `gemini-3.5-flash-lite` | 輕量模型，針對低延遲與成本敏感的任務最佳化。 |

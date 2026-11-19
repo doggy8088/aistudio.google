@@ -6,7 +6,7 @@ Gemini 4 Hydrogen（`gemini-4-hydrogen`）讓每個人都能使用尖端智慧�
 
 ## 文件 {#documentation}
 
-如需功能、相較於 Gemini 3.8 Flash 的 API 變更與遷移指南的完整說明，請參閱 [What's new in Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 頁面。
+如需功能、相較於 Gemini 3.8 Flash 的 API 變更與遷移指南的完整說明，請參閱 [What's new in Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 頁面；如需比較 Hydrogen 與 Carbon、Neon 及 Flash-Lite，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 ## gemini-4-hydrogen {#gemini-4-hydrogen}
 

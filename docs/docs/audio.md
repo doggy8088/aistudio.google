@@ -1267,6 +1267,103 @@ Gemini 可以分析並理解音訊輸入，再產生文字回應，支援以下�
       ```
 
 
+## 剪輯音訊區間 {#clipping-intervals}
+
+在 `audio` 區塊上傳入 `processing`（`{"type": "static", "start_offset": "...", "end_offset": "..."}`），即可只檢查特定時間範圍。Gemini 只會針對剪輯後的長度收取權杖費用：
+
+* `start_offset`（字串，選填）：以秒為單位的開始時間戳記（例如 `"30s"` 或 `"12.5s"`）。預設為 `"0s"`。超過音訊長度的值會回傳 `400 INVALID_ARGUMENT`。
+* `end_offset`（字串，選填）：以秒為單位的結束時間戳記。預設為檔案結尾，超過音訊長度時會箝制為音訊長度。必須大於 `start_offset`。
+
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+
+      uploaded_file = client.files.upload(file="interview.mp3")
+
+      interaction = client.interactions.create(
+          model="gemini-4-hydrogen",
+          input=[
+              {
+                  "type": "audio",
+                  "uri": uploaded_file.uri,
+                  "mime_type": uploaded_file.mime_type,
+                  "processing": {
+                      "type": "static",
+                      "start_offset": "60s",
+                      "end_offset": "150s",
+                  },
+              },
+              {"type": "text", "text": "Summarize the speaker's main points in this segment."},
+          ],
+      )
+
+      print(interaction.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({});
+
+      const uploadedFile = await ai.files.upload({
+        file: "interview.mp3",
+        config: { mimeType: "audio/mpeg" },
+      });
+
+      const interaction = await ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        input: [
+          {
+            type: "audio",
+            uri: uploadedFile.uri,
+            mime_type: uploadedFile.mimeType,
+            processing: {
+              type: "static",
+              start_offset: "60s",
+              end_offset: "150s",
+            },
+          },
+          {
+            type: "text",
+            text: "Summarize the speaker's main points in this segment.",
+          },
+        ],
+      });
+
+      console.log(interaction.output_text);
+      ```
+
+=== "REST"
+
+      ```shell
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H 'Content-Type: application/json' \
+        -d '{
+          "model": "gemini-4-hydrogen",
+          "input": [
+            {
+              "type": "audio",
+              "uri": "https://generativelanguage.googleapis.com/v1beta/files/AUDIO_FILE_ID",
+              "mime_type": "audio/mpeg",
+              "processing": {
+                "type": "static",
+                "start_offset": "60s",
+                "end_offset": "150s"
+              }
+            },
+            {"type": "text", "text": "Summarize the speaker'\''s main points in this segment."}
+          ]
+        }'
+      ```
+
+
 ## 計算權杖數 {#count-tokens}
 
 計算音訊檔案中的權杖數：

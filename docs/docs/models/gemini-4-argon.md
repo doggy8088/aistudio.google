@@ -6,7 +6,7 @@ Gemini 4 Argon（`gemini-4-argon`）是我們高效的 Gemini 4 前沿推理模�
 
 ## 文件 {#documentation}
 
-如需功能、API 變更，以及如何在 Argon 與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 之間選擇的完整說明，請參閱 [What's new in Gemini 4 Argon](/docs/whats-new-gemini-4-argon/) 頁面。
+如需功能與 API 變更的完整說明，請參閱 [What's new in Gemini 4 Argon](/docs/whats-new-gemini-4-argon/) 頁面；如需比較最新的 Gemini 模型，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 ## gemini-4-argon {#gemini-4-argon}
 

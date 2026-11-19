@@ -33,7 +33,7 @@
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const config = {
         responseModalities: [Modality.AUDIO],
         contextWindowCompression: { slidingWindow: {} }
@@ -100,7 +100,7 @@
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
 
       const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
@@ -200,7 +200,7 @@
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const turns = await handleTurn();
 
       for (const turn of turns) {
@@ -226,7 +226,7 @@
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const turns = await handleTurn();
 
       for (const turn of turns) {

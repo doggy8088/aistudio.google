@@ -190,6 +190,7 @@ Priority 推論的價格比[標準 API](/docs/pricing/) 高 75-100%，並按權�
 | --- | :---: |
 | [Gemini 4 Carbon](/docs/models/gemini-4-carbon/) | ✔️ |
 | [Gemini 4 Argon](/docs/models/gemini-4-argon/) | ✔️ |
+| [Gemini 4 Neon](/docs/models/gemini-4-neon/) | ✔️ |
 | [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen/) | ✔️ |
 | [Gemini 3.8 Flash](/docs/models/gemini-3.8-flash/) | ✔️ |
 | [Gemini 3.6 Flash](/docs/models/gemini-3.6-flash/) | ✔️ |

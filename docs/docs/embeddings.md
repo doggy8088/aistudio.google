@@ -28,7 +28,7 @@ Gemini API 提供嵌入模型，可為文字、圖片、影片及其他內容產
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
 
       async function main() {
@@ -256,7 +256,7 @@ Gemini API 提供嵌入模型，可為文字、圖片、影片及其他內容產
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       // npm i compute-cosine-similarity
       import * as cosineSimilarity from "compute-cosine-similarity";
@@ -719,7 +719,7 @@ Norm of normed embedding: 1.000000
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 
@@ -830,7 +830,7 @@ Norm of normed embedding: 1.000000
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 
@@ -956,7 +956,7 @@ Norm of normed embedding: 1.000000
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 
@@ -1079,7 +1079,7 @@ Norm of normed embedding: 1.000000
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 
@@ -1181,7 +1181,7 @@ Norm of normed embedding: 1.000000
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 
@@ -1309,7 +1309,7 @@ PDF 可以行內資料形式提供，也可以透過 [Files API](/docs/files/) �
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI } from "@google/genai";
       import * as fs from "node:fs";
 

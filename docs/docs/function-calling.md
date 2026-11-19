@@ -3111,6 +3111,182 @@ INVALID_ARGUMENT` 錯誤，指出問題欄位並列出可接受的類型。
       ```
 
 
+### 在函式回應中切割與檢視檔案 {#file-inspection-options}
+
+你的工具可以在頂層 `function_result` 區塊中使用相同的 `processing` 與 `resolution` 欄位，回傳切割後的頁面、試算表範圍或媒體片段。模型會自動收到檔案中繼資料（頁數與工作表名稱），因此可以在後續回合中要求更窄的範圍。
+
+如需瞭解所有可用選項，請見[自訂文件、簡報與試算表處理](/docs/document-processing/#customize-document-processing)、[自訂影片處理](/docs/video-understanding/#customize-video-processing)與[剪輯音訊區間](/docs/audio/#clipping-intervals)。
+
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+
+      manual_file = client.files.upload(file="service_manual.pdf")
+
+      tools = [
+          {
+              "type": "function",
+              "name": "inspect_document_pages",
+              "description": "Load specific pages of service_manual.pdf.",
+              "parameters": {
+                  "type": "object",
+                  "properties": {
+                      "start_page": {"type": "integer", "description": "1-indexed start page."},
+                      "end_page": {"type": "integer", "description": "1-indexed end page."},
+                  },
+                  "required": ["start_page", "end_page"],
+              },
+          }
+      ]
+
+      turn1 = client.interactions.create(
+          model="gemini-4-hydrogen",
+          tools=tools,
+          input="Use inspect_document_pages to read pages 14-16 of service_manual.pdf.",
+      )
+
+      call = next(s for s in turn1.steps if s.type == "function_call")
+
+      turn2 = client.interactions.create(
+          model="gemini-4-hydrogen",
+          previous_interaction_id=turn1.id,
+          tools=tools,
+          input=[
+              {
+                  "type": "function_result",
+                  "call_id": call.id,
+                  "name": call.name,
+                  "result": [
+                      {
+                          "type": "document",
+                          "uri": manual_file.uri,
+                          "mime_type": "application/pdf",
+                          "resolution": "high",
+                          "processing": {
+                              "type": "static",
+                              "page_options": {
+                                  "start_page": call.arguments["start_page"],
+                                  "end_page": call.arguments["end_page"],
+                                  "content_layers": ["page_image"],
+                              },
+                          },
+                      }
+                  ],
+              }
+          ],
+      )
+
+      print(turn2.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({});
+
+      const manualFile = await ai.files.upload({
+        file: "service_manual.pdf",
+        config: { mimeType: "application/pdf" },
+      });
+
+      const tools = [
+        {
+          type: "function",
+          name: "inspect_document_pages",
+          description: "Load specific pages of service_manual.pdf.",
+          parameters: {
+            type: "object",
+            properties: {
+              start_page: { type: "integer", description: "1-indexed start page." },
+              end_page: { type: "integer", description: "1-indexed end page." },
+            },
+            required: ["start_page", "end_page"],
+          },
+        },
+      ];
+
+      const turn1 = await ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        tools,
+        input: "Use inspect_document_pages to read pages 14-16 of service_manual.pdf.",
+      });
+
+      const toolCall = turn1.steps.find((s) => s.type === "function_call");
+
+      const turn2 = await ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        previous_interaction_id: turn1.id,
+        tools,
+        input: [
+          {
+            type: "function_result",
+            call_id: toolCall.id,
+            name: toolCall.name,
+            result: [
+              {
+                type: "document",
+                uri: manualFile.uri,
+                mime_type: "application/pdf",
+                resolution: "high",
+                processing: {
+                  type: "static",
+                  page_options: {
+                    start_page: toolCall.arguments.start_page,
+                    end_page: toolCall.arguments.end_page,
+                    content_layers: ["page_image"],
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      });
+
+      console.log(turn2.output_text);
+      ```
+
+=== "REST"
+
+      ```shell
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+        -H "Content-Type: application/json" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -d '{
+          "model": "gemini-4-hydrogen",
+          "previous_interaction_id": "INTERACTION_ID",
+          "input": [
+            {
+              "type": "function_result",
+              "call_id": "CALL_ID",
+              "name": "inspect_document_pages",
+              "result": [
+                {
+                  "type": "document",
+                  "uri": "https://generativelanguage.googleapis.com/v1beta/files/MANUAL_FILE_ID",
+                  "mime_type": "application/pdf",
+                  "resolution": "high",
+                  "processing": {
+                    "type": "static",
+                    "page_options": {
+                      "start_page": 14,
+                      "end_page": 16,
+                      "content_layers": ["page_image"]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }'
+      ```
+
+
 ## 函式呼叫搭配結構化輸出 {#structured-output}
 
 對於 Gemini 3 系列模型，可將函式呼叫與

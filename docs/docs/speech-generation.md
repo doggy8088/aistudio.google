@@ -58,7 +58,7 @@ Gemini API 能運用 Gemini 的文字轉語音（TTS）生成功能，將文字�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import {GoogleGenAI} from '@google/genai';
       import * as fs from 'node:fs';
 
@@ -188,7 +188,7 @@ Gemini API 能運用 Gemini 的文字轉語音（TTS）生成功能，將文字�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import {GoogleGenAI} from '@google/genai';
       import * as fs from 'node:fs';
 
@@ -353,7 +353,7 @@ Gemini 3.8 TTS 嚴格將 `text` 欄位視為逐字稿。若想控制朗讀方式
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import * as fs from 'node:fs';
       import {GoogleGenAI} from '@google/genai';
 
@@ -493,7 +493,7 @@ Gemini 3.8 TTS 嚴格將 `text` 欄位視為逐字稿。若想控制朗讀方式
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import {GoogleGenAI} from '@google/genai';
 
       async function main() {
@@ -625,7 +625,7 @@ Gemini 3.8 TTS 模型會依請求是一元還是串流，採用不同的預設�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import {GoogleGenAI} from '@google/genai';
       import * as fs from 'node:fs';
 

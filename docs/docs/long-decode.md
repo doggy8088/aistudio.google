@@ -1,10 +1,10 @@
 # 長解碼
 
-Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`）預設每次回應最多產生 64K 個權杖（65,536）的思考與輸出。長解碼可讓你將 `max_output_tokens` 提高到超過 64K，用於困難的推理、數學與程式設計任務，上限為統一的 100 萬權杖上下文視窗（1,048,576 個權杖，由輸入、思考與輸出共同使用）。在 Interactions API 上，你可以透過[背景執行](/docs/background-execution/)執行長解碼，讓我們的伺服器為你執行每一個躍點；也可以在前景透過[用戶端接續](/docs/long-decode/#client-side-continuation)執行。
+Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）預設每次回應最多產生 64K 個權杖（65,536）的思考與輸出。長解碼可讓你將 `max_output_tokens` 提高到超過 64K，用於困難的推理、數學與程式設計任務，上限為統一的 100 萬權杖上下文視窗（1,048,576 個權杖，由輸入、思考與輸出共同使用）。在 Interactions API 上，你可以透過[背景執行](/docs/background-execution/)執行長解碼，讓我們的伺服器為你執行每一個躍點；也可以在前景透過[用戶端接續](/docs/long-decode/#client-side-continuation)執行。
 
 ## 長解碼如何運作 {#how-long-decode-works}
 
-產生數十萬個權杖所需的時間，可能比單一 HTTP 請求能保持開啟的時間更長，因此長解碼會將生成過程拆分為連續的躍點，從前一個躍點停止的位置繼續：背景呼叫、串流呼叫，以及非串流的 `gemini-4-hydrogen` 呼叫，每個躍點最多 64K 個權杖（65,536）；`gemini-4-carbon` 與 `gemini-4-argon` 的非串流躍點，每個躍點最多 32K 個權杖（32,768）。
+產生數十萬個權杖所需的時間，可能比單一 HTTP 請求能保持開啟的時間更長，因此長解碼會將生成過程拆分為連續的躍點，從前一個躍點停止的位置繼續：背景呼叫、串流呼叫，以及 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流呼叫，每個躍點最多 64K 個權杖（65,536）；`gemini-4-carbon` 與 `gemini-4-argon` 的非串流躍點，每個躍點最多 32K 個權杖（32,768）。
 
 當你在 Interactions API 上設定 `background: true`，且 `max_output_tokens` 大於 65,536 時：
 
@@ -123,7 +123,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 | :--- | :--- |
 | `background: false`，未設定 `max_output_tokens` | 65,536 個權杖 |
 | `background: false`，`max_output_tokens` 大於 65,536，`automatic_continuation: true`（SDK 預設） | 你的 `max_output_tokens`，上限為 1,048,576 減去你的輸入 |
-| `background: false`，`max_output_tokens` 大於 65,536，`automatic_continuation: false` 或 REST | 每個串流躍點（或 `gemini-4-hydrogen` 的非串流躍點）65,536 個權杖，或 `gemini-4-carbon` 與 `gemini-4-argon` 每個非串流躍點 32,768 個權杖。使用 `continuation_token` 迴圈執行，即可產生最多達你的 `max_output_tokens`。 |
+| `background: false`，`max_output_tokens` 大於 65,536，`automatic_continuation: false` 或 REST | 每個串流躍點（或 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流躍點）65,536 個權杖，或 `gemini-4-carbon` 與 `gemini-4-argon` 每個非串流躍點 32,768 個權杖。使用 `continuation_token` 迴圈執行，即可產生最多達你的 `max_output_tokens`。 |
 | `background: true`，未設定 `max_output_tokens` | 65,536 個權杖 |
 | `background: true`，`max_output_tokens` 大於 65,536 | 你的 `max_output_tokens`，上限為 1,048,576 減去你的輸入 |
 
@@ -157,7 +157,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 |  | 背景執行（Interactions API） | 用戶端接續（Interactions API） |
 | :--- | :--- | :--- |
 | **誰啟動每個躍點** | 我們的伺服器 | Google GenAI SDK（預設），或你自己的程式碼 |
-| **每個請求的權杖數** | 你的 `max_output_tokens`，在單一互動中（每個內部躍點最多 64K） | 每個串流 64K（`gemini-4-hydrogen` 的非串流亦同）；`gemini-4-carbon` 與 `gemini-4-argon` 每個非串流請求 32K |
+| **每個請求的權杖數** | 你的 `max_output_tokens`，在單一互動中（每個內部躍點最多 64K） | 每個串流 64K（`gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流亦同）；`gemini-4-carbon` 與 `gemini-4-argon` 每個非串流請求 32K |
 | **執行時間** | 最多 24 小時 | 每個串流躍點 20 分鐘，每個非串流躍點 10 分鐘 |
 | **儲存** | 需要 `store: true` | 預設儲存（`store: true`），或以 `store: false` 設為無狀態 |
 | **最適合** | 執行長解碼最簡單的方式 | 前景呼叫、無狀態應用程式，或對重試有更細緻的控制，以便建立你自己的退避、錯誤處理與韌性機制 |
@@ -342,7 +342,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 * **使用 `last_event_id` 重新連線：** 呼叫 `interactions.get`，並帶入 `stream: true` 與最後的 `event_id`。串流會在該事件之後繼續。
 * **讀取到最後：** 重新連線後，請先將串流讀取到最後，再檢查狀態。伺服器會重播錯過的事件，即使互動已完成亦然。
 * **設定較長的逾時：** 將每個串流的 HTTP 讀取逾時設定為 15 到 20 分鐘。
-* **預期以 5K 權杖為單位的輸出區塊：** 在 `gemini-4-carbon` 與 `gemini-4-argon` 上的前 32K 個權杖之後（或在 `gemini-4-hydrogen` 上 64K 個權杖之後，從第二個躍點開始），串流會在每個檢查點以約 5,000 個權杖為單位傳送輸出。區塊之間的停頓屬正常現象。互動並未卡住，請保持連線開啟。
+* **預期以 5K 權杖為單位的輸出區塊：** 在 `gemini-4-carbon` 與 `gemini-4-argon` 上的前 32K 個權杖之後（或在 `gemini-4-neon` 與 `gemini-4-hydrogen` 上 64K 個權杖之後，從第二個躍點開始），串流會在每個檢查點以約 5,000 個權杖為單位傳送輸出。區塊之間的停頓屬正常現象。互動並未卡住，請保持連線開啟。
 
 對於使用 Google GenAI SDK 的前景串流，SDK 會將接續躍點串連成單一串流：
 
@@ -356,7 +356,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 | 狀態 | 意義 | 處理方式 |
 | :--- | :--- | :--- |
 | `completed` | 模型已完成。 | 合併 `model_output` 步驟（位於 `steps` 中）並讀取 `usage`。若要繼續對話，請將此互動的 `id` 以 `previous_interaction_id` 傳入。 |
-| `requires_continuation` | 前景躍點已達到其單一請求上限（串流與 `gemini-4-hydrogen` 非串流為 64K，`gemini-4-carbon` 與 `gemini-4-argon` 非串流為 32K），且仍有剩餘的權杖預算。 | Google GenAI SDK 預設會為你接續。在 REST 中，請以 `previous_interaction_id` 與 `continuation_token` 傳送下一個躍點。 |
+| `requires_continuation` | 前景躍點已達到其單一請求上限（串流，以及 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流，為 64K；`gemini-4-carbon` 與 `gemini-4-argon` 的非串流為 32K），且仍有剩餘的權杖預算。 | Google GenAI SDK 預設會為你接續。在 REST 中，請以 `previous_interaction_id` 與 `continuation_token` 傳送下一個躍點。 |
 | `requires_action` | 模型要求進行工具呼叫。 | 執行該工具。然後以此互動的 `id` 傳送結果。 |
 | `incomplete` | 模型已用完所有 `max_output_tokens`。若模型仍在思考，文字可能為空。 | 以 `previous_interaction_id`、`continuation_token` 與更高的 `max_output_tokens` 繼續，或以更高的 `max_output_tokens` 重新傳送請求。 |
 | `failed` | 伺服器無法完成，或互動執行時間超過 24 小時。 | 重試請求。若再次失敗，請將互動 `id` 提供給支援團隊。 |
@@ -374,7 +374,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 | 長篇程式設計與代理任務 | 從 65,536（預設）開始。不需要背景執行。 |
 | 複雜推理、困難數學、科學與證明 | 設定 `background: true`（或使用用戶端接續），並從 262,144 開始，上限為 1,048,576 減去你的輸入權杖數。 |
 
-若要使用較少的權杖，請降低 `thinking_level`。最困難的推理任務請使用 `high`。大多數程式設計與代理工作請使用 `medium`（預設）。
+若要使用較少的權杖，請降低 `thinking_level`。Carbon 與 Argon 預設為 `medium`，最高支援 `high`。Neon 與 Hydrogen 預設為 `high`，最高支援 `xhigh`。大多數程式設計與代理工作請先使用預設值，最困難的推理任務再提高等級。
 
 ## 計算權杖數 {#count-tokens}
 
@@ -404,7 +404,7 @@ Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`�
 
 你需要為每個躍點中的每個權杖付費，包括僅包含思考的躍點。
 
-* **快取折扣：** 隱含快取會將每個躍點中重複的輸入折扣 95%。在推廣期間，快取輸入的費用為每 100 萬個權杖 $0.10，而非 $2.00。
+* **快取折扣：** 隱含快取會將每個躍點中重複的輸入折扣 95%。快取輸入的費用為標準輸入價格的 5%。各模型的費率請參閱[定價](/docs/pricing/)。
 * **已取消與失敗的互動：** 你需要為互動結束前已完成的所有工作付費。
 
 ## 疑難排解 {#troubleshooting}

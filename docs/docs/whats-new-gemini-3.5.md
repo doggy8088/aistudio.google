@@ -953,6 +953,7 @@ Gemini 3.x 模型是推理模型，這會改變您撰寫提示詞的方式。
 ## 其他模型 {#other-models}
 
 *   [Latest Gemini models](/docs/latest-model/)
+*   [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)
 *   [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/)
 *   [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)
 *   [Gemini 4 Argon](/docs/whats-new-gemini-4-argon/)

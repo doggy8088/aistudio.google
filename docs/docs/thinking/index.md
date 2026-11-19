@@ -617,12 +617,13 @@ data: [DONE]
 
 ## 控制思考 {#thinking-levels}
 
-Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整推理投入的程度。你可以透過 `thinking_level` 參數控制這項行為。
+Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整推理投入的程度。你可以透過 `thinking_level` 參數控制這項行為。若要比較各模型的推理深度、速度與成本，請參閱[選擇模型](/docs/choosing-a-model/)。
 
 | 模型 | 預設思考 | 支援的等級 |
 | --- | --- | --- |
 | gemini-4-carbon | On (medium) | low, medium, high |
 | gemini-4-argon | On (medium) | low, medium, high |
+| gemini-4-neon | On (high) | low, medium, high, xhigh |
 | gemini-4-hydrogen | On (high) | low, medium, high, xhigh |
 | gemini-3.8-flash | On (medium) | low, medium, high |
 | gemini-3.6-flash | On (medium) | minimal, low, medium, high |
@@ -639,14 +640,14 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
 
 ### 了解思考等級 {#understanding-thinking-levels}
 
-`thinking_level` 是你在 [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 中控制品質、延遲與權杖用量的主要方式。該模型預設為 `high`，並新增了 `xhigh`：
+`thinking_level` 是你在 [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/) 與 [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 中控制品質、延遲與權杖用量的主要方式。這兩個模型預設皆為 `high`，且皆支援 `xhigh`：
 
 | 思考等級 | 權杖用量 | 適用時機 |
 | :--- | :--- | :--- |
 | `low` | 權杖最少、延遲最低 | 對成本與延遲敏感的工作負載，例如快速聊天與高輸送量處理。在代理任務上仍具備不錯的能力。 |
 | `medium` | 權杖用量較低、回應較快 | 互動式程式設計、即時 UI 原型製作、反應靈敏的聊天，以及對延遲敏感的工具呼叫。（`gemini-4-carbon`、`gemini-4-argon`、`gemini-3.8-flash` 與 `gemini-3.6-flash` 的預設值。） |
-| `high`（`gemini-4-hydrogen` 的預設值） | 在智慧與速度之間取得平衡 | 在 `gemini-4-hydrogen` 上是大多數任務的建議預設值，包括複雜程式設計、代理執行、工具呼叫與多模態知識工作。在 `gemini-4-carbon`、`gemini-4-argon` 與 Gemini 3 模型上為最大推理深度。 |
-| `xhigh` | 權杖最多、推理最深入 | 保留給 `high` 仍不足以應付的困難多步驟程式設計與代理問題，且你願意以較高的延遲與權杖用量交換（僅 `gemini-4-hydrogen` 支援）。 |
+| `high`（`gemini-4-neon` 與 `gemini-4-hydrogen` 的預設值） | 在智慧與速度之間取得平衡 | 在 `gemini-4-neon` 與 `gemini-4-hydrogen` 上是大多數任務的建議預設值，包括複雜程式設計、代理執行、工具呼叫與多模態知識工作。在 `gemini-4-carbon`、`gemini-4-argon` 與 Gemini 3 模型上為最大推理深度。 |
+| `xhigh` | 權杖最多、推理最深入 | 保留給 `high` 仍不足以應付的困難多步驟程式設計與代理問題，且你願意以較高的延遲與權杖用量交換（僅 `gemini-4-neon` 與 `gemini-4-hydrogen` 支援）。 |
 | `minimal` | 接近關閉思考、延遲最低 | 在 `gemini-3.6-flash`、`gemini-3.5-flash-lite`（預設）、`gemini-3.1-flash-lite`、`gemini-3-flash-preview` 與 `gemini-robotics-er-2-preview` 上，大多數查詢都接近關閉設定。Gemini 4 模型與 `gemini-3.8-flash` 不支援。 |
 
 大多數複雜任務可先從 `high` 開始，`xhigh` 則保留給 `high` 仍不足以應付的困難多步驟問題。使用 `xhigh` 會增加延遲與權杖用量，在文字或 JSON 擷取等較簡單的提示詞上，可能導致過度思考或耗盡 `max_output_tokens`。請在四個等級下都以較高的 `max_output_tokens` 執行評估，確保上限不會截斷答案，再挑選能達到品質標準的最低 `thinking_level`。
@@ -838,10 +839,10 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
 
 如果模型在推理過程中達到這個上限，就會以 `"incomplete"` 狀態停止生成，並回傳截斷或空白的輸出（同時仍會針對已生成的思考權杖計費）。若要在不截斷回應的情況下降低成本或延遲，請調低 `thinking_level`（`low` 或 `medium`），而不是設定較小的 `max_output_tokens`。
 
-使用 Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`）時，請留意下列上下文與輸出上限：
+使用 Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）時，請留意下列上下文與輸出上限：
 
 * **共用 1M 上下文視窗：** 輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（`1,048,576` 個權杖）。如果輸入權杖加上 `max_output_tokens` 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入權杖數）。
-* **預設同步輸出上限（64K）：** 當 `background=False` 時，預設的 `max_output_tokens` 上限為 65,536 個權杖。單次前景跳轉在串流呼叫與 `gemini-4-hydrogen` 非串流呼叫中最多可生成 65,536 個權杖；在 `gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫中則最多為 32,768 個權杖。
+* **預設同步輸出上限（64K）：** 當 `background=False` 時，預設的 `max_output_tokens` 上限為 65,536 個權杖。單次前景跳轉在串流呼叫，以及 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流呼叫中最多可生成 65,536 個權杖；在 `gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫中則最多為 32,768 個權杖。
 * **長解碼（最多 1M 個權杖）：** 若要讓 Gemini 4 推理並生成超過 `65,536` 個權杖的內容（最多 `1,048,576` 個權杖），請將 `max_output_tokens` 設定為大於 `65,536`，並搭配 `background=True` 或用戶端接續。詳情請參閱[長解碼](/docs/long-decode/)。
 
 ## 思考簽章 {#signatures}

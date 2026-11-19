@@ -666,12 +666,12 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
 
 ## 代理式影片理解 {#agentic-video-understanding}
 
-預設情況下，所有模型（包括 Gemini 4）的影片輸入都使用靜態處理（以 1 FPS 擷取影格）。Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 與 3.5 Flash Lite 模型也支援**代理式影片理解**；這是一種可選擇啟用的模式，模型會依提示詞動態探索影片時間軸、選擇性檢視字幕稿，並即時調整影格率與解析度。
+預設情況下，所有模型（包括 Gemini 4）的影片輸入都使用靜態處理（以 1 FPS 擷取影格）。Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 與 3.5 Flash Lite 模型也支援**代理式影片理解**；這是一種可選擇啟用的模式，模型會依提示詞動態探索影片時間軸、選擇性檢視字幕稿，並即時調整影格率與解析度。
 
 | **模式** | **說明** | **支援的模型** |
 | --- | --- | --- |
 | **Static**（預設） | 以固定速率（1 FPS）擷取影格，一次全部放入上下文。所有 Gemini 模型（包括 Gemini 4）的預設模式。 | 所有 Gemini 模型 |
-| **Agentic** | 模型會依提示詞動態瀏覽影片時間軸，只載入需要的內容。處理長篇內容時，權杖效率最高可提升 88%，品質約高出 7%。 | Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite |
+| **Agentic** | 模型會依提示詞動態瀏覽影片時間軸，只載入需要的內容。處理長篇內容時，權杖效率最高可提升 88%，品質約高出 7%。 | Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite |
 
 ### 選擇處理模式 {#when-to-use}
 
@@ -1113,11 +1113,11 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 
 ## 自訂影片處理 {#customize-video-processing}
 
-你可以透過設定剪輯區間或提供自訂影格率取樣，來自訂 Gemini API 的影片處理方式。這些自訂選項僅在以 `"static"` 模式處理影片時支援。
+在 `"static"` 模式下，你可以剪輯影片區間、設定自訂影格取樣率（`fps` 介於 `(0, 24]` 之間），並選擇 `content_layers`。Gemini 只會針對剪輯後的區間與選取的圖層收取權杖費用。
 
 ### 設定剪輯區間 {#clipping-intervals}
 
-你可以在 `processing` 設定物件中設定 `start_offset` 與 `end_offset` 來剪輯影片。每個偏移量請以秒為單位、以 `"s"` 結尾的字串指定，例如 `"1200s"` 或 `"10.5s"`。
+請將 `start_offset` 與 `end_offset` 以秒為單位、以 `"s"` 結尾的字串指定（例如 `"1200s"` 或 `"10.5s"`）。超過影片長度的 `end_offset` 會箝制為影片結尾。超過影片長度的 `start_offset` 會回傳 `400 INVALID_ARGUMENT`。
 
 
 === "Python"
@@ -1271,6 +1271,180 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
       ```
 
 
+### 選取影片內容圖層 {#video-content-layers}
+
+預設情況下，`"static"` 模式會包含取樣的影格與音訊（`content_layers: ["frames", "audio"]`）。傳入 `content_layers` 即可任選組合：
+
+*   `"frames"`：取樣的視覺影格，依 `resolution` 與 `fps` 計費。
+*   `"audio"`：原始音軌，依標準音訊權杖費率計費。
+*   `"transcript"`：附時間戳記的文字字幕稿，依文字權杖計費。
+
+對於長影片，請先要求 `"transcript"`，以低成本找出時間戳記，再以 `"frames"` 檢視該片段：
+
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+
+      video_file = client.files.upload(file="keynote_recording.mp4")
+
+      # 1. Scan the transcript first at low token cost.
+      transcript_turn = client.interactions.create(
+          model="gemini-4-hydrogen",
+          input=[
+              {
+                  "type": "video",
+                  "uri": video_file.uri,
+                  "mime_type": video_file.mime_type,
+                  "processing": {
+                      "type": "static",
+                      "content_layers": ["transcript"],
+                  },
+              },
+              {
+                  "type": "text",
+                  "text": "Find the timestamps where the speaker demos the architecture diagram.",
+              },
+          ],
+      )
+      print(transcript_turn.output_text)
+
+      # 2. Zoom into the matching clip with frames.
+      detail_turn = client.interactions.create(
+          model="gemini-4-hydrogen",
+          input=[
+              {
+                  "type": "video",
+                  "uri": video_file.uri,
+                  "mime_type": video_file.mime_type,
+                  "processing": {
+                      "type": "static",
+                      "start_offset": "420s",
+                      "end_offset": "465s",
+                      "fps": 2.0,
+                      "content_layers": ["frames"],
+                  },
+              },
+              {
+                  "type": "text",
+                  "text": "Describe the architecture diagram in this clip and summarize the explanation.",
+              },
+          ],
+      )
+
+      print(detail_turn.output_text)
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({});
+
+      const videoFile = await ai.files.upload({
+        file: "keynote_recording.mp4",
+        config: { mimeType: "video/mp4" },
+      });
+
+      // 1. Scan the transcript first at low token cost.
+      const transcriptTurn = await ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        input: [
+          {
+            type: "video",
+            uri: videoFile.uri,
+            mime_type: videoFile.mimeType,
+            processing: {
+              type: "static",
+              content_layers: ["transcript"],
+            },
+          },
+          {
+            type: "text",
+            text: "Find the timestamps where the speaker demos the architecture diagram.",
+          },
+        ],
+      });
+      console.log(transcriptTurn.output_text);
+
+      // 2. Zoom into the matching clip with frames.
+      const detailTurn = await ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        input: [
+          {
+            type: "video",
+            uri: videoFile.uri,
+            mime_type: videoFile.mimeType,
+            processing: {
+              type: "static",
+              start_offset: "420s",
+              end_offset: "465s",
+              fps: 2.0,
+              content_layers: ["frames"],
+            },
+          },
+          {
+            type: "text",
+            text: "Describe the architecture diagram in this clip and summarize the explanation.",
+          },
+        ],
+      });
+
+      console.log(detailTurn.output_text);
+      ```
+
+=== "REST"
+
+      ```shell
+      # 1. Scan the transcript first at low token cost.
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H 'Content-Type: application/json' \
+        -d '{
+          "model": "gemini-4-hydrogen",
+          "input": [
+            {
+              "type": "video",
+              "uri": "https://generativelanguage.googleapis.com/v1beta/files/VIDEO_FILE_ID",
+              "mime_type": "video/mp4",
+              "processing": {
+                "type": "static",
+                "content_layers": ["transcript"]
+              }
+            },
+            {"type": "text", "text": "Find the timestamps where the speaker demos the architecture diagram."}
+          ]
+        }'
+
+      # 2. Zoom into the matching clip with frames.
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H 'Content-Type: application/json' \
+        -d '{
+          "model": "gemini-4-hydrogen",
+          "input": [
+            {
+              "type": "video",
+              "uri": "https://generativelanguage.googleapis.com/v1beta/files/VIDEO_FILE_ID",
+              "mime_type": "video/mp4",
+              "processing": {
+                "type": "static",
+                "start_offset": "420s",
+                "end_offset": "465s",
+                "fps": 2.0,
+                "content_layers": ["frames"]
+              }
+            },
+            {"type": "text", "text": "Describe the architecture diagram in this clip and summarize the explanation."}
+          ]
+        }'
+      ```
+
+
 ## 支援的影片格式 {#supported-formats}
 
 Gemini 支援下列影片格式 MIME 類型：
@@ -1290,9 +1464,9 @@ Gemini 支援下列影片格式 MIME 類型：
 - **支援的模型與上下文**：所有 Gemini 模型都能處理影片資料。
   -   具備 1M 上下文視窗的模型，預設（低媒體解析度）可處理長達 3 小時的影片，高媒體解析度下則可處理長達 1 小時的影片。
 
-- **處理模式**：Gemini 4 Carbon、Gemini 4 Argon、3.8 Flash、3.6 Flash、3.5 Flash Lite 及後續模型支援兩種影片處理模式：
+- **處理模式**：Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite 及後續模型支援兩種影片處理模式：
   -   **Static**：以 1 FPS 擷取影格並放入上下文（所有模型的預設模式）。音訊以 1Kbps（單聲道）處理。每秒加入時間戳記。最適合短片，或每個影格都很重要的情況（例如逐格檢視）。請注意，由於取樣率為 1 FPS，快速動作片段可能會遺失細節。
-  -   **Agentic**：模型會動態瀏覽影片，依需求載入字幕稿及／或影格及／或音訊。處理長篇內容時，使用的權杖最多可減少 88%；不過由於內部推理與工具往返，瀏覽可能會增加短片（<5 分鐘）或廣泛查詢的首權杖時間（TTFT）與總權杖用量。最適合長篇影片與針對性查詢，可最佳化權杖成本與回應品質。支援 Gemini 4 Carbon、Gemini 4 Argon、3.8 Flash、3.6 Flash 與 3.5 Flash Lite。詳情請參閱 [Agentic video understanding](/docs/video-understanding/#agentic-video-understanding)。
+  -   **Agentic**：模型會動態瀏覽影片，依需求載入字幕稿及／或影格及／或音訊。處理長篇內容時，使用的權杖最多可減少 88%；不過由於內部推理與工具往返，瀏覽可能會增加短片（<5 分鐘）或廣泛查詢的首權杖時間（TTFT）與總權杖用量。最適合長篇影片與針對性查詢，可最佳化權杖成本與回應品質。支援 Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 與 3.5 Flash Lite。詳情請參閱 [Agentic video understanding](/docs/video-understanding/#agentic-video-understanding)。
 
 - **權杖計算（靜態模式）**：每秒影片的權杖化方式如下：
   -   個別影格（以 1 FPS 取樣）：

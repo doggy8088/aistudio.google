@@ -901,7 +901,7 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
 
 每個 Gemini 模型都有可處理的權杖數量上限。
 
-* **Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen`）**：輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（`1,048,576` 個權杖）。同步回應（`background=False`，無論串流或非串流）預設的輸出權杖上限為 `65,536` 個，你也可以使用 [long decode](/docs/long-decode/) 生成最多 `1,048,576` 個權杖。若輸入權杖加上 `max_output_tokens` 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入權杖數）。
+* **Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）**：輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（`1,048,576` 個權杖）。同步回應（`background=False`，無論串流或非串流）預設的輸出權杖上限為 `65,536` 個，你也可以使用 [long decode](/docs/long-decode/) 生成最多 `1,048,576` 個權杖。若輸入權杖加上 `max_output_tokens` 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入權杖數）。
 * **Gemini 3 與 2.5 模型**：輸入（`1,048,576` 個權杖）與輸出（`65,536` 個權杖）各自有獨立的預算。
 
 ### 以程式方式取得上下文視窗大小 {#get-context-window}

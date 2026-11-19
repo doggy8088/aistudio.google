@@ -90,7 +90,7 @@ Live API 中的思考功能（`gemini-3.8-live-extended-thinking`）為即時語
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       if (message.interactionStatus === 'IDLE') {
         // Ready for user input
         setUiState('listening');
@@ -123,7 +123,7 @@ Live API 中的思考功能（`gemini-3.8-live-extended-thinking`）為即時語
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const searchFlights = {
         name: 'search_flights',
         description: 'Searches for available flights.',
@@ -156,7 +156,7 @@ Live API 中的思考功能（`gemini-3.8-live-extended-thinking`）為即時語
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const config = {
         responseModalities: [Modality.AUDIO],
         thinkingConfig: {
@@ -457,7 +457,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
 
       const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });

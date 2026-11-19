@@ -219,7 +219,8 @@ SDK 除了提供完整回應，也提供 `interaction.output_text` 與
 `interaction.output_image` 等便利屬性，讓你直接存取最終輸出。如需了解
 回應結構的更多資訊，請參閱 [Interactions
 總覽](/docs/interactions-overview/)，或閱讀[文字生成指南](/docs/text-generation/)，
-了解系統指令與生成設定的細節。
+了解系統指令與生成設定的細節，或參閱[選擇模型](/docs/choosing-a-model/)，
+為你的任務比較各模型。
 
 ## 3. 串流回應 {#3-stream-the-response}
 

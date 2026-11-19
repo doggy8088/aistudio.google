@@ -93,7 +93,7 @@ Gemini 模型經過訓練，能思考複雜問題，推理能力因此大幅提�
 | `low` | `low` | `low` | `low` | `1,024` |
 | `medium` | `medium` | `medium` | `medium` | `8,192` |
 | `high` | `high` | `high` | `high` | `24,576` |
-| `xhigh` | `xhigh`（僅 `gemini-4-hydrogen`） | 不支援 | 不支援 | 不支援 |
+| `xhigh` | `xhigh`（僅 `gemini-4-neon` 與 `gemini-4-hydrogen`） | 不支援 | 不支援 | 不支援 |
 
 若未指定 `reasoning_effort`，Gemini 會使用模型的預設[等級或預算](/docs/thinking/#thinking-levels)。
 

@@ -87,7 +87,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const API_KEY = "YOUR_API_KEY";
       const MODEL_NAME = "gemini-3.8-live";
       const WS_URL = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${API_KEY}`;
@@ -150,7 +150,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       function sendTextMessage(text) {
         if (websocket.readyState === WebSocket.OPEN) {
           const textMessage = {
@@ -199,7 +199,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'chunk' is a Buffer of raw PCM audio
       function sendAudioChunk(chunk) {
         if (websocket.readyState === WebSocket.OPEN) {
@@ -250,7 +250,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'frame' is a Buffer of JPEG-encoded image data
       function sendVideoFrame(frame, mimeType = 'image/jpeg') {
         if (websocket.readyState === WebSocket.OPEN) {
@@ -312,7 +312,7 @@ WebSocket 會傳回 [`BidiGenerateContentServerMessage`](/api-reference/live/#Bi
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       websocket.onmessage = (event) => {
         const response = JSON.parse(event.data);
         console.log('Received:', response);
@@ -395,7 +395,7 @@ WebSocket 會傳回 [`BidiGenerateContentServerMessage`](/api-reference/live/#Bi
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Placeholder for your tool function
       function myToolFunction(args) {
         console.log(`Executing tool with args:`, args);

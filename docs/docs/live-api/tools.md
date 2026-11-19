@@ -81,7 +81,7 @@ Live API 支援函式呼叫，與一般內容生成要求相同。函式呼叫�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
       import * as fs from "node:fs";
       import pkg from 'wavefile'; // npm install wavefile
@@ -230,7 +230,7 @@ Live API 支援函式呼叫，與一般內容生成要求相同。函式呼叫�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality, Behavior } from '@google/genai';
 
       // Non-blocking function definitions
@@ -270,7 +270,7 @@ Live API 支援函式呼叫，與一般內容生成要求相同。函式呼叫�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality, Behavior, FunctionResponseScheduling } from '@google/genai';
 
       // for a non-blocking function definition, apply scheduling in the function response:
@@ -338,7 +338,7 @@ Live API 支援函式呼叫，與一般內容生成要求相同。函式呼叫�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
       import * as fs from "node:fs";
       import pkg from 'wavefile'; // npm install wavefile
@@ -477,7 +477,7 @@ Live API 支援函式呼叫，與一般內容生成要求相同。函式呼叫�
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const prompt = `Hey, I need you to do two things for me.
 
       1. Use Google Search to look up information about the largest earthquake in California the week of Dec 5 2024?

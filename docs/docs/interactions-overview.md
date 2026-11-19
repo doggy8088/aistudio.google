@@ -366,6 +366,7 @@ Interaction 物件會依照[條款](/docs/terms/)處理。
 | :--- | :--- | :--- |
 | Gemini 4 Carbon | Model | `gemini-4-carbon` |
 | Gemini 4 Argon | Model | `gemini-4-argon` |
+| Gemini 4 Neon | Model | `gemini-4-neon` |
 | Gemini 4 Hydrogen | Model | `gemini-4-hydrogen` |
 | Gemini 3.8 Flash | Model | `gemini-3.8-flash` |
 | Gemini 3.6 Flash | Model | `gemini-3.6-flash` |

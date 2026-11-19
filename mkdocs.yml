@@ -420,3 +420,7 @@ nav:
           - api-reference/decisions/index.md
           - api-reference/decisions/create-decision.md
       - api-reference/all-methods.md
+  - Models:
+      - docs/models/gemini-4-neon.md
+  - docs/choosing-a-model.md
+  - docs/whats-new-gemini-4-neon.md

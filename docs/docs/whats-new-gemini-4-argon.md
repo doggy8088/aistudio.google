@@ -99,9 +99,13 @@ Gemini 4 Argon 支援統一的 1M 權杖上下文視窗、最長可達 1M 權杖
 Gemini 4 Argon 與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 共用相同的 1M 統一上下文視窗、內建工具與每權杖定價。主要差異在於每個模型每回合花費的思考權杖數量：
 
 * **Gemini 4 Carbon（`gemini-4-carbon`）：** 專為挑戰推理深度極限的任務而打造。Carbon 每回合會花費更多思考權杖，進行徹底探索並驗證其工作成果，因此與 Argon 相比，每回合的權杖用量與延遲都會增加。適用於複雜的根本原因除錯、架構設計、密集的多模態整合、科學證明與安全稽核。
+
 * **Gemini 4 Argon（`gemini-4-argon`）：** 我們高效能的 Gemini 4 前沿推理模型，適合大多數進階軟體工程與知識工作任務。與 Carbon 相比，它在互動式程式設計、日常功能開發與快速生產迴圈中，能以更快的回應速度和更低的每回合權杖消耗，提供 Gemini 4 等級的智慧。
 
-如需更多模型選擇指南，請參閱[最新 Gemini 模型](/docs/latest-model/#compare-models)。
+* **Gemini 4 Hydrogen（`gemini-4-hydrogen`）：** 速度快且具成本效益（每 100 萬權杖 $1.50 / $7.50，另提供免費層級），適用於日常程式設計、互動式應用程式、多模態文件與平行子代理執行。
+
+
+如需並排比較與多模型協調範例，請參閱[選擇模型](/docs/choosing-a-model/)與[最新 Gemini 模型](/docs/latest-model/#compare-models)。
 
 ## 了解思考層級 {#understanding-thinking-levels}
 
@@ -405,7 +409,9 @@ Gemini 4 Argon 不提供免費層級。如需完整的定價層級，請參閱[�
 
 ## 其他模型 {#other-models}
 
+* [選擇模型](/docs/choosing-a-model/)
 * [最新 Gemini 模型](/docs/latest-model/)
+* [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/)
 * [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/)
 * [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/)
 * [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)

@@ -10,6 +10,13 @@ Gemini 能同時處理多種類型的輸入資料，包括文字、圖片和音�
 
 你可以使用 Files API 上傳媒體檔案。當請求總大小（包括檔案、文字提示詞、系統指令等）超過 100 MB 時，務必使用 Files API。PDF 檔案的上限則為 50 MB。
 
+
+!!! note " "
+
+      由 `files.upload` 與 `files.get` 傳回的檔案 URI（`/v1/files/<id>` 與
+      `/v1beta/files/<id>`）可在 `v1` 與 `v1beta` 要求之間互通使用。
+
+
 以下程式碼會上傳一個檔案，接著在呼叫 `interactions.create` 時使用該檔案。
 
 
@@ -169,7 +176,7 @@ Gemini 能同時處理多種類型的輸入資料，包括文字、圖片和音�
 
       # Initial resumable request defining metadata.
       # The upload url is in the response headers dump them to a file.
-      curl "${BASE_URL}/upload/v1beta/files" \
+      curl "https://generativelanguage.googleapis.com/upload/v1beta/files" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -D "${tmp_header_file}" \
         -H "X-Goog-Upload-Protocol: resumable" \

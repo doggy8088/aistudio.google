@@ -71,7 +71,7 @@ Thinking，請參閱 [Live API 中的 Thinking](/docs/live-api/thinking/) 與
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
 
       const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
@@ -132,7 +132,7 @@ Thinking，請參閱 [Live API 中的 Thinking](/docs/live-api/thinking/) 與
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'chunk' is a Buffer of raw PCM audio
       session.sendRealtimeInput({
         audio: {
@@ -169,7 +169,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Inside the onmessage callback
       const content = response.serverContent;
       if (content?.modelTurn?.parts) {
@@ -196,7 +196,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       session.sendRealtimeInput({
         text: 'Hello, how are you?'
       });
@@ -222,7 +222,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Assuming 'frame' is a Buffer of JPEG-encoded image data
       session.sendRealtimeInput({
         video: {
@@ -266,7 +266,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       let inputTurns = [
         { "role": "user", "parts": [{ "text": "What is the capital of France?" }] },
         { "role": "model", "parts": [{ "text": "Paris" }] },
@@ -328,7 +328,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
 
       const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
@@ -448,7 +448,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality } from '@google/genai';
       import * as fs from "node:fs";
       import pkg from 'wavefile';
@@ -577,7 +577,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const config = {
         responseModalities: [Modality.AUDIO],
         inputAudioTranscription: {
@@ -608,7 +608,7 @@ Multimodal Live API 中的音訊資料一律為原始、小端序的
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const config = {
         responseModalities: [Modality.AUDIO],
         speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
@@ -662,7 +662,7 @@ Gemini 3.8 Live Extended Thinking 與 Gemini 3.1 模型使用 `thinkingLevel` �
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const model = 'gemini-3.8-live-extended-thinking';
       const config = {
         responseModalities: [Modality.AUDIO],
@@ -709,7 +709,7 @@ Gemini 3.8 Live Extended Thinking 與 Gemini 3.1 模型使用 `thinkingLevel` �
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const model = 'gemini-3.8-live-extended-thinking';
       const config = {
         responseModalities: [Modality.AUDIO],
@@ -749,7 +749,7 @@ Gemini 3.8 Live Extended Thinking 與 Gemini 3.1 模型使用 `thinkingLevel` �
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const ai = new GoogleGenAI({ httpOptions: {"apiVersion": "v1beta"} });
 
       const config = {
@@ -788,7 +788,7 @@ Gemini 3.8 Live Extended Thinking 與 Gemini 3.1 模型使用 `thinkingLevel` �
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const ai = new GoogleGenAI({ httpOptions: {"apiVersion": "v1beta"} });
 
       const config = {
@@ -832,7 +832,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const turns = await handleTurn();
 
       for (const turn of turns) {
@@ -897,7 +897,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // example audio file to try:
       // URL = "https://storage.googleapis.com/generativeai-downloads/data/hello_are_you_there.pcm"
       // !wget -q $URL -O sample.pcm
@@ -1026,7 +1026,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality, StartSensitivity, EndSensitivity } from '@google/genai';
 
       const config = {
@@ -1089,7 +1089,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       // Set up with automatic VAD enabled (default)
       const config = {
         responseModalities: [Modality.AUDIO],
@@ -1139,7 +1139,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const config = {
         responseModalities: [Modality.AUDIO],
         realtimeInputConfig: {
@@ -1234,7 +1234,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       const turns = await handleTurn();
 
       for (const turn of turns) {
@@ -1267,7 +1267,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 === "JavaScript"
 
-      ```js
+      ```javascript
       import { GoogleGenAI, Modality, MediaResolution } from '@google/genai';
 
       const config = {

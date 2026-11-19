@@ -1,8 +1,8 @@
 # 最新 Gemini 模型
 
-透過單一整合式 API，使用 Google 最新模型進行推理、程式設計與原生媒體生成。先從 `gemini-4-hydrogen` 開始，適用於快速、可靠的程式設計、代理工作流程與多模態知識工作。若需要深度的前沿推理，可使用 `gemini-4-carbon` 或 `gemini-4-argon`，或從下方挑選專用模型。
+透過單一整合式 API，使用 Google 最新模型進行推理、程式設計與原生媒體生成。先從 `gemini-4-hydrogen` 開始，適用於快速、可靠的程式設計、代理工作流程與多模態知識工作。若需要深度的前沿推理，可使用 `gemini-4-carbon` 或 `gemini-4-neon`，或從下方挑選專用模型。
 
-[選擇模型](/docs/whats-new-gemini-4-hydrogen/#choosing-between-models) [查看所有模型](/docs/models/)
+[選擇模型](/docs/choosing-a-model/) [查看所有模型](/docs/models/)
 
 ## Gemini 模型比較 {#compare-models}
 
@@ -28,19 +28,19 @@
 
   
 
-**Gemini 4 Argon**
+**Gemini 4 Neon**
 
-*   *模型 ID* **`gemini-4-argon`**
-  *   *價格（1M）* **$2.00 / $10.00（優惠價至 11 月 30 日）**
+*   *模型 ID* **`gemini-4-neon`**
+  *   *價格（1M）* **$3.00 / $15.00**
   *   *速度* **Moderate**
   *   *上下文* **1M 統一權杖**
   *   *最大輸出* **預設 64K / 1M [長解碼](/docs/long-decode/)**
-  *   *思考* **`low`、`medium`（預設）、`high`**
+  *   *思考* **`low`、`medium`、`high`（預設）、`xhigh`**
 
   
 
   
-  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon) [查看 Gemini 4 Argon 模型規格](/docs/models/gemini-4-argon/)
+  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon) [查看 Gemini 4 Neon 模型規格](/docs/models/gemini-4-neon/)
 
 
   
@@ -86,14 +86,14 @@
 
 **[Gemini 4 Carbon 新功能](/docs/whats-new-gemini-4-carbon/)**
 
-我們最強大的推理模型，適用於代理程式設計、多模態精準處理、科學與安全推理，並說明如何在 Carbon 與 Argon 之間選擇。
+我們最強大的推理模型，適用於代理程式設計、多模態精準處理，以及科學與安全推理。
 
 
   
 
-**[Gemini 4 Argon 新功能](/docs/whats-new-gemini-4-argon/)**
+**[Gemini 4 Neon 新功能](/docs/whats-new-gemini-4-neon/)**
 
-我們高效率的 Gemini 4 前沿推理模型：相較於 Carbon，回應更快、每輪權杖花費更低，並具備統一的 1M 上下文與長解碼能力。
+具備前沿等級的智慧，能在複雜的軟體工程、知識工作與科學工作流程中快速完成端對端任務。
 
 
   
@@ -121,7 +121,7 @@
 
 多模態理解、軟體工程、結構化擷取，以及會使用工具的代理。
 
-*   *旗艦推理* **[`gemini-4-carbon`](/docs/models/gemini-4-carbon/)、[`gemini-4-argon`](/docs/models/gemini-4-argon/)**
+*   *旗艦推理* **[`gemini-4-carbon`](/docs/models/gemini-4-carbon/)、[`gemini-4-neon`](/docs/models/gemini-4-neon/)**
   *   *預設通用模型* **[`gemini-4-hydrogen`](/docs/models/gemini-4-hydrogen/)**
   *   *大量與低成本* **[`gemini-3.5-flash-lite`](/docs/models/gemini-3.5-flash-lite/)**
 
@@ -154,7 +154,7 @@
 使用 Gemini Omni 生成與編輯最高 4K、含同步音訊的影片，串流即時影片，或分析長影片。
 
 *   *影片生成與編輯* **[`gemini-omni-1.2-flash`](/docs/models/gemini-omni-flash/)**
-  *   *影片理解* **[`gemini-4-carbon`](/docs/models/gemini-4-carbon/)、[`gemini-4-argon`](/docs/models/gemini-4-argon/)、[`gemini-4-hydrogen`](/docs/models/gemini-4-hydrogen/)**
+  *   *影片理解* **[`gemini-4-carbon`](/docs/models/gemini-4-carbon/)、[`gemini-4-neon`](/docs/models/gemini-4-neon/)、[`gemini-4-hydrogen`](/docs/models/gemini-4-hydrogen/)**
   *   *即時影片串流* **[`gemini-3.8-live`](/docs/models/gemini-3.8-live/)**
 
   
@@ -256,6 +256,7 @@ agy plugin install https://github.com/google-gemini/gemini-skills
 
 ## 後續步驟 {#whats-next}
 
+* 在[選擇模型](/docs/choosing-a-model/)中，依據工作負載、延遲目標與預算決定適合的模型。
 * 在[所有模型](/docs/models/)瀏覽完整的端點目錄。
 * 在[思考指南](/docs/thinking/)中調整推理深度與延遲。
 * 查看[定價](/docs/pricing/)、[速率限制](/docs/rate-limits/)、[上下文快取](/docs/caching/)與 [Batch API（成本降低 50%）](/docs/batch-api/)。

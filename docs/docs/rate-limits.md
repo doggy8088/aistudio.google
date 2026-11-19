@@ -113,6 +113,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
     | --- | --- |
     | Gemini 4 Carbon | 5,000,000 |
     | Gemini 4 Argon | 5,000,000 |
+    | Gemini 4 Neon | 5,000,000 |
     | Gemini 4 Hydrogen | 3,000,000 |
     | Gemini 3.1 Pro Preview | 5,000,000 |
     | Gemini 3.8 Flash | 3,000,000 |
@@ -143,6 +144,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
     | --- | --- |
     | Gemini 4 Carbon | 500,000,000 |
     | Gemini 4 Argon | 500,000,000 |
+    | Gemini 4 Neon | 500,000,000 |
     | Gemini 4 Hydrogen | 400,000,000 |
     | Gemini 3.1 Pro Preview | 500,000,000 |
     | Gemini 3.5 Flash-Lite | 500,000,000 |
@@ -173,6 +175,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
     | --- | --- |
     | Gemini 4 Carbon | 1,000,000,000 |
     | Gemini 4 Argon | 1,000,000,000 |
+    | Gemini 4 Neon | 1,000,000,000 |
     | Gemini 4 Hydrogen | 1,000,000,000 |
     | Gemini 3.1 Pro Preview | 1,000,000,000 |
     | Gemini 3.5 Flash-Lite | 1,000,000,000 |

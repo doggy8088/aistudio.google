@@ -146,6 +146,8 @@
 
 ## 認識各款模型 {#meet-the-models}
 
+在[選擇模型](/docs/choosing-a-model/)中，比較我們各款模型的推理深度、延遲與成本。
+
 
   
 
@@ -162,6 +164,23 @@
 
   
   [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon) [查看 Gemini 4 Carbon 模型詳細資訊](/docs/models/gemini-4-carbon/)
+
+
+  
+
+**Gemini 4 Neon**
+
+帶來前沿級智慧，端到端任務完成速度快，適用於複雜的軟體工程、知識工作與科學工作流程，具備共用的 1M 上下文視窗，長篇解碼長度最高可達 1M 權杖。
+
+*   *模型代碼* **gemini-4-neon**
+  *   *上下文* **1M 權杖**
+  *   *輸出上限* **64K / 1M 權杖**
+  *   *模態* **文字、圖片、音訊、影片、PDF**
+
+  
+
+  
+  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon) [查看 Gemini 4 Neon 模型詳細資訊](/docs/models/gemini-4-neon/)
 
 
   
@@ -196,23 +215,6 @@
 
   
   [在 AI Studio 中試用](https://aistudio.google.com/apps/bundled/gemini-decisions-api-playground) [查看 Gemini Decision 1 模型詳細資訊](/docs/models/gemini-decision-1/)
-
-
-  
-
-**Gemini 3.8 Flash TTS**
-
-旗艦級創意文字轉語音模型，具備錄音室等級的語音逼真度、富有表現力的演繹能力，以及 Voice design 與 Voice replication 功能。
-
-*   *模型代碼* **gemini-3.8-flash-tts**
-  *   *上下文* **8K 權杖**
-  *   *輸出上限* **16K 權杖**
-  *   *模態* **文字 → 音訊**
-
-  
-
-  
-  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-3.8-flash-tts) [查看 Gemini 3.8 Flash TTS 模型詳細資訊](/docs/models/gemini-3.8-flash-tts/)
 
 
   

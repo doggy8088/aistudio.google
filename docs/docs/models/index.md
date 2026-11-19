@@ -1,5 +1,7 @@
 # 模型
 
+不確定從何開始嗎？請閱讀[選擇模型](/docs/choosing-a-model/)，比較各 Gemini 模型的推理深度、速度與成本，或參閱[最新 Gemini 模型](/docs/latest-model/)。
+
 ## Gemini 4 {#gemini-4}
 
 
@@ -22,6 +24,40 @@
 
   
 
+**Gemini 4 Neon**
+
+具備前沿級智慧，端到端任務完成速度快，適用於複雜的軟體工程、知識工作與科學工作流程。
+
+*   *Model code* **gemini-4-neon**
+  *   *Context* **1M tokens**
+  *   *Max output* **64K / 1M tokens**
+  *   *Modalities* **Text, Image, Audio, Video, PDF**
+
+  
+
+  
+  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon) [查看模型](/docs/models/gemini-4-neon/)
+
+
+  
+
+**Gemini 4 Hydrogen**
+
+將尖端智慧帶給所有人，兼具速度與效率，適合日常程式設計與代理工作流程。
+
+*   *Model code* **gemini-4-hydrogen**
+  *   *Context* **1M tokens**
+  *   *Max output* **64K / 1M tokens**
+  *   *Modalities* **Text, Image, Audio, Video, PDF**
+
+  
+
+  
+  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen) [查看模型](/docs/models/gemini-4-hydrogen/)
+
+
+  
+
 **Gemini 4 Argon**
 
 我們高效率的 Gemini 4 前沿推理模型，在複雜的程式設計、代理、數學與科學任務上，相較於 Gemini 4 Carbon 能以更快的回應速度與更低的每回合權杖花費完成任務。
@@ -37,31 +73,15 @@
   [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon) [查看模型](/docs/models/gemini-4-argon/)
 
 
-  
-
-**Gemini 4 Hydrogen**
-
-將尖端智慧帶給所有人，兼具速度與效率，適合日常程式設計與代理工作流程，具備共享的 1M 上下文視窗，以及最長可達 1M 個權杖的長篇解碼。
-
-*   *Model code* **gemini-4-hydrogen**
-  *   *Context* **1M tokens**
-  *   *Max output* **64K / 1M tokens**
-  *   *Modalities* **Text, Image, Audio, Video, PDF**
-
-  
-
-  
-  [在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen) [查看模型](/docs/models/gemini-4-hydrogen/)
-
-
 ## 所有 Gemini 4 模型 {#all-gemini-4-models}
 
 
 | 模型 | 端點 |
 | --- | --- |
 | [Gemini 4 Carbon](/docs/models/gemini-4-carbon/) | `gemini-4-carbon` |
-| [Gemini 4 Argon](/docs/models/gemini-4-argon/) | `gemini-4-argon` |
+| [Gemini 4 Neon](/docs/models/gemini-4-neon/) | `gemini-4-neon` |
 | [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen/) | `gemini-4-hydrogen` |
+| [Gemini 4 Argon](/docs/models/gemini-4-argon/) | `gemini-4-argon` |
 
 
 ## Gemini 3 {#gemini-3}

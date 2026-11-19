@@ -4,7 +4,7 @@
 
 若要讓互動在伺服器上持續執行直到任務完成，請在建立互動時設定 `"background": true`。API 會立即回傳互動 ID，用戶端應用程式可用這個 ID 輪詢狀態、串流進度，或重新連接已中斷的串流。
 
-背景執行支援標準 Gemini 模型（例如 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-hydrogen` 與 `gemini-3.8-flash`），以及 Managed Agents（例如 `antigravity-preview-09-2026`）。
+背景執行支援標準 Gemini 模型（例如 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon`、`gemini-4-hydrogen` 與 `gemini-3.8-flash`），以及 Managed Agents（例如 `antigravity-preview-09-2026`）。
 
 ## 建立背景互動 {#create-a-background-interaction}
 
@@ -147,12 +147,12 @@
 *   **代理執行**：需要程式碼執行、網頁瀏覽或子代理協調的任務（例如 `antigravity-preview-09-2026`）。
 *   **深度研究**：使用 `deep-research-preview-04-2026` 或 `deep-research-max-preview-04-2026` 執行、需耗時數分鐘的研究。
 *   **長時間推理**：模型思考步驟較長、超出標準 HTTP 連線上限的任務。
-*   **長解碼（Gemini 4）**：產生超過 `65,536` 個權杖的延伸完成內容的任務。在 `gemini-4-carbon`、`gemini-4-argon` 與 `gemini-4-hydrogen` 上，你可以透過[長解碼](/docs/long-decode/)將 `max_output_tokens` 設為最高 `1,048,576` 個權杖。
+*   **長解碼（Gemini 4）**：產生超過 `65,536` 個權杖的延伸完成內容的任務。在 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen` 上，你可以透過[長解碼](/docs/long-decode/)將 `max_output_tokens` 設為最高 `1,048,576` 個權杖。
 
 
 !!! note " "
 
-      當 `background=False`（預設）時，單次前景跳轉的輸出權杖上限為 65,536 個，適用於串流呼叫與 `gemini-4-hydrogen` 的非串流呼叫（`gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫則為 32,768 個輸出權杖）。若要在 `background=False` 的情況下產生超過 65,536 個權杖，請使用[用戶端接續](/docs/long-decode/#client-side-continuation)。
+      當 `background=False`（預設）時，單次前景跳轉的輸出權杖上限為 65,536 個，適用於串流呼叫與 `gemini-4-neon` 及 `gemini-4-hydrogen` 的非串流呼叫（`gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫則為 32,768 個輸出權杖）。若要在 `background=False` 的情況下產生超過 65,536 個權杖，請使用[用戶端接續](/docs/long-decode/#client-side-continuation)。
 
 
 ### 背景執行的資料保留 {#data-retention}
