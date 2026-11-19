@@ -27,7 +27,7 @@ Google AI Studio 與 [Firebase](https://firebase.google.com/docs/ai-assistance/a
 
 - **[Firebase AI Logic](https://firebase.google.com/docs/ai-logic) 與 [Firebase App Check](https://firebase.google.com/docs/ai-logic/app-check)**：直接從你的 Android 應用程式呼叫 Gemini 模型，無需在 APK 中嵌入原始 API 金鑰。AI Studio 會自動設定 App Check，驗證要求來自你應用程式的真實執行個體：
 
-  -   **測試與共用（偵錯建構版本）**：在瀏覽器型模擬器中預覽、透過 USB 安裝或與測試人員共用時，使用由 AI Studio 自動管理的 App Check 偵錯權杖。
+  -   **測試與共用（偵錯建構版本）**：在瀏覽器型模擬器中預覽、透過 USB 安裝或與測試人員共用時，使用由 AI Studio 自動管理的 App Check 偵錯 token。
   -   **發佈到 Google Play（正式建構版本）**：在建構供 Google Play 使用的正式版本時，自動切換至使用預先設定網站金鑰的 reCAPTCHA Enterprise。
 
 - **Cloud Firestore**：在 NoSQL 雲端資料庫中儲存並同步資料，包括自動產生的 Firestore Security Rules（`firestore.rules`）。

@@ -147,12 +147,12 @@
 *   **代理執行**：需要程式碼執行、網頁瀏覽或子代理協調的任務（例如 `antigravity-preview-09-2026`）。
 *   **深度研究**：使用 `deep-research-preview-04-2026` 或 `deep-research-max-preview-04-2026` 執行、需耗時數分鐘的研究。
 *   **長時間推理**：模型思考步驟較長、超出標準 HTTP 連線上限的任務。
-*   **長解碼（Gemini 4）**：產生超過 `65,536` 個權杖的延伸完成內容的任務。在 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen` 上，你可以透過[長解碼](/docs/long-decode/)將 `max_output_tokens` 設為最高 `1,048,576` 個權杖。
+*   **長解碼（Gemini 4）**：產生超過 `65,536` 個 token 的延伸完成內容的任務。在 `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen` 上，你可以透過[長解碼](/docs/long-decode/)將 `max_output_tokens` 設為最高 `1,048,576` 個 token。
 
 
 !!! note " "
 
-      當 `background=False`（預設）時，單次前景跳轉的輸出權杖上限為 65,536 個，適用於串流呼叫與 `gemini-4-neon` 及 `gemini-4-hydrogen` 的非串流呼叫（`gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫則為 32,768 個輸出權杖）。若要在 `background=False` 的情況下產生超過 65,536 個權杖，請使用[用戶端接續](/docs/long-decode/#client-side-continuation)。
+      當 `background=False`（預設）時，單次前景跳轉的輸出 token 上限為 65,536 個，適用於串流呼叫與 `gemini-4-neon` 及 `gemini-4-hydrogen` 的非串流呼叫（`gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫則為 32,768 個輸出 tokens）。若要在 `background=False` 的情況下產生超過 65,536 tokens，請使用[用戶端接續](/docs/long-decode/#client-side-continuation)。
 
 
 ### 背景執行的資料保留 {#data-retention}

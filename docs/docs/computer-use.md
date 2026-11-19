@@ -2141,7 +2141,7 @@ Gemini 3.5 Flash-Lite 以上版本的電腦操作支援進階安全機制，可�
 你可以搭配以下模型使用電腦操作：
 
 * [**Gemini 4 Carbon**](/docs/models/gemini-4-carbon/)（`gemini-4-carbon`）：我們能力最強的推理模型，支援電腦操作，適用於複雜推理與代理式 UI 工作流程。
-* [**Gemini 4 Argon**](/docs/models/gemini-4-argon/)（`gemini-4-argon`）：高效的 Gemini 4 前沿推理模型，支援電腦操作；相較於 [Gemini 4 Carbon](/docs/models/gemini-4-carbon/)，回應更快、每回合的權杖消耗更低。
+* [**Gemini 4 Argon**](/docs/models/gemini-4-argon/)（`gemini-4-argon`）：高效的 Gemini 4 前沿推理模型，支援電腦操作；相較於 [Gemini 4 Carbon](/docs/models/gemini-4-carbon/)，回應更快、每回合的 token 消耗更低。
 * [**Gemini 4 Neon**](/docs/models/gemini-4-neon/)（`gemini-4-neon`）：具備前沿等級的智慧，端到端任務完成速度快，支援電腦操作，涵蓋複雜的軟體工程、知識工作與科學工作流程。
 * [**Gemini 4 Hydrogen**](/docs/models/gemini-4-hydrogen/)（`gemini-4-hydrogen`）：兼具尖端智慧、速度與效率，適用於日常程式設計、電腦操作與代理式 UI 工作流程。
 * [**Gemini 3.8 Flash**](/docs/models/gemini-3.8-flash/)（`gemini-3.8-flash`）：上一代 Flash 模型，支援電腦操作，具備 UI 互動與可靠的工具呼叫能力。

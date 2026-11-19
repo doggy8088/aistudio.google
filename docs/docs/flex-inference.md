@@ -146,7 +146,7 @@ Gemini Flex 推論填補了標準 API 與 [Batch API](/docs/batch-api/) 24 小�
 
 * **離線評估**：執行「以 LLM 擔任評審」的迴歸測試或排行榜。
 * **背景代理**：CRM 更新、個人資料建置或內容審核等循序工作，可接受數分鐘的延遲。
-* **預算有限的研究**：在有限預算下需要大量權杖的學術實驗。
+* **預算有限的研究**：在有限預算下需要大量 token 的學術實驗。
 
 ### 速率限制 {#quota}
 
@@ -486,7 +486,7 @@ Flex 流量的優先順序較低。若標準流量突然暴增，Flex 請求可�
 
 ## 定價 {#pricing}
 
-Flex 推論的價格為[標準 API](/docs/pricing/)的 50%，並依權杖計費。
+Flex 推論的價格為[標準 API](/docs/pricing/)的 50%，並依 token 計費。
 
 ## 支援的模型 {#supported-models}
 
@@ -511,4 +511,4 @@ Flex 推論的價格為[標準 API](/docs/pricing/)的 50%，並依權杖計費�
 ## 後續步驟 {#whats-next}
 
 * [Priority 推論](/docs/priority-inference/)：追求超低延遲。
-* [權杖](/docs/tokens/)：了解權杖。
+* [token](/docs/tokens/)：了解 token。

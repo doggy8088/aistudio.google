@@ -30,9 +30,9 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 
 將 `YOUR_API_KEY` 替換為你實際的 API 金鑰。
 
-## 使用短期權杖進行驗證 {#authentication-with-ephemeral-tokens}
+## 使用短期 token 進行驗證 {#authentication-with-ephemeral-tokens}
 
-若你使用[短期權杖](/docs/live-api/ephemeral-tokens/)，則需要連線至 `v1beta` 端點。短期權杖需要以 `access_token` 查詢參數的形式傳入。
+若你使用[短期 token](/docs/live-api/ephemeral-tokens/)，則需要連線至 `v1beta` 端點。短期 token 需要以 `access_token` 查詢參數的形式傳入。
 
 短期金鑰的端點格式如下：
 
@@ -40,7 +40,7 @@ wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.G
 wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContentConstrained?access_token={short-lived-token}
 ```
 
-將 `{short-lived-token}` 替換為實際的短期權杖。
+將 `{short-lived-token}` 替換為實際的短期 token。
 
 ## 連線至 Live API {#connecting-to-the-live-api}
 
@@ -445,5 +445,5 @@ WebSocket 會傳回 [`BidiGenerateContentServerMessage`](/api-reference/live/#Bi
 * 閱讀完整的 Live API [功能](/docs/live-api/capabilities/)指南，了解主要功能與設定；包括語音活動偵測和原生音訊功能。
 * 閱讀[工具使用](/docs/live-api/tools/)指南，了解如何將 Live API 與工具和函式呼叫整合。
 * 閱讀[工作階段管理](/docs/live-api/session-management/)指南，了解如何管理長時間執行的對話。
-* 閱讀[短期權杖](/docs/live-api/ephemeral-tokens/)指南，了解如何在[用戶端到伺服器](/docs/live-api/#implementation-approach)應用程式中進行安全驗證。
+* 閱讀[短期 token](/docs/live-api/ephemeral-tokens/)指南，了解如何在[用戶端到伺服器](/docs/live-api/#implementation-approach)應用程式中進行安全驗證。
 * 如需了解底層 WebSockets API 的更多資訊，請參閱 [WebSockets API 參考文件](/api-reference/live/)。

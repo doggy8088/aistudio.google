@@ -8,10 +8,10 @@
     [Gemini 4 Neon](/docs/models/gemini-4-neon/)（`gemini-4-neon`），帶來
     前沿級智慧，端到端任務完成速度快，適用於複雜的軟體工程、知識工作與
     科學工作流程。付費層級的[定價](/docs/pricing/#gemini-4-neon)為每 100 萬個
-    輸入權杖 $3.00、每 100 萬個輸出權杖 $15.00，`gemini-4-neon` 支援四種
+    輸入 tokens $3.00、每 100 萬個輸出 tokens $15.00，`gemini-4-neon` 支援四種
     [思考等級](/docs/thinking/#understanding-thinking-levels)
-    （`low`、`medium`、預設的 `high` 與 `xhigh`）、統一的 100 萬權杖上下文
-    視窗，以及最高 100 萬權杖的長解碼。請參閱
+    （`low`、`medium`、預設的 `high` 與 `xhigh`）、統一的 100 萬 tokens 上下文
+    視窗，以及最高 100 萬 tokens 的長解碼。請參閱
     [Gemini 4 Neon 的新功能](/docs/whats-new-gemini-4-neon/)開始使用。
 
 *   **多模態檔案處理與切片**：現在可以直接將 Microsoft Office 與
@@ -40,8 +40,8 @@
 *   **Gemini 4 Hydrogen（`gemini-4-hydrogen`）正式推出（GA）**：推出
     [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen/)（`gemini-4-hydrogen`），
     以速度與效率支援日常程式設計與代理工作流程，將尖端智慧帶給所有人。
-    此模型提供免費層級，付費層級的[定價](/docs/pricing/#gemini-4-hydrogen)為每 100 萬個輸入權杖 $1.50、
-    每 100 萬個輸出權杖 $7.50；`gemini-4-hydrogen` 新增第四個
+    此模型提供免費層級，付費層級的[定價](/docs/pricing/#gemini-4-hydrogen)為每 100 萬個輸入 tokens $1.50、
+    每 100 萬個輸出 tokens $7.50；`gemini-4-hydrogen` 新增第四個
     [`xhigh`](/docs/thinking/#understanding-thinking-levels) 思考等級，與既有的 `low`、
     `medium` 及預設的 `high` 並列，現已成為 Gemini Managed Agents 中
     [Antigravity agent](/docs/antigravity-agent/) 的預設模型。如需 API
@@ -52,7 +52,7 @@
 
 *   **Gemini Decision 1 與 Decisions API**：推出
     [Gemini Decision 1](/docs/models/gemini-decision-1/)（`gemini-decision-1`）與
-    [Decisions API](/docs/decisions-api/)，能以零輸出權杖，針對文字、圖片、音訊、影片與
+    [Decisions API](/docs/decisions-api/)，能以零輸出 tokens，針對文字、圖片、音訊、影片與
     PDF 快速做出經過校準的二元、分類與評分量表決策。請查看[定價](/docs/pricing/#gemini-decision)
     與[速率限制](/docs/rate-limits/#gemini-decision)，或參閱
     [Decisions API 指南](/docs/decisions-api/)開始使用。
@@ -63,7 +63,7 @@
     [Gemini 4 Carbon](/docs/models/gemini-4-carbon/)（`gemini-4-carbon`），這是我們
     能力最強的推理模型，專為長時間的代理程式設計、多模態知識工作、科學推理與網路安全防禦而打造，
     在 2026 年 11 月 30 日前提供優惠[定價](/docs/pricing/#gemini-4-carbon)：每 100 萬個
-    輸入權杖 $2.00、每 100 萬個輸出權杖 $10.00。如需開始使用，請參閱
+    輸入 tokens $2.00、每 100 萬個輸出 tokens $10.00。如需開始使用，請參閱
     [Gemini 4 Carbon 的新功能](/docs/whats-new-gemini-4-carbon/)。
 
 ## 2026 年 11 月 6 日 {#11-06-2026}
@@ -84,7 +84,7 @@
     （`gemini-omni-1.2-flash`），支援最長 15 秒的影片生成與
     對話式編輯（首尾影格插值為 3 至 10 秒、每輪影片延伸為 3 至 10 秒，總長度最長 30 秒），
     在最多 6 張參考圖片之間提升角色與主體的一致性，影片輸出
-    [定價](/docs/pricing/#gemini-omni-1.2-flash)降低 30%（每 100 萬個權杖 $12.00），且
+    [定價](/docs/pricing/#gemini-omni-1.2-flash)降低 30%（每 100 萬 tokens $12.00），且
     付費層級的[速率限制](/docs/rate-limits/#gemini-omni-flash-rate-limits)提高一倍。
     如需開始使用，請參閱 [Gemini Omni Flash 指南](/docs/omni/)。
 
@@ -352,7 +352,7 @@
     Gemini 3.7 Flash、3.6 Flash 與 3.5 Flash-Lite 在 Interactions 與
     GenerateContent API 中推出代理式影片理解。模型會動態瀏覽影片時間軸，
     依需求請求逐字稿、影格或音軌。與靜態
-    處理相比，這種方式在長篇內容上最多可減少 88% 的權杖用量。
+    處理相比，這種方式在長篇內容上最多可減少 88% 的 token 用量。
 
     如需開始使用，請參閱[代理式影片
     理解](/docs/video-understanding/#agentic-video-understanding)指南。
@@ -438,7 +438,7 @@
 *   **Gemini 3.6 Flash 與 Gemini 3.5 Flash-Lite 正式推出（GA）**：
     推出我們最新 3.x Flash 模型的穩定、可用於正式環境的版本：
 
-    *   **Gemini 3.6 Flash**（`gemini-3.6-flash`）：具備更佳的權杖
+    *   **Gemini 3.6 Flash**（`gemini-3.6-flash`）：具備更佳的 token
         效率與程式碼／代理規劃能力，價格低於
         3.5 Flash，並解決了開發人員對輸出冗長的回饋。
     *   **Gemini 3.5 Flash-Lite**（`gemini-3.5-flash-lite`）：提供
@@ -946,7 +946,7 @@
 
 ## 2025 年 11 月 4 日 {#11-04-2025}
 
-*   針對 [Gemini 2.5 Flash Image](/docs/image-generation/)，圖片的輸入權杖數量
+*   針對 [Gemini 2.5 Flash Image](/docs/image-generation/)，圖片的輸入 token 數量
     已從 1290 降至 258，降低了圖片
     編輯的成本。
 
@@ -1290,7 +1290,7 @@
         音訊與影片輸入，或只在偵測到最終使用者
         說話時才擷取。
 
-    *   **可設定的媒體解析度：**透過選取輸入媒體的解析度，針對品質或權杖用量最佳化。
+    *   **可設定的媒體解析度：**透過選取輸入媒體的解析度，針對品質或 token 用量最佳化。
 
     *   **更豐富的輸出與功能**
 
@@ -1301,7 +1301,7 @@
     *   **文字串流：**在文字回應生成時逐步接收，
         讓您能更快向使用者顯示。
 
-    *   **權杖用量回報：**透過伺服器訊息的 `usageMetadata` 欄位中提供的詳細權杖
+    *   **token 用量回報：**透過伺服器訊息的 `usageMetadata` 欄位中提供的詳細 token
         數量，深入瞭解用量，並依模態與提示詞或回應階段細分。
 
 

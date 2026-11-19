@@ -63,7 +63,7 @@
 
   **page_token**: `string`
 
-  選填。從先前的 `ListVoices` 呼叫收到的分頁權杖。提供此權杖以擷取下一頁。分頁時，所有篩選查詢參數（`language_code`、`region_code`、`accent`、`persona`、`context`、`gender`、`pitch`、`type` 與 `search`）都必須與傳回此權杖的呼叫一致；否則要求會以 `INVALID_ARGUMENT` 失敗。各頁之間的 `page_size` 可以變更。
+  選填。從先前的 `ListVoices` 呼叫收到的分頁 token。提供此 token 以擷取下一頁。分頁時，所有篩選查詢參數（`language_code`、`region_code`、`accent`、`persona`、`context`、`gender`、`pitch`、`type` 與 `search`）都必須與傳回此 token 的呼叫一致；否則要求會以 `INVALID_ARGUMENT` 失敗。各頁之間的 `page_size` 可以變更。
 
   
 
@@ -204,7 +204,7 @@
 
   **next_page_token**: `string`
 
-  可作為 `page_token` 傳送以擷取下一頁的權杖。若為空，表示沒有後續頁面。
+  可作為 `page_token` 傳送以擷取下一頁的 token。若為空，表示沒有後續頁面。
 
 
 ## 資源 {#resources}
@@ -419,21 +419,21 @@
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。語音建立請求的權杖用量統計。僅在 `CreateVoice` 的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及 `GetVoice` 與 `ListVoices` 回應中不會設定。"
+??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 用量統計。僅在 `CreateVoice` 的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及 `GetVoice` 與 `ListVoices` 回應中不會設定。"
 
       **total_input_tokens**: `integer`
 
-      提示詞（上下文）中的權杖數量。
+      提示詞（上下文）中的 token 數量。
 
       **initial_input_tokens**: `integer`
 
-      此互動第一輪使用的輸入權杖數量。
+      此互動第一輪使用的輸入 token 數量。
 
 
 
-    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量相關聯的模態。"
 
             可能的值：
 
@@ -447,19 +447,19 @@
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_cached_tokens**: `integer`
 
-      提示詞中已快取部分的權杖數量（快取內容）。
+      提示詞中已快取部分的 token 數量（快取內容）。
 
 
 
-    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量相關聯的模態。"
 
             可能的值：
 
@@ -473,19 +473,19 @@
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_output_tokens**: `integer`
 
-      所有產生回應的權杖總數。
+      所有產生回應的 token 總數。
 
 
 
-    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量相關聯的模態。"
 
             可能的值：
 
@@ -499,19 +499,19 @@
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_tool_use_tokens**: `integer`
 
-      工具使用提示詞中存在的權杖數量。
+      工具使用提示詞中存在的 token 數量。
 
 
 
-    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量相關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量相關聯的模態。"
 
             可能的值：
 
@@ -525,17 +525,17 @@
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_thought_tokens**: `integer`
 
-      思考模型的思考權杖數量。
+      思考模型的思考 token 數量。
 
       **total_tokens**: `integer`
 
-      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+      互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
 

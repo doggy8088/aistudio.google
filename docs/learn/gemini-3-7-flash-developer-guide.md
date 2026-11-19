@@ -8,7 +8,7 @@
 
 ![Omar Sanseviero](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/omar-sanseviero.webp)
 
-今天，我們推出 [Gemini 3.7 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/)，這是我們迄今最聰明的主力模型，適用於 Google Antigravity、透過 Google AI Studio 提供的 Gemini API，以及 Gemini Enterprise Agent Platform 中的程式設計與代理應用。Gemini 3.7 Flash 專為開發者打造、作為聰明的日常主力，在軟體工程上帶來一大進步，用起來感覺明顯更好。本次發布為你的日常工作流程帶來更強的智慧，適用於複雜任務、指令遵循與工具呼叫。Gemini 3.7 Flash 的上市優惠價為輸入權杖 **$0.75/1M**、輸出權杖 **$3.75/1M**。優惠價至 2026 年 12 月 31 日截止；屆時將適用輸入權杖 $1.50/1M、輸出權杖 $7.50/1M。我們迫不及待想看你把程式設計任務丟給它，讓 3.7 Flash 證明自己。
+今天，我們推出 [Gemini 3.7 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/)，這是我們迄今最聰明的主力模型，適用於 Google Antigravity、透過 Google AI Studio 提供的 Gemini API，以及 Gemini Enterprise Agent Platform 中的程式設計與代理應用。Gemini 3.7 Flash 專為開發者打造、作為聰明的日常主力，在軟體工程上帶來一大進步，用起來感覺明顯更好。本次發布為你的日常工作流程帶來更強的智慧，適用於複雜任務、指令遵循與工具呼叫。Gemini 3.7 Flash 的上市優惠價為輸入 tokens **$0.75/1M**、輸出 tokens **$3.75/1M**。優惠價至 2026 年 12 月 31 日截止；屆時將適用輸入 tokens $1.50/1M、輸出 tokens $7.50/1M。我們迫不及待想看你把程式設計任務丟給它，讓 3.7 Flash 證明自己。
 
 為開發者帶來的重點包括：**更強的智慧，適用於程式設計與多步驟代理任務**：在問題解決與除錯方面有大幅提升，在真實世界軟體工程基準與多步驟執行上的準確率也顯著提高，減少代理迴圈失敗與手動除錯的額外負擔。**網頁開發與 UI 設計**：直接從設計稿生成更高擬真度的桌面與網頁應用程式碼，在設計還原度方面有顯著提升，也能稽核現有程式碼庫與設計稿的對照，驗證 1:1 設計一致性。**新的預設模型**：正逐步在 *Google Antigravity*（新使用者）、*Google AI Studio Build* 與 *Gemini API 中的 Managed Agents* 推出為預設模型。
 
@@ -28,7 +28,7 @@ Gemini 3.7 Flash 為日常工程工作流程帶來明顯的改進與紀律。
 
 ## 了解思考等級
 
-Gemini 3.7 Flash 讓開發者能透過調整模型的思考等級 `(thinking_level= “low”|”medium”|”high”)”`，靈活控制延遲與智慧。**低思考投入**：為延遲敏感的任務縮短回答時間，例如事件應變管線、即時聊天、撰寫草稿與快速資料分析。**中（預設）**：推薦用於大多數任務與代理使用案例，首次通過準確率更高。**高思考投入**：最大化模型思考與使用工具的能力。最適合複雜推理、困難數學，以及棘手的程式設計或代理任務。允許延伸思考與函式呼叫，但權杖消耗與成本較高。
+Gemini 3.7 Flash 讓開發者能透過調整模型的思考等級 `(thinking_level= “low”|”medium”|”high”)”`，靈活控制延遲與智慧。**低思考投入**：為延遲敏感的任務縮短回答時間，例如事件應變管線、即時聊天、撰寫草稿與快速資料分析。**中（預設）**：推薦用於大多數任務與代理使用案例，首次通過準確率更高。**高思考投入**：最大化模型思考與使用工具的能力。最適合複雜推理、困難數學，以及棘手的程式設計或代理任務。允許延伸思考與函式呼叫，但 token 消耗與成本較高。
 
 ```
 from google import genai

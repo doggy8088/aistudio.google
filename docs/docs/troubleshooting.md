@@ -33,7 +33,7 @@ Gemini API 的官方用戶端 SDK（例如 [Python SDK](https://github.com/googl
 | :--- | :--- |
 | 候選數量 | 1-8（整數，Gemini 3 與 4 不支援） |
 | Temperature | 0.0-1.0（Gemini 3.6+ 與 4 會忽略；在舊版 Gemini 3 模型上保持預設值） |
-| 輸出權杖數量上限 | 使用[模型頁面](/docs/models/)確認你所用模型的權杖數量上限。 |
+| 輸出 token 數量上限 | 使用[模型頁面](/docs/models/)確認你所用模型的 token 數量上限。 |
 | TopP | 0.0-1.0（Gemini 3.6+ 與 4 會忽略；在舊版 Gemini 3 模型上保持預設值） |
 
 除了檢查參數值之外，也請確認你使用的是正確的 [API 版本](/api-reference/api-versions/)（例如 `/v1` 或 `/v1beta`），以及支援所需功能的模型。例如，如果某項功能處於 Beta 版，則僅能在 `/v1beta` API 版本中使用。
@@ -42,11 +42,11 @@ Gemini API 的官方用戶端 SDK（例如 [Python SDK](https://github.com/googl
 
 請確認你使用的是[模型頁面](/docs/models/)所列的支援模型。
 
-## 思考模型的延遲或權杖用量較高 {#high-latency-or-token-usage}
+## 思考模型的延遲或 token 用量較高 {#high-latency-or-token-usage}
 
-延遲或權杖用量較高，通常是因為 Gemini 3.x 模型預設啟用思考功能。已淘汰的 Gemini 2.5 模型也使用預設思考。
+延遲或 token 用量較高，通常是因為 Gemini 3.x 模型預設啟用思考功能。已淘汰的 Gemini 2.5 模型也使用預設思考。
 
-思考模型會生成內部推理權杖以提升品質。這個推理過程會同時增加回應延遲與權杖總消耗量。
+思考模型會生成內部推理 token 以提升品質。這個推理過程會同時增加回應延遲與 token 總消耗量。
 
 如果你更重視低延遲，或需要盡量降低成本，可以調低思考層級或關閉思考。
 
@@ -68,14 +68,14 @@ Gemini API 的官方用戶端 SDK（例如 [Python SDK](https://github.com/googl
       `temperature`、`top_p` 與 `top_k` 參數控制舊版模型生成回應的方式。Gemini 4 與 Gemini 3.6+ 模型會忽略 `temperature`、`top_p` 與 `top_k` 的自訂值，並傳回淘汰警告標頭（且在未來版本中將傳回 `400` 錯誤）。請從你的要求設定中移除 `temperature`、`top_p` 與 `top_k`。對於舊版 Gemini 3 模型，請將這些參數保持為預設值，以避免推理效能下降。
 
 
-## 重複權杖問題 {#repetitive-tokens}
+## 重複 token 問題 {#repetitive-tokens}
 
-如果你看到輸出權杖重複出現，請嘗試下列建議，以協助減少或消除此現象。溫度調整僅適用於支援取樣參數的舊版模型；對於 Gemini 3 與 Gemini 4 模型，請改用提示詞與系統指令的因應方式。
+如果你看到輸出 tokens 重複出現，請嘗試下列建議，以協助減少或消除此現象。溫度調整僅適用於支援取樣參數的舊版模型；對於 Gemini 3 與 Gemini 4 模型，請改用提示詞與系統指令的因應方式。
 
 | 描述 | 原因 | 建議因應方式 |
 | :--- | :--- | :--- |
 | Markdown 表格中連字號重複 | 當表格內容較長，模型試圖建立視覺上對齊的 Markdown 表格時，可能發生此情況。不過，Markdown 中的對齊並非正確算繪的必要條件。 | 在提示詞中加入指示，為模型提供生成 Markdown 表格的具體準則。提供遵循這些準則的範例。對於支援取樣參數的舊版模型，你也可以嘗試調整溫度（>= 0.8）。以下是你可以加入提示詞以避免此問題的一組範例準則： # Markdown Table Format * Separator line: Markdown tables must include a separator line below the header row. The separator line must use only 3 hyphens per column, for example: \|---\|---\|---\|. Using more hypens like ----, -----, ------ can result in errors. Always use \|:---\|, \|---:\|, or \|---\| in these separator strings. For example: \| Date \| Description \| Attendees \| \|---\|---\|---\| \| 2024-10-26 \| Annual Conference \| 500 \| \| 2025-01-15 \| Q1 Planning Session \| 25 \| * Alignment: Do not align columns. Always use \|---\|. For three columns, use \|---\|---\|---\| as the separator line. For four columns use \|---\|---\|---\|---\| and so on. * Conciseness: Keep cell content brief and to the point. * Never pad column headers or other cells with lots of spaces to match with width of other content. Only a single space on each side is needed. For example, always do "\| column name \|" instead of "\| column name \|". Extra spaces are wasteful. A markdown renderer will automatically take care displaying the content in a visually appealing form. |
-| Markdown 表格中權杖重複 | 與連字號重複類似，當模型試圖在視覺上對齊表格內容時會發生此情況。Markdown 中的對齊並非正確算繪的必要條件。 | 嘗試在系統提示詞中加入如下指示： FOR TABLE HEADINGS, IMMEDIATELY ADD ' \|' AFTER THE TABLE HEADING. 對於支援取樣參數的舊版模型，請嘗試較高的溫度（>= 0.8），以減少輸出中的重複。 |
+| Markdown 表格中 token 重複 | 與連字號重複類似，當模型試圖在視覺上對齊表格內容時會發生此情況。Markdown 中的對齊並非正確算繪的必要條件。 | 嘗試在系統提示詞中加入如下指示： FOR TABLE HEADINGS, IMMEDIATELY ADD ' \|' AFTER THE TABLE HEADING. 對於支援取樣參數的舊版模型，請嘗試較高的溫度（>= 0.8），以減少輸出中的重複。 |
 | 結構化輸出中換行字元（`\n`）重複 | 當模型輸入包含 Unicode 或逸出序列（例如 `\u` 或 `\t`）時，可能導致換行重複。 | 檢查提示詞中禁止的逸出序列，並將其替換為 UTF-8 字元。例如，JSON 範例中的 `\u` 逸出序列可能導致模型在輸出中也使用這些序列。請指示模型允許的逸出方式。加入如下系統指令： In quoted strings, the only allowed escape sequences are \\, \n, and \". Instead of \u escapes, use UTF-8. |
 | 使用結構化輸出時文字重複 | 當模型輸出的欄位順序與已定義的結構化結構定義不同時，可能導致文字重複。 | 不要在提示詞中指定欄位順序。將所有輸出欄位設為必填。 |
 | 工具呼叫重複 | 如果模型遺失先前思考的上下文，和／或被迫呼叫無法使用的端點，就可能發生此情況。 | 指示模型在思考過程中維持狀態。在系統指令末尾加入： When thinking silently: ALWAYS start the thought with a brief (one sentence) recap of the current progress on the task. In particular, consider whether the task is already done. |
@@ -160,9 +160,9 @@ Your API key was reported as leaked. Please use another API key.
 
 如需更高品質的模型輸出，請探索撰寫更具結構的提示詞。[提示詞工程指南](/docs/prompting-strategies/)頁面介紹了一些基本概念、策略與最佳做法，協助你入門。
 
-## 瞭解權杖上限 {#understand-token}
+## 瞭解 token 上限 {#understand-token}
 
-請閱讀我們的[權杖指南](/docs/tokens/)，以更深入瞭解如何計算權杖及其上限。
+請閱讀我們的[token 指南](/docs/tokens/)，以更深入瞭解如何計算 token 及其上限。
 
 ## 已知問題 {#known-issues}
 

@@ -14,7 +14,7 @@ Live API 是一個有狀態的 API，使用 [WebSockets](https://en.wikipedia.or
 | Method | Endpoint |
 | --- | --- |
 | [啟動 Live 工作階段](/api-reference/live/bidi-generate-content/) | `WSS` `/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent` 開啟有狀態的 WebSocket 工作階段，與模型交換文字、音訊與影片。 |
-| [建立臨時驗證權杖](/api-reference/generate-content/create-token/) | `POST` `/v1beta/auth_tokens` 建立可用於限制 BidiGenerateContent 工作階段行為的權杖。 |
+| [建立臨時驗證 token](/api-reference/generate-content/create-token/) | `POST` `/v1beta/auth_tokens` 建立可用於限制 BidiGenerateContent 工作階段行為的 token。 |
 
 
 ## 資料模型 {#data-models}
@@ -253,7 +253,7 @@ BidiGenerateContent 呼叫的回應訊息。
 | Field | Type | Description |
 | --- | --- | --- |
 | `slidingWindow` | [`SlidingWindow`](/api-reference/live/#ContextWindowCompressionConfig.SlidingWindow) | 滑動視窗機制。 |
-| `triggerTokens` | `int64` | 觸發上下文視窗壓縮所需的權杖數量（在執行一個回合之前計算）。這可用來在品質與延遲之間取得平衡，因為較短的上下文視窗可能帶來更快的模型回應。不過，任何壓縮操作都會造成暫時的延遲增加，因此不應頻繁觸發。若未設定，預設值為模型上下文視窗上限的 80%。如此可保留 20% 供下一個使用者要求／模型回應使用。 |
+| `triggerTokens` | `int64` | 觸發上下文視窗壓縮所需的 token 數量（在執行一個回合之前計算）。這可用來在品質與延遲之間取得平衡，因為較短的上下文視窗可能帶來更快的模型回應。不過，任何壓縮操作都會造成暫時的延遲增加，因此不應頻繁觸發。若未設定，預設值為模型上下文視窗上限的 80%。如此可保留 20% 供下一個使用者要求／模型回應使用。 |
 
 
 ### EndSensitivity {#RealtimeInputConfig.AutomaticActivityDetection.EndSensitivity}
@@ -349,7 +349,7 @@ Live 工作階段的不同活動狀態。此欄位一律與 `turnComplete` 一�
 | Field | Type | Description |
 | --- | --- | --- |
 | `newHandle` | `string` | 代表可恢復狀態的新 handle。若 `resumable`=false，則為空。 |
-| `resumable` | `bool` | 若目前工作階段在此時點可以恢復，則為 true。工作階段在某些時點無法恢復，例如模型正在執行函式呼叫或生成時。在這種狀態下恢復工作階段（使用先前的工作階段權杖）會導致部分資料遺失。此時 `newHandle` 會為空，且 `resumable` 會為 false。 |
+| `resumable` | `bool` | 若目前工作階段在此時點可以恢復，則為 true。工作階段在某些時點無法恢復，例如模型正在執行函式呼叫或生成時。在這種狀態下恢復工作階段（使用先前的工作階段 token）會導致部分資料遺失。此時 `newHandle` 會為空，且 `resumable` 會為 false。 |
 
 
 ### SlidingWindow {#ContextWindowCompressionConfig.SlidingWindow}
@@ -359,7 +359,7 @@ SlidingWindow 方法的運作方式是捨棄上下文視窗開頭的內容。產
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `targetTokens` | `int64` | 要保留的目標權杖數量。預設值為 trigger_tokens/2。捨棄上下文視窗的部分內容會造成暫時的延遲增加，因此此值應經過校準，避免頻繁的壓縮操作。 |
+| `targetTokens` | `int64` | 要保留的目標 token 數量。預設值為 trigger_tokens/2。捨棄上下文視窗的部分內容會造成暫時的延遲增加，因此此值應經過校準，避免頻繁的壓縮操作。 |
 
 
 ### StartSensitivity {#RealtimeInputConfig.AutomaticActivityDetection.StartSensitivity}
@@ -415,12 +415,12 @@ SlidingWindow 方法的運作方式是捨棄上下文視窗開頭的內容。產
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `promptTokenCount` | `int32` | 僅輸出。提示詞中的權杖數量。當設定了 `cachedContent` 時，這仍是提示詞的總有效大小，也就是包含快取內容中的權杖數量。 |
-| `cachedContentTokenCount` | `int32` | 提示詞快取部分（快取內容）中的權杖數量 |
-| `responseTokenCount` | `int32` | 僅輸出。所有生成的回應候選的權杖總數。 |
-| `toolUsePromptTokenCount` | `int32` | 僅輸出。工具使用提示詞中存在的權杖數量。 |
-| `thoughtsTokenCount` | `int32` | 僅輸出。思考模型思考內容的權杖數量。 |
-| `totalTokenCount` | `int32` | 僅輸出。生成要求的權杖總數（提示詞＋回應候選）。 |
+| `promptTokenCount` | `int32` | 僅輸出。提示詞中的 token 數量。當設定了 `cachedContent` 時，這仍是提示詞的總有效大小，也就是包含快取內容中的 token 數量。 |
+| `cachedContentTokenCount` | `int32` | 提示詞快取部分（快取內容）中的 token 數量 |
+| `responseTokenCount` | `int32` | 僅輸出。所有生成的回應候選的 token 總數。 |
+| `toolUsePromptTokenCount` | `int32` | 僅輸出。工具使用提示詞中存在的 token 數量。 |
+| `thoughtsTokenCount` | `int32` | 僅輸出。思考模型思考內容的 token 數量。 |
+| `totalTokenCount` | `int32` | 僅輸出。生成要求的 token 總數（提示詞＋回應候選）。 |
 | `promptTokensDetails[]` | [`ModalityTokenCount`](/api-reference/generate-content/#Resource:ModalityTokenCount) | 僅輸出。要求輸入中所處理的模態清單。 |
 | `cacheTokensDetails[]` | [`ModalityTokenCount`](/api-reference/generate-content/#Resource:ModalityTokenCount) | 僅輸出。要求輸入中快取內容的模態清單。 |
 | `responseTokensDetails[]` | [`ModalityTokenCount`](/api-reference/generate-content/#Resource:ModalityTokenCount) | 僅輸出。回應中所回傳的模態清單。 |
@@ -450,40 +450,40 @@ VAD 訊號的類型。
 | `ACTIVITY_END` | 句子結束訊號。 |
 
 
-## 臨時驗證權杖 {#ephemeral-auth-tokens}
+## 臨時驗證 token {#ephemeral-auth-tokens}
 
-臨時驗證權杖可以呼叫 `AuthTokenService.CreateToken` 取得，然後用於 `GenerativeService.BidiGenerateContentConstrained`：可以將權杖以 `access_token` 查詢參數傳入，或放在 HTTP `Authorization` 標頭中，並在權杖前加上「`Token `」前綴。
+臨時驗證 token 可以呼叫 `AuthTokenService.CreateToken` 取得，然後用於 `GenerativeService.BidiGenerateContentConstrained`：可以將 token 以 `access_token` 查詢參數傳入，或放在 HTTP `Authorization` 標頭中，並在 token 前加上「`Token `」前綴。
 
 ### CreateAuthTokenRequest {#CreateAuthTokenRequest}
 
-建立臨時驗證權杖。
+建立臨時驗證 token。
 
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `authToken` | [`AuthToken`](/api-reference/live/#AuthToken) | 必要。要建立的權杖。 |
+| `authToken` | [`AuthToken`](/api-reference/live/#AuthToken) | 必要。要建立的 token。 |
 
 
 ### AuthToken {#AuthToken}
 
-建立臨時驗證權杖的要求。
+建立臨時驗證 token 的要求。
 
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `name` | `string` | 僅輸出。識別碼。權杖本身。 |
-| `expireTime` | [`Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) | 選用。僅輸入。不可變。選用的時間；超過此時間後，使用產生的權杖時，BidiGenerateContent 工作階段中的訊息會被拒絕。（Gemini 可能會在此時間後預先關閉工作階段。）若未設定，預設為 30 分鐘後。若有設定，此值必須小於未來 20 小時。 |
-| `newSessionExpireTime` | [`Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) | 選用。僅輸入。不可變。超過此時間後，使用此要求產生的權杖建立的新 Live API 工作階段會被拒絕。若未設定，預設為 60 秒後。若有設定，此值必須小於未來 20 小時。 |
+| `name` | `string` | 僅輸出。識別碼。token 本身。 |
+| `expireTime` | [`Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) | 選用。僅輸入。不可變。選用的時間；超過此時間後，使用產生的 token 時，BidiGenerateContent 工作階段中的訊息會被拒絕。（Gemini 可能會在此時間後預先關閉工作階段。）若未設定，預設為 30 分鐘後。若有設定，此值必須小於未來 20 小時。 |
+| `newSessionExpireTime` | [`Timestamp`](https://protobuf.dev/reference/protobuf/google.protobuf/#timestamp) | 選用。僅輸入。不可變。超過此時間後，使用此要求產生的 token 建立的新 Live API 工作階段會被拒絕。若未設定，預設為 60 秒後。若有設定，此值必須小於未來 20 小時。 |
 | `fieldMask` | [`FieldMask`](https://protobuf.dev/reference/protobuf/google.protobuf/#field-mask) | 選用。僅輸入。不可變。若 field_mask 為空，且 `bidiGenerateContentSetup` 不存在，則有效的 `BidiGenerateContentSetup` 訊息取自 Live API 連線。若 field_mask 為空，且 `bidiGenerateContentSetup` *確實* 存在，則有效的 `BidiGenerateContentSetup` 訊息完全取自此要求中的 `bidiGenerateContentSetup`，Live API 連線的設定訊息會被忽略。若 field_mask 不為空，則 `bidiGenerateContentSetup` 中的對應欄位會覆寫 Live API 連線設定訊息中的欄位。 |
 
 
-聯集欄位 `config`。產生的權杖所專屬的方法設定。`config` 只能是下列其中一項：
+聯集欄位 `config`。產生的 token 所專屬的方法設定。`config` 只能是下列其中一項：
 
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `bidiGenerateContentSetup` | [`BidiGenerateContentSetup`](/api-reference/live/#BidiGenerateContentSetup) | 選用。僅輸入。不可變。`BidiGenerateContent` 專屬的設定。 |
-| `uses` | `int32` | 選用。僅輸入。不可變。權杖可使用的次數。若此值為零，則不設上限。恢復 Live API 工作階段不計為一次使用。若未指定，預設值為 1。 |
+| `uses` | `int32` | 選用。僅輸入。不可變。token 可使用的次數。若此值為零，則不設上限。恢復 Live API 工作階段不計為一次使用。若未指定，預設值為 1。 |
 
 
 ## 常見類型詳細資訊 {#more-info}

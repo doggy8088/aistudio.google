@@ -751,7 +751,7 @@ Gemini 3.8 TTS 支援五種挑選或建立聲音的方式：
 | `type`（Python 中為 `type_`） | `list[str]` | 依聲音來源篩選：`"prebuilt"`、`"prompted"`（[Voice design](/docs/voice-design/) 與 [Voice remixing](/docs/voice-remixing/)），或 `"replicated"`（[Voice replication](/docs/voice-replication/)）。 |
 | `search` | `str` | 自由文字子字串搜尋，不區分大小寫地比對 `display_name` 與 `description`。 |
 | `page_size` | `int` | 每頁回傳的聲音數量上限（預設 `50`，最大 `1000`）。 |
-| `page_token` | `str` | 來自 `response.next_page_token` 的權杖，用於取得下一頁結果。 |
+| `page_token` | `str` | 來自 `response.next_page_token` 的 token，用於取得下一頁結果。 |
 
 === "Python"
 

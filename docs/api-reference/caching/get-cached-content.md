@@ -203,6 +203,6 @@
 
     **totalTokenCount**: `integer`
 
-    快取內容所消耗的權杖總數。
+    快取內容所消耗的 token 總數。
 
 

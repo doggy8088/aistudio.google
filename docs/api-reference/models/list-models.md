@@ -20,7 +20,7 @@
 
   **pageToken**：`string`
 
-  分頁權杖，從先前的 `ListModels` 呼叫中取得。將某次請求傳回的 `page_token` 作為參數傳入下一次請求，即可擷取下一頁。進行分頁時，提供給 `ListModels` 的所有其他參數，必須與提供該分頁權杖的那次呼叫相同。
+  分頁 token，從先前的 `ListModels` 呼叫中取得。將某次請求傳回的 `page_token` 作為參數傳入下一次請求，即可擷取下一頁。進行分頁時，提供給 `ListModels` 的所有其他參數，必須與提供該分頁 token 的那次呼叫相同。
 
   
 
@@ -114,7 +114,7 @@
 
   **nextPageToken**：`string`
 
-  可作為 `page_token` 傳送以擷取下一頁的權杖。若省略此欄位，表示已無更多頁面。
+  可作為 `page_token` 傳送以擷取下一頁的 token。若省略此欄位，表示已無更多頁面。
 
 
 ## 資源 {#resources}
@@ -181,7 +181,7 @@
 
   **inputTokenLimit**：`integer`
 
-  此模型允許的輸入權杖數量上限。
+  此模型允許的輸入 token 數量上限。
 
   
 
@@ -190,7 +190,7 @@
 
   **outputTokenLimit**：`integer`
 
-  此模型可用的輸出權杖數量上限。
+  此模型可用的輸出 token 數量上限。
 
   
 
@@ -226,7 +226,7 @@
 
   **topP**：`number`
 
-  適用於 [Nucleus sampling](/docs/prompting-strategies/#model-parameters)。Nucleus sampling 會考量機率總和至少達到 `top_p` 的最小權杖集合。此值指定後端呼叫模型時要使用的預設值。
+  適用於 [Nucleus sampling](/docs/prompting-strategies/#model-parameters)。Nucleus sampling 會考量機率總和至少達到 `top_p` 的最小 token 集合。此值指定後端呼叫模型時要使用的預設值。
 
   
 
@@ -235,7 +235,7 @@
 
   **topK**：`integer`
 
-  適用於 Top-k 取樣。Top-k 取樣會考量機率最高的 `top_k` 個權杖所組成的集合。此值指定後端呼叫模型時要使用的預設值。若為空值，表示模型不使用 Top-k 取樣，且不允許將 `top_k` 作為生成參數。
+  適用於 Top-k 取樣。Top-k 取樣會考量機率最高的 `top_k` 個 token 所組成的集合。此值指定後端呼叫模型時要使用的預設值。若為空值，表示模型不使用 Top-k 取樣，且不允許將 `top_k` 作為生成參數。
 
   
 

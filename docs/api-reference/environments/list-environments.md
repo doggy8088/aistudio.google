@@ -42,7 +42,7 @@
 
   **page_token**: `string`
 
-  選填。分頁權杖。
+  選填。分頁 token。
 
   
 
@@ -156,7 +156,7 @@
 
   **next_page_token**: `string`
 
-  分頁權杖。
+  分頁 token。
 
 
 ## 資源 {#resources}
@@ -365,5 +365,5 @@
 
   **environment_key**: `string`
 
-  僅供輸出。在建立環境時為 self_hosted 環境產生的秘密權杖。自行託管的沙箱常駐程式會使用此權杖驗證輪詢與串流請求。僅在 CreateEnvironment 回應中傳回，後續的 GetEnvironment 與 ListEnvironments 呼叫不會包含此欄位。
+  僅供輸出。在建立環境時為 self_hosted 環境產生的秘密 token。自行託管的沙箱常駐程式會使用此 token 驗證輪詢與串流請求。僅在 CreateEnvironment 回應中傳回，後續的 GetEnvironment 與 ListEnvironments 呼叫不會包含此欄位。
 

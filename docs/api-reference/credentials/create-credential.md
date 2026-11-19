@@ -92,11 +92,11 @@
 
 ??? note "**HttpBearerConfig**"
 
-      HTTP Bearer 權杖憑證的設定。
+      HTTP Bearer token 憑證的設定。
 
       **token**：必填 `string`
 
-      僅供輸入。靜態 Bearer 權杖。僅供寫入；不會在回應中傳回。
+      僅供輸入。靜態 Bearer token。僅供寫入；不會在回應中傳回。
 
 
 
@@ -121,7 +121,7 @@
 
       **header_name**：`string`
 
-      選填。要注入權杖的標頭名稱。預設為 'Authorization'。
+      選填。要注入 token 的標頭名稱。預設為 'Authorization'。
 
 
 
@@ -130,7 +130,7 @@
 
       **prefix**：`string`
 
-      選填。要加在權杖前面的前綴。預設為 'Bearer'。設為 '' 表示不加前綴。
+      選填。要加在 token 前面的前綴。預設為 'Bearer'。設為 '' 表示不加前綴。
 
 
 
@@ -138,7 +138,7 @@
 
 ??? note "**OAuth2Config**"
 
-      具備自動權杖更新功能的 OAuth2 憑證設定。
+      具備自動 token 更新功能的 OAuth2 憑證設定。
 
       **client_id**：必填 `string`
 
@@ -160,7 +160,7 @@
 
       **refresh_token**：必填 `string`
 
-      僅供輸入。OAuth2 更新權杖。僅供寫入；不會在回應中傳回。
+      僅供輸入。OAuth2 更新 token。僅供寫入；不會在回應中傳回。
 
 
 
@@ -169,7 +169,7 @@
 
       **token_url**：必填 `string`
 
-      用於更新存取權杖的 OAuth2 權杖端點 URL。
+      用於更新存取 token 的 OAuth2tokens 端點 URL。
 
 
 
@@ -242,8 +242,8 @@
 
     可能的值：
 
-    - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
-    - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
+    - `bearer_token`：以標頭形式注入的靜態 token。無更新邏輯。
+    - `oauth2`：使用儲存的更新 token，自動更新已過期的存取 token。
     - `environment_variable`：注入沙箱容器的環境變數。
 
 

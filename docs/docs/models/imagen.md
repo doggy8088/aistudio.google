@@ -21,7 +21,7 @@
 | --- | --- |
 | 模型代碼 | **Gemini API** `imagen-4.0-generate-001` `imagen-4.0-ultra-generate-001` `imagen-4.0-fast-generate-001` |
 | 支援的資料類型 | **輸入** 文字 **輸出** 圖片 |
-| 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 480 個權杖（文字） **輸出圖片** 1 至 4 張（Ultra/Standard/Fast） |
+| token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 480 tokens（文字） **輸出圖片** 1 至 4 張（Ultra/Standard/Fast） |
 | 最近更新 | 2025 年 6 月 |
 
 

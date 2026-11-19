@@ -916,11 +916,11 @@ Gemini Live API 支援以 [`gemini-3.5-transcribe-live`](/docs/models/gemini-3.5
       ```
 
 
-## 在用戶端應用程式中使用臨時權杖 {#ephemeral-tokens-in-client-applications}
+## 在用戶端應用程式中使用臨時 token {#ephemeral-tokens-in-client-applications}
 
-對於用戶端對伺服器的應用程式（例如直接從麥克風串流的行動或網頁應用程式），請使用[臨時權杖](/docs/live-api/ephemeral-tokens/)，避免在用戶端程式碼中暴露你的 API 金鑰。
+對於用戶端對伺服器的應用程式（例如直接從麥克風串流的行動或網頁應用程式），請使用[臨時 token](/docs/live-api/ephemeral-tokens/)，避免在用戶端程式碼中暴露你的 API 金鑰。
 
-在發起用戶端連線之前，先在伺服器上建立一個受限制的臨時權杖：
+在發起用戶端連線之前，先在伺服器上建立一個受限制的臨時 token：
 
 
 === "Python"

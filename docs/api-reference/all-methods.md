@@ -122,7 +122,7 @@ Gemini API 的所有 REST 方法，依參考頁面分組。
 | --- | --- |
 | [`GenerateContent`](/api-reference/generate-content/generate-content/) | `POST` `/v1beta/models/{model}:generateContent` 依輸入的 `GenerateContentRequest` 產生模型回應。 |
 | [`StreamGenerateContent`](/api-reference/generate-content/stream-generate-content/) | `POST` `/v1beta/models/{model}:streamGenerateContent` 依輸入的 `GenerateContentRequest` 從模型產生[串流回應](/docs/text-generation/#streaming-responses)。 |
-| [`CreateToken`](/api-reference/generate-content/create-token/) | `POST` `/v1beta/auth_tokens` 建立可用於限制 BidiGenerateContent 工作階段行為的權杖。 |
+| [`CreateToken`](/api-reference/generate-content/create-token/) | `POST` `/v1beta/auth_tokens` 建立可用於限制 BidiGenerateContent 工作階段行為的 token。 |
 
 
 ## 模型 {#models}
@@ -132,7 +132,7 @@ Gemini API 的所有 REST 方法，依參考頁面分組。
 
 | 方法 | HTTP 要求 |
 | --- | --- |
-| [`GetModel`](/api-reference/models/get-model/) | `GET` `/v1beta/models/{model}` 取得特定 `Model` 的資訊，例如其版本號碼、權杖上限、[參數](/docs/prompting-strategies/#model-parameters) 與其他中繼資料。 |
+| [`GetModel`](/api-reference/models/get-model/) | `GET` `/v1beta/models/{model}` 取得特定 `Model` 的資訊，例如其版本號碼、token 上限、[參數](/docs/prompting-strategies/#model-parameters) 與其他中繼資料。 |
 | [`ListModels`](/api-reference/models/list-models/) | `GET` `/v1beta/models` 列出可透過 Gemini API 使用的 [`Model`](/docs/models/)。 |
 
 
@@ -167,14 +167,14 @@ Gemini API 的所有 REST 方法，依參考頁面分組。
 | [`CreateFile`](/api-reference/files/create-file/) | `POST` `/v1beta/files` 建立 `File`。 |
 
 
-## 計算權杖數 {#tokens}
+## 計算 token 數 {#tokens}
 
-要求與回應的詳細資訊，請參閱 [計算權杖數參考文件](/api-reference/tokens/)。
+要求與回應的詳細資訊，請參閱 [計算 token 數參考文件](/api-reference/tokens/)。
 
 
 | 方法 | HTTP 要求 |
 | --- | --- |
-| [`CountTokens`](/api-reference/tokens/count-tokens/) | `POST` `/v1beta/models/{model}:countTokens` 對輸入的 `Content` 執行模型的 tokenizer，並傳回權杖數量。 |
+| [`CountTokens`](/api-reference/tokens/count-tokens/) | `POST` `/v1beta/models/{model}:countTokens` 對輸入的 `Content` 執行模型的 tokenizer，並傳回 token 數量。 |
 
 
 ## Caching {#caching}

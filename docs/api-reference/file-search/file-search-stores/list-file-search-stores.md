@@ -20,7 +20,7 @@
 
   **pageToken**: `string`
 
-  選填。從先前的 `ListFileSearchStores` 呼叫取得的分頁權杖。將回應中傳回的 `next_page_token` 作為引數傳入下一個要求，即可擷取下一頁。分頁時，提供給 `ListFileSearchStores` 的所有其他參數，都必須與提供該分頁權杖的那次呼叫相同。
+  選填。從先前的 `ListFileSearchStores` 呼叫取得的分頁 token。將回應中傳回的 `next_page_token` 作為引數傳入下一個要求，即可擷取下一頁。分頁時，提供給 `ListFileSearchStores` 的所有其他參數，都必須與提供該分頁 token 的那次呼叫相同。
 
   
 
@@ -57,7 +57,7 @@
 
   **nextPageToken**: `string`
 
-  可作為 `page_token` 傳送以擷取下一頁的權杖。若省略此欄位，表示沒有更多頁面。
+  可作為 `page_token` 傳送以擷取下一頁的 token。若省略此欄位，表示沒有更多頁面。
 
   
 

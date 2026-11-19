@@ -26,7 +26,7 @@
 
   **page_token**: `string`
 
-  選用。從先前的 `ListWebhooks` 呼叫取得的分頁權杖。提供此值即可擷取下一頁。
+  選用。從先前的 `ListWebhooks` 呼叫取得的分頁 token。提供此值即可擷取下一頁。
 
   
 
@@ -63,7 +63,7 @@
 
   **next_page_token**: `string`
 
-  可做為 `page_token` 傳送以擷取下一頁的權杖。若省略此欄位，表示後面沒有其他頁面。
+  可做為 `page_token` 傳送以擷取下一頁的 token。若省略此欄位，表示後面沒有其他頁面。
 
   
 

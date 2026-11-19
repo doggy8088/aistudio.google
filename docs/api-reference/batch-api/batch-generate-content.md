@@ -363,7 +363,7 @@
                                                               聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                            ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                            ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                                   可能的值：
@@ -632,7 +632,7 @@
 
 
 
-                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                                     可能的值：
 
@@ -708,22 +708,22 @@
 
 
 
-                                ??? note "**finishReason**: `string enum` 選用。僅供輸出。模型停止生成權杖的原因。若為空，表示模型尚未停止生成權杖。"
+                                ??? note "**finishReason**: `string enum` 選用。僅供輸出。模型停止生成 token 的原因。若為空，表示模型尚未停止生成 token。"
 
                                     可能的值：
 
                                     - `FINISH_REASON_UNSPECIFIED`：預設值。此值未使用。
                                     - `STOP`：模型的自然停止點，或所提供的停止序列。
-                                    - `MAX_TOKENS`：已達請求中指定的權杖數量上限。
+                                    - `MAX_TOKENS`：已達請求中指定的 token 數量上限。
                                     - `SAFETY`：回應候選內容因安全因素被標記。
                                     - `RECITATION`：回應候選內容因引述因素被標記。
                                     - `LANGUAGE`：回應候選內容因使用不支援的語言被標記。
                                     - `OTHER`：未知原因。
-                                    - `BLOCKLIST`：權杖生成因內容包含禁用詞彙而停止。
-                                    - `PROHIBITED_CONTENT`：權杖生成因可能包含禁止內容而停止。
-                                    - `SPII`：權杖生成因內容可能包含敏感個人識別資訊（SPII）而停止。
+                                    - `BLOCKLIST`：token 生成因內容包含禁用詞彙而停止。
+                                    - `PROHIBITED_CONTENT`：token 生成因可能包含禁止內容而停止。
+                                    - `SPII`：token 生成因內容可能包含敏感個人識別資訊（SPII）而停止。
                                     - `MALFORMED_FUNCTION_CALL`：模型生成的函式呼叫無效。
-                                    - `IMAGE_SAFETY`：權杖生成因生成的圖片包含安全違規而停止。
+                                    - `IMAGE_SAFETY`：token 生成因生成的圖片包含安全違規而停止。
                                     - `IMAGE_PROHIBITED_CONTENT`：圖片生成因生成的圖片含有其他禁止內容而停止。
                                     - `IMAGE_OTHER`：圖片生成因其他雜項問題而停止。
                                     - `NO_IMAGE`：模型預期會生成圖片，但未生成任何圖片。
@@ -733,14 +733,14 @@
                                     - `MISSING_THOUGHT_SIGNATURE`：請求至少缺少一個思考簽章。
                                     - `MALFORMED_RESPONSE`：因回應格式錯誤而結束。
                                     - `ESCALATION`：請求被升級規則篩除。
-                                    - `PUP_LIMITED_DISABLED`：表示權杖生成因使用者帳號違反禁止使用政策（PUP）而受限或停用，因而停止。
-                                    - `CONTINUATION`：權杖生成因回應已達單次請求的權杖上限而停止，但生成尚未完成。可透過後續請求使用回傳的 `continuation_token` 繼續模型回應。請注意，`max_output_tokens` 在多次接續跳轉之間為累計值，必須單調遞增或省略。
+                                    - `PUP_LIMITED_DISABLED`：表示 token 生成因使用者帳號違反禁止使用政策（PUP）而受限或停用，因而停止。
+                                    - `CONTINUATION`：token 生成因回應已達單次請求的 token 上限而停止，但生成尚未完成。可透過後續請求使用回傳的 `continuation_token` 繼續模型回應。請注意，`max_output_tokens` 在多次接續跳轉之間為累計值，必須單調遞增或省略。
 
 
 
                                   **finishMessage**: `string`
 
-                                  選用。僅供輸出。詳細說明模型停止生成權杖的原因。僅在 `finish_reason` 已設定時填入。
+                                  選用。僅供輸出。詳細說明模型停止生成 token 的原因。僅在 `finish_reason` 已設定時填入。
 
 
 
@@ -805,7 +805,7 @@
 
                                   **tokenCount**: `integer`
 
-                                  僅供輸出。此候選的權杖數量。
+                                  僅供輸出。此候選的 token 數量。
 
 
 
@@ -1077,7 +1077,7 @@
                                                                   聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                                ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                                       可能的值：
@@ -1346,7 +1346,7 @@
 
 
 
-                                                    ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                    ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                                         可能的值：
 
@@ -1642,7 +1642,7 @@
 
                                       **googleMapsWidgetContextToken**: `string`
 
-                                      選用。Google Maps 小工具上下文權杖的資源名稱，可與 PlacesContextElement 小工具搭配使用，以算繪上下文資料。僅在啟用 Google Maps 接地時填入。
+                                      選用。Google Maps 小工具上下文 token 的資源名稱，可與 PlacesContextElement 小工具搭配使用，以算繪上下文資料。僅在啟用 Google Maps 接地時填入。
 
 
 
@@ -1652,11 +1652,11 @@
 
 
 
-                                ??? note "**logprobsResult**: `LogprobsResult` 僅供輸出。回應權杖與頂尖權杖的對數似然分數"
+                                ??? note "**logprobsResult**: `LogprobsResult` 僅供輸出。回應 token 與頂尖 token 的對數似然分數"
 
                                       **logProbabilitySum**: `number`
 
-                                      所有權杖的對數機率總和。
+                                      所有 tokens 的對數機率總和。
 
 
 
@@ -1666,11 +1666,11 @@
 
                                             **token**: `string`
 
-                                            候選的權杖字串值。
+                                            候選的 token 字串值。
 
                                             **tokenId**: `integer`
 
-                                            候選的權杖 id 值。
+                                            候選的 token id 值。
 
                                             **logProbability**: `number`
 
@@ -1684,11 +1684,11 @@
 
                                         **token**: `string`
 
-                                        候選的權杖字串值。
+                                        候選的 token 字串值。
 
                                         **tokenId**: `integer`
 
-                                        候選的權杖 id 值。
+                                        候選的 token id 值。
 
                                         **logProbability**: `number`
 
@@ -1722,7 +1722,7 @@
 
                                   **continuationToken**: `string`
 
-                                  選填的不透明接續權杖，在 `finish_reason` 為 `CONTINUATION` 時回傳。用戶端可將此權杖傳入後續的 `GenerateContentRequest` 以繼續生成。
+                                  選填的不透明接續 token，在 `finish_reason` 為 `CONTINUATION` 時回傳。用戶端可將此 token 傳入後續的 `GenerateContentRequest` 以繼續生成。
 
 
 
@@ -1782,37 +1782,37 @@
 
 
 
-                            ??? note "**usageMetadata**: `UsageMetadata` 僅供輸出。生成請求的權杖使用量中繼資料。"
+                            ??? note "**usageMetadata**: `UsageMetadata` 僅供輸出。生成請求的 token 使用量中繼資料。"
 
                                   **promptTokenCount**: `integer`
 
-                                  提示詞中的權杖數量。當 `cached_content` 已設定時，這仍是有效的提示詞總大小，也就是包含快取內容中的權杖數量。
+                                  提示詞中的 token 數量。當 `cached_content` 已設定時，這仍是有效的提示詞總大小，也就是包含快取內容中的 token 數量。
 
                                   **cachedContentTokenCount**: `integer`
 
-                                  提示詞中快取部分的權杖數量（快取內容）
+                                  提示詞中快取部分的 token 數量（快取內容）
 
                                   **candidatesTokenCount**: `integer`
 
-                                  所有生成回應候選的權杖總數。
+                                  所有生成回應候選的 token 總數。
 
                                   **toolUsePromptTokenCount**: `integer`
 
-                                  僅供輸出。工具使用提示詞中存在的權杖數量。
+                                  僅供輸出。工具使用提示詞中存在的 token 數量。
 
                                   **thoughtsTokenCount**: `integer`
 
-                                  僅供輸出。思考模型的思考權杖數量。
+                                  僅供輸出。思考模型的思考 token 數量。
 
                                   **totalTokenCount**: `integer`
 
-                                  生成請求的權杖總數（提示詞 + 工具使用提示詞 + 思考 + 回應候選）。
+                                  生成請求的 token 總數（提示詞 + 工具使用提示詞 + 思考 + 回應候選）。
 
 
 
                                 ??? note "**promptTokensDetails**: `ModalityTokenCount array` 僅供輸出。請求輸入中處理過的模態清單。"
 
-                                    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                         可能的值：
 
@@ -1827,7 +1827,7 @@
 
                                       **tokenCount**: `integer`
 
-                                      權杖數量。
+                                      token 數量。
 
 
 
@@ -1835,7 +1835,7 @@
 
                                 ??? note "**cacheTokensDetails**: `ModalityTokenCount array` 僅供輸出。請求輸入中快取內容的模態清單。"
 
-                                    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                         可能的值：
 
@@ -1850,7 +1850,7 @@
 
                                       **tokenCount**: `integer`
 
-                                      權杖數量。
+                                      token 數量。
 
 
 
@@ -1858,7 +1858,7 @@
 
                                 ??? note "**candidatesTokensDetails**: `ModalityTokenCount array` 僅供輸出。回應中回傳的模態清單。"
 
-                                    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                         可能的值：
 
@@ -1873,7 +1873,7 @@
 
                                       **tokenCount**: `integer`
 
-                                      權杖數量。
+                                      token 數量。
 
 
 
@@ -1881,7 +1881,7 @@
 
                                 ??? note "**toolUsePromptTokensDetails**: `ModalityTokenCount array` 僅供輸出。為工具使用請求輸入處理過的模態清單。"
 
-                                    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                         可能的值：
 
@@ -1896,7 +1896,7 @@
 
                                       **tokenCount**: `integer`
 
-                                      權杖數量。
+                                      token 數量。
 
 
 
@@ -2339,7 +2339,7 @@
                                                   聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                       可能的值：
@@ -2608,7 +2608,7 @@
 
 
 
-                                    ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                    ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                         可能的值：
 
@@ -2914,7 +2914,7 @@
                                                   聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                       可能的值：
@@ -3183,7 +3183,7 @@
 
 
 
-                                    ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                    ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                         可能的值：
 
@@ -3671,7 +3671,7 @@
 
                             **enableWidget**: `boolean`
 
-                            選用。是否在回應的 GroundingMetadata 中回傳小工具上下文權杖。開發人員可使用小工具上下文權杖，算繪帶有與模型在回應中參照之地點相關地理空間上下文的 Google Maps 小工具。
+                            選用。是否在回應的 GroundingMetadata 中回傳小工具上下文 token。開發人員可使用小工具上下文 token，算繪帶有與模型在回應中參照之地點相關地理空間上下文的 Google Maps 小工具。
 
 
 
@@ -3773,7 +3773,7 @@
 
                           **maxOutputTokens**: `integer`
 
-                          選用。回應候選中要包含的權杖數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式回傳。
+                          選用。回應候選中要包含的 token 數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式回傳。
 
                           **temperature**: `number`
 
@@ -3781,11 +3781,11 @@
 
                           **topP**: `number`
 
-                          選用。取樣時要考慮之權杖的最大累計機率。模型結合使用 Top-k 與 Top-p（nucleus）取樣。權杖依其指派的機率排序，使得僅考慮最有可能的權杖。Top-k 取樣直接限制要考慮的權杖數量上限，而 Nucleus 取樣則依累計機率限制權杖數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，其由 `getModel` 函式回傳。空的 `top_k` 屬性表示模型不套用 top-k 取樣，且不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，且會被無聲忽略。
+                          選用。取樣時要考慮之 token 的最大累計機率。模型結合使用 Top-k 與 Top-p（nucleus）取樣。token 依其指派的機率排序，使得僅考慮最有可能的 token。Top-k 取樣直接限制要考慮的 token 數量上限，而 Nucleus 取樣則依累計機率限制 token 數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，其由 `getModel` 函式回傳。空的 `top_k` 屬性表示模型不套用 top-k 取樣，且不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，且會被無聲忽略。
 
                           **topK**: `integer`
 
-                          選用。取樣時要考慮的權杖數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考慮 `top_k` 個最有可能權杖的集合。以 nucleus 取樣運行的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，其由 `getModel` 函式回傳。空的 `top_k` 屬性表示模型不套用 top-k 取樣，且不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，且會被無聲忽略。
+                          選用。取樣時要考慮的 token 數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考慮 `top_k` 個最有可能 token 的集合。以 nucleus 取樣運行的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，其由 `getModel` 函式回傳。空的 `top_k` 屬性表示模型不套用 top-k 取樣，且不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，且會被無聲忽略。
 
                           **seed**: `integer`
 
@@ -3801,11 +3801,11 @@
 
                           **presencePenalty**: `number`
 
-                          選用。若權杖已在回應中出現，套用於下一個權杖 logprobs 的存在懲罰。此懲罰為二元的開／關，不取決於權杖被使用的次數（第一次之後）。若需要隨每次使用而增加的懲罰，請使用 frequency_penalty。正懲罰會抑制使用已在回應中用過的權杖，增加詞彙量。負懲罰會鼓勵使用已在回應中用過的權杖，減少詞彙量。
+                          選用。若 token 已在回應中出現，套用於下一個 token logprobs 的存在懲罰。此懲罰為二元的開／關，不取決於 tokens 被使用的次數（第一次之後）。若需要隨每次使用而增加的懲罰，請使用 frequency_penalty。正懲罰會抑制使用已在回應中用過的 token，增加詞彙量。負懲罰會鼓勵使用已在回應中用過的 token，減少詞彙量。
 
                           **frequencyPenalty**: `number`
 
-                          選用。套用於下一個權杖 logprobs 的頻率懲罰，乘以每個權杖迄今在回應中出現的次數。正懲罰會依權杖被使用的次數比例抑制使用已用過的權杖：權杖用得越多，模型再次使用該權杖就越困難，從而增加回應的詞彙量。注意：*負*懲罰會依權杖被使用的次數比例鼓勵模型重複使用權杖。小的負值會減少回應的詞彙量。較大的負值會使模型開始重複一個常見權杖，直到達到 max_output_tokens 上限。
+                          選用。套用於下一個 token logprobs 的頻率懲罰，乘以每個 token 迄今在回應中出現的次數。正懲罰會依 tokens 被使用的次數比例抑制使用已用過的 token：token 用得越多，模型再次使用該 token 就越困難，從而增加回應的詞彙量。注意：*負*懲罰會依 tokens 被使用的次數比例鼓勵模型重複使用 token。小的負值會減少回應的詞彙量。較大的負值會使模型開始重複一個常見 token，直到達到 max_output_tokens 上限。
 
                           **responseLogprobs**: `boolean`
 
@@ -3916,7 +3916,7 @@
 
                               **thinkingBudget**: `integer`
 
-                              模型應生成的思考權杖數量。
+                              模型應生成的思考 token 數量。
 
 
 
@@ -3954,9 +3954,9 @@
                             可能的值：
 
                             - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
-                            - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低（64 個權杖）。
-                            - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中（256 個權杖）。
-                            - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高（以 256 個權杖放大重新取景）。
+                            - `MEDIA_RESOLUTION_LOW`：媒體解析度設為低（64 tokens）。
+                            - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設為中（256 tokens）。
+                            - `MEDIA_RESOLUTION_HIGH`：媒體解析度設為高（以 256 tokens 放大重新取景）。
 
 
 
@@ -4162,7 +4162,7 @@
 
                       **continuationToken**: `string`
 
-                      選用。不透明的接續權杖，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應恢復生成，該回應先前以 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，當請求中提供接續權杖時，`contents` 為必填，且必須與初始請求的提示詞與對話記錄完全相同。
+                      選用。不透明的接續 token，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應恢復生成，該回應先前以 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，當請求中提供接續 token 時，`contents` 為必填，且必須與初始請求的提示詞與對話記錄完全相同。
 
                       **labels**: `object`
 
@@ -4480,7 +4480,7 @@
                                                           聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                        ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                        ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                               可能的值：
@@ -4749,7 +4749,7 @@
 
 
 
-                                            ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                            ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                                 可能的值：
 
@@ -4825,22 +4825,22 @@
 
 
 
-                            ??? note "**finishReason**: `string enum` 選用。僅供輸出。模型停止生成權杖的原因。若為空，表示模型尚未停止生成權杖。"
+                            ??? note "**finishReason**: `string enum` 選用。僅供輸出。模型停止生成 token 的原因。若為空，表示模型尚未停止生成 token。"
 
                                 可能的值：
 
                                 - `FINISH_REASON_UNSPECIFIED`：預設值。此值未使用。
                                 - `STOP`：模型的自然停止點，或所提供的停止序列。
-                                - `MAX_TOKENS`：已達請求中指定的權杖數量上限。
+                                - `MAX_TOKENS`：已達請求中指定的 token 數量上限。
                                 - `SAFETY`：回應候選內容因安全因素被標記。
                                 - `RECITATION`：回應候選內容因引述因素被標記。
                                 - `LANGUAGE`：回應候選內容因使用不支援的語言被標記。
                                 - `OTHER`：未知原因。
-                                - `BLOCKLIST`：權杖生成因內容包含禁用詞彙而停止。
-                                - `PROHIBITED_CONTENT`：權杖生成因可能包含禁止內容而停止。
-                                - `SPII`：權杖生成因內容可能包含敏感個人識別資訊（SPII）而停止。
+                                - `BLOCKLIST`：token 生成因內容包含禁用詞彙而停止。
+                                - `PROHIBITED_CONTENT`：token 生成因可能包含禁止內容而停止。
+                                - `SPII`：token 生成因內容可能包含敏感個人識別資訊（SPII）而停止。
                                 - `MALFORMED_FUNCTION_CALL`：模型生成的函式呼叫無效。
-                                - `IMAGE_SAFETY`：權杖生成因生成的圖片包含安全違規而停止。
+                                - `IMAGE_SAFETY`：token 生成因生成的圖片包含安全違規而停止。
                                 - `IMAGE_PROHIBITED_CONTENT`：圖片生成因生成的圖片含有其他禁止內容而停止。
                                 - `IMAGE_OTHER`：圖片生成因其他雜項問題而停止。
                                 - `NO_IMAGE`：模型預期會生成圖片，但未生成任何圖片。
@@ -4850,14 +4850,14 @@
                                 - `MISSING_THOUGHT_SIGNATURE`：請求至少缺少一個思考簽章。
                                 - `MALFORMED_RESPONSE`：因回應格式錯誤而結束。
                                 - `ESCALATION`：請求被升級規則篩除。
-                                - `PUP_LIMITED_DISABLED`：表示權杖生成因使用者帳號違反禁止使用政策（PUP）而受限或停用，因而停止。
-                                - `CONTINUATION`：權杖生成因回應已達單次請求的權杖上限而停止，但生成尚未完成。可透過後續請求使用回傳的 `continuation_token` 繼續模型回應。請注意，`max_output_tokens` 在多次接續跳轉之間為累計值，必須單調遞增或省略。
+                                - `PUP_LIMITED_DISABLED`：表示 token 生成因使用者帳號違反禁止使用政策（PUP）而受限或停用，因而停止。
+                                - `CONTINUATION`：token 生成因回應已達單次請求的 token 上限而停止，但生成尚未完成。可透過後續請求使用回傳的 `continuation_token` 繼續模型回應。請注意，`max_output_tokens` 在多次接續跳轉之間為累計值，必須單調遞增或省略。
 
 
 
                               **finishMessage**: `string`
 
-                              選用。僅供輸出。詳細說明模型停止生成權杖的原因。僅在 `finish_reason` 已設定時填入。
+                              選用。僅供輸出。詳細說明模型停止生成 token 的原因。僅在 `finish_reason` 已設定時填入。
 
 
 
@@ -4922,7 +4922,7 @@
 
                               **tokenCount**: `integer`
 
-                              僅供輸出。此候選的權杖數量。
+                              僅供輸出。此候選的 token 數量。
 
 
 
@@ -5194,7 +5194,7 @@
                                                               聯合欄位 `value` 只能是下列其中之一：
 
 
-                                                            ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                            ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                                                   可能的值：
@@ -5463,7 +5463,7 @@
 
 
 
-                                                ??? note "**level**: `string enum` 給定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                                ??? note "**level**: `string enum` 給定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                                                     可能的值：
 
@@ -5759,7 +5759,7 @@
 
                                   **googleMapsWidgetContextToken**: `string`
 
-                                  選用。Google Maps 小工具上下文權杖的資源名稱，可與 PlacesContextElement 小工具搭配使用，以算繪上下文資料。僅在啟用 Google Maps 接地時填入。
+                                  選用。Google Maps 小工具上下文 token 的資源名稱，可與 PlacesContextElement 小工具搭配使用，以算繪上下文資料。僅在啟用 Google Maps 接地時填入。
 
 
 
@@ -5769,11 +5769,11 @@
 
 
 
-                            ??? note "**logprobsResult**: `LogprobsResult` 僅供輸出。回應權杖與頂尖權杖的對數似然分數"
+                            ??? note "**logprobsResult**: `LogprobsResult` 僅供輸出。回應 token 與頂尖 token 的對數似然分數"
 
                                   **logProbabilitySum**: `number`
 
-                                  所有權杖的對數機率總和。
+                                  所有 tokens 的對數機率總和。
 
 
 
@@ -5783,11 +5783,11 @@
 
                                         **token**: `string`
 
-                                        候選的權杖字串值。
+                                        候選的 token 字串值。
 
                                         **tokenId**: `integer`
 
-                                        候選的權杖 id 值。
+                                        候選的 token id 值。
 
                                         **logProbability**: `number`
 
@@ -5801,11 +5801,11 @@
 
                                     **token**: `string`
 
-                                    候選的權杖字串值。
+                                    候選的 token 字串值。
 
                                     **tokenId**: `integer`
 
-                                    候選的權杖 id 值。
+                                    候選的 token id 值。
 
                                     **logProbability**: `number`
 
@@ -5839,7 +5839,7 @@
 
                               **continuationToken**: `string`
 
-                              選填的不透明接續權杖，在 `finish_reason` 為 `CONTINUATION` 時回傳。用戶端可將此權杖傳入後續的 `GenerateContentRequest` 以繼續生成。
+                              選填的不透明接續 token，在 `finish_reason` 為 `CONTINUATION` 時回傳。用戶端可將此 token 傳入後續的 `GenerateContentRequest` 以繼續生成。
 
 
 
@@ -5899,37 +5899,37 @@
 
 
 
-                        ??? note "**usageMetadata**: `UsageMetadata` 僅供輸出。生成請求的權杖使用量中繼資料。"
+                        ??? note "**usageMetadata**: `UsageMetadata` 僅供輸出。生成請求的 token 使用量中繼資料。"
 
                               **promptTokenCount**: `integer`
 
-                              提示詞中的權杖數量。當 `cached_content` 已設定時，這仍是有效的提示詞總大小，也就是包含快取內容中的權杖數量。
+                              提示詞中的 token 數量。當 `cached_content` 已設定時，這仍是有效的提示詞總大小，也就是包含快取內容中的 token 數量。
 
                               **cachedContentTokenCount**: `integer`
 
-                              提示詞中快取部分的權杖數量（快取內容）
+                              提示詞中快取部分的 token 數量（快取內容）
 
                               **candidatesTokenCount**: `integer`
 
-                              所有生成回應候選的權杖總數。
+                              所有生成回應候選的 token 總數。
 
                               **toolUsePromptTokenCount**: `integer`
 
-                              僅供輸出。工具使用提示詞中存在的權杖數量。
+                              僅供輸出。工具使用提示詞中存在的 token 數量。
 
                               **thoughtsTokenCount**: `integer`
 
-                              僅供輸出。思考模型的思考權杖數量。
+                              僅供輸出。思考模型的思考 token 數量。
 
                               **totalTokenCount**: `integer`
 
-                              生成請求的權杖總數（提示詞 + 工具使用提示詞 + 思考 + 回應候選）。
+                              生成請求的 token 總數（提示詞 + 工具使用提示詞 + 思考 + 回應候選）。
 
 
 
                             ??? note "**promptTokensDetails**: `ModalityTokenCount array` 僅供輸出。請求輸入中處理過的模態清單。"
 
-                                ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                     可能的值：
 
@@ -5944,7 +5944,7 @@
 
                                   **tokenCount**: `integer`
 
-                                  權杖數量。
+                                  token 數量。
 
 
 
@@ -5952,7 +5952,7 @@
 
                             ??? note "**cacheTokensDetails**: `ModalityTokenCount array` 僅供輸出。請求輸入中快取內容的模態清單。"
 
-                                ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                     可能的值：
 
@@ -5967,7 +5967,7 @@
 
                                   **tokenCount**: `integer`
 
-                                  權杖數量。
+                                  token 數量。
 
 
 
@@ -5975,7 +5975,7 @@
 
                             ??? note "**candidatesTokensDetails**: `ModalityTokenCount array` 僅供輸出。回應中回傳的模態清單。"
 
-                                ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                     可能的值：
 
@@ -5990,7 +5990,7 @@
 
                                   **tokenCount**: `integer`
 
-                                  權杖數量。
+                                  token 數量。
 
 
 
@@ -5998,7 +5998,7 @@
 
                             ??? note "**toolUsePromptTokensDetails**: `ModalityTokenCount array` 僅供輸出。為工具使用請求輸入處理過的模態清單。"
 
-                                ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+                                ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
                                     可能的值：
 
@@ -6013,7 +6013,7 @@
 
                                   **tokenCount**: `integer`
 
-                                  權杖數量。
+                                  token 數量。
 
 
 

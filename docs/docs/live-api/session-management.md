@@ -12,7 +12,7 @@
 
 若要延長工作階段並避免連線突然終止，可以在工作階段設定中設定 [contextWindowCompression](/api-reference/live/#BidiGenerateContentSetup) 欄位，啟用上下文視窗壓縮。
 
-在 [ContextWindowCompressionConfig](/api-reference/live/#ContextWindowCompressionConfig) 中，你可以設定[滑動視窗機制](/api-reference/live/#ContextWindowCompressionConfig)，以及觸發壓縮的[權杖數量](/api-reference/live/#ContextWindowCompressionConfig)。
+在 [ContextWindowCompressionConfig](/api-reference/live/#ContextWindowCompressionConfig) 中，你可以設定[滑動視窗機制](/api-reference/live/#ContextWindowCompressionConfig)，以及觸發壓縮的[token 數量](/api-reference/live/#ContextWindowCompressionConfig)。
 
 
 === "Python"
@@ -45,9 +45,9 @@
 
 為了避免伺服器定期重設 WebSocket 連線時工作階段被終止，請在[設定組態](/api-reference/live/#BidiGenerateContentSetup)中設定 [sessionResumption](/api-reference/live/#BidiGenerateContentSetup) 欄位。
 
-傳入這項設定後，伺服器會傳送 [SessionResumptionUpdate](/api-reference/live/#SessionResumptionUpdate) 訊息；你可以將最後一個恢復權杖傳入後續連線的 [`SessionResumptionConfig.handle`](/api-reference/live/#SessionResumptionConfig)，藉此恢復工作階段。
+傳入這項設定後，伺服器會傳送 [SessionResumptionUpdate](/api-reference/live/#SessionResumptionUpdate) 訊息；你可以將最後一個恢復 token 傳入後續連線的 [`SessionResumptionConfig.handle`](/api-reference/live/#SessionResumptionConfig)，藉此恢復工作階段。
 
-恢復權杖在最後一個工作階段終止後 2 小時內有效。
+恢復 token 在最後一個工作階段終止後 2 小時內有效。
 
 
 === "Python"

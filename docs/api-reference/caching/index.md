@@ -1,6 +1,6 @@
 # 快取
 
-上下文快取可讓你儲存並重複使用預先計算好的輸入權杖，適用於需要反覆使用的內容，例如針對同一個媒體檔案提出不同的問題。視使用方式而定，這能節省成本並提升速度。詳細介紹請參閱[上下文快取](/docs/caching/)指南。
+上下文快取可讓你儲存並重複使用預先計算好的輸入 tokens，適用於需要反覆使用的內容，例如針對同一個媒體檔案提出不同的問題。視使用方式而定，這能節省成本並提升速度。詳細介紹請參閱[上下文快取](/docs/caching/)指南。
 
 ## 方法 {#methods}
 
@@ -306,7 +306,7 @@ GenerativeService 的要求。
                               聯集欄位 `value` 只能是下列其中一項：
 
 
-                            ??? note "**level**：`string enum`，指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                            ??? note "**level**：`string enum`，指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                   可能的值：
@@ -575,7 +575,7 @@ GenerativeService 的要求。
 
 
 
-                ??? note "**level**：`string enum`，指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                ??? note "**level**：`string enum`，指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                     可能的值：
 
@@ -886,7 +886,7 @@ GenerativeService 的要求。
                               聯集欄位 `value` 只能是下列其中一項：
 
 
-                            ??? note "**level**：`string enum`，指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                            ??? note "**level**：`string enum`，指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                   可能的值：
@@ -1155,7 +1155,7 @@ GenerativeService 的要求。
 
 
 
-                ??? note "**level**：`string enum`，指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                ??? note "**level**：`string enum`，指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                     可能的值：
 
@@ -1648,7 +1648,7 @@ GenerativeService 的要求。
 
         **enableWidget**：`boolean`
 
-        選填。是否在回應的 GroundingMetadata 中回傳 widget 上下文權杖。開發人員可使用 widget 上下文權杖，渲染帶有與模型在回應中參照的地點相關之地理空間上下文的 Google Maps widget。
+        選填。是否在回應的 GroundingMetadata 中回傳 widget 上下文 token。開發人員可使用 widget 上下文 token，渲染帶有與模型在回應中參照的地點相關之地理空間上下文的 Google Maps widget。
 
 
 
@@ -1738,6 +1738,6 @@ GenerativeService 的要求。
 
     **totalTokenCount**：`integer`
 
-    快取內容消耗的權杖總數。
+    快取內容消耗的 token 總數。
 
 

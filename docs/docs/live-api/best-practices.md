@@ -79,8 +79,8 @@ RESPOND IN {OUTPUT_LANGUAGE}. YOU MUST RESPOND UNMISTAKABLY IN {OUTPUT_LANGUAGE}
 
 ## 上下文管理 {#context-management}
 
-長時間的工作階段請使用 `ContextWindowCompressionConfig`，因為原生音訊權杖
-累積速度很快（每秒音訊約 25 個權杖）。
+長時間的工作階段請使用 `ContextWindowCompressionConfig`，因為原生音訊 token
+累積速度很快（每秒音訊約 25 tokens）。
 
 ## 用戶端緩衝 {#client-buffering}
 
@@ -97,8 +97,8 @@ RESPOND IN {OUTPUT_LANGUAGE}. YOU MUST RESPOND UNMISTAKABLY IN {OUTPUT_LANGUAGE}
 請遵循以下準則來處理工作階段生命週期，確保可靠的使用者
 體驗：
 
-*   **啟用上下文視窗壓縮**：音訊權杖的累積速度約為
-    每秒 25 個權杖。若未壓縮，純音訊工作階段
+*   **啟用上下文視窗壓縮**：音訊 token 的累積速度約為
+    每秒 25 tokens。若未壓縮，純音訊工作階段
     上限為 15 分鐘，音訊加視訊工作階段上限為 2 分鐘。啟用
     [上下文視窗壓縮](/docs/live-api/session-management/#context-window-compression)
     可將工作階段延長至無限時長。
@@ -106,7 +106,7 @@ RESPOND IN {OUTPUT_LANGUAGE}. YOU MUST RESPOND UNMISTAKABLY IN {OUTPUT_LANGUAGE}
     WebSocket 連線。請使用
     [工作階段恢復](/docs/live-api/session-management/#session-resumption)
     在不遺失上下文的情況下無縫重新連線。保留來自 `SessionResumptionUpdate` 訊息的最新恢復
-    權杖，並在重新連線時將其作為控制代碼傳入。恢復權杖在上一個工作階段
+    token，並在重新連線時將其作為控制代碼傳入。恢復 token 在上一個工作階段
     結束後 2 小時內有效。
 *   **處理 GoAway 訊息**：伺服器會在終止連線前傳送
     [GoAway](/docs/live-api/session-management/#goaway-message) 訊息
@@ -272,31 +272,31 @@ clients to thrive.
 
 ## 定價與計費 {#pricing-billing}
 
-Gemini Live API 嚴格依照權杖用量計費。由於 Live API 維持持續性的 WebSocket 工作階段，計費會依照使用中的上下文視窗，採用複合累計模式。
+Gemini Live API 嚴格依照 token 用量計費。由於 Live API 維持持續性的 WebSocket 工作階段，計費會依照使用中的上下文視窗，採用複合累計模式。
 
 ### 工作階段上下文視窗（複合成本） {#session-context-window}
 
-API 會針對工作階段上下文視窗中存在的所有權杖，按輪向您收費。一「輪」定義為一次使用者輸入加上模型對應的回應。
+API 會針對工作階段上下文視窗中存在的所有 tokens，按輪向您收費。一「輪」定義為一次使用者輸入加上模型對應的回應。
 
-*   **累積**：上下文視窗包含目前這一輪的新權杖，以及先前各輪累積的所有權杖。
-*   **重複計費**：過去的權杖會在每一輪重新處理並計入費用，上限為您設定的上下文視窗大小。隨著工作階段拉長，每輪成本會上升，因為對話記錄會被重新處理。
+*   **累積**：上下文視窗包含目前這一輪的新 token，以及先前各輪累積的所有 tokens。
+*   **重複計費**：過去的 token 會在每一輪重新處理並計入費用，上限為您設定的上下文視窗大小。隨著工作階段拉長，每輪成本會上升，因為對話記錄會被重新處理。
 
-### 音訊權杖與轉錄 {#audio-tokens-and-transcriptions}
+### 音訊 token 與轉錄 {#audio-tokens-and-transcriptions}
 
-Live API 本身即為多模態。它會以原始音訊權杖的形式保留對話記錄，以保存聲音的細微差異與語氣。
+Live API 本身即為多模態。它會以原始音訊 token 的形式保留對話記錄，以保存聲音的細微差異與語氣。
 
-*   **音訊計費**：API 會在每一輪，依照標準音訊輸入費率，向您收取累積的原生音訊權杖費用。
-*   **轉錄附加費**：啟用音訊轉文字轉錄時（`inputAudioTranscription` 或 `outputAudioTranscription`），API 除了標準音訊權杖費用外，還會依照文字權杖輸出費率，收取為轉錄生成的所有文字權杖費用。
+*   **音訊計費**：API 會在每一輪，依照標準音訊輸入費率，向您收取累積的原生音訊 token 費用。
+*   **轉錄附加費**：啟用音訊轉文字轉錄時（`inputAudioTranscription` 或 `outputAudioTranscription`），API 除了標準音訊 token 費用外，還會依照文字 token 輸出費率，收取為轉錄生成的所有文字 token 費用。
 
 ### 以上下文上限管理成本 {#managing-costs}
 
 為避免長時間工作階段的成本無限增長，請使用 `contextWindowCompression` 設定上下文視窗大小。
 
-設定壓縮觸發門檻（例如 25,000 個權杖）與滑動視窗（例如 8,000 個權杖）後，API 會在達到門檻時自動淘汰較舊的權杖。之後各輪，API 只會針對保留的記錄與任何新權杖計費。
+設定壓縮觸發門檻（例如 25,000 tokens）與滑動視窗（例如 8,000 tokens）後，API 會在達到門檻時自動淘汰較舊的 token。之後各輪，API 只會針對保留的記錄與任何新 token 計費。
 
 ### 主動音訊模式 {#proactive-audio-mode}
 
-啟用主動音訊模式時，Live API 聆聽的整個期間都會收取輸入權杖費用，而輸出權杖僅在 API 回應時才收費。
+啟用主動音訊模式時，Live API 聆聽的整個期間都會收取輸入 tokens 費用，而輸出 tokens 僅在 API 回應時才收費。
 
 *   **Gemini 3.8 與 3.1 注意事項**：`gemini-3.8-live` 與 `gemini-3.8-live-extended-thinking` 支援主動音訊模式。`gemini-3.1-flash-live-preview` 不支援；使用該模型時，僅在主動串流輸入時才會收取音訊費用。
 

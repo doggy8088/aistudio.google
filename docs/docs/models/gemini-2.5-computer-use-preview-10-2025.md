@@ -22,6 +22,6 @@
 | --- | --- |
 | 模型代碼 | **Gemini API** `gemini-2.5-computer-use-preview-10-2025` |
 | 支援的資料類型 | **輸入**圖片、文字 **輸出**文字 |
-| 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 128,000 **輸出權杖上限** 64,000 |
+| token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 128,000 **輸出 token 上限** 64,000 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。已關閉：`gemini-2.5-computer-use-preview-10-2025` |
 | 最近更新 | 2025 年 10 月 |

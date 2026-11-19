@@ -6,7 +6,7 @@
       此 API 處於 Beta 階段。端點位於 `/v1beta/` 之下。
 
 
-Credentials API 可讓你建立、擷取、更新、列出及刪除由伺服器管理的憑證（例如 API 金鑰、OAuth2 權杖、HTTP Bearer 權杖與環境變數），用來驗證工具呼叫與 MCP 伺服器。
+Credentials API 可讓你建立、擷取、更新、列出及刪除由伺服器管理的憑證（例如 API 金鑰、OAuth2tokens、HTTP Bearer token 與環境變數），用來驗證工具呼叫與 MCP 伺服器。
 
 ## 方法 {#methods}
 
@@ -43,8 +43,8 @@ Credentials API 可讓你建立、擷取、更新、列出及刪除由伺服器�
 
     可能的值：
 
-    - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
-    - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
+    - `bearer_token`：以標頭形式注入的靜態 token。無更新邏輯。
+    - `oauth2`：使用儲存的更新 token，自動更新已過期的存取 token。
     - `environment_variable`：注入沙箱容器的環境變數。
 
 

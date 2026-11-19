@@ -1457,13 +1457,13 @@ Antigravity 執行階段會掃描 `.agents/`（以及環境的根目錄）來尋
 ### 覆寫網路設定（重新整理憑證） {#override-network}
 
 如果你的受管代理已將網路憑證內嵌在 `base_environment` 中，
-你可以在呼叫時覆寫這些憑證，以重新整理已過期的權杖或輪替 API
+你可以在呼叫時覆寫這些憑證，以重新整理已過期的 token 或輪替 API
 金鑰。傳入 `environment` 物件，並在其中設定新的 `network` 配置即可。新的
 網路規則會在該次互動中完全取代先前的規則。基礎
 環境的來源（檔案、存放庫）則會保留。
 
 如果 `base_environment` 參照的是已儲存的
-[憑證](/docs/agent-credentials/)，而非內嵌權杖，你就不需要
+[憑證](/docs/agent-credentials/)，而非內嵌 token，你就不需要
 覆寫任何內容。只要以 `PATCH` 輪替該憑證，所有參照它的代理
 都會在下一次執行時取得新的機密。
 

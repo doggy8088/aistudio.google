@@ -61,7 +61,7 @@ Google 只會將你匯入或上傳至我們模型微調功能的內容用於該�
 
 當你使用 Paid Services 時（例如 Gemini API 的付費配額），Google 不會使用你的提示詞（包括相關的系統指令、快取內容，以及圖片、影片或文件等檔案）或回應來改善我們的產品，並會依照[適用於 Google 為資料處理者之產品的資料處理附錄](https://business.safety.google/processorterms/)處理你的提示詞與回應。就 Paid Services 而言，Google 會在有限期間內記錄提示詞與回應，僅用於偵測違反[禁止使用政策](https://policies.google.com/terms/generative-ai/use-policy)的行為，以及任何依法或依監管要求須進行的揭露。這些資料可能會暫時儲存或快取於 Google 或其代理人設有設施的任何國家。
 
-我們在向你提供 Paid Services 過程中蒐集的其他資料，例如帳戶資訊與設定、計費記錄、直接通訊與回饋，以及使用詳情（例如使用相關資訊，包括每個提示詞與回應的權杖數量、運作狀態、安全篩選器觸發情形、軟體錯誤與當機報告、驗證詳情、品質與效能指標，以及 Google 營運與維護 Services 所需的其他技術細節，其中可能包括裝置識別碼、來自 Cookie 或權杖的識別碼，以及 IP 位址），仍受 API Terms 所援引的 [Google 控制者對控制者資料保護條款](https://business.safety.google/controllerterms/) 與 [Google 隱私權政策](https://policies.google.com/privacy) 約束。
+我們在向你提供 Paid Services 過程中蒐集的其他資料，例如帳戶資訊與設定、計費記錄、直接通訊與回饋，以及使用詳情（例如使用相關資訊，包括每個提示詞與回應的 token 數量、運作狀態、安全篩選器觸發情形、軟體錯誤與當機報告、驗證詳情、品質與效能指標，以及 Google 營運與維護 Services 所需的其他技術細節，其中可能包括裝置識別碼、來自 Cookie 或 token 的識別碼，以及 IP 位址），仍受 API Terms 所援引的 [Google 控制者對控制者資料保護條款](https://business.safety.google/controllerterms/) 與 [Google 隱私權政策](https://policies.google.com/privacy) 約束。
 
 使用 Grounding with Google Search 時，會蒐集並使用額外資料，詳情見下文「[Grounding with Google Search](/docs/terms/#grounding-with-google-search)」一節。
 

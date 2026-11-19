@@ -256,13 +256,13 @@ Gemini 3 模型運用*工具上下文流通*來實現內建與自訂工具的組
 | **file_search** | 無 | 無 |
 
 
-## 權杖與定價 {#tokens}
+## token 與定價 {#tokens}
 
 請注意，請求中的內建工具呼叫部分會列入 `prompt_token_count` 計算。由於這些中間工具步驟現在會顯示並回傳給你，它們便成為對話記錄的一部分。這只適用於*請求*，不適用於*回應*。
 
-Google 搜尋工具是這項規則的例外。Google 搜尋已在查詢層級套用自己的定價模式，因此權杖不會被重複收費（請參閱[定價](/docs/pricing/)頁面）。
+Google 搜尋工具是這項規則的例外。Google 搜尋已在查詢層級套用自己的定價模式，因此 token 不會被重複收費（請參閱[定價](/docs/pricing/)頁面）。
 
-詳情請參閱[權杖](/docs/tokens/)頁面。
+詳情請參閱[token](/docs/tokens/)頁面。
 
 ## 限制 {#limitations}
 

@@ -280,7 +280,7 @@
                               聯集欄位 `value` 只能是下列其中一項：
 
 
-                            ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                            ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
 
                                   可能的值：
@@ -549,7 +549,7 @@
 
 
 
-                ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
                     可能的值：
 
@@ -860,7 +860,7 @@
                               聯集欄位 `value` 只能是下列其中一項：
 
 
-                            ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                            ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
 
                                   可能的值：
@@ -1129,7 +1129,7 @@
 
 
 
-                ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
                     可能的值：
 
@@ -1622,7 +1622,7 @@
 
         **enableWidget**：`boolean`
 
-        選填。是否在回應的 GroundingMetadata 中傳回小工具上下文權杖。開發人員可使用小工具上下文權杖，算繪與模型在回應中參照的地點相關的地理空間上下文 Google Maps 小工具。
+        選填。是否在回應的 GroundingMetadata 中傳回小工具上下文 token。開發人員可使用小工具上下文 token，算繪與模型在回應中參照的地點相關的地理空間上下文 Google Maps 小工具。
 
 
 
@@ -2282,6 +2282,6 @@
 
     **totalTokenCount**：`integer`
 
-    快取內容所消耗的權杖總數。
+    快取內容所消耗的 token 總數。
 
 

@@ -1370,7 +1370,7 @@ Deep Research 支援多種內建與外部工具。預設情況下（未提供 `t
 | `type` | `string` | 是 | 必須為 `"mcp_server"`。 |
 | `name` | `string` | 否 | MCP 伺服器的顯示名稱。 |
 | `url` | `string` | 否 | MCP 伺服器端點的完整 URL。 |
-| `headers` | `object` | 否 | 隨每個傳送至伺服器的請求一併送出的鍵值對 HTTP 標頭（例如驗證權杖）。 |
+| `headers` | `object` | 否 | 隨每個傳送至伺服器的請求一併送出的鍵值對 HTTP 標頭（例如驗證 token）。 |
 | `allowed_tools` | `array` | 否 | 限制代理可呼叫該伺服器的哪些工具。 |
 
 #### 基本用法 {#mcp-basic}
@@ -2834,10 +2834,10 @@ Deep Research 使用 `agent_config` 參數來控制行為。請以字典形式�
 
 成本會依所需的研究深度而有所不同。代理會自主判斷需要多少閱讀與搜尋，才能回答你的提示詞。
 
-* **Deep Research**（`deep-research-preview-04-2026`）：對於需要中等程度分析的典型查詢，代理可能使用約 80 次搜尋查詢、約 250k 個輸入權杖（約 50-70% 已快取），以及約 60k 個輸出權杖。
+* **Deep Research**（`deep-research-preview-04-2026`）：對於需要中等程度分析的典型查詢，代理可能使用約 80 次搜尋查詢、約 250k 個輸入 tokens（約 50-70% 已快取），以及約 60k 個輸出 tokens。
   *   **預估總計：** 每項任務約 $1.00 - $3.00
 
-* **Deep Research Max**（`deep-research-max-preview-04-2026`）：對於深入的競爭格局分析或大規模的盡職調查，代理可能使用多達約 160 次搜尋查詢、約 900k 個輸入權杖（約 50-70% 已快取），以及約 80k 個輸出權杖。
+* **Deep Research Max**（`deep-research-max-preview-04-2026`）：對於深入的競爭格局分析或大規模的盡職調查，代理可能使用多達約 160 次搜尋查詢、約 900k 個輸入 tokens（約 50-70% 已快取），以及約 80k 個輸出 tokens。
   *   **預估總計：** 每項任務約 $3.00 - $7.00
 
 

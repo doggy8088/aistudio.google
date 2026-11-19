@@ -227,4 +227,4 @@
 
   **environment_key**: `string`
 
-  僅供輸出。在建立環境時為 self_hosted 環境產生的秘密權杖。由自行託管的沙箱守護程序用來驗證輪詢與串流要求。僅在 CreateEnvironment 回應中傳回；後續的 GetEnvironment 與 ListEnvironments 呼叫會省略此欄位。
+  僅供輸出。在建立環境時為 self_hosted 環境產生的秘密 token。由自行託管的沙箱守護程序用來驗證輪詢與串流要求。僅在 CreateEnvironment 回應中傳回；後續的 GetEnvironment 與 ListEnvironments 呼叫會省略此欄位。

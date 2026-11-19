@@ -172,7 +172,7 @@
 
     **max_total_tokens**: `string`
 
-    代理執行期間的權杖總數上限。
+    代理執行期間的 token 總數上限。
 
 
 

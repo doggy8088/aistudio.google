@@ -15,7 +15,7 @@ Lyria 3 Pro Preview 是 Google 的旗艦音樂生成模型，專為生成結構�
 | --- | --- |
 | 模型代碼 | `lyria-3-clip-preview` |
 | 支援的資料類型 | **輸入** 文字與圖片 **輸出** 音訊（MP3）、文字（歌詞） |
-| 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 131,072 |
+| token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 131,072 |
 | 功能 | [**音訊生成**](/docs/speech-generation/) 支援 [**程式碼執行**](/docs/code-execution/) 不支援 [**上下文快取**](/docs/caching/) 不支援 [**檔案搜尋**](/docs/file-search/) 不支援 [**函式呼叫**](/docs/function-calling/) 不支援 [**使用 Google 地圖接地**](/docs/maps-grounding/) 不支援 [**使用 Google 搜尋接地**](/docs/google-search/) 不支援 [**圖片生成**](/docs/image-generation/) 不支援 [**Live API**](/docs/live-api/) 不支援 [**結構化輸出**](/docs/structured-output/) 不支援 [**思考**](/docs/thinking/) 不支援 [**URL 上下文**](/docs/url-context/) 不支援 |
 | 使用選項 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**Priority 推論**](/docs/priority-inference/) 不支援 |
 | 版本 | 如需詳細資訊，請參閱[模型版本命名模式](/docs/models/#model-versions)。預覽版：`lyria-3-clip-preview` 預覽版：`lyria-3-pro-preview` |

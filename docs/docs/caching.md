@@ -1,6 +1,6 @@
 # 上下文快取
 
-在典型的 AI 工作流程中，你可能會反覆將相同的輸入權杖傳給模型。Gemini API 提供隱式快取，可最佳化效能與成本。
+在典型的 AI 工作流程中，你可能會反覆將相同的輸入 tokens 傳給模型。Gemini API 提供隱式快取，可最佳化效能與成本。
 
 
 !!! note " "
@@ -10,9 +10,9 @@
 
 ## 隱式快取 {#implicit-caching}
 
-所有 Gemini 2.5 及更新版本的模型都預設啟用隱式快取。它同時支援[有狀態](/docs/text-generation/#multi-turn-conversations)（使用 `previous_interaction_id`）與[無狀態](/docs/text-generation/#stateless-conversations)對話模式。若你的要求命中快取，我們會自動將節省的成本回饋給你。你無需進行任何設定即可啟用。下表列出各模型的最低輸入權杖數量：
+所有 Gemini 2.5 及更新版本的模型都預設啟用隱式快取。它同時支援[有狀態](/docs/text-generation/#multi-turn-conversations)（使用 `previous_interaction_id`）與[無狀態](/docs/text-generation/#stateless-conversations)對話模式。若你的要求命中快取，我們會自動將節省的成本回饋給你。你無需進行任何設定即可啟用。下表列出各模型的最低輸入 token 數量：
 
-| 模型 | 最低權杖上限 |
+| 模型 | 最低 token 上限 |
 | :--- | :--- |
 | Gemini 4 Carbon | 4,096 |
 | Gemini 4 Argon | 4,096 |
@@ -32,7 +32,7 @@
 
 !!! note " "
 
-      **Gemini 4 上的多輪對話與代理迴圈**：只有當新要求新增至少 2,050 個權杖時，Gemini 才會快取完整的前一個要求。模型輸出、思考過程與函式結果都計入此總數。若新增量較小，Gemini 會以標準輸入費率重新處理前一個要求最後的 2,050 個權杖。大多數代理輪次都會超過此門檻。
+      **Gemini 4 上的多輪對話與代理迴圈**：只有當新要求新增至少 2,050 tokens 時，Gemini 才會快取完整的前一個要求。模型輸出、思考過程與函式結果都計入此總數。若新增量較小，Gemini 會以標準輸入費率重新處理前一個要求最後的 2,050 tokens。大多數代理輪次都會超過此門檻。
 
 
-你可以在回應物件的 `usage.total_cached_tokens`（Python 與 JavaScript）欄位中，查看命中快取的權杖數量。
+你可以在回應物件的 `usage.total_cached_tokens`（Python 與 JavaScript）欄位中，查看命中快取的 token 數量。

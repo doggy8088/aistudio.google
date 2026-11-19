@@ -60,7 +60,7 @@
 
 **Gemini 4 Argon**
 
-我們高效率的 Gemini 4 前沿推理模型，在複雜的程式設計、代理、數學與科學任務上，相較於 Gemini 4 Carbon 能以更快的回應速度與更低的每回合權杖花費完成任務。
+我們高效率的 Gemini 4 前沿推理模型，在複雜的程式設計、代理、數學與科學任務上，相較於 Gemini 4 Carbon 能以更快的回應速度與更低的每回合 token 花費完成任務。
 
 *   *Model code* **gemini-4-argon**
   *   *Context* **1M tokens**
@@ -346,7 +346,7 @@
 
 | 模型 | 說明 | 端點 |
 | --- | --- | --- |
-| [Gemini Decision 1](/docs/models/gemini-decision-1/) | 快速且經過校準的多模態是/否、選擇與評分決策，透過 [Decisions API](/docs/decisions-api/) 以零輸出權杖完成。 | `gemini-decision-1` |
+| [Gemini Decision 1](/docs/models/gemini-decision-1/) | 快速且經過校準的多模態是/否、選擇與評分決策，透過 [Decisions API](/docs/decisions-api/) 以零輸出 tokens 完成。 | `gemini-decision-1` |
 | [Gemini Embedding 2](/docs/models/gemini-embedding-2/) | 我們的第一個多模態嵌入模型，將文字、圖片、影片、音訊與 PDF 對映至統一的嵌入空間，適用於進階語意搜尋與 RAG 系統。 | `gemini-embedding-2` |
 | [Gemini Embedding](/docs/models/gemini-embedding-001/) | 高維度向量表示，適用於進階語意搜尋、文字分類與 RAG 系統。 | `gemini-embedding-001` |
 | [Gemini Robotics ER 2](/docs/robotics-overview/) | 具身推理模型，為機器人技術任務提供進階的影片理解、空間推理、多步驟工具編排與多機器人協作。 | `gemini-robotics-er-2-preview` |
@@ -364,7 +364,7 @@
 | --- | --- | --- |
 | [Gemini Robotics ER 1.6](/docs/models/gemini-robotics-er-1.6-preview/)（已關閉） | 進階的具身推理模型，能理解實體空間並為機器人代理規劃多步驟任務，並具備儀器讀取、更強的空間與物理推理等新能力。 | `gemini-robotics-er-1.6-preview` |
 | [Computer Use](/docs/models/gemini-2.5-computer-use-preview-10-2025/)（已關閉） | 專門模型，能「看見」數位螢幕並執行點選、輸入與導覽等 UI 動作，以自動化複雜的瀏覽器任務。 | `gemini-2.5-computer-use-preview-10-2025` |
-| [Gemini 2.0 Flash](/docs/models/gemini-2.0-flash/)（已關閉） | 我們的第二代主力模型，具備新一代功能與更強的能力，包括更快的速度、原生工具使用與 1M 權杖上下文視窗。 | `gemini-2.0-flash` |
+| [Gemini 2.0 Flash](/docs/models/gemini-2.0-flash/)（已關閉） | 我們的第二代主力模型，具備新一代功能與更強的能力，包括更快的速度、原生工具使用與 1Mtokens上下文視窗。 | `gemini-2.0-flash` |
 | [Gemini 2.0 Flash-Lite](/docs/models/gemini-2.0-flash-lite/)（已關閉） | 我們速度最快的第二代模型，專為成本效益與低延遲最佳化。 | `gemini-2.0-flash-lite` |
 | [Gemini 3.1 Flash-Lite Preview](/docs/models/gemini-3.1-flash-lite-preview/)（已關閉） | 我們最具成本效益的多模態模型，為高頻率、輕量任務提供最快的效能。 | `gemini-3.1-flash-lite-preview` |
 | [Gemini 3 Pro Preview](/docs/models/gemini-3-pro-preview/)（已關閉） | 我們頂尖的推理模型，具備進階的多模態理解能力。 | `gemini-3-pro-preview` |

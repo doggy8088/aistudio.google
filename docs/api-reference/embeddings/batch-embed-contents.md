@@ -259,7 +259,7 @@
                                   Union 欄位 `value` 僅能是以下其中之一：
 
 
-                                ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                                ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
 
                                       可能的值：
@@ -528,7 +528,7 @@
 
 
 
-                    ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                    ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
                         可能的值：
 
@@ -753,7 +753,7 @@
 
   **shape**：`integer array`
 
-  此欄位儲存軟權杖張量的影格形狀（例如 [1, 1, 256, 2048]）。
+  此欄位儲存軟 token 張量的影格形狀（例如 [1, 1, 256, 2048]）。
 
 
 ### TaskType {#Resource:TaskType}
@@ -850,7 +850,7 @@ EmbedContent 請求的設定。
 
   **promptTokenCount**：`integer`
 
-  僅供輸出。提示詞中的權杖數量。
+  僅供輸出。提示詞中的 token 數量。
 
   
 
@@ -861,7 +861,7 @@ EmbedContent 請求的設定。
 
 ??? note "**promptTokenDetails**：`ModalityTokenCount array` 僅供輸出。請求輸入中處理的模態清單。"
 
-    ??? note "**modality**：`GenerativeLanguageModality` 與此權杖數量關聯的模態。"
+    ??? note "**modality**：`GenerativeLanguageModality` 與此 token 數量關聯的模態。"
 
         可能的值：
 
@@ -876,4 +876,4 @@ EmbedContent 請求的設定。
 
       **tokenCount**：`integer`
 
-      權杖數量。
+      token 數量。

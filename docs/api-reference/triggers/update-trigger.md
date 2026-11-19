@@ -152,7 +152,7 @@
 
             **max_total_tokens**: `string`
 
-            代理執行期間的權杖總數上限。
+            代理執行期間的 token 總數上限。
 
 
 
@@ -363,7 +363,7 @@
 
             **enable_widget**: `boolean`
 
-            是否在回應的工具呼叫結果中傳回 widget 上下文權杖。
+            是否在回應的工具呼叫結果中傳回 widget 上下文 token。
 
             **latitude**: `number`
 
@@ -885,7 +885,7 @@
 
       **continuation_token**: `string`
 
-      用於繼續長時間解碼的不透明權杖。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

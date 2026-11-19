@@ -180,7 +180,7 @@ Priority 的用量會計入[整體互動流量速率限制](https://aistudio.goo
 
 ## 價格 {#pricing}
 
-Priority 推論的價格比[標準 API](/docs/pricing/) 高 75-100%，並按權杖計費。
+Priority 推論的價格比[標準 API](/docs/pricing/) 高 75-100%，並按 token 計費。
 
 ## 支援的模型 {#supported-models}
 
@@ -205,5 +205,5 @@ Priority 推論的價格比[標準 API](/docs/pricing/) 高 75-100%，並按權�
 ## 後續步驟 {#whats-next}
 
 * [Flex 推論](/docs/flex-inference/)：降低成本。
-* [權杖](/docs/tokens/)：瞭解權杖。
+* [token](/docs/tokens/)：瞭解 token。
 

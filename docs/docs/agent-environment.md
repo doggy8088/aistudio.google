@@ -846,7 +846,7 @@
 對於**私有 Git 存放庫**，請使用 `Basic` 驗證搭配您的
 [GitHub Personal Access Token
 （PAT）](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)。
-使用 `x-oauth-basic` 作為使用者名稱來編碼該權杖：
+使用 `x-oauth-basic` 作為使用者名稱來編碼該 token：
 
 ```shell
 echo -n "x-oauth-basic:ghp_YourPATHere" | base64
@@ -1073,7 +1073,7 @@ echo -n "x-oauth-basic:ghp_YourPATHere" | base64
       ```
 
 
-對於**私有 Cloud Storage 值區**，請使用標準的 OAuth 2.0 Bearer 權杖：
+對於**私有 Cloud Storage 值區**，請使用標準的 OAuth 2.0 Bearer token：
 
 ```shell
 gcloud auth print-access-token
@@ -1728,14 +1728,14 @@ proxy 在傳輸時會套用兩者，因此無論哪一種情況，密鑰都不�
       ```
 
 
-`oauth2` 憑證也會自行刷新其存取權杖，因此長時間執行的
-互動不會因權杖到期而中斷。完整的
+`oauth2` 憑證也會自行刷新其存取 token，因此長時間執行的
+互動不會因 token 到期而中斷。完整的
 憑證類型與管理操作清單，請參閱
 [憑證](/docs/agent-credentials/)。
 
 您也可以用 `transform` 內嵌設定標頭。當值只屬於單次
 呼叫時很適合這樣做，例如您在建立
-互動之前才產生的權杖。以這種方式設定的標頭會由同一個 egress proxy 注入，
+互動之前才產生的 token。以這種方式設定的標頭會由同一個 egress proxy 注入，
 絕不會以環境變數或檔案的形式暴露在沙箱內。
 
 
@@ -2085,7 +2085,7 @@ proxy 在傳輸時會套用兩者，因此無論哪一種情況，密鑰都不�
 
 ### 刷新憑證 {#refresh-credentials}
 
-存取權杖與短效 API 金鑰等內嵌權杖會到期。
+存取 token 與短效 API 金鑰等內嵌 token 會到期。
 您可以在下一次互動時，一併傳入既有的 `environment_id` 與
 新的 `network` 設定來刷新它們。新的網路規則
 會完全取代先前的規則，而環境的檔案系統狀態
@@ -3384,7 +3384,7 @@ Content-Length: 10485760
 
 每個 Google 代管環境都以固定的 CPU 與記憶體配置運行。
 在預覽期間，Google 不會針對代管環境的運算收費。
-代理權杖費用請參閱[定價](/docs/pricing/#pricing-for-agents)。
+代理 token 費用請參閱[定價](/docs/pricing/#pricing-for-agents)。
 
 ## 限制 {#limitations}
 

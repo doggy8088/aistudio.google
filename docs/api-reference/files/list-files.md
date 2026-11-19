@@ -20,7 +20,7 @@
 
   **pageToken**: `string`
 
-  選填。先前 `ListFiles` 呼叫所傳回的分頁權杖。
+  選填。先前 `ListFiles` 呼叫所傳回的分頁 token。
 
   
 
@@ -110,7 +110,7 @@
 
   **nextPageToken**: `string`
 
-  可作為 `page_token` 傳送至後續 `ListFiles` 呼叫的權杖。
+  可作為 `page_token` 傳送至後續 `ListFiles` 呼叫的 token。
 
 
 ## 資源 {#resources}

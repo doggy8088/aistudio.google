@@ -12,7 +12,7 @@
 
 ## Wolf Games 的創新提示詞引擎
 
-Wolf Games 解法的核心是他們的內部工具「Prompt Composer」，用來管理他們的提示詞執行 DAG。這個框架讓他們能整合函式呼叫、執行自訂 Python 腳本處理確保名稱唯一等邏輯，並在整個生成過程中管理狀態。這讓他們能：輕鬆在不同模型之間切換，包括 Gemini 2.5 Pro、Gemini 2.0 Flash 與 Gemini 2.0 Flash Thinking。運用檢索增強生成（RAG），將所有生成的內容（例如角色背景故事與案件事件）儲存在持久性資料庫中，確保敘事連貫性。例如，在生成數位銀行對帳單時，參照一張事件的貝氏因果圖——它描繪了敘事中的邏輯相依關係——以確保準確與一致。強制結構化輸出，特別是 JSON，再以 Pydantic 等工具驗證，確保下游的可靠性。Wolf Games 運用 Gemini 2.0 Flash Thinking 處理具有大型上下文視窗（超過 10 萬個權杖）與輸出的複雜文字生成，整合了先前需要眾多步驟的工作流程。他們認為 Gemini 2.0 Flash 在較快速的任務上「效能驚人且可靠」，經常使用 Gemini 2.5 Pro 生成少樣本範例，以提升 Gemini 2.0 Flash 的表現。他們工作流程中的一項關鍵工具是 [Google AI Studio](https://aistudio.google.com/)。「Google AI Studio 已成為我最常用的 Google 產品，每日使用頻率甚至超過 Gmail、Calendar 與 Search，」Noah 分享道，凸顯了它在提示詞實驗上的價值。
+Wolf Games 解法的核心是他們的內部工具「Prompt Composer」，用來管理他們的提示詞執行 DAG。這個框架讓他們能整合函式呼叫、執行自訂 Python 腳本處理確保名稱唯一等邏輯，並在整個生成過程中管理狀態。這讓他們能：輕鬆在不同模型之間切換，包括 Gemini 2.5 Pro、Gemini 2.0 Flash 與 Gemini 2.0 Flash Thinking。運用檢索增強生成（RAG），將所有生成的內容（例如角色背景故事與案件事件）儲存在持久性資料庫中，確保敘事連貫性。例如，在生成數位銀行對帳單時，參照一張事件的貝氏因果圖——它描繪了敘事中的邏輯相依關係——以確保準確與一致。強制結構化輸出，特別是 JSON，再以 Pydantic 等工具驗證，確保下游的可靠性。Wolf Games 運用 Gemini 2.0 Flash Thinking 處理具有大型上下文視窗（超過 10 萬 tokens）與輸出的複雜文字生成，整合了先前需要眾多步驟的工作流程。他們認為 Gemini 2.0 Flash 在較快速的任務上「效能驚人且可靠」，經常使用 Gemini 2.5 Pro 生成少樣本範例，以提升 Gemini 2.0 Flash 的表現。他們工作流程中的一項關鍵工具是 [Google AI Studio](https://aistudio.google.com/)。「Google AI Studio 已成為我最常用的 Google 產品，每日使用頻率甚至超過 Gmail、Calendar 與 Search，」Noah 分享道，凸顯了它在提示詞實驗上的價值。
 
 ## 速度、準確性與改進的工作流程
 

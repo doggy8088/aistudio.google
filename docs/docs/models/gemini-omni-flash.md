@@ -15,7 +15,7 @@ Gemini Omni Flash 是高效能模型，專為快速、對話式的影片生成�
 | --- | --- |
 | 模型代碼 | **Gemini API** `gemini-omni-1.2-flash` |
 | 支援的資料類型 | **輸入** 文字、圖片、影片（編輯最長 15s，延長回看 10s） **輸出** 含原生音訊的影片、文字 |
-| 上限 | **輸入權杖上限** 131,072 個權杖 **輸出權杖上限** 65,536 個權杖 **輸出影片** 3s-15s（360p/720p/1080p/4K，24 FPS；首幀與尾幀插值為 3s-10s，每輪影片延長總長最高 30s） |
+| 上限 | **輸入 token 上限** 131,072 tokens **輸出 token 上限** 65,536 tokens **輸出影片** 3s-15s（360p/720p/1080p/4K，24 FPS；首幀與尾幀插值為 3s-10s，每輪影片延長總長最高 30s） |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-omni-1.2-flash` | 穩定版：`gemini-omni-1.1-flash`（2026 年 12 月 3 日起改導向 `gemini-omni-1.2-flash`） | 已關閉：`gemini-omni-flash-preview` |
 | 最近更新 | 2026 年 11 月 |
 | 定價 | [定價](/docs/pricing/#gemini-omni-1.2-flash) |
@@ -28,7 +28,7 @@ Gemini Omni Flash 是高效能模型，專為快速、對話式的影片生成�
 | --- | --- |
 | 模型代碼 | **Gemini API** `gemini-omni-1.1-flash` |
 | 支援的資料類型 | **輸入** 文字、圖片、影片（編輯與延長最長 10s） **輸出** 影片 |
-| 上限 | **輸入權杖上限** 131,072 個權杖 **輸出權杖上限** 65,536 個權杖 **輸出影片** 3s-10s（360p/720p/1080p/4K，24 FPS） |
+| 上限 | **輸入 token 上限** 131,072 tokens **輸出 token 上限** 65,536 tokens **輸出影片** 3s-10s（360p/720p/1080p/4K，24 FPS） |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-omni-1.2-flash` | 穩定版：`gemini-omni-1.1-flash`（2026 年 12 月 3 日起改導向 `gemini-omni-1.2-flash`） | 已關閉：`gemini-omni-flash-preview` |
 | 最近更新 | 2026 年 8 月 |
 | 定價 | [定價](/docs/pricing/#gemini-omni-1.1-flash) |

@@ -25,7 +25,7 @@ Gemini 3.5 Flash (`gemini-3.5-flash`) 是 Gemini 3 系列中較早一代的 Flas
 | :--- | :--- | :--- |
 | Gemini 3.5 Flash（已淘汰） | `gemini-3.5-flash` | 較早一代的 Flash 模型，適用於代理與程式設計工作。已由 [Gemini 3.6 Flash](/docs/whats-new-gemini-3.6/) 取代。 |
 
-Gemini 3.5 Flash 支援 1M 權杖的上下文視窗、最多 65k 個輸出權杖、思考功能，以及與 Gemini 3 Flash 相同的工具與平台功能，包括 [Computer Use](/docs/computer-use/)。
+Gemini 3.5 Flash 支援 1Mtokens的上下文視窗、最多 65k 個輸出 tokens、思考功能，以及與 Gemini 3 Flash 相同的工具與平台功能，包括 [Computer Use](/docs/computer-use/)。
 
 完整規格請參閱[模型總覽](/docs/models/gemini-3.5-flash/)。
 
@@ -163,7 +163,7 @@ Gemini 3.5 Flash 已淘汰，並會自動路由至
 *   **Gemini 3.8 Flash**：我們最新、最聰明的 Flash 模型，適用於
     複雜的程式設計與代理工作流程。請參閱
     [Gemini 3.8 Flash 指南](/docs/latest-model/)。
-*   **Gemini 3.6 Flash**：Gemini 3.5 Flash 的直接替代模型，權杖用量更少，
+*   **Gemini 3.6 Flash**：Gemini 3.5 Flash 的直接替代模型，token 用量更少，
     輸出價格也更低。請參閱
     [Gemini 3.6 Flash 與 3.5 Flash-Lite 指南](/docs/whats-new-gemini-3.6/)。
 *   **Gemini 3.5 Flash-Lite / Gemini 3.1 Flash-Lite**：若工作成本低、數量大，
@@ -895,7 +895,7 @@ Gemini 3 推出並延續至今的功能包括：
 *   [**Multimodal function responses**](/docs/function-calling/#multimodal)**：** 在函式呼叫結果中傳回圖片、音訊與其他媒體。
 *   [**Code execution with images**](/docs/code-execution/#images)**：** 執行可處理並產生圖片的程式碼。
 *   [**Combined tool use**](/docs/tool-combination/)**：** 在同一個要求中同時使用內建工具與自訂函式呼叫。
-*   [**Media resolution**](/docs/media-resolution/)**：** 精細控制圖片、影片與 PDF 輸入的權杖配置。Gemini 3 模型支援依內容項目設定解析度（`low`、`medium`、`high`、`ultra_high`），適用於混合保真度的提示詞。
+*   [**Media resolution**](/docs/media-resolution/)**：** 精細控制圖片、影片與 PDF 輸入的 token 配置。Gemini 3 模型支援依內容項目設定解析度（`low`、`medium`、`high`、`ultra_high`），適用於混合保真度的提示詞。
 *   [**Thought signatures**](/docs/thinking/#signatures)**：** 加密
     呈現模型內部推理的表示方式。在無狀態模式下進行多輪
     函式呼叫時為必要項目；Interactions API 與官方 SDK 會自動管理。
@@ -932,7 +932,7 @@ Gemini 3.x 模型是推理模型，這會改變您撰寫提示詞的方式。
     知識截止日期為 2025 年 1 月。如需較新的資訊，請使用
     [Search Grounding](/docs/google-search/) 工具。
 2.  **上下文視窗的限制為何？** Gemini 3.5 Flash 支援 1
-    百萬個權杖的輸入上下文視窗，以及最多 65k 個輸出權杖。
+    百萬個 token 的輸入上下文視窗，以及最多 65k 個輸出 tokens。
 3.  **我原有的 `thinking_budget` 程式碼還能運作嗎？** 可以，`thinking_budget` 目前
     仍受支援以維持向後相容性，但我們建議遷移至
     `thinking_level`，以獲得更可預測的效能。請勿在同一個

@@ -28,7 +28,7 @@
 
 | 功能 | Gemini 3.8 Live | Gemini 3.8 Live Extended Thinking | Gemini 3.1 Flash Live Preview | Gemini 2.5 Flash Live Preview |
 | --- | --- | --- | --- | --- |
-| **[Thinking](/docs/live-api/thinking/)** | 支援（交錯推理）。不支援 `thinkingLevel`；請勿在設定中加入。 | 支援（可設定的背景推理：`low`、`medium`、`high`；不支援 `minimal`）。支援思考摘要（`includeThoughts`）。 | 使用 `thinkingLevel`（`minimal`、`low`、`medium`、`high`）。預設為 `minimal`，以達到最低延遲。 | 使用 `thinkingBudget` 設定思考權杖預算。 |
+| **[Thinking](/docs/live-api/thinking/)** | 支援（交錯推理）。不支援 `thinkingLevel`；請勿在設定中加入。 | 支援（可設定的背景推理：`low`、`medium`、`high`；不支援 `minimal`）。支援思考摘要（`includeThoughts`）。 | 使用 `thinkingLevel`（`minimal`、`low`、`medium`、`high`）。預設為 `minimal`，以達到最低延遲。 | 使用 `thinkingBudget` 設定思考 token 預算。 |
 | **[接收回應](/api-reference/live/#BidiGenerateContentServerContent)** | 單一伺服器事件可同時包含多個內容部分（例如 `inlineData` 與轉錄文字）。請確保你的程式碼會處理每個事件中的所有部分，以免遺漏內容。 | 單一伺服器事件可同時包含多個內容部分。當非同步推理進行中時，`turnComplete: true` 並不表示工作階段處於閒置狀態；請檢查 `interaction_status`（`IN_PROGRESS` 與 `IDLE`）。 | 單一伺服器事件可同時包含多個內容部分（例如 `inlineData` 與轉錄文字）。請確保你的程式碼會處理每個事件中的所有部分，以免遺漏內容。 | 每個伺服器事件只包含一個內容部分。各部分會以個別事件傳遞。 |
 | **[用戶端內容](/docs/live-api/capabilities/#incremental-updates)** | 在整個工作階段生命週期內都支援 `send_client_content`，並可使用明確的角色（`user` 或 `model`）。`turn_complete=true` 會無條件中斷生成。 | 在整個工作階段生命週期內都支援 `send_client_content`，並可使用明確的角色（`user` 或 `model`）。`turn_complete=true` 會無條件中斷生成。 | 在整個工作階段生命週期內都支援 `send_client_content`，並可使用明確的角色（`user` 或 `model`）。`turn_complete=true` 會無條件中斷生成。 | 在整個對話過程中都支援 `send_client_content`，可用於傳送漸進式內容更新並建立上下文。 |
 | **[輪次涵蓋範圍](/api-reference/live/#RealtimeInputConfig.TurnCoverage)** | 預設為 `TURN_INCLUDES_AUDIO_ACTIVITY_AND_ALL_VIDEO`。模型的輪次包含偵測到的音訊活動與所有影片影格。 | 預設為 `TURN_INCLUDES_AUDIO_ACTIVITY_AND_ALL_VIDEO`。模型的輪次包含偵測到的音訊活動與所有影片影格。 | 預設為 `TURN_INCLUDES_AUDIO_ACTIVITY_AND_ALL_VIDEO`。模型的輪次包含偵測到的音訊活動與所有影片影格。 | 預設為 `TURN_INCLUDES_ONLY_ACTIVITY`。模型的輪次只包含偵測到的活動。 |
@@ -1210,10 +1210,10 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 閾值。低於此值的閾值常會導致音訊片段化，進而降低
 轉錄與模型回應品質。
 
-## 權杖數量 {#token-count}
+## token 數量 {#token-count}
 
 你可以在傳回的伺服器訊息的
-[usageMetadata](/api-reference/live/#UsageMetadata) 欄位中找到已消耗的權杖總數。
+[usageMetadata](/api-reference/live/#UsageMetadata) 欄位中找到已消耗的 token 總數。
 
 
 === "Python"
@@ -1277,8 +1277,8 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
       ```
 
 
-你可以為包含音訊、影片或圖片輸入的多模態工作階段設定 `mediaResolution`。`mediaResolution` 會調整視覺輸入每一影格的權杖
-配置，而音訊串流在所有解析度設定下都以每秒固定速率進行權杖化。詳情請參閱
+你可以為包含音訊、影片或圖片輸入的多模態工作階段設定 `mediaResolution`。`mediaResolution` 會調整視覺輸入每一影格的 token
+配置，而音訊串流在所有解析度設定下都以每秒固定速率進行 Tokenizer。詳情請參閱
 [媒體解析度](/docs/media-resolution/) 指南。
 
 ## 限制 {#limitations}
@@ -1295,7 +1295,7 @@ Gemini 伺服器接著會捨棄所有待處理的函式呼叫，並傳送一則
 
 Multimodal Live API 依預設僅提供伺服器對伺服器驗證。如果你採用
 [用戶端對伺服器方式](/docs/live-api/#implementation-approach) 實作 Multimodal Live API 應用程式，你需要
-使用[臨時權杖](/docs/live-api/ephemeral-tokens/) 來降低安全性
+使用[臨時 token](/docs/live-api/ephemeral-tokens/) 來降低安全性
 風險。
 
 ### 工作階段時長 {#maximum-session-duration}
@@ -1308,8 +1308,8 @@ Multimodal Live API 依預設僅提供伺服器對伺服器驗證。如果你採
 
 每個工作階段的上下文視窗上限為：
 
-- [原生音訊輸出](/docs/live-api/capabilities/#native-audio-output) 模型為 128k 權杖
-- 其他 Multimodal Live API 模型為 32k 權杖
+- [原生音訊輸出](/docs/live-api/capabilities/#native-audio-output) 模型為 128k token
+- 其他 Multimodal Live API 模型為 32k token
 
 ## 支援的語言 {#supported-languages}
 

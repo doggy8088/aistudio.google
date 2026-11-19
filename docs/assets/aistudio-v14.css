@@ -693,3 +693,17 @@ body[data-md-color-scheme="default"] { background-color: #ffffff; }
 .md-sidebar--primary .md-nav--primary .md-nav { margin-left: 0; }
 .md-sidebar--primary .md-nav--primary .md-nav__list .md-nav__list { padding-left: 0; margin-left: 13px; }
 .md-sidebar--primary .md-nav--primary .md-nav__link { margin-right: 0 !important; }
+
+/* ============ v14: footer text color in the light scheme ============
+   The bundle paints .md-copyright white (it assumes a dark footer);
+   on our light footer-meta (#e8eaed) it was nearly invisible. */
+[data-md-color-scheme="default"] .md-copyright { color: #5f6368; }
+[data-md-color-scheme="default"] .md-copyright a { color: #3c4043; }
+[data-md-color-scheme="default"] .md-copyright a:hover { color: #1a73e8; }
+/* the bundle colors all footer text through these variables (it assumes a
+   dark footer); point them at dark grays in the light scheme */
+[data-md-color-scheme="default"] {
+  --md-footer-fg-color: #3c4043;
+  --md-footer-fg-color--light: #3c4043;
+  --md-footer-fg-color--lighter: #5f6368;
+}

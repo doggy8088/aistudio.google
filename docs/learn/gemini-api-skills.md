@@ -14,7 +14,7 @@ Gemini API 技能是可重複使用的目錄套件，能為程式設計代理提
 
 技能目錄結構 `my-skill/ ├── SKILL.md # Required: metadata + instructions ├── scripts/ # Optional: executable code ├── references/ # Optional: documentation └── assets/ # Optional: templates, resources`
 
-在開發環境中使用技能時，程式設計代理會分三個階段處理這個套件：**啟動探索**：代理只讀取每個已安裝 `SKILL.md` 檔案的 YAML frontmatter（`name` 與 `description`），並把簡短說明加入其系統上下文。**按需啟用**：當你的提示詞符合某項技能的說明時，代理會把完整的 `SKILL.md` 檔案載入上下文視窗，讀取其中的 SDK 規則與程式碼範本。**資源執行**：當任務需要詳細參數或媒體處理時，`SKILL.md` 中的指令會引導代理讀取 `references/` 中的本機指南、執行 `scripts/` 中的輔助腳本，或從 `aistudio.google.com/docs` 取得即時文件頁面。技能與系統提示詞、工具的比較：除了系統提示詞（例如 `AGENTS.md`）與函式呼叫工具之外，技能也是為代理提供額外上下文的選項之一。每種選項都有其特定用途，對上下文視窗的影響也不同。舉例來說，`AGENTS.md` 檔案會包含在每一輪對話中，因此把龐大的 SDK 參考資料放進 `AGENTS.md`，即使你編輯的是不相關的前端或資料庫程式碼，每一輪都會消耗上下文權杖。
+在開發環境中使用技能時，程式設計代理會分三個階段處理這個套件：**啟動探索**：代理只讀取每個已安裝 `SKILL.md` 檔案的 YAML frontmatter（`name` 與 `description`），並把簡短說明加入其系統上下文。**按需啟用**：當你的提示詞符合某項技能的說明時，代理會把完整的 `SKILL.md` 檔案載入上下文視窗，讀取其中的 SDK 規則與程式碼範本。**資源執行**：當任務需要詳細參數或媒體處理時，`SKILL.md` 中的指令會引導代理讀取 `references/` 中的本機指南、執行 `scripts/` 中的輔助腳本，或從 `aistudio.google.com/docs` 取得即時文件頁面。技能與系統提示詞、工具的比較：除了系統提示詞（例如 `AGENTS.md`）與函式呼叫工具之外，技能也是為代理提供額外上下文的選項之一。每種選項都有其特定用途，對上下文視窗的影響也不同。舉例來說，`AGENTS.md` 檔案會包含在每一輪對話中，因此把龐大的 SDK 參考資料放進 `AGENTS.md`，即使你編輯的是不相關的前端或資料庫程式碼，每一輪都會消耗上下文 token。
 
 **上下文選項****系統提示詞（例如 `AGENTS.md`）**：包含在每一輪對話中。最適合全域的儲存庫規則、程式碼風格慣例與專案架構概觀。**技能（`SKILL.md` 套件）**：在與提示詞相關時按需載入。最適合特定領域的 SDK 模式、API 遷移指南、多步驟工作流程與本機輔助腳本。**工具（函式呼叫）**：在執行期間按需載入。最適合取得即時的外部資料、查詢資料庫，或觸發外部副作用。
 
@@ -26,7 +26,7 @@ Gemini API 技能是可重複使用的目錄套件，能為程式設計代理提
 
 儲存庫結構 `gemini-skills/ └── skills/ ├── gemini-api-dev/ │ ├── SKILL.md │ └── references/ │ └── migration.md ├── gemini-live-api-dev/ │ └── SKILL.md └── gemini-omni-flash-api/ ├── SKILL.md └── scripts/ ├── upload_file.py └── video/ ├── generate_video.py ├── inspect_video.py └── prep_video.py`
 
-`gemini-api-dev`（也以 `gemini-interactions-api` 之名發布）`SKILL.md`：定義 Interactions API（`client.interactions.create`）、多模態輸入、結構化輸出、函式呼叫、上下文快取與伺服器端對話狀態的核心模式。它強制使用現行的 `google-genai` 與 `@google/genai` SDK，同時封鎖已淘汰的套件與舊版模型識別碼。`references/migration.md`：包含逐步重構檢查清單與程式碼差異，協助將舊版程式碼庫從 `google-generativeai` 與 `generate_content` 升級至現行的 Interactions API。`gemini-live-api-dev` `SKILL.md`：涵蓋透過 WebSocket 使用 Gemini Live API（`client.aio.live.connect`）進行的低延遲、雙向音訊、影片與文字串流。包含原始 PCM 音訊串流（輸入 16kHz、輸出 24kHz）、語音活動偵測（VAD）中斷處理、短期用戶端權杖，以及 WebRTC 合作夥伴整合（LiveKit、Pipecat 與 Firebase AI Logic）的精確規格。`gemini-omni-flash-api` `SKILL.md`：涵蓋使用 Gemini 影片模型與 Interactions API 的生成式影片工作流程，包括文字轉影片、首幀轉場、幀間插值與影片延伸。`scripts/`：提供可執行的 Python 工具程式（`upload_file.py`、`generate_video.py`、`prep_video.py` 與 `inspect_video.py`），你的程式設計代理可以呼叫它們，用 `ffmpeg` 預先處理媒體、透過 Files API 上傳大型檔案，以及下載生成的影片檔案。
+`gemini-api-dev`（也以 `gemini-interactions-api` 之名發布）`SKILL.md`：定義 Interactions API（`client.interactions.create`）、多模態輸入、結構化輸出、函式呼叫、上下文快取與伺服器端對話狀態的核心模式。它強制使用現行的 `google-genai` 與 `@google/genai` SDK，同時封鎖已淘汰的套件與舊版模型識別碼。`references/migration.md`：包含逐步重構檢查清單與程式碼差異，協助將舊版程式碼庫從 `google-generativeai` 與 `generate_content` 升級至現行的 Interactions API。`gemini-live-api-dev` `SKILL.md`：涵蓋透過 WebSocket 使用 Gemini Live API（`client.aio.live.connect`）進行的低延遲、雙向音訊、影片與文字串流。包含原始 PCM 音訊串流（輸入 16kHz、輸出 24kHz）、語音活動偵測（VAD）中斷處理、短期用戶端 token，以及 WebRTC 合作夥伴整合（LiveKit、Pipecat 與 Firebase AI Logic）的精確規格。`gemini-omni-flash-api` `SKILL.md`：涵蓋使用 Gemini 影片模型與 Interactions API 的生成式影片工作流程，包括文字轉影片、首幀轉場、幀間插值與影片延伸。`scripts/`：提供可執行的 Python 工具程式（`upload_file.py`、`generate_video.py`、`prep_video.py` 與 `inspect_video.py`），你的程式設計代理可以呼叫它們，用 `ffmpeg` 預先處理媒體、透過 Files API 上傳大型檔案，以及下載生成的影片檔案。
 
 ## 如何安裝 Gemini API 技能
 

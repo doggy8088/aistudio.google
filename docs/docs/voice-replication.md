@@ -352,7 +352,7 @@
 `voice_key`（`replicated_voice.key`，以 `voicekey_...` 開頭）及其 `expire_time`，由你儲存在用戶端，
 並可在任何接受 `voice` ID 的位置直接傳入。
 
-*   **金鑰 7 天到期與續期**：無狀態的 `voicekey_...` 權杖
+*   **金鑰 7 天到期與續期**：無狀態的 `voicekey_...` token
     自建立起有固定的 **7 天**有效期限（`replicated_voice.expire_time`）；
     在合成中使用已過期的金鑰會回傳 `400 INVALID_ARGUMENT`。若要在
     無狀態金鑰到期前或到期後續期，請再次呼叫 `voices.create`

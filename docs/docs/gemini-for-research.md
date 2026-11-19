@@ -8,7 +8,7 @@ Gemini 模型可用於推動各學科的基礎研究。以下列出幾種將 Gem
 
 -  **多模態輸入**：Gemini 能處理圖片、音訊與影片，為研究開啟多種令人振奮的方向。[瞭解詳情](/docs/image-understanding/)。
 
--  **長上下文能力**：Gemini 3.0 Flash 與 Pro 具備 100 萬權杖的上下文視窗。[瞭解詳情](/docs/long-context/)。
+-  **長上下文能力**：Gemini 3.0 Flash 與 Pro 具備 100 萬 tokens 的上下文視窗。[瞭解詳情](/docs/long-context/)。
 
 -  **與 Google 一同成長**：透過 API 與 Google AI Studio 快速存取 Gemini 模型，用於正式環境的應用情境。若您需要以 Google Cloud 為基礎的平台，Gemini Enterprise Agent Platform 可提供額外的支援基礎設施。
 

@@ -3306,7 +3306,7 @@ Interactions API 支援連接遠端 MCP 伺服器，讓模型能存取外部工�
 | `type` | `string` | 是 | 必須為 `"mcp_server"`。 |
 | `name` | `string` | 否 | MCP 伺服器的顯示名稱。 |
 | `url` | `string` | 否 | MCP 伺服器端點的完整 URL。 |
-| `headers` | `object` | 否 | 隨每次傳送至伺服器的請求一併送出的 HTTP 標頭鍵值對（例如驗證權杖）。 |
+| `headers` | `object` | 否 | 隨每次傳送至伺服器的請求一併送出的 HTTP 標頭鍵值對（例如驗證 token）。 |
 | `allowed_tools` | `array` | 否 | 限制代理可呼叫該伺服器的哪些工具。 |
 
 ### 範例
@@ -3860,7 +3860,7 @@ Before calling any other tool, in every response you MUST first call `update` wi
 
 ### 簡化複雜的函式結構定義 {#simplifying-complex-schemas}
 
-當你使用 `any` 模式或定義複雜的參數結構時，API 會將你的函式宣告編譯成一台狀態機，用以限制權杖的生成。這台狀態機會對狀態總數、分支路徑與巢狀深度設下限制。若你的工具整體複雜度超過這些限制，API 會以 `400 INVALID_ARGUMENT` 錯誤拒絕請求。
+當你使用 `any` 模式或定義複雜的參數結構時，API 會將你的函式宣告編譯成一台狀態機，用以限制 token 的生成。這台狀態機會對狀態總數、分支路徑與巢狀深度設下限制。若你的工具整體複雜度超過這些限制，API 會以 `400 INVALID_ARGUMENT` 錯誤拒絕請求。
 
 若要修正結構定義遭拒的錯誤，請降低宣告的結構深度與分支因子。簡化複雜函式結構定義的方法有幾種：
 

@@ -8,7 +8,7 @@ Gemini API 透過 File Search 工具實現檢索增強生成（RAG）。File Sea
       目前尚不支援音訊與影片格式。
 
 
-檔案儲存與查詢時產生嵌入皆為免費，你只需在首次為檔案建立索引時支付建立嵌入的費用，以及一般 Gemini 模型的輸入／輸出權杖費用。這種新的計費模式讓 File Search 工具在建置與擴展上都更簡單、更具成本效益。詳情請參閱[定價](/docs/file-search/#pricing)一節。
+檔案儲存與查詢時產生嵌入皆為免費，你只需在首次為檔案建立索引時支付建立嵌入的費用，以及一般 Gemini 模型的輸入／輸出 tokens 費用。這種新的計費模式讓 File Search 工具在建置與擴展上都更簡單、更具成本效益。詳情請參閱[定價](/docs/file-search/#pricing)一節。
 
 ## 直接上傳至 File Search store {#upload}
 
@@ -568,7 +568,7 @@ Gemini API 透過 File Search 工具實現檢索增強生成（RAG）。File Sea
 
 ## 切分設定 {#chunking-configuration}
 
-將檔案匯入 File Search store 時，系統會自動將檔案切分為區塊、產生嵌入、建立索引，並上傳至你的 File Search store。若你需要更精細地控制切分策略，可以指定 [`chunking_config`](/api-reference/file-search/file-search-stores/upload-to-file-search-store/#request-body) 設定，設定每個區塊的權杖數量上限與重疊權杖數量上限。
+將檔案匯入 File Search store 時，系統會自動將檔案切分為區塊、產生嵌入、建立索引，並上傳至你的 File Search store。若你需要更精細地控制切分策略，可以指定 [`chunking_config`](/api-reference/file-search/file-search-stores/upload-to-file-search-store/#request-body) 設定，設定每個區塊的 token 數量上限與重疊 token 數量上限。
 
 
 === "Python"
@@ -2336,7 +2336,7 @@ File Search API 設有以下限制，以確保服務穩定：
 
 * 查詢時的嵌入免費。
 
-* 擷取到的文件權杖比照一般的[上下文權杖](/docs/tokens/)計費。
+* 擷取到的文件 token 比照一般的[上下文 token](/docs/tokens/)計費。
 
 
 ## 後續步驟 {#whats-next}

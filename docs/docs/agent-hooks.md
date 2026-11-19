@@ -478,12 +478,12 @@ HTTP hook 會直接從沙箱網路內，將事件 JSON 以 POST 要求的形式�
 | `headers` | `object` | 選填的鍵值對，用於非敏感的自訂標頭（例如 `{"X-Event-Source": "agent-sandbox"}`）。如需驗證，請改用網路允許清單上的 [credential](/docs/agent-credentials/)。 |
 | `timeout` | `integer` | 逾時時間（秒）。預設值：`30`。 |
 
-#### 出口 proxy 與權杖轉換 {#egress-proxy-and-token-transformation}
+#### 出口 proxy 與 token 轉換 {#egress-proxy-and-token-transformation}
 
 由於 HTTP hook 是直接在沙箱網路命名空間內執行，對外要求會經過透明的出口 proxy。這套架構帶來 2 項關鍵的安全優勢：
 
 * **網路允許清單**：目標端點必須在環境的 `network.allowlist` 中明確獲得許可。回送流量（`127.0.0.1` 或 `localhost`）會被 proxy 阻擋；請一律以允許清單上的外部端點為目標。
-* **憑證注入**：你不需要將 API 金鑰或秘密持有人權杖儲存在 `.agents/hooks.json` 內，也不需要將其掛載到容器中。只要將秘密儲存為一份 [credential](/docs/agent-credentials/)，並在環境的 `network.allowlist` 中以 ID 參照即可。出口 proxy 會自動攔截對外的 HTTP hook 流量，並在離開沙箱前於傳輸過程中注入真正的驗證標頭。行內的 `transform` 規則同樣是在傳輸過程中設定標頭；若你想在整個專案中共用秘密並集中在一處輪替，credential 才是合適的選擇。詳見[網路設定](/docs/agent-environment/#network-configuration)。
+* **憑證注入**：你不需要將 API 金鑰或秘密持有人 token 儲存在 `.agents/hooks.json` 內，也不需要將其掛載到容器中。只要將秘密儲存為一份 [credential](/docs/agent-credentials/)，並在環境的 `network.allowlist` 中以 ID 參照即可。出口 proxy 會自動攔截對外的 HTTP hook 流量，並在離開沙箱前於傳輸過程中注入真正的驗證標頭。行內的 `transform` 規則同樣是在傳輸過程中設定標頭；若你想在整個專案中共用秘密並集中在一處輪替，credential 才是合適的選擇。詳見[網路設定](/docs/agent-environment/#network-configuration)。
 
 ## 執行環境如何處理決策與失敗 {#execution-and-failure-semantics}
 
@@ -925,7 +925,7 @@ HTTP hook 會直接從沙箱網路內，將事件 JSON 以 POST 要求的形式�
 每當檔案被讀取或修改時，將即時稽核事件從沙箱內傳送至外部監控伺服器。
 
 * **比對多個工具**：由於 matcher 使用標準正規表示式，你可以用直線（`view_file|write_to_file|replace_file_content`）或萬用字元（`.*_file`），在單一規則中組合多個工具。
-* **讓秘密遠離你的設定**：將驗證權杖儲存為 [credential](/docs/agent-credentials/)，並在環境的[網路設定](/docs/agent-environment/#network-configuration)（`network.allowlist.credential`）中以 ID 參照。出口 proxy 會在對外要求中注入真正的持有人權杖。本範例改以 `transform` 行內設定標頭，同樣受到相同 proxy 的保護，適用於權杖只屬於這一組設定的情況。
+* **讓秘密遠離你的設定**：將驗證 token 儲存為 [credential](/docs/agent-credentials/)，並在環境的[網路設定](/docs/agent-environment/#network-configuration)（`network.allowlist.credential`）中以 ID 參照。出口 proxy 會在對外要求中注入真正的持有人 token。本範例改以 `transform` 行內設定標頭，同樣受到相同 proxy 的保護，適用於 token 只屬於這一組設定的情況。
 
 
 === "Python"

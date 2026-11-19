@@ -4,7 +4,7 @@ Gemini 3.5 Flash 已正式推出（GA），穩定可靠，可用於大規模正�
 
 ![Patrick Loeber](https://www.gstatic.com/aistudio-static/editorial/authors/54f6334eb7a549668f54.jpg)
 
-作為我們最聰明的 Flash 模型，它在代理執行、程式設計與長時程任務上，都能大規模地持續提供前沿水準的效能。本指南概述 Gemini 3.5 Flash 的改進、API 變更與遷移指引。Gemini 3.5 Flash 支援 1M 權杖上下文視窗、最多 65k 個輸出權杖、思考功能，以及與 Gemini 3 Flash 相同的一整套工具與平台功能。目前尚不支援 [Computer Use](https://ai.google.dev/gemini-api/docs/computer-use)。完整規格請參閱[模型總覽](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash)。定價請參閱[定價頁面](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash)。
+作為我們最聰明的 Flash 模型，它在代理執行、程式設計與長時程任務上，都能大規模地持續提供前沿水準的效能。本指南概述 Gemini 3.5 Flash 的改進、API 變更與遷移指引。Gemini 3.5 Flash 支援 1Mtokens上下文視窗、最多 65k 個輸出 tokens、思考功能，以及與 Gemini 3 Flash 相同的一整套工具與平台功能。目前尚不支援 [Computer Use](https://ai.google.dev/gemini-api/docs/computer-use)。完整規格請參閱[模型總覽](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash)。定價請參閱[定價頁面](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash)。
 
 ## 快速入門
 
@@ -197,11 +197,11 @@ You have a limited action budget of <n> tool calls. Use them efficiently.
 
 ## 從 Gemini 3 Flash Preview 遷移
 
-更新模型名稱：`gemini-3-flash-preview` → `gemini-3.5-flash`。檢視定價。Gemini 3.5 Flash 的價格高於 Gemini 3 Flash Preview。詳情請參閱[定價頁面](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash)。從設定中移除 `temperature`、`top_p`、`top_k`（不再建議使用）。以 `thinking_level` 取代 `thinking_budget`。為所有 `FunctionResponse` 部分加入 `id` 與相符的 `name`。測試你的提示詞。預設努力等級已由 `high` 改為 `medium`；請驗證品質、速度與成本。思考保留現在預設開啟。推理上下文會延續到後續輪次，可提升效能，但可能增加權杖用量。減少不必要的工具呼叫：先降低思考等級（`medium`、`low` 或 `minimal`）；如果仍過度使用，再加入系統指令限制工具的使用。目前 Gemini 3.5 Flash 尚不支援 [Computer Use](https://ai.google.dev/gemini-api/docs/computer-use)。Computer Use 工作負載請繼續使用 Gemini 3 Flash Preview。
+更新模型名稱：`gemini-3-flash-preview` → `gemini-3.5-flash`。檢視定價。Gemini 3.5 Flash 的價格高於 Gemini 3 Flash Preview。詳情請參閱[定價頁面](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash)。從設定中移除 `temperature`、`top_p`、`top_k`（不再建議使用）。以 `thinking_level` 取代 `thinking_budget`。為所有 `FunctionResponse` 部分加入 `id` 與相符的 `name`。測試你的提示詞。預設努力等級已由 `high` 改為 `medium`；請驗證品質、速度與成本。思考保留現在預設開啟。推理上下文會延續到後續輪次，可提升效能，但可能增加 token 用量。減少不必要的工具呼叫：先降低思考等級（`medium`、`low` 或 `minimal`）；如果仍過度使用，再加入系統指令限制工具的使用。目前 Gemini 3.5 Flash 尚不支援 [Computer Use](https://ai.google.dev/gemini-api/docs/computer-use)。Computer Use 工作負載請繼續使用 Gemini 3 Flash Preview。
 
 ## 從 Gemini 2.5 遷移
 
-以上全部，外加：簡化提示詞。如果你曾使用思維鏈提示工程來強制推理，請改為搭配較簡單的提示詞，嘗試 `thinking_level: "medium"` 或 `"high"`。測試 PDF 與媒體工作負載。如果你仰賴密集文件解析的特定行為，請測試 `media_resolution_high` 設定，確保準確度維持不變。遷移到 Gemini 3 的預設值也可能增加 PDF 的權杖用量、但減少影片的權杖用量；如果要求超出上下文視窗，請明確降低 `media_resolution`。詳情請參閱[媒體解析度](https://ai.google.dev/gemini-api/docs/interactions/media-resolution)文件。善用[組合式工具使用](https://ai.google.dev/gemini-api/docs/interactions/tool-combination)。Google 搜尋、URL 上下文、程式碼執行與自訂函式可以在同一個要求中一起使用。如果使用多模態函式回應，請將多模態內容移到函式回應部分內部，不要放在旁邊。如果在函式回應中使用行內指令，請將它們附加到函式回應文字中並以兩個換行字元分隔，不要拆成獨立的部分。Gemini 3.x 不支援圖片分割。分割工作負載請繼續使用關閉思考功能的 Gemini 2.5 Flash，或 [Gemini Robotics-ER 1.6](https://ai.google.dev/gemini-api/docs/robotics-overview)。
+以上全部，外加：簡化提示詞。如果你曾使用思維鏈提示工程來強制推理，請改為搭配較簡單的提示詞，嘗試 `thinking_level: "medium"` 或 `"high"`。測試 PDF 與媒體工作負載。如果你仰賴密集文件解析的特定行為，請測試 `media_resolution_high` 設定，確保準確度維持不變。遷移到 Gemini 3 的預設值也可能增加 PDF 的 token 用量、但減少影片的 token 用量；如果要求超出上下文視窗，請明確降低 `media_resolution`。詳情請參閱[媒體解析度](https://ai.google.dev/gemini-api/docs/interactions/media-resolution)文件。善用[組合式工具使用](https://ai.google.dev/gemini-api/docs/interactions/tool-combination)。Google 搜尋、URL 上下文、程式碼執行與自訂函式可以在同一個要求中一起使用。如果使用多模態函式回應，請將多模態內容移到函式回應部分內部，不要放在旁邊。如果在函式回應中使用行內指令，請將它們附加到函式回應文字中並以兩個換行字元分隔，不要拆成獨立的部分。Gemini 3.x 不支援圖片分割。分割工作負載請繼續使用關閉思考功能的 Gemini 2.5 Flash，或 [Gemini Robotics-ER 1.6](https://ai.google.dev/gemini-api/docs/robotics-overview)。
 
 ## Gemini 3 系列功能
 

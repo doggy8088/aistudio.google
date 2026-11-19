@@ -2,7 +2,7 @@
 
 `GET` `https://generativelanguage.googleapis.com/v1beta/models/{model}`
 
-取得特定 [`Model`](/api-reference/models/#Resource:Model) 的資訊，例如其版本號、權杖上限、[參數](/docs/prompting-strategies/#model-parameters) 與其他中繼資料。詳細的模型資訊請參閱 [Gemini 模型指南](/docs/models/)。
+取得特定 [`Model`](/api-reference/models/#Resource:Model) 的資訊，例如其版本號、token 上限、[參數](/docs/prompting-strategies/#model-parameters) 與其他中繼資料。詳細的模型資訊請參閱 [Gemini 模型指南](/docs/models/)。
 
 
   
@@ -120,7 +120,7 @@
 
   **inputTokenLimit**：`integer`
 
-  此模型允許的輸入權杖數量上限。
+  此模型允許的輸入 token 數量上限。
 
   
 
@@ -129,7 +129,7 @@
 
   **outputTokenLimit**：`integer`
 
-  此模型可用的輸出權杖數量上限。
+  此模型可用的輸出 token 數量上限。
 
   
 
@@ -165,7 +165,7 @@
 
   **topP**：`number`
 
-  適用於 [Nucleus sampling](/docs/prompting-strategies/#model-parameters)。Nucleus sampling 會考量機率總和至少達到 `top_p` 的最小權杖集合。此值指定後端呼叫模型時要使用的預設值。
+  適用於 [Nucleus sampling](/docs/prompting-strategies/#model-parameters)。Nucleus sampling 會考量機率總和至少達到 `top_p` 的最小 token 集合。此值指定後端呼叫模型時要使用的預設值。
 
   
 
@@ -174,7 +174,7 @@
 
   **topK**：`integer`
 
-  適用於 Top-k 取樣。Top-k 取樣會考量機率最高的 `top_k` 個權杖所組成的集合。此值指定後端呼叫模型時要使用的預設值。若為空值，表示模型不使用 Top-k 取樣，且不允許將 `top_k` 作為生成參數。
+  適用於 Top-k 取樣。Top-k 取樣會考量機率最高的 `top_k` 個 token 所組成的集合。此值指定後端呼叫模型時要使用的預設值。若為空值，表示模型不使用 Top-k 取樣，且不允許將 `top_k` 作為生成參數。
 
   
 

@@ -148,7 +148,7 @@
 
   **next_page_token**: `string`
 
-  用於擷取下一頁結果的權杖。
+  用於擷取下一頁結果的 token。
 
   
 
@@ -249,7 +249,7 @@ CreateAgent API 的代理定義。
 
     **max_total_tokens**: `string`
 
-    代理執行期間的權杖總數上限。
+    代理執行期間的 token 總數上限。
 
 
 

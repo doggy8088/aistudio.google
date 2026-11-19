@@ -50,7 +50,7 @@ Gemini API 上的受管代理提供可設定的代理框架。只要一次 API �
 你可以連接外部工具與 API 來擴充代理。請只使用來自可信來源的工具，並將權限範圍縮小到必要的最小限度。將機密儲存為受管憑證，並以 ID 參照它們，如此 egress proxy 就能在要求發出時注入，機密也不會暴露在沙箱內。代理可能會使用它能存取的任何憑證，因此只應提供你願意授予完整權限範圍的憑證。
 
 * 使用最小權限的服務帳號或 API 金鑰。
-* 優先使用短期權杖，而非長期金鑰。
+* 優先使用短期 token，而非長期金鑰。
 * 只提供你願意授予完整權限範圍的憑證。
 * 定期輪替憑證。
 
@@ -62,7 +62,7 @@ Gemini API 上的受管代理提供可設定的代理框架。只要一次 API �
 
 ## 定價 {#pricing}
 
-受管代理採用 [按量付費模式](/docs/pricing/#pricing-for-agents)，依 Gemini 模型權杖與工具使用量計費。單次互動可能觸發多輪推理循環，通常會消耗 100k 到 3M 個權杖。預覽期間，環境運算**不計費**。如需各任務的費用明細，請參閱[預估成本](/docs/antigravity-agent/#availability-and-pricing)。
+受管代理採用 [按量付費模式](/docs/pricing/#pricing-for-agents)，依 Gemini 模型 token 與工具使用量計費。單次互動可能觸發多輪推理循環，通常會消耗 100k 到 3M tokens。預覽期間，環境運算**不計費**。如需各任務的費用明細，請參閱[預估成本](/docs/antigravity-agent/#availability-and-pricing)。
 
 ## 限制 {#limits}
 

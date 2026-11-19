@@ -290,7 +290,7 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
       ```
 
 
-若要最佳化權杖效率與效能，可以考慮使用 [Agentic video processing](/docs/video-understanding/#agentic-video-understanding)。
+若要最佳化 token 效率與效能，可以考慮使用 [Agentic video processing](/docs/video-understanding/#agentic-video-understanding)。
 
 當要求總大小（包含檔案、文字提示詞、系統指令等）大於 20 MB、影片時間較長，或打算在多個提示詞中使用同一部影片時，請一律使用 Files API。File API 可直接接受影片檔案格式。
 
@@ -671,14 +671,14 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
 | **模式** | **說明** | **支援的模型** |
 | --- | --- | --- |
 | **Static**（預設） | 以固定速率（1 FPS）擷取影格，一次全部放入上下文。所有 Gemini 模型（包括 Gemini 4）的預設模式。 | 所有 Gemini 模型 |
-| **Agentic** | 模型會依提示詞動態瀏覽影片時間軸，只載入需要的內容。處理長篇內容時，權杖效率最高可提升 88%，品質約高出 7%。 | Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite |
+| **Agentic** | 模型會依提示詞動態瀏覽影片時間軸，只載入需要的內容。處理長篇內容時，token 效率最高可提升 88%，品質約高出 7%。 | Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite |
 
 ### 選擇處理模式 {#when-to-use}
 
 請依影片長度與查詢類型選擇合適的處理模式：
 
-- **Static（預設）**：最適合短片（5 分鐘以下）、整部影片都相關的廣泛全片摘要、對延遲敏感的查詢，或需要全片逐格精確度的情況。對於短片，或需要檢視大部分影片的廣泛提示詞，靜態處理可避免時間軸瀏覽所產生的額外思考權杖（`total_thought_tokens`）與工具呼叫往返（`total_tool_use_tokens`）。
-- **Agentic**：最適合長篇影片（超過 5 到 10 分鐘）、大海撈針式的檢索，或針對特定時刻或主題的查詢。模型會先檢視字幕稿，僅在需要時載入相關的視覺片段，在不塞滿上下文視窗的情況下，最多可減少 88% 的影片輸入權杖用量。
+- **Static（預設）**：最適合短片（5 分鐘以下）、整部影片都相關的廣泛全片摘要、對延遲敏感的查詢，或需要全片逐格精確度的情況。對於短片，或需要檢視大部分影片的廣泛提示詞，靜態處理可避免時間軸瀏覽所產生的額外思考 token（`total_thought_tokens`）與工具呼叫往返（`total_tool_use_tokens`）。
+- **Agentic**：最適合長篇影片（超過 5 到 10 分鐘）、大海撈針式的檢索，或針對特定時刻或主題的查詢。模型會先檢視字幕稿，僅在需要時載入相關的視覺片段，在不塞滿上下文視窗的情況下，最多可減少 88% 的影片輸入 token 用量。
 
 
 !!! note " "
@@ -1034,7 +1034,7 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
 影片上下文會在對話的各輪之間保留。使用代理式處理時：
 
 - **有狀態模式**（使用 `previous_interaction_id`）：伺服器會保留影片上下文，不需要額外處理。
-- **無狀態模式**（使用 `step_list`）：在無狀態模式下，回應會包含 `processing_call` 與 `processing_result` 步驟，其中編碼了影片上下文。你必須將回應中的所有步驟都納入下一個要求的 `step_list`，才能保留影片上下文。省略這些步驟目前不會造成 API 錯誤，但影片上下文會遺失，後續問題的回應品質會大幅降低。請注意，在後續要求中送出的回傳步驟會計入輸入權杖數量。
+- **無狀態模式**（使用 `step_list`）：在無狀態模式下，回應會包含 `processing_call` 與 `processing_result` 步驟，其中編碼了影片上下文。你必須將回應中的所有步驟都納入下一個要求的 `step_list`，才能保留影片上下文。省略這些步驟目前不會造成 API 錯誤，但影片上下文會遺失，後續問題的回應品質會大幅降低。請注意，在後續要求中送出的回傳步驟會計入輸入 token 數量。
 
 ## 在內容中指出時間戳記 {#refer-timestamps}
 
@@ -1113,7 +1113,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 
 ## 自訂影片處理 {#customize-video-processing}
 
-在 `"static"` 模式下，你可以剪輯影片區間、設定自訂影格取樣率（`fps` 介於 `(0, 24]` 之間），並選擇 `content_layers`。Gemini 只會針對剪輯後的區間與選取的圖層收取權杖費用。
+在 `"static"` 模式下，你可以剪輯影片區間、設定自訂影格取樣率（`fps` 介於 `(0, 24]` 之間），並選擇 `content_layers`。Gemini 只會針對剪輯後的區間與選取的圖層收取 token 費用。
 
 ### 設定剪輯區間 {#clipping-intervals}
 
@@ -1276,8 +1276,8 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 預設情況下，`"static"` 模式會包含取樣的影格與音訊（`content_layers: ["frames", "audio"]`）。傳入 `content_layers` 即可任選組合：
 
 *   `"frames"`：取樣的視覺影格，依 `resolution` 與 `fps` 計費。
-*   `"audio"`：原始音軌，依標準音訊權杖費率計費。
-*   `"transcript"`：附時間戳記的文字字幕稿，依文字權杖計費。
+*   `"audio"`：原始音軌，依標準音訊 token 費率計費。
+*   `"transcript"`：附時間戳記的文字字幕稿，依文字 token 計費。
 
 對於長影片，請先要求 `"transcript"`，以低成本找出時間戳記，再以 `"frames"` 檢視該片段：
 
@@ -1466,30 +1466,30 @@ Gemini 支援下列影片格式 MIME 類型：
 
 - **處理模式**：Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash、3.5 Flash Lite 及後續模型支援兩種影片處理模式：
   -   **Static**：以 1 FPS 擷取影格並放入上下文（所有模型的預設模式）。音訊以 1Kbps（單聲道）處理。每秒加入時間戳記。最適合短片，或每個影格都很重要的情況（例如逐格檢視）。請注意，由於取樣率為 1 FPS，快速動作片段可能會遺失細節。
-  -   **Agentic**：模型會動態瀏覽影片，依需求載入字幕稿及／或影格及／或音訊。處理長篇內容時，使用的權杖最多可減少 88%；不過由於內部推理與工具往返，瀏覽可能會增加短片（<5 分鐘）或廣泛查詢的首權杖時間（TTFT）與總權杖用量。最適合長篇影片與針對性查詢，可最佳化權杖成本與回應品質。支援 Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 與 3.5 Flash Lite。詳情請參閱 [Agentic video understanding](/docs/video-understanding/#agentic-video-understanding)。
+  -   **Agentic**：模型會動態瀏覽影片，依需求載入字幕稿及／或影格及／或音訊。處理長篇內容時，使用的 token 最多可減少 88%；不過由於內部推理與工具往返，瀏覽可能會增加短片（<5 分鐘）或廣泛查詢的首 token 時間（TTFT）與總 token 用量。最適合長篇影片與針對性查詢，可最佳化 token 成本與回應品質。支援 Gemini 4 Carbon、Gemini 4 Argon、Gemini 4 Neon、Gemini 4 Hydrogen、3.8 Flash、3.6 Flash 與 3.5 Flash Lite。詳情請參閱 [Agentic video understanding](/docs/video-understanding/#agentic-video-understanding)。
 
-- **權杖計算（靜態模式）**：每秒影片的權杖化方式如下：
+- **token 計算（靜態模式）**：每秒影片的 Tokenizer 方式如下：
   -   個別影格（以 1 FPS 取樣）：
-      -   若 `media_resolution` 設為低，影格以每個影格 66 個權杖計算。
-      -   否則，影格以每個影格 258 個權杖計算。
+      -   若 `media_resolution` 設為低，影格以每個影格 66 tokens 計算。
+      -   否則，影格以每個影格 258 tokens 計算。
 
-  -   音訊：每秒 32 個權杖。
+  -   音訊：每秒 32 tokens。
   -   也包含中繼資料。
-  -   總計：在預設（低）媒體解析度下，每秒影片約 100 個權杖；高媒體解析度下，每秒影片約 300 個權杖。
+  -   總計：在預設（低）媒體解析度下，每秒影片約 100 tokens；高媒體解析度下，每秒影片約 300 tokens。
 
-- **權杖計算（代理式模式）**：權杖用量會依內容複雜度與模型的瀏覽策略而有所不同。影片探索期間產生的瀏覽推理權杖會計為**思考權杖**（`total_thought_tokens`），依需求載入的影格、音訊與字幕稿則會計為工具使用權杖（`total_tool_use_tokens`）。代理式處理處理長篇內容時，總權杖用量通常最多可比靜態處理少 88%，因為模型只會載入回答提示詞所需的字幕稿及／或影格及／或音訊（請參閱[權杖指南](/docs/tokens/#video)）。
-- **媒體解析度**：Gemini 3 透過 `media_resolution` 參數，引入對多模態視覺處理的細緻控制。`media_resolution` 參數決定**每個輸入圖片或影片影格可分配的權杖數量上限。**解析度越高，模型越能讀取細小文字或辨識微小細節，但權杖用量與延遲也會增加。`media_resolution` 與 `processing` 參數彼此獨立：你可以在同一個影片輸入上同時設定兩者。
+- **token 計算（代理式模式）**：token 用量會依內容複雜度與模型的瀏覽策略而有所不同。影片探索期間產生的瀏覽推理 token 會計為**思考 token**（`total_thought_tokens`），依需求載入的影格、音訊與字幕稿則會計為工具使用 token（`total_tool_use_tokens`）。代理式處理處理長篇內容時，總 token 用量通常最多可比靜態處理少 88%，因為模型只會載入回答提示詞所需的字幕稿及／或影格及／或音訊（請參閱[token 指南](/docs/tokens/#video)）。
+- **媒體解析度**：Gemini 3 透過 `media_resolution` 參數，引入對多模態視覺處理的細緻控制。`media_resolution` 參數決定**每個輸入圖片或影片影格可分配的 token 數量上限。**解析度越高，模型越能讀取細小文字或辨識微小細節，但 token 用量與延遲也會增加。`media_resolution` 與 `processing` 參數彼此獨立：你可以在同一個影片輸入上同時設定兩者。
 
-如要進一步瞭解權杖計算方式，請參閱 [tokens](/docs/tokens/) 指南。
+如要進一步瞭解 token 計算方式，請參閱 [tokens](/docs/tokens/) 指南。
 
 - **時間戳記格式**：在提示詞中指出影片的特定時刻時，請使用 `MM:SS` 格式（例如 `01:15` 表示 1 分 15 秒）。
 - **提示詞位置**：若要將文字與單一影片組合，請將文字提示詞放在 `input` 陣列中影片部分的*後面*。
-- **長要求的逾時**：對於需要較長處理時間或複雜多步驟推理的影片，請使用串流或[背景執行](/docs/background-execution/)。在高需求下經歷後端重試的同步非串流要求，可能會超出連線或驗證權杖的有效期限，進而以非預期的 `401 Unauthorized` 或逾時錯誤呈現。串流可以保持連線，並顯示中間的推理與工具呼叫進度。
+- **長要求的逾時**：對於需要較長處理時間或複雜多步驟推理的影片，請使用串流或[背景執行](/docs/background-execution/)。在高需求下經歷後端重試的同步非串流要求，可能會超出連線或驗證 token 的有效期限，進而以非預期的 `401 Unauthorized` 或逾時錯誤呈現。串流可以保持連線，並顯示中間的推理與工具呼叫進度。
 
 ## 後續步驟 {#whats-next}
 
-- [Media resolution](/docs/media-resolution/)：控制影片影格的解析度，在品質與權杖用量之間取得平衡。
-- [Tokens](/docs/tokens/)：瞭解靜態與代理式兩種處理模式下，影片內容的權杖化方式。
+- [Media resolution](/docs/media-resolution/)：控制影片影格的解析度，在品質與 token 用量之間取得平衡。
+- [Tokens](/docs/tokens/)：瞭解靜態與代理式兩種處理模式下，影片內容的 Tokenizer 方式。
 - [Background execution](/docs/background-execution/)：以非同步方式執行長時間的影片理解工作，避免連線逾時。
 - [System instructions](/docs/text-generation/#system-instructions)：系統指令可讓你依特定需求與應用案例，引導模型的行為。
 - [Files API](/docs/files/)：進一步瞭解如何上傳及管理供 Gemini 使用的檔案。

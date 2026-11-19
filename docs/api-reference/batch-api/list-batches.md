@@ -29,7 +29,7 @@
 
   **pageToken**: `string`
 
-  標準清單頁面權杖。
+  標準清單頁面 token。
 
   
 
@@ -109,7 +109,7 @@
 
   **nextPageToken**: `string`
 
-  標準 List 下一頁權杖。
+  標準 List 下一頁 token。
 
   
 

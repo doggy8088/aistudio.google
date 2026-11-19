@@ -62,7 +62,7 @@ npx skills add google-gemini/gemini-skills --skill gemini-api-dev --global
 
 此技能用於透過 [Gemini Live API](/docs/live-api/) 建置即時音訊與影片串流應用程式。此技能涵蓋：
 
-- WebSocket 工作階段管理、臨時用戶端權杖與工作階段恢復
+- WebSocket 工作階段管理、臨時用戶端 token 與工作階段恢復
 - 串流音訊、影片與文字，並支援語音活動偵測（VAD）與插話
 - 背景推理（延伸思考）、非封鎖式非同步工具呼叫、轉錄與即時語音翻譯
 
@@ -191,7 +191,7 @@ npx add-mcp "https://gemini-api-docs-mcp.dev"
 
 ## 機器可讀文件  {#machine-readable-docs}
 
-  標準網頁包含 HTML 標籤、導覽列與指令碼，會占用上下文視窗空間。AI Studio 以乾淨的 Markdown 提供文件，以節省權杖，並協助代理直接閱讀文件。
+  標準網頁包含 HTML 標籤、導覽列與指令碼，會占用上下文視窗空間。AI Studio 以乾淨的 Markdown 提供文件，以節省 tokens，並協助代理直接閱讀文件。
 
 ### 如何存取 Markdown  {#markdown-access-methods}
 

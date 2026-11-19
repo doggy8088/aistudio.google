@@ -103,7 +103,7 @@
 
             **max_total_tokens**: `string`
 
-            代理執行可使用的權杖總數上限。
+            代理執行可使用的 token 總數上限。
 
 
 
@@ -173,7 +173,7 @@
         - `failed`: 互動失敗。
         - `cancelled`: 互動已取消。
         - `incomplete`: 互動已完成，但結果不完整（例如達到 max_tokens 上限）。
-        - `requires_continuation`: 互動至少還需要一次要求才能完成。下一次要求應將 continuation_token 設為本次要求傳回的權杖。
+        - `requires_continuation`: 互動至少還需要一次要求才能完成。下一次要求應將 continuation_token 設為本次要求傳回的 token。
 
 
 
@@ -314,7 +314,7 @@
 
             **enable_widget**: `boolean`
 
-            是否在回應的工具呼叫結果中傳回 widget 上下文權杖。
+            是否在回應的工具呼叫結果中傳回 widget 上下文 token。
 
             **latitude**: `number`
 
@@ -836,7 +836,7 @@
 
       **continuation_token**: `string`
 
-      用來恢復長時間解碼的不透明權杖。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+      用來恢復長時間解碼的不透明 token。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

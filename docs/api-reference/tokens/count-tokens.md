@@ -1,10 +1,10 @@
-# 計算權杖數
+# 計算 token 數
 
 `POST` `https://generativelanguage.googleapis.com/v1beta/models/{model}:countTokens`
 
-對輸入的 `Content` 執行模型的 tokenizer，並傳回權杖數量。
-請參閱[權杖指南](/docs/tokens/)
-進一步瞭解權杖。
+對輸入的 `Content` 執行模型的 tokenizer，並傳回 token 數量。
+請參閱[token 指南](/docs/tokens/)
+進一步瞭解 token。
 
 
   
@@ -252,7 +252,7 @@
                               聯集欄位 `value` 只能是下列其中之一：
 
 
-                            ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                            ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                   可能的值：
@@ -521,7 +521,7 @@
 
 
 
-                ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                     可能的值：
 
@@ -840,7 +840,7 @@
                                   聯集欄位 `value` 只能是下列其中之一：
 
 
-                                ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                       可能的值：
@@ -1109,7 +1109,7 @@
 
 
 
-                    ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                    ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                         可能的值：
 
@@ -1415,7 +1415,7 @@
                                   聯集欄位 `value` 只能是下列其中之一：
 
 
-                                ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                                ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
 
                                       可能的值：
@@ -1684,7 +1684,7 @@
 
 
 
-                    ??? note "**level**: `string enum` 指定媒體所使用的權杖化品質。供 Gemini API 支援使用。"
+                    ??? note "**level**: `string enum` 指定媒體所使用的 Tokenizer 品質。供 Gemini API 支援使用。"
 
                         可能的值：
 
@@ -2172,7 +2172,7 @@
 
             **enableWidget**: `boolean`
 
-            選用。是否在回應的 GroundingMetadata 中傳回 widget 上下文權杖。開發人員可使用 widget 上下文權杖，算繪與模型在回應中參照之地點相關地理空間上下文的 Google Maps widget。
+            選用。是否在回應的 GroundingMetadata 中傳回 widget 上下文 token。開發人員可使用 widget 上下文 token，算繪與模型在回應中參照之地點相關地理空間上下文的 Google Maps widget。
 
 
 
@@ -2274,7 +2274,7 @@
 
           **maxOutputTokens**: `integer`
 
-          選用。回應候選中要納入的權杖數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。
+          選用。回應候選中要納入的 token 數量上限。注意：預設值因模型而異，請參閱 `Model.output_token_limit` 屬性，其所屬的 `Model` 由 `getModel` 函式傳回。
 
           **temperature**: `number`
 
@@ -2282,11 +2282,11 @@
 
           **topP**: `number`
 
-          選用。取樣時要考量的權杖累積機率上限。模型結合使用 Top-k 與 Top-p（nucleus）取樣。權杖會依其指派的機率排序，僅考量最可能的權杖。Top-k 取樣直接限制考量的權杖數量上限，Nucleus 取樣則依累積機率限制權杖數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
+          選用。取樣時要考量的 token 累積機率上限。模型結合使用 Top-k 與 Top-p（nucleus）取樣。token 會依其指派的機率排序，僅考量最可能的 token。Top-k 取樣直接限制考量的 token 數量上限，Nucleus 取樣則依累積機率限制 token 數量。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
           **topK**: `integer`
 
-          選用。取樣時要考量的權杖數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考量機率最高的 `top_k` 個權杖組成的集合。使用 nucleus 取樣的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
+          選用。取樣時要考量的 token 數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣考量機率最高的 `top_k` 個 token 組成的集合。使用 nucleus 取樣的模型不允許設定 top_k。注意：預設值因 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。空的 `top_k` 屬性表示模型不套用 top-k 取樣，也不允許在要求中設定 `top_k`。Gemini 3.6 Flash 及更新的模型已不再支援此欄位，會靜默忽略。
 
           **seed**: `integer`
 
@@ -2302,11 +2302,11 @@
 
           **presencePenalty**: `number`
 
-          選用。若權杖已在回應中出現，套用至下一個權杖 logprobs 的存在懲罰。此懲罰為二元開/關，不取決於權杖的使用次數（第一次之後）。若需要隨使用次數增加的懲罰，請使用 frequency_penalty。正值的懲罰會降低使用已用過權杖的意願，增加詞彙量。負值的懲罰會鼓勵使用已用過的權杖，減少詞彙量。
+          選用。若 token 已在回應中出現，套用至下一個 token logprobs 的存在懲罰。此懲罰為二元開/關，不取決於 token 的使用次數（第一次之後）。若需要隨使用次數增加的懲罰，請使用 frequency_penalty。正值的懲罰會降低使用已用過 token 的意願，增加詞彙量。負值的懲罰會鼓勵使用已用過的 token，減少詞彙量。
 
           **frequencyPenalty**: `number`
 
-          選用。套用至下一個權杖 logprobs 的頻率懲罰，乘以每個權杖到目前為止在回應中出現的次數。正值的懲罰會依權杖已使用的次數比例，降低再次使用已用過權杖的意願：權杖用得越多，模型就越難再次使用該權杖，從而增加回應的詞彙量。注意：*負值*的懲罰會依權杖已使用的次數比例，鼓勵模型重複使用權杖。較小的負值會減少回應的詞彙量；較大的負值會使模型不斷重複某個常見權杖，直到達到 max_output_tokens 上限。
+          選用。套用至下一個 token logprobs 的頻率懲罰，乘以每個 token 到目前為止在回應中出現的次數。正值的懲罰會依 token 已使用的次數比例，降低再次使用已用過 token 的意願：token 用得越多，模型就越難再次使用該 token，從而增加回應的詞彙量。注意：*負值*的懲罰會依 token 已使用的次數比例，鼓勵模型重複使用 token。較小的負值會減少回應的詞彙量；較大的負值會使模型不斷重複某個常見 token，直到達到 max_output_tokens 上限。
 
           **responseLogprobs**: `boolean`
 
@@ -2417,7 +2417,7 @@
 
               **thinkingBudget**: `integer`
 
-              模型應生成的思考權杖數量。
+              模型應生成的思考 token 數量。
 
 
 
@@ -2455,9 +2455,9 @@
             可能的值：
 
             - `MEDIA_RESOLUTION_UNSPECIFIED`: 尚未設定媒體解析度。
-            - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低（64 個權杖）。
-            - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中（256 個權杖）。
-            - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高（以 256 個權杖縮放重新取景）。
+            - `MEDIA_RESOLUTION_LOW`: 媒體解析度設為低（64 tokens）。
+            - `MEDIA_RESOLUTION_MEDIUM`: 媒體解析度設為中（256 tokens）。
+            - `MEDIA_RESOLUTION_HIGH`: 媒體解析度設為高（以 256 tokens 縮放重新取景）。
 
 
 
@@ -2663,7 +2663,7 @@
 
       **continuationToken**: `string`
 
-      選用。不透明的接續權杖，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應接續生成，該回應先前因 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，在要求中提供接續權杖時，`contents` 為必填，且必須與初始要求的提示詞和對話記錄完全相同。
+      選用。不透明的接續 token，用來從先前的 `GenerateContent` 或 `StreamGenerateContent` 回應接續生成，該回應先前因 `finish_reason` 設為 `CONTINUATION` 而停止。請注意，在要求中提供接續 token 時，`contents` 為必填，且必須與初始要求的提示詞和對話記錄完全相同。
 
       **labels**: `object`
 
@@ -3427,7 +3427,7 @@
 
   **totalTokens**: `integer`
 
-  `Model` 將 `prompt` 權杖化後的權杖數量。永遠為非負數。
+  `Model` 將 `prompt` Tokenizer 後的 token 數量。永遠為非負數。
 
   
 
@@ -3436,7 +3436,7 @@
 
   **cachedContentTokenCount**: `integer`
 
-  提示詞中已快取部分（快取內容）的權杖數量。
+  提示詞中已快取部分（快取內容）的 token 數量。
 
   
 
@@ -3447,7 +3447,7 @@
 
 ??? note "**promptTokensDetails**: `ModalityTokenCount array` 僅供輸出。要求輸入中處理的模態清單。"
 
-    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。"
+    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量相關聯的模態。"
 
         可能的值：
 
@@ -3462,7 +3462,7 @@
 
       **tokenCount**: `integer`
 
-      權杖數量。
+      token 數量。
 
 
 
@@ -3475,7 +3475,7 @@
 
 ??? note "**cacheTokensDetails**: `ModalityTokenCount array` 僅供輸出。快取內容中處理的模態清單。"
 
-    ??? note "**modality**: `GenerativeLanguageModality` 與此權杖數量相關聯的模態。"
+    ??? note "**modality**: `GenerativeLanguageModality` 與此 token 數量相關聯的模態。"
 
         可能的值：
 
@@ -3490,6 +3490,6 @@
 
       **tokenCount**: `integer`
 
-      權杖數量。
+      token 數量。
 
 

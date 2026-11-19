@@ -4,7 +4,7 @@
 
 ![Philipp Schmid](https://www.gstatic.com/aistudio-static/editorial/openclaw/19dd8130.png)
 
-[OpenClaw](https://openclaw.ai/) 是一個開源的個人 AI 助理（[OpenClaw 2.0](https://openclaw.ai/blog/openclaw-2-accidentally)），設計為在你的裝置上本機運行、整合你日常使用的通訊管道，並執行真實世界的任務。將 OpenClaw 與 Google Gemini API 搭配，你就得到代理運算的理想基礎：高權杖輸送量（[每秒 300+ 權杖](https://artificialanalysis.ai/#speed)）、龐大的上下文視窗，以及零設定的 Google 搜尋接地。無論你是透過瀏覽器 Control UI 互動，還是把你的 Claw 連接到 Telegram、Discord、WhatsApp 或 Slack，OpenClaw 都會在你的規則下運作，具備跨工作階段的持久記憶、完整的檔案系統存取權、瀏覽器自動化，以及沙箱化的 shell 執行能力。在 [OpenClaw 文件](https://docs.openclaw.ai/) 中了解更多，並探索 [Gemini API 文件](/docs/)。
+[OpenClaw](https://openclaw.ai/) 是一個開源的個人 AI 助理（[OpenClaw 2.0](https://openclaw.ai/blog/openclaw-2-accidentally)），設計為在你的裝置上本機運行、整合你日常使用的通訊管道，並執行真實世界的任務。將 OpenClaw 與 Google Gemini API 搭配，你就得到代理運算的理想基礎：高 token 輸送量（[每秒 300+ token](https://artificialanalysis.ai/#speed)）、龐大的上下文視窗，以及零設定的 Google 搜尋接地。無論你是透過瀏覽器 Control UI 互動，還是把你的 Claw 連接到 Telegram、Discord、WhatsApp 或 Slack，OpenClaw 都會在你的規則下運作，具備跨工作階段的持久記憶、完整的檔案系統存取權、瀏覽器自動化，以及沙箱化的 shell 執行能力。在 [OpenClaw 文件](https://docs.openclaw.ai/) 中了解更多，並探索 [Gemini API 文件](/docs/)。
 
 ### OpenClaw 能做什麼
 
@@ -70,7 +70,7 @@ What would you like to call me?
 
 ## 5. 啟動 gateway 並開啟 Control UI
 
-將 gateway 設為本機模式並啟動它。接著在 `http://127.0.0.1:18789/` 開啟瀏覽器 Control UI 儀表板，並以你的本機工作階段權杖進行驗證：
+將 gateway 設為本機模式並啟動它。接著在 `http://127.0.0.1:18789/` 開啟瀏覽器 Control UI 儀表板，並以你的本機工作階段 token 進行驗證：
 
 ```
 # Set gateway to local mode and start it

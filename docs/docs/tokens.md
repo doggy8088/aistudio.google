@@ -1,36 +1,36 @@
-# 瞭解並計算權杖
+# 瞭解並計算 token
 
-Gemini 與其他生成式 AI 模型處理輸入與輸出時，所採用的粒度單位稱為*權杖*。
+Gemini 與其他生成式 AI 模型處理輸入與輸出時，所採用的粒度單位稱為*token*。
 
-**對 Gemini 模型而言，1 個權杖約等於 4 個字元。
-100 個權杖約等於 60 到 80 個英文字。**
+**對 Gemini 模型而言，1 token 約等於 4 個字元。
+100 tokens 約等於 60 到 80 個英文字。**
 
-## 關於權杖 {#about-tokens}
+## 關於 token {#about-tokens}
 
-權杖可以是單一字元，例如 `z`，也可以是完整的單字，例如 `cat`。較長的單字
-會被拆成多個權杖。模型所使用的全部權杖集合稱為詞彙表，而將文字拆分
-為權杖的過程則稱為*權杖化*。
+token 可以是單一字元，例如 `z`，也可以是完整的單字，例如 `cat`。較長的單字
+會被拆成多個 tokens。模型所使用的全部 token 集合稱為詞彙表，而將文字拆分
+為 token 的過程則稱為*Tokenizer*。
 
 啟用計費後，[呼叫 Gemini API 的費用](/docs/pricing/)有一部分取決於輸入與
-輸出權杖的數量，因此瞭解如何計算權杖數量會很有幫助。
+輸出 tokens 的數量，因此瞭解如何計算 token 數量會很有幫助。
 
-## 計算權杖 {#count-tokens}
+## 計算 token {#count-tokens}
 
-Gemini API 的所有輸入與輸出都會經過權杖化處理，包括文字、圖片檔案，
+Gemini API 的所有輸入與輸出都會經過 Tokenizer 處理，包括文字、圖片檔案，
 以及其他非文字模態。
 
-你可以透過以下方式計算權杖數量：
+你可以透過以下方式計算 token 數量：
 
-* **以請求的輸入內容呼叫 `count_tokens`**：回傳的僅是*輸入內容*的權杖
+* **以請求的輸入內容呼叫 `count_tokens`**：回傳的僅是*輸入內容*的 token
   總數。在送出輸入之前先呼叫此方法，即可確認請求的大小。
 
 * **使用互動回應中的 `usage`**：會回傳輸入（`total_input_tokens`）、
   輸出（`total_output_tokens`）、思考（`total_thought_tokens`）、快取內容
   （`total_cached_tokens`）、工具使用（`total_tool_use_tokens`）與總計
-  （`total_tokens`）的權杖數量。
+  （`total_tokens`）的 token 數量。
 
 
-### 計算文字權杖 {#text-tokens}
+### 計算文字 token {#text-tokens}
 
 
 === "Python"
@@ -154,9 +154,9 @@ Gemini API 的所有輸入與輸出都會經過權杖化處理，包括文字、
       ```
 
 
-### 計算多輪對話的權杖 {#multi-turn-tokens}
+### 計算多輪對話的 token {#multi-turn-tokens}
 
-使用 `previous_interaction_id` 計算整個對話記錄的權杖數量：
+使用 `previous_interaction_id` 計算整個對話記錄的 token 數量：
 
 
 === "Python"
@@ -310,21 +310,21 @@ Gemini API 的所有輸入與輸出都會經過權杖化處理，包括文字、
       ```
 
 
-### 計算多模態權杖 {#multimodal-tokens}
+### 計算多模態 token {#multimodal-tokens}
 
-Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與音訊。
-關於權杖化，有幾個重點：
+Gemini API 的所有輸入都會經過 Tokenizer 處理，包括圖片、影片與音訊。
+關於 Tokenizer，有幾個重點：
 
-* **圖片**：兩個維度皆不超過 384 像素的圖片，計為 258 個權杖。較大的
-  圖片會被切割為 768x768 像素的圖塊，每塊計為 258 個權杖。
+* **圖片**：兩個維度皆不超過 384 像素的圖片，計為 258 tokens。較大的
+  圖片會被切割為 768x768 像素的圖塊，每塊計為 258 tokens。
 
-* **影片**：每秒 263 個權杖（適用於靜態處理）。代理式處理的權杖用量
-  則不固定。詳見[依處理模式計算的影片權杖用量](/docs/tokens/#video)。
+* **影片**：每秒 263 tokens（適用於靜態處理）。代理式處理的 token 用量
+  則不固定。詳見[依處理模式計算的影片 token 用量](/docs/tokens/#video)。
 
-* **音訊**：每秒 32 個權杖
+* **音訊**：每秒 32 tokens
 
 
-#### 圖片權杖 {#images}
+#### 圖片 token {#images}
 
 
 === "Python"
@@ -552,11 +552,11 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
       ```
 
 
-#### 影片權杖 {#video}
+#### 影片 token {#video}
 
-影片的權杖計算方式取決於處理模式：
+影片的 token 計算方式取決於處理模式：
 
-| **處理模式** | **取樣的影格** | **每秒權杖數** | **60 秒影片的權杖數** |
+| **處理模式** | **取樣的影格** | **每秒 token 數** | **60 秒影片的 token 數** |
 | --- | --- | --- | --- |
 | **靜態**（預設） | 1 FPS（所有影格） | ~100（預設低解析度）/ ~300（高解析度） | ~6,000（預設）/ ~18,000（高解析度） |
 | **代理式** | 動態（依需求） | 不固定（最多可減少 88%） | 通常為 1,500 到 3,000 |
@@ -567,12 +567,12 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
 
 !!! note " "
 
-      靜態處理的權杖計算以預設取樣率 1 FPS 為準。若你在 GenerateContent API
+      靜態處理的 token 計算以預設取樣率 1 FPS 為準。若你在 GenerateContent API
       中設定了[自訂影格率](/docs/video-understanding/?generate-content=true#custom-frame-rate)，
-      權杖用量會依設定的 FPS 等比例調整。
+      token 用量會依設定的 FPS 等比例調整。
 
 
-若要查看某個請求的實際權杖用量，請檢查 `interaction.usage`。代理式影片的權杖會分別記錄在以下欄位：
+若要查看某個請求的實際 token 用量，請檢查 `interaction.usage`。代理式影片的 token 會分別記錄在以下欄位：
 
 * **初始提示詞**（影片參照 + 使用者提示詞）：`total_input_tokens`
 * **導覽思考**：`total_thought_tokens`
@@ -677,7 +677,7 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
       ```
 
 
-#### 音訊權杖 {#audio}
+#### 音訊 token {#audio}
 
 
 === "Python"
@@ -762,9 +762,9 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
       ```
 
 
-### 計算系統指令的權杖 {#system-instructions}
+### 計算系統指令的 token {#system-instructions}
 
-系統指令會計入輸入權杖的一部分：
+系統指令會計入輸入 tokens 的一部分：
 
 
 === "Python"
@@ -811,7 +811,7 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
       ```
 
 
-### 計算工具的權杖 {#tools}
+### 計算工具的 token {#tools}
 
 工具（函式、程式碼執行、Google Search）也會列入計算：
 
@@ -899,10 +899,10 @@ Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與
 
 ## 上下文視窗 {#context-window}
 
-每個 Gemini 模型都有可處理的權杖數量上限。
+每個 Gemini 模型都有可處理的 token 數量上限。
 
-* **Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）**：輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（`1,048,576` 個權杖）。同步回應（`background=False`，無論串流或非串流）預設的輸出權杖上限為 `65,536` 個，你也可以使用 [long decode](/docs/long-decode/) 生成最多 `1,048,576` 個權杖。若輸入權杖加上 `max_output_tokens` 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入權杖數）。
-* **Gemini 3 與 2.5 模型**：輸入（`1,048,576` 個權杖）與輸出（`65,536` 個權杖）各自有獨立的預算。
+* **Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）**：輸入、思考與輸出 tokens 共用單一 100 萬 tokens 的上下文視窗（`1,048,576` 個 token）。同步回應（`background=False`，無論串流或非串流）預設的輸出 token 上限為 `65,536` 個，你也可以使用 [long decode](/docs/long-decode/) 生成最多 `1,048,576` 個 token。若輸入 tokens 加上 `max_output_tokens` 超過 1,048,576 tokens，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入 token 數）。
+* **Gemini 3 與 2.5 模型**：輸入（`1,048,576` 個 token）與輸出（`65,536` 個 token）各自有獨立的預算。
 
 ### 以程式方式取得上下文視窗大小 {#get-context-window}
 

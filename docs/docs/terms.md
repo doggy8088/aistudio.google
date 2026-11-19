@@ -109,10 +109,10 @@ Google 會依據我們的[隱私權政策](https://policies.google.com/privacy)�
 暫時儲存或快取於 Google 或其代理人設有設施的任何國家。
 
 我們在向你提供付費服務期間收集的其他資料，例如帳戶資訊與設定、計費記錄、直接
-通訊與回饋，以及使用詳情（例如使用相關資訊，包括每個提示詞與回應的權杖數量、
+通訊與回饋，以及使用詳情（例如使用相關資訊，包括每個提示詞與回應的 token 數量、
 運作狀態、安全篩選觸發情形、軟體錯誤與當機報告、驗證詳情、品質與效能指標，以及
 Google 營運與維護本服務所需的其他技術詳情，其中可能包括裝置識別碼、來自 Cookie
-或權杖的識別碼，以及 IP 位址），仍受 API Terms 所引用的
+或 token 的識別碼，以及 IP 位址），仍受 API Terms 所引用的
 [Google 控制者對控制者資料保護條款](https://business.safety.google/controllerterms/)
 與
 [Google 隱私權政策](https://policies.google.com/privacy)規範。

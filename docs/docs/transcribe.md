@@ -1433,5 +1433,5 @@ Gemini 3.5 Transcribe 支援下列音訊格式 MIME 類型：
 *   運用 Live API，透過[即時轉錄指南](/docs/live-api/live-transcribe/)串流即時音訊。
 *   探索[音訊理解](/docs/audio/)，分析、摘要或查詢音訊內容。
 *   瞭解如何使用[文字轉語音](/docs/speech-generation/)，將文字合成為音訊。
-*   查看[定價頁面](/docs/pricing/#gemini-3.5-transcribe)，瞭解模型定價與權杖上限。
+*   查看[定價頁面](/docs/pricing/#gemini-3.5-transcribe)，瞭解模型定價與 token 上限。
 *   比較[檔案輸入方式](/docs/file-input-methods/)與 [Files API](/docs/files/) 指南，瞭解如何傳遞與管理音訊檔案。

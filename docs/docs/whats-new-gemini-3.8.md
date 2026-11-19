@@ -8,9 +8,9 @@ Gemini 3.8 Flash (`gemini-3.8-flash`) 是我們最聰明的 Flash 模型，專�
 
 | 模型 | 模型 ID | 預設思考層級 | 定價 | 說明 |
 | :--- | :--- | :---: | --- | :--- |
-| Gemini 3.8 Flash | `gemini-3.8-flash` | `medium` | 3.8 Flash 在年底前提供優惠價格：輸入權杖每 1M 為 $0.75、輸出權杖每 1M 為 $3.75；詳情請參閱[定價](/docs/pricing/)。 | 我們最聰明的 Flash 模型，專為長時間軟體工程、自主代理與複雜的企業工作流程打造。 |
+| Gemini 3.8 Flash | `gemini-3.8-flash` | `medium` | 3.8 Flash 在年底前提供優惠價格：輸入 tokens 每 1M 為 $0.75、輸出 tokens 每 1M 為 $3.75；詳情請參閱[定價](/docs/pricing/)。 | 我們最聰明的 Flash 模型，專為長時間軟體工程、自主代理與複雜的企業工作流程打造。 |
 
-Gemini 3.8 Flash 支援 1M 權杖上下文視窗、64k 輸出權杖上限、可調整的思考層級（`low`、`medium`、`high`），以及相同的整套內建工具。
+Gemini 3.8 Flash 支援 1Mtokens上下文視窗、64k 輸出 token 上限、可調整的思考層級（`low`、`medium`、`high`），以及相同的整套內建工具。
 
 如需完整規格，請參閱 [Gemini 3.8 Flash 模型頁面](/docs/models/gemini-3.8-flash/)。如需優惠定價詳情，請參閱本頁後段的[定價章節](/docs/whats-new-gemini-3.8/#pricing)，或[定價頁面](/docs/pricing/#gemini-3.8-flash)。
 
@@ -130,9 +130,9 @@ Gemini 3.8 Flash 支援 1M 權杖上下文視窗、64k 輸出權杖上限、可�
 * **自主代理**：讓你建立具備韌性的多步驟規劃與工具協作工作流程，大幅減少迴圈失敗與錯誤。
 * **複雜的企業工作流程**：在要求嚴苛的領域任務與大規模資料管線上，提供卓越的正確率、深度推理與高度的事實嚴謹性。
 * **Managed Agents 的預設模型**：受管理代理的預設代理 [Antigravity 代理](/docs/antigravity-agent/) 現在使用 Gemini 3.8 Flash。[Antigravity SDK](https://antigravity.google/docs/sdk/overview/) 也預設使用 Gemini 3.8 Flash。
-* **優惠定價**：Gemini 3.8 Flash 在 2026 年 12 月 31 日前提供優惠價格，輸入權杖每 1M 為 $0.75、輸出權杖每 1M 為 $3.75。標準定價（輸入權杖每 1M $1.50、輸出權杖每 1M $7.50）將自 2027 年 1 月 1 日起生效。
+* **優惠定價**：Gemini 3.8 Flash 在 2026 年 12 月 31 日前提供優惠價格，輸入 tokens 每 1M 為 $0.75、輸出 tokens 每 1M 為 $3.75。標準定價（輸入 tokens 每 1M $1.50、輸出 tokens 每 1M $7.50）將自 2027 年 1 月 1 日起生效。
 
-Gemini 3.8 Flash 在執行時間較長與較複雜的任務時，可能會依設計使用更多權杖。為了在困難的多步驟目標上交出更高品質的結果，模型會採取較小的推理步驟、反覆呼叫工具，並在過程中驗證自己的工作。並非每個工作流程都需要這種程度的驗證。對於日常任務，你可以降低[推理](/docs/whats-new-gemini-3.8/#understanding-reasoning-levels)投入，以減少權杖消耗。或者，你也可以繼續使用仍受支援的 Gemini 3.6 Flash。
+Gemini 3.8 Flash 在執行時間較長與較複雜的任務時，可能會依設計使用更多 token。為了在困難的多步驟目標上交出更高品質的結果，模型會採取較小的推理步驟、反覆呼叫工具，並在過程中驗證自己的工作。並非每個工作流程都需要這種程度的驗證。對於日常任務，你可以降低[推理](/docs/whats-new-gemini-3.8/#understanding-reasoning-levels)投入，以減少 token 消耗。或者，你也可以繼續使用仍受支援的 Gemini 3.6 Flash。
 
 ## 瞭解推理層級 {#understanding-reasoning-levels}
 

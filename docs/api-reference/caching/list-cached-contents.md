@@ -20,7 +20,7 @@
 
   **pageToken**: `string`
 
-  選填。頁面權杖，來自先前的 `ListCachedContents` 呼叫。提供此權杖以取得下一頁。分頁時，提供給 `ListCachedContents` 的所有其他參數都必須與提供該頁面權杖的呼叫相符。
+  選填。頁面 token，來自先前的 `ListCachedContents` 呼叫。提供此 token 以取得下一頁。分頁時，提供給 `ListCachedContents` 的所有其他參數都必須與提供該頁面 token 的呼叫相符。
 
   
 
@@ -184,7 +184,7 @@
 
   **nextPageToken**: `string`
 
-  可作為 `page_token` 傳送以取得下一頁的權杖。若省略此欄位，表示沒有後續頁面。
+  可作為 `page_token` 傳送以取得下一頁的 token。若省略此欄位，表示沒有後續頁面。
 
 
 ## 資源 {#resources}
@@ -479,7 +479,7 @@
                               聯合欄位 `value` 只能是下列其中之一：
 
 
-                            ??? note "**level**: `string enum` 用於指定媒體的權杖化品質，適用於 Gemini API 支援。"
+                            ??? note "**level**: `string enum` 用於指定媒體的 Tokenizer 品質，適用於 Gemini API 支援。"
 
 
                                   可能的值：
@@ -748,7 +748,7 @@
 
 
 
-                ??? note "**level**: `string enum` 用於指定媒體的權杖化品質，適用於 Gemini API 支援。"
+                ??? note "**level**: `string enum` 用於指定媒體的 Tokenizer 品質，適用於 Gemini API 支援。"
 
                     可能的值：
 
@@ -1059,7 +1059,7 @@
                               聯合欄位 `value` 只能是下列其中之一：
 
 
-                            ??? note "**level**: `string enum` 用於指定媒體的權杖化品質，適用於 Gemini API 支援。"
+                            ??? note "**level**: `string enum` 用於指定媒體的 Tokenizer 品質，適用於 Gemini API 支援。"
 
 
                                   可能的值：
@@ -1328,7 +1328,7 @@
 
 
 
-                ??? note "**level**: `string enum` 用於指定媒體的權杖化品質，適用於 Gemini API 支援。"
+                ??? note "**level**: `string enum` 用於指定媒體的 Tokenizer 品質，適用於 Gemini API 支援。"
 
                     可能的值：
 
@@ -1821,7 +1821,7 @@
 
         **enableWidget**: `boolean`
 
-        選填。是否在回應的 GroundingMetadata 中傳回 widget 背景資訊權杖。開發人員可使用 widget 背景資訊權杖，呈現 Google Maps widget，其中包含與模型在回應中提及地點相關的地理空間背景資訊。
+        選填。是否在回應的 GroundingMetadata 中傳回 widget 背景資訊 token。開發人員可使用 widget 背景資訊 token，呈現 Google Maps widget，其中包含與模型在回應中提及地點相關的地理空間背景資訊。
 
 
 
@@ -1911,6 +1911,6 @@
 
     **totalTokenCount**: `integer`
 
-    快取內容所消耗的權杖總數。
+    快取內容所消耗的 token 總數。
 
 

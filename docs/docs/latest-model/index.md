@@ -16,7 +16,7 @@
 *   *模型 ID* **`gemini-4-carbon`**
   *   *價格（1M）* **$2.00 / $10.00（優惠價至 11 月 30 日）**
   *   *速度* **Deliberate**
-  *   *上下文* **1M 統一權杖**
+  *   *上下文* **1M 統一 token**
   *   *最大輸出* **預設 64K / 1M [長解碼](/docs/long-decode/)**
   *   *思考* **`low`、`medium`（預設）、`high`**
 
@@ -33,7 +33,7 @@
 *   *模型 ID* **`gemini-4-neon`**
   *   *價格（1M）* **$3.00 / $15.00**
   *   *速度* **Moderate**
-  *   *上下文* **1M 統一權杖**
+  *   *上下文* **1M 統一 token**
   *   *最大輸出* **預設 64K / 1M [長解碼](/docs/long-decode/)**
   *   *思考* **`low`、`medium`、`high`（預設）、`xhigh`**
 
@@ -50,7 +50,7 @@
 *   *模型 ID* **`gemini-4-hydrogen`**
   *   *價格（1M）* **$1.50 / $7.50**
   *   *速度* **Fast**
-  *   *上下文* **1M 統一權杖**
+  *   *上下文* **1M 統一 token**
   *   *最大輸出* **預設 64K / 1M [長解碼](/docs/long-decode/)**
   *   *思考* **`low`、`medium`、`high`（預設）、`xhigh`**
 
@@ -67,8 +67,8 @@
 *   *模型 ID* **`gemini-3.5-flash-lite`**
   *   *價格（1M）* **$0.30 / $2.50**
   *   *速度* **Fastest**
-  *   *上下文* **1M 輸入權杖**
-  *   *最大輸出* **64K 權杖**
+  *   *上下文* **1M 輸入 tokens**
+  *   *最大輸出* **64Ktokens**
   *   *思考* **`minimal`（預設）、`low`、`medium`、`high`**
 
   
@@ -249,7 +249,7 @@ agy plugin install https://github.com/google-gemini/gemini-skills
 除了上述通用與媒體模型，Gemini API 還包含專用端點：
 
 * **[Managed Agents](/docs/agents/)**：用於程式設計與工具編排的 [`antigravity-preview-09-2026`](/docs/antigravity-agent/)，以及用於自主多步驟研究的 [`deep-research-preview-04-2026`](/docs/deep-research/)。
-* **[Decisions](/docs/decisions-api/)**：[`gemini-decision-1`](/docs/models/gemini-decision-1/)，以零輸出權杖快速做出經過校準的多模態是／否、選項與評分量表決策。
+* **[Decisions](/docs/decisions-api/)**：[`gemini-decision-1`](/docs/models/gemini-decision-1/)，以零輸出 tokens 快速做出經過校準的多模態是／否、選項與評分量表決策。
 * **[Embeddings](/docs/embeddings/)**：[`gemini-embedding-2`](/docs/models/gemini-embedding-2/)，用於多模態文字、圖片、音訊、影片與 PDF 的搜尋及 RAG。
 * **[音樂生成](/docs/music-generation/)**：[`lyria-3.5`](/docs/models/lyria-3.5/)，用於錄音室等級的器樂與人聲曲目。
 * **[機器人技術](/docs/robotics-overview/)**：[`gemini-robotics-er-2-preview`](/docs/models/gemini-robotics-er-2-preview/)，用於空間推理與具身規劃。

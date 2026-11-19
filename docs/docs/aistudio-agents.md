@@ -10,7 +10,7 @@ Google AI Studio Playground 提供視覺化介面，讓你無需建立並撰寫 
 
 例如，當你選取 AI Radio 範本時，它會啟用所有允許的工具，並連結一份專門的 `AGENTS.md` 檔案與廣播節目製作技能。你可以在 Playground 介面的 **Environment** 區段中，點選 **Sources** 按鈕來檢視這些設定。
 
-重要事項：當你執行這些範本時，沙箱內的代理可以存取 Gemini API。它會使用你設定的 API 金鑰來執行呼叫，可能在你的帳戶產生額外的權杖費用。如需更多詳細資訊，請參閱 [safety and cost management](/docs/aistudio-agents/#safety-and-cost-management) 一節。
+重要事項：當你執行這些範本時，沙箱內的代理可以存取 Gemini API。它會使用你設定的 API 金鑰來執行呼叫，可能在你的帳戶產生額外的 token 費用。如需更多詳細資訊，請參閱 [safety and cost management](/docs/aistudio-agents/#safety-and-cost-management) 一節。
 
 ## 工具設定 {#tool-configuration}
 
@@ -46,7 +46,7 @@ Google AI Studio Playground 提供視覺化介面，讓你無需建立並撰寫 
 | 來源類型 | 說明 | 掛載路徑 |
 | --- | --- | --- |
 | **Inline Files** | 直接在 Playground 介面中撰寫或貼上設定檔、模擬資料集或公用程式指令碼（上限 100KB）。 | 使用者自訂的目的路徑（例如 `/workspace/scripts/parser.py`）。 |
-| **Google Cloud Storage** | 掛載公開或私有的 Cloud Storage 值區。私有值區需要標準的 OAuth 2.0 Bearer 權杖。如需更多資訊，請參閱 [Private sources](/docs/agent-environment/#private-sources)。 | 將 GCS 值區路徑（例如 `gs://your-bucket-name/data/`）對應到工作區目錄（例如 `/workspace/data/`）。 |
+| **Google Cloud Storage** | 掛載公開或私有的 Cloud Storage 值區。私有值區需要標準的 OAuth 2.0 Bearer token。如需更多資訊，請參閱 [Private sources](/docs/agent-environment/#private-sources)。 | 將 GCS 值區路徑（例如 `gs://your-bucket-name/data/`）對應到工作區目錄（例如 `/workspace/data/`）。 |
 | **GitHub Repositories** | 複製公開或私有的程式碼庫。私有存放庫需要使用你的 GitHub Personal Access Token (PAT) 進行 Basic 驗證。如需更多資訊，請參閱 [Private sources](/docs/agent-environment/#private-sources)。 | 直接複製到 `/workspace/`（通常位於 `/workspace/<repo-name>` 下）。 |
 
 
@@ -69,17 +69,17 @@ Google AI Studio Playground 提供視覺化介面，讓你無需建立並撰寫 
 
 ## 安全與成本管理 {#safety-and-cost-management}
 
-### 管理權杖消耗 {#managing-token-consumption}
+### 管理 token 消耗 {#managing-token-consumption}
 
-與產生單一輸出的標準聊天要求不同，Antigravity Agent 會執行自主工作流程。它會規劃、執行程式碼、觀察結果並反覆迭代。這表示單一提示詞可能導致不受限制的權杖消耗。
+與產生單一輸出的標準聊天要求不同，Antigravity Agent 會執行自主工作流程。它會規劃、執行程式碼、觀察結果並反覆迭代。這表示單一提示詞可能導致不受限制的 token 消耗。
 
 若要管理成本，**請在提示詞中提供明確的終止條件，並將交給代理的任務範圍縮小**。一個好的範例提示詞可以是 *Review the pull request and stop once you have generated the markdown summary. Do not attempt to write the fix yourself*。
 
-重要事項：如果你發現代理執行時間過長，或方向不對（可透過觀察它的思考與工具呼叫來判斷），你可以隨時使用 **Stop** 按鈕停止代理，避免不必要的權杖消耗。
+重要事項：如果你發現代理執行時間過長，或方向不對（可透過觀察它的思考與工具呼叫來判斷），你可以隨時使用 **Stop** 按鈕停止代理，避免不必要的 token 消耗。
 
 ### 額外成本 {#additional-costs}
 
-預設情況下，Playground 上的所有代理範本都能存取 Gemini API 服務，並可從環境中發出 API 呼叫來完成要求。這些呼叫可能產生額外成本，且不會反映在權杖消耗中。
+預設情況下，Playground 上的所有代理範本都能存取 Gemini API 服務，並可從環境中發出 API 呼叫來完成要求。這些呼叫可能產生額外成本，且不會反映在 token 消耗中。
 
 同樣地，如果你加入其他外部服務，代理可能會代表你呼叫這些服務，因而產生額外成本。
 
@@ -91,7 +91,7 @@ Google AI Studio Playground 提供視覺化介面，讓你無需建立並撰寫 
 2. 選取 **Network** 旁的 **rules** 按鈕。
 3. 在 **Network configuration** 面板中，點選 **Add to allowlist** 並填寫相關詳細資訊：
    *  **Domain Restriction:** 只有加入清單的特定網域或萬用字元模式，才能被代理的虛擬機器存取。例如，你可以輸入像 `api.github.com` 這樣的確切網域，或像 `*.googleapis.com` 這樣的廣泛模式。
-   *  **Add HTTP Header and Token Injection:** 使用 **Add HTTP header** 選項，安全地為特定網域注入所需的憑證（例如 API 權杖）。這些憑證會安全地透過 egress proxy 傳遞，不會以原始文字形式直接暴露在代理沙箱內。
+   *  **Add HTTP Header and Token Injection:** 使用 **Add HTTP header** 選項，安全地為特定網域注入所需的憑證（例如 API token）。這些憑證會安全地透過 egress proxy 傳遞，不會以原始文字形式直接暴露在代理沙箱內。
 
 
 在將網域加入允許清單時，請務必謹慎。讓代理存取已驗證的服務，意味著它可以代表你執行操作，若未仔細監控，可能導致非預期的動作。
@@ -111,7 +111,7 @@ Google AI Studio Playground 提供視覺化介面，讓你無需建立並撰寫 
 
 * **使用最小權限憑證**：建立只具有代理所需權限的服務帳號或 API 金鑰。避免傳遞具有廣泛或管理員存取權的憑證。
 
-* **優先使用短期權杖**：盡可能使用有時效限制、會到期的憑證或權杖，而非長期 API 金鑰。
+* **優先使用短期 token**：盡可能使用有時效限制、會到期的憑證或 token，而非長期 API 金鑰。
 
 * **假設代理具有完整存取權**：代理可能會使用它能存取的任何憑證來完成你交給它的任務。只提供你願意授予完整存取範圍的憑證。
 

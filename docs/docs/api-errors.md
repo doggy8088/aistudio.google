@@ -19,7 +19,7 @@
 | `model_not_found` | 404 Not Found | 找不到指定的模型。 | 確認模型名稱，或改用其他模型。 |
 | `already_exists` | 409 Conflict | 您嘗試建立的實體已存在。 | 重新建立前，先確認資源是否已存在。 |
 | `aborted` | 409 Conflict | 作業因衝突或並行檢查失敗而中止。 | 在較高的應用程式層級重試請求。 |
-| `rate_limit_exceeded` | 429 Too Many Requests | 您已超過每分鐘或每秒的請求或權杖上限。 | 等待後以指數退避方式重試。 |
+| `rate_limit_exceeded` | 429 Too Many Requests | 您已超過每分鐘或每秒的請求或 token 上限。 | 等待後以指數退避方式重試。 |
 | `quota_exceeded` | 429 Too Many Requests | 您已超過每日配額。 | 等待配額重設，或申請提高配額。 |
 | `too_many_requests` | 429 Too Many Requests | 您在短時間內發出過多請求。 | 等待後以指數退避方式重試。 |
 | `cancelled` | 499 Client Closed Request | 用戶端在請求完成前取消了請求。 | 無需採取任何動作。這通常表示用戶端已中斷連線。 |

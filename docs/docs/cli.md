@@ -308,7 +308,7 @@ cat logs.txt | gemini-api generate "Extract every error message from these logs.
 | `0` | 指令執行成功。 |
 | `1` | 執行階段或 API 錯誤，例如網路故障、速率限制，或背景工作失敗。 |
 | `2` | 使用方式或驗證錯誤，例如未知旗標、缺少輸入，或 `--body` 鍵重複。 |
-| `3` | 驗證或授權失敗，例如 API 金鑰或權杖遺失或無效。 |
+| `3` | 驗證或授權失敗，例如 API 金鑰或 token 遺失或無效。 |
 
 執行 `gemini-api --help-global` 可列出每個指令共用的全域旗標（驗證、輸出、網路與診斷）。
 

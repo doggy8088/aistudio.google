@@ -26,7 +26,7 @@
 
   **page_token**: `string`
 
-  選填。目錄清單的分頁權杖。
+  選填。目錄清單的分頁 token。
 
   
 
@@ -368,5 +368,5 @@
 
   **next_page_token**: `string`
 
-  目錄清單的分頁權杖。NOLINT
+  目錄清單的分頁 token。NOLINT
 

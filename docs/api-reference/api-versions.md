@@ -63,7 +63,7 @@ Interactions API 與 `generateContent`：
 | **即時 API** |  |  |
 | [Live API (WebSockets)](/docs/live-api/) |  | 支援 |
 | [Live Music API](/docs/realtime-music-generation/) |  | 支援 |
-| [臨時權杖（Live API）](/docs/live-api/ephemeral-tokens/) |  | 支援 |
+| [臨時 token（Live API）](/docs/live-api/ephemeral-tokens/) |  | 支援 |
 | **平台 API** |  |  |
 | [Models API](/docs/models/) | 支援 | 支援 |
 | [Files 服務路由](/docs/files/) | 支援 | 支援 |

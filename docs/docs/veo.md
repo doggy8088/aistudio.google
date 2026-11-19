@@ -2220,7 +2220,7 @@ Veo 可讓你指定影片的長寬比。
     | --- | --- |
     | 模型代碼 | **Gemini API** `veo-3.1-generate-preview` |
     | 支援的資料類型 | **Input** 文字、圖片 **Output** 含音訊的影片 |
-    | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
+    | 限制 | **Text input** 1,024 tokens **Output video** 1 |
     | 最新更新 | 2026 年 1 月 |
 
 === "Veo 3.1 Fast Preview (Deprecated)"
@@ -2230,7 +2230,7 @@ Veo 可讓你指定影片的長寬比。
     | --- | --- |
     | 模型代碼 | **Gemini API** `veo-3.1-fast-generate-preview` |
     | 支援的資料類型 | **Input** 文字、圖片 **Output** 含音訊的影片 |
-    | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
+    | 限制 | **Text input** 1,024 tokens **Output video** 1 |
     | 最新更新 | 2026 年 1 月 |
 
 === "Veo 3.1 Lite Preview (Deprecated)"
@@ -2240,7 +2240,7 @@ Veo 可讓你指定影片的長寬比。
     | --- | --- |
     | 模型代碼 | **Gemini API** `veo-3.1-lite-generate-preview` |
     | 支援的資料類型 | **Input** 文字、圖片 **Output** 含音訊的影片 |
-    | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
+    | 限制 | **Text input** 1,024 tokens **Output video** 1 |
     | 最新更新 | 2026 年 3 月 |
 
 === "Veo 3 (Deprecated)"
@@ -2250,7 +2250,7 @@ Veo 可讓你指定影片的長寬比。
     | --- | --- |
     | 模型代碼 | **Gemini API** `veo-3.0-generate-001` |
     | 支援的資料類型 | **Input** 文字、圖片 **Output** 含音訊的影片 |
-    | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
+    | 限制 | **Text input** 1,024 tokens **Output video** 1 |
     | 最新更新 | 2025 年 7 月 |
 
 === "Veo 3 Fast (Deprecated)"
@@ -2260,7 +2260,7 @@ Veo 可讓你指定影片的長寬比。
     | --- | --- |
     | 模型代碼 | **Gemini API** `veo-3.0-fast-generate-001` |
     | 支援的資料類型 | **Input** 文字、圖片 **Output** 含音訊的影片 |
-    | 限制 | **Text input** 1,024 個權杖 **Output video** 1 |
+    | 限制 | **Text input** 1,024 tokens **Output video** 1 |
     | 最新更新 | 2025 年 7 月 |
 
 

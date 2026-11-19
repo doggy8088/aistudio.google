@@ -365,23 +365,23 @@ Gemini Live API 支援以
       ```
 
 
-## 在用戶端應用程式中使用臨時權杖 {#ephemeral-tokens-for-client-side-applications}
+## 在用戶端應用程式中使用臨時 token {#ephemeral-tokens-for-client-side-applications}
 
-對於用戶端對伺服器的應用程式，你可以使用[臨時權杖](/docs/live-api/ephemeral-tokens/)（目前為 `v1beta`），避免暴露你的 API 金鑰。
+對於用戶端對伺服器的應用程式，你可以使用[臨時 token](/docs/live-api/ephemeral-tokens/)（目前為 `v1beta`），避免暴露你的 API 金鑰。
 
-將臨時權杖用於 Live Translation 時：
+將臨時 token 用於 Live Translation 時：
 
 1. 你必須使用 `v1beta` 端點。
-2. **鎖定設定**：預設情況下，你應在伺服器上的權杖建立限制中指定
+2. **鎖定設定**：預設情況下，你應在伺服器上的 token 建立限制中指定
    `translationConfig`（以及選用的 `systemInstruction`）。當設定了
    `live_connect_constraints` 但未設定
    `lock_additional_fields` 時，伺服器會鎖定整個 `setup` 設定，並忽略用戶端在連線時傳入的任何 `system_instruction` 或 `translationConfig` 欄位。
 3. **解除鎖定設定**：若你想在用戶端設定 `translationConfig` 或
-   `system_instruction`（例如讓使用者自行選擇目標語言或自訂術語），請在權杖建立要求中省略這些欄位，改為設定 `"lock_additional_fields": []`。如此只會鎖定伺服器上指定的欄位，其餘欄位則開放由用戶端設定。
+   `system_instruction`（例如讓使用者自行選擇目標語言或自訂術語），請在 token 建立要求中省略這些欄位，改為設定 `"lock_additional_fields": []`。如此只會鎖定伺服器上指定的欄位，其餘欄位則開放由用戶端設定。
 
-### 建立受限制的臨時權杖 {#creating-a-constrained-ephemeral-token}
+### 建立受限制的臨時 token {#creating-a-constrained-ephemeral-token}
 
-以下範例示範如何建立附帶翻譯限制的臨時權杖。
+以下範例示範如何建立附帶翻譯限制的臨時 token。
 
 
 === "Python"
@@ -546,6 +546,6 @@ Live Translation 支援下列語言。
 * 閱讀[使用 SDK 開始使用](/docs/live-api/get-started-sdk/)指南。
 * 閱讀[使用 WebSockets 開始使用](/docs/live-api/get-started-websocket/)
   指南。
-* 閱讀[臨時權杖](/docs/live-api/ephemeral-tokens/)指南，了解用戶端對伺服器應用程式的安全驗證方式。
+* 閱讀[臨時 token](/docs/live-api/ephemeral-tokens/)指南，了解用戶端對伺服器應用程式的安全驗證方式。
 * 從 GitHub 複製
   [Live API 範例](https://github.com/google-gemini/gemini-live-api-examples)。

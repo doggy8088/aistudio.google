@@ -282,5 +282,5 @@ Gemini Live API 使用 WebSockets 進行即時通訊。`google-genai` SDK 提供
 * 閱讀完整的 Live API [功能](/docs/live-api/capabilities/)指南，了解主要功能與設定；包括語音活動偵測和原生音訊功能。
 * 閱讀[工具使用](/docs/live-api/tools/)指南，了解如何將 Live API 與工具和函式呼叫整合。
 * 閱讀[工作階段管理](/docs/live-api/session-management/)指南，了解如何管理長時間執行的對話。
-* 閱讀[短期權杖](/docs/live-api/ephemeral-tokens/)指南，了解如何在[用戶端到伺服器](/docs/live-api/#implementation-approach)應用程式中進行安全驗證。
+* 閱讀[短期 token](/docs/live-api/ephemeral-tokens/)指南，了解如何在[用戶端到伺服器](/docs/live-api/#implementation-approach)應用程式中進行安全驗證。
 * 如需了解底層 WebSockets API 的更多資訊，請參閱 [WebSockets API 參考文件](/api-reference/live/)。

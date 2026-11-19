@@ -19,7 +19,7 @@ JSON Schema。這能確保結果可預測且具備型別安全，也讓從非結
 !!! note " "
 
       如果你需要是／否機率、單選選項，或附帶
-      校準後信賴度且不耗用輸出權杖的評分量表分數，請使用
+      校準後信賴度且不耗用輸出 tokens 的評分量表分數，請使用
       [Gemini Decision 1](/docs/models/gemini-decision-1/) 模型搭配
       [Decisions API](/docs/decisions-api/).
 
@@ -1615,7 +1615,7 @@ Gemini 的結構化輸出模式支援 [JSON Schema](https://json-schema.org/) �
 ### 簡化複雜的結構描述 {#simplifying-complex-schemas}
 
 當你要求結構化輸出時，API 會將你的 JSON Schema 編譯成
-一個限制權杖產生的狀態機。這個狀態機會對總狀態數、
+一個限制 token 產生的狀態機。這個狀態機會對總狀態數、
 分支路徑與巢狀深度設下上限。如果你的結構描述
 超出這些上限，API 會以
 `400 INVALID_ARGUMENT` 錯誤拒絕要求。

@@ -56,6 +56,6 @@
 
 ### 用 Gemini API 寫程式？請看開發者指南
 
-要把 Gemini 4 Argon 整合進你自己的軟體嗎？探索 API 參數、最高 1M 輸出權杖的 Long Decode、思考控制與 SDK 範例。[**開發者指南 →**](/learn/gemini-4-argon-developer-guide/?e=0)
+要把 Gemini 4 Argon 整合進你自己的軟體嗎？探索 API 參數、最高 1M 輸出 tokens 的 Long Decode、思考控制與 SDK 範例。[**開發者指南 →**](/learn/gemini-4-argon-developer-guide/?e=0)
 
 ![Gemini 4 Argon 開發者指南預覽](https://www.gstatic.com/aistudio-static/applets/finance-story/image.png)

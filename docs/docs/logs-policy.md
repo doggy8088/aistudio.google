@@ -51,9 +51,9 @@ Interactions API 呼叫預設會開啟日誌記錄；對於在 2026 年 10 月 2
       **新功能：** Gemini API Contributor Tier 目前以邀請制私人預覽形式提供。符合資格的使用者將透過電子郵件收到邀請，並在 AI Studio 中看到提示訊息。
 
 
-Gemini Contributor Tier 讓開發者能以折扣價格使用特定模型的權杖，交換條件是允許 Google 使用這些模型的資料，來提供、改進與開發 Google 的產品與服務以及機器學習技術。
+Gemini Contributor Tier 讓開發者能以折扣價格使用特定模型的 token，交換條件是允許 Google 使用這些模型的資料，來提供、改進與開發 Google 的產品與服務以及機器學習技術。
 
-開發者可在特定模型上享有最高 50% 的權杖費用折扣，並享有與[標準 API](/docs/optimization/) 相同的即時效能。目前支援下列模型：
+開發者可在特定模型上享有最高 50% 的 token 費用折扣，並享有與[標準 API](/docs/optimization/) 相同的即時效能。目前支援下列模型：
 
 | 模型 | Contributor Tier |
 | --- | :---: |

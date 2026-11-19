@@ -2,7 +2,7 @@
 
 生成式模型產出的文字是供人閱讀的。當程式碼需要一個可據以分支的判斷時，生成再解析文字的做法會增加延遲，也會讓解析邏輯變得脆弱。
 
-Decisions API 能針對文字、PDF、音訊、圖片與影片，評估具型別的問題。它使用 [Gemini Decision 1](/docs/models/gemini-decision-1/)，並回傳經校準的機率。它不產生任何文字權杖，因此輸出權杖用量永遠為 0。你的程式碼可以直接依據回應進行分支、排序與路由。
+Decisions API 能針對文字、PDF、音訊、圖片與影片，評估具型別的問題。它使用 [Gemini Decision 1](/docs/models/gemini-decision-1/)，並回傳經校準的機率。它不產生任何文字 token，因此輸出 token 用量永遠為 0。你的程式碼可以直接依據回應進行分支、排序與路由。
 
 ## How it works {#how-it-works}
 
@@ -95,7 +95,7 @@ Decisions API 能針對文字、PDF、音訊、圖片與影片，評估具型別
       ```
 
 
-API 會回傳經校準的機率與權杖用量：
+API 會回傳經校準的機率與 token 用量：
 
 ```json
 {
@@ -792,7 +792,7 @@ state = json.dumps({"customer": {"tier": "Gold"}, "order": {"id": "8821", "age_d
 
 ### Images {#media}
 
-將本機圖片位元組以 base64 傳入，或傳入 URI，並設定解析度，在視覺細節與權杖成本之間取捨。這個範例檢查產品照片是否有損壞：
+將本機圖片位元組以 base64 傳入，或傳入 URI，並設定解析度，在視覺細節與 token 成本之間取捨。這個範例檢查產品照片是否有損壞：
 
 
 === "Python"
@@ -1098,7 +1098,7 @@ audio_block = {"type": "audio", "uri": uploaded.uri, "mime_type": uploaded.mime_
 
 ### Media resolution {#media-resolution}
 
-在圖片與影片區塊上設定[媒體解析度](/docs/media-resolution/)（low、medium、high 或 ultra_high），以控制權杖成本與視覺細節。超高解析度僅適用於圖片；音訊與文件區塊不使用解析度設定。
+在圖片與影片區塊上設定[媒體解析度](/docs/media-resolution/)（low、medium、high 或 ultra_high），以控制 token 成本與視覺細節。超高解析度僅適用於圖片；音訊與文件區塊不使用解析度設定。
 
 ## Best practices {#best-practices}
 
@@ -1126,7 +1126,7 @@ audio_block = {"type": "audio", "uri": uploaded.uri, "mime_type": uploaded.mime_
 | 是非題機率、從固定集合中選出一個選項，或在固定量表上評分 | 生成的文字、摘要或說明 |
 | 可設定門檻的經校準機率 | 遵循你自訂 JSON 結構描述的擷取值或物件（參見 [Structured outputs](/docs/structured-output/)） |
 | 在一次呼叫中針對同一輸入進行多項獨立檢查 | 帶有引數的工具呼叫 |
-| 低延遲且零輸出權杖成本 | 多步驟推理 |
+| 低延遲且零輸出 tokens 成本 | 多步驟推理 |
 
 ## Request and response reference {#request}
 
@@ -1151,7 +1151,7 @@ API 會針對共用輸入獨立評估每個問題。問題之間彼此看不到�
 | 欄位 | 類型 | 說明 |
 | :--- | :--- | :--- |
 | `answers` | map of string to `Answer` | 每個問題一個答案，使用與 `questions` 相同的鍵。每個答案的類型都與其問題相符。 |
-| `usage` | `Usage` | 依模態區分的輸入權杖數量（文字、圖片與音訊，其中影片畫面與 PDF 頁面圖片計為圖片權杖），以及 0 個輸出權杖。僅輸入權杖計費；參見 [Pricing](/docs/pricing/#gemini-decision)。 |
+| `usage` | `Usage` | 依模態區分的輸入 token 數量（文字、圖片與音訊，其中影片畫面與 PDF 頁面圖片計為圖片 token），以及 0 個輸出 tokens。僅輸入 tokens 計費；參見 [Pricing](/docs/pricing/#gemini-decision)。 |
 
 當輸入安全篩選器封鎖要求時，API 會回傳 HTTP
 `400 Bad Request` 錯誤，而不是 `answers`。JSON `error` 物件包含
@@ -1171,12 +1171,12 @@ API 會針對共用輸入獨立評估每個問題。問題之間彼此看不到�
 
 | 限制 | 值 |
 | :--- | :--- |
-| 每個要求的問題數 | 1 至 1,000（受 262,144 個權杖的上下文視窗限制） |
+| 每個要求的問題數 | 1 至 1,000（受 262,144 tokens 的上下文視窗限制） |
 | 每個選擇題的選項數 | 2 至 255 |
 | 每個評分題的等級數 | 2 至 255 個非空字串（多數評分標準建議 2 至 10 個） |
 | 問題鍵 | 1 至 64 個 ASCII 字元，符合 `[A-Za-z0-9_-]+` |
 | 選項鍵 | 1 至 128 個字元（上限 512 個 UTF-8 位元組）。允許內部 ASCII 空格。不允許開頭或結尾空格、控制字元與非 ASCII 空格。 |
-| 上下文視窗 | 共用輸入與所有問題合計 262,144 個權杖 |
+| 上下文視窗 | 共用輸入與所有問題合計 262,144 tokens |
 | JSON 巢狀深度 | 100 層 |
 | 每個要求的媒體數 | 與 [Interactions API](/docs/interactions-overview/) 相同 |
 | 問題指令 | 僅限文字 |

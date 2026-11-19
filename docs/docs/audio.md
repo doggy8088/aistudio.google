@@ -1269,7 +1269,7 @@ Gemini 可以分析並理解音訊輸入，再產生文字回應，支援以下�
 
 ## 剪輯音訊區間 {#clipping-intervals}
 
-在 `audio` 區塊上傳入 `processing`（`{"type": "static", "start_offset": "...", "end_offset": "..."}`），即可只檢查特定時間範圍。Gemini 只會針對剪輯後的長度收取權杖費用：
+在 `audio` 區塊上傳入 `processing`（`{"type": "static", "start_offset": "...", "end_offset": "..."}`），即可只檢查特定時間範圍。Gemini 只會針對剪輯後的長度收取 token 費用：
 
 * `start_offset`（字串，選填）：以秒為單位的開始時間戳記（例如 `"30s"` 或 `"12.5s"`）。預設為 `"0s"`。超過音訊長度的值會回傳 `400 INVALID_ARGUMENT`。
 * `end_offset`（字串，選填）：以秒為單位的結束時間戳記。預設為檔案結尾，超過音訊長度時會箝制為音訊長度。必須大於 `start_offset`。
@@ -1364,9 +1364,9 @@ Gemini 可以分析並理解音訊輸入，再產生文字回應，支援以下�
       ```
 
 
-## 計算權杖數 {#count-tokens}
+## 計算 token 數 {#count-tokens}
 
-計算音訊檔案中的權杖數：
+計算音訊檔案中的 token 數：
 
 
 === "Python"
@@ -1485,7 +1485,7 @@ Gemini 支援下列音訊格式的 MIME 類型：
 
 ## 音訊技術細節 {#technical-details}
 
-* **權杖數**：每秒音訊 32 個權杖（1 分鐘 = 1,920 個權杖）
+* **token 數**：每秒音訊 32 tokens（1 分鐘 = 1,920 tokens）
 * **非語音**：Gemini 能理解非語音聲音（鳥鳴、警笛聲等）
 * **長度上限**：每個提示詞最多 9.5 小時的音訊
 * **解析度**：降取樣至 16 Kbps

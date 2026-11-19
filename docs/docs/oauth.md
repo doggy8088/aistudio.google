@@ -95,7 +95,7 @@ gcloud auth application-default login \
 本教學的簡化專案設定會觸發 **"Google hasn't
 verified this app."** 對話框。這是正常現象，請選擇 **"continue"**。
 
-這樣產生的權杖會放置在眾所皆知的位置，以便 `gcloud` 或用戶端程式庫存取。
+這樣產生的 token 會放置在眾所皆知的位置，以便 `gcloud` 或用戶端程式庫存取。
 
 
 !!! note " "
@@ -148,7 +148,7 @@ print('Available base models:', [m.name for m in client.models.list()])
 
 ## 自行管理憑證 [Python] {#manage-credentials}
 
-在許多情況下，你手邊不會有 `gcloud` 指令可用來從 Client ID（`client_secret.json`）建立存取權杖。Google 在多種語言中都提供程式庫，讓你能在應用程式內管理這個流程。本節以 Python 示範此流程。其他語言的同類範例可在
+在許多情況下，你手邊不會有 `gcloud` 指令可用來從 Client ID（`client_secret.json`）建立存取 token。Google 在多種語言中都提供程式庫，讓你能在應用程式內管理這個流程。本節以 Python 示範此流程。其他語言的同類範例可在
 [Drive API 文件](https://developers.google.com/drive/api/quickstart/python)中找到。
 
 ### 1. 安裝必要的程式庫 {#install-libs}
@@ -166,7 +166,7 @@ pip install google-genai
 為了盡量減少你必須點選授權畫面的次數，請在工作目錄中建立一個名為 `load_creds.py` 的檔案，由它快取一份 `token.json` 檔案，供日後重複使用，或在到期時重新整理。
 
 先使用下列程式碼，將 `client_secret.json` 檔案轉換為可供
-`genai.configure` 使用的權杖：
+`genai.configure` 使用的 token：
 
 ```python
 import os.path

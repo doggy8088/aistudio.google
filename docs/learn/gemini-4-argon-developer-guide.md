@@ -10,11 +10,11 @@ Gemini 4 Argon 是我們為複雜工作流程打造的新一代尖端模型，�
 
 ### Gemini 4 Argon 模型總覽
 
-| 模型 | 模型 ID | 預設思考 | 定價（每 100 萬權杖） |
+| 模型 | 模型 ID | 預設思考 | 定價（每 100 萬 tokens） |
 | --- | --- | --- | --- |
 | **Gemini 4 Argon** | `gemini-4-argon` | `medium` | **優惠價（至 11 月 30 日）**：輸入 $2 · 輸出 $10 *（快取享 95% 折扣）* **12 月 1 日起**：輸入 $4 · 輸出 $20 · [定價詳情](/docs/pricing/) |
 
-Argon 透過 Gemini API 支援**統一的 100 萬權杖上下文視窗**，輸入與輸出權杖共用（先前模型的上限為 64k），並提供可調整的思考等級（`low`、`medium`、`high`），以及同一套內建的 Gemini API 工具。本指南將介紹 Gemini 4 Argon 的新功能，並分享使用這個模型的實用技巧。想進一步了解 Gemini 4 Argon 在機器人、科學、金融、法律等領域的應用，請參閱我們的[公告部落格文章](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/)。
+Argon 透過 Gemini API 支援**統一的 100 萬 tokens 上下文視窗**，輸入與輸出 tokens 共用（先前模型的上限為 64k），並提供可調整的思考等級（`low`、`medium`、`high`），以及同一套內建的 Gemini API 工具。本指南將介紹 Gemini 4 Argon 的新功能，並分享使用這個模型的實用技巧。想進一步了解 Gemini 4 Argon 在機器人、科學、金融、法律等領域的應用，請參閱我們的[公告部落格文章](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/)。
 
 ## Gemini 4 Argon 為開發者工作流程帶來的新能力
 
@@ -49,9 +49,9 @@ print(interaction.output_text)
 
 **在 Google AI Studio 中測試這個提示詞**：在 Playground 中開啟預先載入 `gemini-4-argon` 的 Web Audio 鼓機與合成器提示詞。
 
-### 統一的 100 萬輸入輸出權杖上限與長解碼
+### 統一的 100 萬輸入輸出 token 上限與長解碼
 
-先前的 Gemini 模型把輸出上限（思考＋回應）設在 64K 權杖。在 Gemini 4 Argon 中，輸入、思考與輸出在 Gemini API 裡共用一個統一的 100 萬權杖視窗，你可以使用**長解碼**生成超過 64K 權杖的內容（上限為 100 萬權杖扣除你的輸入），讓 Argon 想思考多久都行，同時在單次生成中傳回完整的多檔案差異、測試套件或長篇證明。**預設輸出上限為 `65,536`（`64K`）個權杖**：在 Interactions API 上，串流與非串流要求預設都是 `65,536` 個權杖，不需修改任何程式碼。**使用 `background=True` 生成最多 100 萬個權杖**：若要在 Interactions API 上生成超過 `65,536` 個權杖，請設定 `background=True`，並把 `max_output_tokens` 設為高於 `65536`。設定值要夠高，避免思考把答案截斷；也要夠低，以免艱難的提示詞把額度用光時花費失控。
+先前的 Gemini 模型把輸出上限（思考＋回應）設在 64Ktokens。在 Gemini 4 Argon 中，輸入、思考與輸出在 Gemini API 裡共用一個統一的 100 萬 tokens 視窗，你可以使用**長解碼**生成超過 64Ktokens的內容（上限為 100 萬 tokens 扣除你的輸入），讓 Argon 想思考多久都行，同時在單次生成中傳回完整的多檔案差異、測試套件或長篇證明。**預設輸出上限為 `65,536`（`64K`）個 token**：在 Interactions API 上，串流與非串流要求預設都是 `65,536` 個 token，不需修改任何程式碼。**使用 `background=True` 生成最多 100 萬 tokens**：若要在 Interactions API 上生成超過 `65,536` 個 token，請設定 `background=True`，並把 `max_output_tokens` 設為高於 `65536`。設定值要夠高，避免思考把答案截斷；也要夠低，以免艱難的提示詞把額度用光時花費失控。
 
 **注意**：若你需要更細緻地控制長解碼，可以改用用戶端的長解碼接續方式，目前僅透過舊版 **GenerateContent API** 提供。用戶端接續很快也會來到 Interactions API，作為自行管理韌性的進階選項。
 
@@ -93,7 +93,7 @@ print("Usage:", interaction.usage)
 
 ### 從先前模型遷移
 
-遷移到 Gemini 4 Argon 時，請清理以下參數：**以 `thinking_level` 取代 `thinking_budget`**：`thinking_budget` 已淘汰，使用時會傳回警告。**移除 `temperature`、`top_p` 與 `top_k`**：`gemini-4-argon` 會忽略自訂取樣值，並傳回淘汰警告。**停用顯式上下文快取**：移除建立或傳入顯式 `cached_content` 的呼叫。隱式快取會自動啟用，快取的輸入權杖享有 **95% 折扣**。**拉長用戶端逾時**：艱難的推理提示詞可能需要數分鐘。請在 Interactions API 上使用 `background=True`，或把 HTTP 用戶端逾時設為至少 15 到 20 分鐘。完整詳情請參閱我們的[遷移檢查清單](https://ai.google.dev/gemini-api/docs/latest-model#migration-checklist)，或在你的程式設計代理中安裝 `gemini-api-dev` [技能](https://ai.google.dev/gemini-api/docs/coding-agents#gemini-api-dev)，請它把你的程式碼庫遷移到 `gemini-4-argon`。
+遷移到 Gemini 4 Argon 時，請清理以下參數：**以 `thinking_level` 取代 `thinking_budget`**：`thinking_budget` 已淘汰，使用時會傳回警告。**移除 `temperature`、`top_p` 與 `top_k`**：`gemini-4-argon` 會忽略自訂取樣值，並傳回淘汰警告。**停用顯式上下文快取**：移除建立或傳入顯式 `cached_content` 的呼叫。隱式快取會自動啟用，快取的輸入 tokens 享有 **95% 折扣**。**拉長用戶端逾時**：艱難的推理提示詞可能需要數分鐘。請在 Interactions API 上使用 `background=True`，或把 HTTP 用戶端逾時設為至少 15 到 20 分鐘。完整詳情請參閱我們的[遷移檢查清單](https://ai.google.dev/gemini-api/docs/latest-model#migration-checklist)，或在你的程式設計代理中安裝 `gemini-api-dev` [技能](https://ai.google.dev/gemini-api/docs/coding-agents#gemini-api-dev)，請它把你的程式碼庫遷移到 `gemini-4-argon`。
 
 ## 在受管理代理中使用 Gemini 4 Argon
 

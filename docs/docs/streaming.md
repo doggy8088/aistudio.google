@@ -249,7 +249,7 @@ data: {"index": 0, "step": {"type": "function_call", "id":"un6k8t18", "name": "g
 
 **範例：**
 
-**`text`**：來自 `model_output` 步驟的增量文字權杖：
+**`text`**：來自 `model_output` 步驟的增量文字 token：
 
 ```none
 event: step.delta

@@ -18,7 +18,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
     | --- | --- |
     | 模型代碼 | `gemini-robotics-er-2-preview` |
     | 支援的資料類型 | **輸入** 文字、圖片、影片、音訊 **輸出** 文字 |
-    | 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 131,072 **輸出權杖上限** 65,536 |
+    | token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 131,072 **輸出 token 上限** 65,536 |
     | 功能 | [**音訊生成**](/docs/speech-generation/) 不支援 [**程式碼執行**](/docs/code-execution/) 支援 [**電腦使用**](/docs/computer-use/) 支援 [**上下文快取**](/docs/caching/) 支援 [**檔案搜尋**](/docs/file-search/) 支援 [**函式呼叫**](/docs/function-calling/) 支援 [**使用 Google 地圖接地**](/docs/maps-grounding/) 支援 [**使用 Google 搜尋接地**](/docs/google-search/) 支援 [**圖片生成**](/docs/image-generation/) 不支援 [**Live API**](/docs/live-api/) 不支援 [**結構化輸出**](/docs/structured-output/) 支援 [**思考**](/docs/thinking/) 支援 [**URL 上下文**](/docs/url-context/) 支援 |
     | 使用選項 | [**Batch API**](/docs/batch-api/) 支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**Priority 推論**](/docs/priority-inference/) 不支援 |
     | 版本 | 如需詳細資訊，請參閱[模型版本命名模式](/docs/models/#model-versions)。預覽版：`gemini-robotics-er-2-preview` |
@@ -33,7 +33,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
     | --- | --- |
     | 模型代碼 | `gemini-robotics-er-2-streaming-preview` |
     | 支援的資料類型 | **輸入** 文字、圖片、影片、音訊 **輸出** 文字 |
-    | 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 131,072 **輸出權杖上限** 65,536 |
+    | token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 131,072 **輸出 token 上限** 65,536 |
     | 功能 | [**音訊生成**](/docs/speech-generation/) 不支援 [**程式碼執行**](/docs/code-execution/) 不支援 [**電腦使用**](/docs/computer-use/) 不支援 [**上下文快取**](/docs/caching/) 不支援 [**檔案搜尋**](/docs/file-search/) 不支援 [**函式呼叫**](/docs/function-calling/) 支援 [**使用 Google 地圖接地**](/docs/maps-grounding/) 不支援 [**使用 Google 搜尋接地**](/docs/google-search/) 支援 [**圖片生成**](/docs/image-generation/) 不支援 [**Live API**](/docs/live-api/) 支援 [**結構化輸出**](/docs/structured-output/) 不支援 [**思考**](/docs/thinking/) 支援 [**URL 上下文**](/docs/url-context/) 不支援 |
     | 使用選項 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**Priority 推論**](/docs/priority-inference/) 不支援 |
     | 版本 | 如需詳細資訊，請參閱[模型版本命名模式](/docs/models/#model-versions)。預覽版：`gemini-robotics-er-2-streaming-preview` |
@@ -48,7 +48,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人技術設計的視覺語言模�
     | --- | --- |
     | 模型代碼 | `gemini-robotics-er-1.6-preview` |
     | 支援的資料類型 | **輸入** 文字、圖片、影片、音訊 **輸出** 文字 |
-    | 權杖上限[[*]](/docs/tokens/) | **輸入權杖上限** 131,072 **輸出權杖上限** 65,536 |
+    | token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 131,072 **輸出 token 上限** 65,536 |
     | 功能 | [**音訊生成**](/docs/speech-generation/) 不支援 [**程式碼執行**](/docs/code-execution/) 支援 [**電腦使用**](/docs/computer-use/) 支援 [**上下文快取**](/docs/caching/) 支援 [**檔案搜尋**](/docs/file-search/) 支援 [**函式呼叫**](/docs/function-calling/) 支援 [**使用 Google 地圖接地**](/docs/maps-grounding/) 支援 [**使用 Google 搜尋接地**](/docs/google-search/) 支援 [**圖片生成**](/docs/image-generation/) 不支援 [**Live API**](/docs/live-api/) 不支援 [**結構化輸出**](/docs/structured-output/) 支援 [**思考**](/docs/thinking/) 支援 [**URL 上下文**](/docs/url-context/) 支援 |
     | 使用選項 | [**Batch API**](/docs/batch-api/) 支援 [**Flex 推論**](/docs/flex-inference/) 支援 [**Priority 推論**](/docs/priority-inference/) 支援 |
     | 版本 | 如需詳細資訊，請參閱[模型版本命名模式](/docs/models/#model-versions)。已關閉：`gemini-robotics-er-1.6-preview` |

@@ -83,7 +83,7 @@ Live API 提供一整套完善的功能，協助打造穩健的語音代理：
 
 !!! note " "
 
-      注意：Client-to-server 在串流音訊與影片時通常能提供較佳的效能，因為它不需要先將串流傳送到你的後端，設定上也較簡單，不必實作將資料從用戶端傳到伺服器、再由伺服器傳到 API 的代理。不過，在正式環境中，為了降低安全風險，我們建議使用[臨時權杖](/docs/live-api/ephemeral-tokens/)，而不要使用標準 API 金鑰。
+      注意：Client-to-server 在串流音訊與影片時通常能提供較佳的效能，因為它不需要先將串流傳送到你的後端，設定上也較簡單，不必實作將資料從用戶端傳到伺服器、再由伺服器傳到 API 的代理。不過，在正式環境中，為了降低安全風險，我們建議使用[臨時 token](/docs/live-api/ephemeral-tokens/)，而不要使用標準 API 金鑰。
 
 
 ## 開始使用 {#get-started}
@@ -102,7 +102,7 @@ Live API 提供一整套完善的功能，協助打造穩健的語音代理：
 
 **[WebSocket tutorial](/docs/live-api/get-started-websocket/)**
 
-使用 WebSockets 連接到 Gemini Live API，打造具備 JavaScript 前端與臨時權杖的即時多模態應用程式。
+使用 WebSockets 連接到 Gemini Live API，打造具備 JavaScript 前端與臨時 token 的即時多模態應用程式。
 
 
   

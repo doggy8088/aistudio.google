@@ -27,9 +27,9 @@
 
 如果回應遭到封鎖但並非出於安全設定，則查詢或回應可能違反[服務條款](/docs/terms/)，或屬於其他不支援的情況。
 
-## 查看權杖用量與上限 {#check-token-usage}
+## 查看 token 用量與上限 {#check-token-usage}
 
-開啟提示詞時，畫面底部的 **Text Preview** 按鈕會顯示提示詞內容目前使用的權杖數量，以及所用模型的權杖數量上限。
+開啟提示詞時，畫面底部的 **Text Preview** 按鈕會顯示提示詞內容目前使用的 token 數量，以及所用模型的 token 數量上限。
 
 ## Google AI Studio 的 Google Cloud IAM 權限 {#iam-permissions}
 

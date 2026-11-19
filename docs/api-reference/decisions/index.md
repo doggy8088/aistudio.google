@@ -36,21 +36,21 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。此決策評估請求的權杖用量統計。"
+??? note "**usage**: `Usage` 僅供輸出。此決策評估請求的 token 用量統計。"
 
       **total_input_tokens**: `integer`
 
-      提示詞（上下文）中的權杖數量。
+      提示詞（上下文）中的 token 數量。
 
       **initial_input_tokens**: `integer`
 
-      此互動第一個回合所使用的輸入權杖數量。
+      此互動第一個回合所使用的輸入 token 數量。
 
 
 
-    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量對應的模態。"
 
             可能的值：
 
@@ -64,19 +64,19 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_cached_tokens**: `integer`
 
-      提示詞中已快取部分（快取內容）的權杖數量。
+      提示詞中已快取部分（快取內容）的 token 數量。
 
 
 
-    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量對應的模態。"
 
             可能的值：
 
@@ -90,19 +90,19 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_output_tokens**: `integer`
 
-      所有生成回應的權杖總數。
+      所有生成回應的 token 總數。
 
 
 
-    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量對應的模態。"
 
             可能的值：
 
@@ -116,19 +116,19 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_tool_use_tokens**: `integer`
 
-      工具使用提示詞中的權杖數量。
+      工具使用提示詞中的 token 數量。
 
 
 
-    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量對應的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量對應的模態。"
 
             可能的值：
 
@@ -142,17 +142,17 @@ Decisions API 會在單一請求中，針對一份共用輸入評估一批結構
 
           **tokens**: `integer`
 
-          該模態的權杖數量。
+          該模態的 token 數量。
 
 
 
       **total_thought_tokens**: `integer`
 
-      思考模型的思考權杖數量。
+      思考模型的思考 token 數量。
 
       **total_tokens**: `integer`
 
-      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+      互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
 

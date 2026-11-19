@@ -44,7 +44,7 @@
 
   **page_token**: `string`
 
-  先前 ListTriggerExecutions 呼叫所傳回的分頁權杖。
+  先前 ListTriggerExecutions 呼叫所傳回的分頁 token。
 
 
 
@@ -130,7 +130,7 @@
 
   **next_page_token**: `string`
 
-  從先前的 `ListTriggerExecutions` 呼叫收到的分頁權杖。提供此權杖即可擷取下一頁。
+  從先前的 `ListTriggerExecutions` 呼叫收到的分頁 token。提供此 token 即可擷取下一頁。
 
 
 

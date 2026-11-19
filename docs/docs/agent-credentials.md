@@ -5,7 +5,7 @@
 請求發出時解析並注入該憑證。
 
 密鑰值僅可寫入。一旦儲存，任何端點都不會再回傳它，因此即使代理遭到入侵，
-也無法讀回自己正在使用的權杖。
+也無法讀回自己正在使用的 token。
 
 憑證的主要使用位置是 [`environment.network`](/docs/agent-environment/)
 上的網路許可清單。請先儲存密鑰：
@@ -224,7 +224,7 @@
       ```
 
 
-代理現在就能向 `api.github.com` 發出已驗證的請求，而權杖自始至終不會
+代理現在就能向 `api.github.com` 發出已驗證的請求，而 token 自始至終不會
 存在於沙箱之中。
 
 ## 憑證類型 {#credential-types}
@@ -233,8 +233,8 @@
 
 | 類型 | 使用情境 | 行為 |
 | :--- | :--- | :--- |
-| `bearer_token` | 個人存取權杖、機器人權杖、靜態 API 金鑰 | proxy 會將權杖注入為請求標頭，不含重新整理邏輯。 |
-| `oauth2` | OAuth 應用程式與使用者委派流程 | proxy 會以更新權杖交換存取權杖，並在存取權杖到期時自動重新整理。 |
+| `bearer_token` | 個人存取 token、機器人 token、靜態 API 金鑰 | proxy 會將 token 注入為請求標頭，不含重新整理邏輯。 |
+| `oauth2` | OAuth 應用程式與使用者委派流程 | proxy 會以更新 token 交換存取 token，並在存取 token 到期時自動重新整理。 |
 | `environment_variable` | 從行程環境讀取密鑰的用戶端 SDK | 代理的環境會收到一個佔位符，proxy 會在送出請求時將其替換為真正的密鑰。 |
 
 ## 在網路許可清單中使用憑證 {#network-allowlist}
@@ -380,8 +380,8 @@
       ```
 
 
-由於 proxy 會針對每個請求逐一解析憑證，`oauth2` 憑證的存取權杖會在背景
-自動重新整理。即使存取權杖到期，長時間執行的互動也不會因此中斷。
+由於 proxy 會針對每個請求逐一解析憑證，`oauth2` 憑證的存取 token 會在背景
+自動重新整理。即使存取 token 到期，長時間執行的互動也不會因此中斷。
 
 ### 同時使用 `credential` 與 `transform` {#credential-and-transform}
 
@@ -398,9 +398,9 @@
 | 兩者皆無 | 允許該網域，但不注入任何標頭。 |
 
 當您希望只儲存一次密鑰，就能在專案中的每個環境、代理與觸發條件裡參照它，
-並且希望存取權杖的重新整理與輪替都自動處理時，使用憑證最合適。內嵌的
+並且希望存取 token 的重新整理與輪替都自動處理時，使用憑證最合適。內嵌的
 `transform` 則適用於只屬於單次呼叫的值，例如您在建立互動之前自行產生的
-權杖。
+token。
 
 兩者併用相當常見：憑證負責攜帶驗證標頭，`transform` 則補上上游服務在同一
 請求中預期的其他內容：
@@ -683,9 +683,9 @@ proxy 只會在對外請求送往憑證 `trusted_domains` 所列網域時，才�
 直接呼叫 REST 時，所有欄位名稱都使用 snake_case。傳送 camelCase 欄位會
 回傳 `400`。
 
-### Bearer 權杖 {#bearer-token}
+### Bearer token {#bearer-token}
 
-Bearer 權杖憑證只需要 `token`：
+Bearer token 憑證只需要 `token`：
 
 
 === "Python"
@@ -768,7 +768,7 @@ Bearer 權杖憑證只需要 `token`：
       ```
 
 
-回應只會回傳中繼資料，絕不包含權杖：
+回應只會回傳中繼資料，絕不包含 token：
 
 ```json
 {
@@ -991,11 +991,11 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
       ```
 
 
-建立 OAuth2 憑證時，系統會向 `token_url` 執行一次即時權杖交換，以確認
-設定正確無誤。只有在供應商回傳成功的權杖回應且其中包含 `access_token` 時，
+建立 OAuth2 憑證時，系統會向 `token_url` 執行一次即時 token 交換，以確認
+設定正確無誤。只有在供應商回傳成功的 token 回應且其中包含 `access_token` 時，
 憑證才會被儲存。JSON 與 form-urlencoded 兩種回應格式都可接受。
 
-換句話說，建立當下您必須持有有效且未過期的更新權杖。若供應商拒絕這次
+換句話說，建立當下您必須持有有效且未過期的更新 token。若供應商拒絕這次
 交換，錯誤會回傳給您：
 
 ```json
@@ -1007,8 +1007,8 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 }
 ```
 
-儲存之後，proxy 會在存取權杖到期時自動重新整理。若供應商會輪替更新權杖，
-並在重新整理時回傳新的權杖，新權杖會自動取代已儲存的舊權杖。
+儲存之後，proxy 會在存取 token 到期時自動重新整理。若供應商會輪替更新 token，
+並在重新整理時回傳新的 token，新 token 會自動取代已儲存的舊 token。
 
 ### 環境變數 {#environment-variable}
 
@@ -1236,7 +1236,7 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 | 參數 | 類型 | 說明 |
 | :--- | :--- | :--- |
 | `page_size` | integer | 每頁憑證數量的上限。 |
-| `page_token` | string | 來自前一次回應 `next_page_token` 的權杖。 |
+| `page_token` | string | 來自前一次回應 `next_page_token` 的 token。 |
 
 ## 取得憑證 {#get-a-credential}
 
@@ -1333,7 +1333,7 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 
 請求必須包含 `type`，以及您要變更的欄位。省略的欄位會保留目前的值。
 
-輪替 Bearer 權杖：
+輪替 Bearer token：
 
 
 === "Python"
@@ -1410,7 +1410,7 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
       ```
 
 
-輪替 OAuth2 更新權杖：
+輪替 OAuth2 更新 token：
 
 
 === "Python"
@@ -1586,7 +1586,7 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 
 | 欄位 | 類型 | 必填 | 說明 |
 | :--- | :--- | :--- | :--- |
-| `token` | string | 是 | 僅可寫入。權杖的值。 |
+| `token` | string | 是 | 僅可寫入。token 的值。 |
 | `header_name` | string | 否 | 要注入的標頭。預設為 `Authorization`。 |
 | `prefix` | string | 否 | 值的字首。預設為 `Bearer`。若不需要，請設為 `""`。 |
 
@@ -1596,8 +1596,8 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 | :--- | :--- | :--- | :--- |
 | `client_id` | string | 是 | OAuth2 用戶端 ID。 |
 | `client_secret` | string | 是 | 僅可寫入。OAuth2 用戶端密鑰。 |
-| `refresh_token` | string | 是 | 僅可寫入。用來取得存取權杖的更新權杖。 |
-| `token_url` | string | 是 | 供應商的權杖端點。 |
+| `refresh_token` | string | 是 | 僅可寫入。用來取得存取 token 的更新 token。 |
+| `token_url` | string | 是 | 供應商的 token 端點。 |
 | `scopes` | array | 否 | 要請求的 OAuth 範圍。 |
 
 `environment_variable` 的欄位：

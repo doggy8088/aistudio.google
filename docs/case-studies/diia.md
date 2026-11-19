@@ -16,7 +16,7 @@ Diia 致力於讓每個人都能使用政府服務，不論其技術素養或對
 
 由於代理將處理個人識別資訊（PII），安全與隱私是最高優先事項。將模型託管在 Google 的 [Vertex AI](https://cloud.google.com/products/agent-builder?hl=en) 平台上，提供了必要的政府級安全保障。「我們絕對不能使用任何會拿使用者的查詢來訓練其模型的服務，」Ovcharenko 表示，並補充道：「其他解決方案無法以同等程度的信心，保證我們的資料不會被用於訓練。」團隊需要在使用者資料與 AI 模型之間建立一個「氣閘」，讓模型能在不處理原始 PII 的情況下工作。為了處理涉及 PII 的問題，他們在 [FastAPI](https://fastapi.tiangolo.com/) 與 Python 上建立了獨特的後端架構，使用 [LangGraph](https://www.langchain.com/langgraph) 進行協調。
 
-Ovcharenko 指出，Gemini 協助提供了一項先前「不可能自動化」的服務。回應時間低於該部嚴格的 2 秒內首個權杖時間（TTFT）目標，確保 Diia.AI 感覺自然流暢、對話自然。這個過程利用了 Gemini 模型的速度與出色的烏克蘭語理解能力，打造高度安全的體驗，同時從未接觸原始 PII。
+Ovcharenko 指出，Gemini 協助提供了一項先前「不可能自動化」的服務。回應時間低於該部嚴格的 2 秒內首個 token 時間（TTFT）目標，確保 Diia.AI 感覺自然流暢、對話自然。這個過程利用了 Gemini 模型的速度與出色的烏克蘭語理解能力，打造高度安全的體驗，同時從未接觸原始 PII。
 
 ## 將功能擴展到聊天之外
 

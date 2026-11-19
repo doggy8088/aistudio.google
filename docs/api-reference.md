@@ -102,7 +102,7 @@ POST /v1beta/agents
     | [Interactions API](/api-reference/interactions-api/) | `POST` `/v1beta/interactions` | 文字、多模態提示詞、思考、工具、有狀態輪次、背景工作與 SSE 串流。 |
     | [Live API](/api-reference/live/) | `WSS` `BidiGenerateContent` | 低延遲 WebSocket 工作階段，適用於雙向語音、影片與工具呼叫。 |
     | [Live Music API](/api-reference/live-music/) | `WSS` `BidiGenerateMusic` | 即時 WebSocket 工作階段，用來操控互動式器樂音樂與 Lyria。 |
-    | [Models API](/api-reference/models/) | `GET` `/v1beta/models` | 列出模型、檢視權杖上限，或執行媒體預測（[`predict`](https://aistudio.google.com/api-reference/models/predict)、[`predictLongRunning`](https://aistudio.google.com/api-reference/models/predict-long-running)）。 |
+    | [Models API](/api-reference/models/) | `GET` `/v1beta/models` | 列出模型、檢視 token 上限，或執行媒體預測（[`predict`](https://aistudio.google.com/api-reference/models/predict)、[`predictLongRunning`](https://aistudio.google.com/api-reference/models/predict-long-running)）。 |
 
 === "代理與自動化"
 
@@ -126,7 +126,7 @@ POST /v1beta/agents
     | [Voices](/api-reference/voices/) | `POST` `/v1beta/voices` | 建立並管理文字轉語音用的自訂提示或複製聲音。 |
     | [Batch API](/api-reference/batch-api/) | `POST` `/v1beta/batches` | 以較低成本提交非同步的內容生成與嵌入工作。 |
     | [Embeddings](/api-reference/embeddings/) | `POST` `/v1beta/models/{model}:embedContent` | 產生向量嵌入，用於語意搜尋、分類與分群。 |
-    | [Tokens](/api-reference/tokens/) | `POST` `/v1beta/models/{model}:countTokens` | 在送出要求前計算輸入權杖數。 |
+    | [Tokens](/api-reference/tokens/) | `POST` `/v1beta/models/{model}:countTokens` | 在送出要求前計算輸入 token 數。 |
 
 === "舊版"
 
@@ -139,7 +139,7 @@ POST /v1beta/agents
     | --- | --- | --- |
     | [`generateContent`](/api-reference/generate-content/generate-content/) | `POST` `/v1beta/models/{model}:generateContent` | 供既有 `generateContent` 整合使用的單向文字與多模態生成。 |
     | [`streamGenerateContent`](/api-reference/generate-content/stream-generate-content/) | `POST` `/v1beta/models/{model}:streamGenerateContent` | 供既有 `generateContent` 整合使用的伺服器送出事件串流。 |
-    | [`createToken`](/api-reference/generate-content/create-token/) | `POST` `/v1alpha/auth_tokens` | 為用戶端 Live API 工作階段佈建短期臨時驗證權杖。 |
+    | [`createToken`](/api-reference/generate-content/create-token/) | `POST` `/v1alpha/auth_tokens` | 為用戶端 Live API 工作階段佈建短期臨時驗證 token。 |
 
 ## SDK 參考文件 {#sdk-references}
 

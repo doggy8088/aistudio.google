@@ -9,20 +9,20 @@
 速率限制通常從三個面向衡量：
 
 * 每分鐘要求數（**RPM**）
-* 每分鐘權杖數（輸入）（**TPM**）
+* 每分鐘 token 數（輸入）（**TPM**）
 * 每日要求數（**RPD**）
 
 你的使用量會逐一與各項限制比對，超過任何一項都會觸發速率限制錯誤。舉例來說，若你的 RPM 上限為 20，在一分鐘內發出 21 次要求就會出錯，即使你尚未超過 TPM 或其他限制也一樣。
 
 速率限制以專案為單位套用，而非以 API 金鑰為單位。每日要求數（**RPD**）配額於太平洋時間午夜重置。
 
-限制會因所使用的模型而異，有些限制只適用於特定模型。例如每分鐘圖片數（IPM）僅針對能生成圖片的模型（Nano Banana）計算，但概念上與 TPM 類似。其他模型可能設有每日權杖上限（TPD）。內建工具也有各自的速率限制，例如 Gemini 3 與更新模型的使用 Google 搜尋接地，在 Gemini Developer API 上預設每個專案每天上限 1,500 次要求（RPD）（詳見[使用 Google 搜尋接地](/docs/google-search/#pricing)）。
+限制會因所使用的模型而異，有些限制只適用於特定模型。例如每分鐘圖片數（IPM）僅針對能生成圖片的模型（Nano Banana）計算，但概念上與 TPM 類似。其他模型可能設有每日 token 上限（TPD）。內建工具也有各自的速率限制，例如 Gemini 3 與更新模型的使用 Google 搜尋接地，在 Gemini Developer API 上預設每個專案每天上限 1,500 次要求（RPD）（詳見[使用 Google 搜尋接地](/docs/google-search/#pricing)）。
 
 實驗版與預覽版模型的速率限制更為嚴格。
 
 ### 以支出為基礎的速率限制 {#spend-rate-limits}
 
-除了每分鐘要求數（RPM）與每分鐘權杖數（TPM）限制外，Gemini API 還會施行以支出為基礎的速率限制，以防範非預期的費用。此類限制是否適用於你的帳戶，取決於你的計費紀錄與[使用層級](/docs/rate-limits/#usage-tiers)。
+除了每分鐘要求數（RPM）與每分鐘 token 數（TPM）限制外，Gemini API 還會施行以支出為基礎的速率限制，以防範非預期的費用。此類限制是否適用於你的帳戶，取決於你的計費紀錄與[使用層級](/docs/rate-limits/#usage-tiers)。
 
 下表列出各[使用層級](/docs/rate-limits/#usage-tiers)的支出型速率限制。這些限制以滾動式 10 分鐘視窗評估。此類限制是否適用於你的帳戶，取決於你的計費紀錄與帳戶狀態。
 
@@ -82,7 +82,7 @@ Tier 2 與 Tier 3 的資格，取決於與你專案連結的計費帳戶在 Goog
 以下標準互動式速率限制適用於 [Decisions API](/docs/decisions-api/) 上的 [Gemini Decision 1](/docs/models/gemini-decision-1/)：
 
 
-| 使用層級 | 每分鐘要求數（RPM） | 每分鐘權杖數（TPM） | 每日要求數（RPD） |
+| 使用層級 | 每分鐘要求數（RPM） | 每分鐘 token 數（TPM） | 每日要求數（RPD） |
 | --- | --- | --- | --- |
 | Free | 200 | 50,000 | 10,000 |
 | Tier 1 | 1,500 | 1,000,000 | 50,000 |
@@ -103,13 +103,13 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
 * **並行批次要求：** 100
 * **輸入檔案大小上限：** 2GB
 * **檔案儲存上限：** 20GB
-* **每個模型排入佇列的權杖數：** **Batch enqueued tokens** 表格列出在指定模型下，你所有進行中的批次工作合計可排入批次處理佇列的權杖數上限。
+* **每個模型排入佇列的 token 數：** **Batch enqueued tokens** 表格列出在指定模型下，你所有進行中的批次工作合計可排入批次處理佇列的 token 數上限。
 
 
 === "Tier 1"
 
 
-    | 模型 | 批次排入佇列的權杖數 |
+    | 模型 | 批次排入佇列的 token 數 |
     | --- | --- |
     | Gemini 4 Carbon | 5,000,000 |
     | Gemini 4 Argon | 5,000,000 |
@@ -140,7 +140,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
 === "Tier 2"
 
 
-    | 模型 | 批次排入佇列的權杖數 |
+    | 模型 | 批次排入佇列的 token 數 |
     | --- | --- |
     | Gemini 4 Carbon | 500,000,000 |
     | Gemini 4 Argon | 500,000,000 |
@@ -171,7 +171,7 @@ Gemini Decision 1 不支援 [Batch API](/docs/batch-api/)。
 === "Tier 3"
 
 
-    | 模型 | 批次排入佇列的權杖數 |
+    | 模型 | 批次排入佇列的 token 數 |
     | --- | --- |
     | Gemini 4 Carbon | 1,000,000,000 |
     | Gemini 4 Argon | 1,000,000,000 |

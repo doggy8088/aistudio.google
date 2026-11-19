@@ -1361,8 +1361,8 @@ Gemini 模型處理 Microsoft Office 與 OpenDocument 檔案的方式與 PDF 相
 
 | 副檔名 | Gemini 4 以上 | Gemini 3 與 2.5 |
 | :--- | :--- | :--- |
-| `.docx`、`.dotx`、`.odt`、`.pptx` | 頁面／投影片圖片（中解析度，每頁約 560 個權杖） | 擷取文字（＋內嵌圖片） |
-| `.doc`、`.ppt`、`.odp` | 頁面／投影片圖片（中解析度，每頁約 560 個權杖） | 頁面／投影片圖片 |
+| `.docx`、`.dotx`、`.odt`、`.pptx` | 頁面／投影片圖片（中解析度，每頁約 560 tokens） | 擷取文字（＋內嵌圖片） |
+| `.doc`、`.ppt`、`.odp` | 頁面／投影片圖片（中解析度，每頁約 560 tokens） | 頁面／投影片圖片 |
 | `.xlsx`、`.xls` | 所有工作表：值、公式、工作表名稱 | 所有工作表以 CSV 呈現（僅值） |
 | `.ods` | 所有工作表：值、公式、工作表名稱 | 所有工作表：值、公式、工作表名稱 |
 
@@ -1457,7 +1457,7 @@ Gemini 模型處理 Microsoft Office 與 OpenDocument 檔案的方式與 PDF 相
 
 你可以在 `document` 區塊上傳入 `processing`（`{"type": "static", ...}`），以選取頁面範圍、工作表索引標籤、儲存格範圍、內容圖層與算繪解析度。這些選項適用於所有 Gemini 3 與 Gemini 4 以上模型，可用於使用者的 `input`，也可放在 `function_result.result` 內。
 
-Gemini 只會計算並收取傳送給模型的切割後輸出內容的權杖費用。模型還會自動收到總頁數與工作表名稱，因此可以在後續回合中要求接續的範圍。
+Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費用。模型還會自動收到總頁數與工作表名稱，因此可以在後續回合中要求接續的範圍。
 
 ### 切割頁面並選取內容圖層 {#page-options}
 
@@ -1466,7 +1466,7 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的權杖費�
 * `start_page`（整數，選填）：以 1 為起始的包含起始頁。設定 `end_page` 時預設為 `1`。值 `<= 0` 會回傳 `400 INVALID_ARGUMENT`。超過頁數的值會回傳空的切割範圍。
 * `end_page`（整數，選填）：以 1 為起始的包含結束頁。設定 `start_page` 時預設為最後一頁，超過頁數時會箝制為最後一頁。必須 `>= start_page`。
 * `content_layers`（字串清單，選填）：選擇 `"page_image"`（算繪後的頁面圖片）、`"page_text"`（擷取的文字），或兩者皆選。設定 `processing` 時預設為 `["page_image"]`。
-* `resolution`（字串，選填）：在外層 `document` 區塊上設定（`"low"`、`"medium"` 或 `"high"`）。預設為 `"medium"`（每頁約 560 個權杖；`"low"` 約 280 個，`"high"` 約 1,120 個）。
+* `resolution`（字串，選填）：在外層 `document` 區塊上設定（`"low"`、`"medium"` 或 `"high"`）。預設為 `"medium"`（每頁約 560 tokens；`"low"` 約 280 個，`"high"` 約 1,120 個）。
 
 
 !!! note " "
@@ -1985,14 +1985,14 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的權杖費�
 
 * **檔案大小與長度**：每個檔案上限 50 MB、PDF 上限 1,000 頁，Office 或 OpenDocument 檔案上限 2,000 頁或投影片（同時適用於內嵌資料與 Files API 上傳；即使切割檔案，仍以完整上傳的檔案為準）。
 * **試算表**：每張工作表上限 50,000 個儲存格。
-* **頁面圖片算繪**：Gemini 會將 PDF 與 Office 頁面算繪為 200 萬像素的圖片（288 DPI），同時保留長寬比。輸入的像素尺寸不會改變權杖費用。請使用 `resolution` 控制權杖預算與細節程度。
+* **頁面圖片算繪**：Gemini 會將 PDF 與 Office 頁面算繪為 200 萬像素的圖片（288 DPI），同時保留長寬比。輸入的像素尺寸不會改變 token 費用。請使用 `resolution` 控制 token 預算與細節程度。
 * **其他文字格式**：TXT、Markdown、HTML 與 XML 等檔案只會擷取為純文字（版面配置、格式與圖表不會保留）。如需瞭解所有輸入選項，請見[檔案輸入方式](/docs/file-input-methods/)。
 
-### 權杖與計費 {#tokens-and-billing}
+### token 與計費 {#tokens-and-billing}
 
-* **Gemini 4 與 Gemini 3 模型**：頁面圖片的權杖數量取決於 `resolution`。`low` 每頁約 280 個權杖、`medium`（預設）約 560 個權杖，`high` 約 1,120 個權杖。詳情請見[媒體解析度](/docs/media-resolution/)。
-* **Gemini 2.5 模型**：每頁固定 258 個權杖。
-* **PDF 原生文字與用量回報**：預設 PDF 處理（未設定 `processing` 選項）時，內嵌的 PDF 文字會與頁面圖片一併擷取，不另收權杖費用。頁面圖片權杖會在 `usage.input_tokens_by_modality` 中以 `"image"` 模態回報。
+* **Gemini 4 與 Gemini 3 模型**：頁面圖片的 token 數量取決於 `resolution`。`low` 每頁約 280 tokens、`medium`（預設）約 560 tokens，`high` 約 1,120 tokens。詳情請見[媒體解析度](/docs/media-resolution/)。
+* **Gemini 2.5 模型**：每頁固定 258 tokens。
+* **PDF 原生文字與用量回報**：預設 PDF 處理（未設定 `processing` 選項）時，內嵌的 PDF 文字會與頁面圖片一併擷取，不另收 token 費用。頁面圖片 token 會在 `usage.input_tokens_by_modality` 中以 `"image"` 模態回報。
 * **切割計費**：設定 `processing` 選項時，Gemini 只會計算並收取傳送給模型的選取頁面、工作表與 `content_layers` 的費用。
 
 ## 最佳做法 {#best-practices}

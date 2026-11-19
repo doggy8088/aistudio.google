@@ -216,7 +216,7 @@ Interaction 資源。
     - `failed`: 互動失敗。
     - `cancelled`: 互動已取消。
     - `incomplete`: 互動已完成，但包含不完整的結果（例如達到 max_tokens）。
-    - `requires_continuation`: 互動至少還需要再提出一次請求才能完成。下一次請求應將 continuation_token 設為本次請求傳回的權杖。
+    - `requires_continuation`: 互動至少還需要再提出一次請求才能完成。下一次請求應將 continuation_token 設為本次請求傳回的 token。
 
 
 
@@ -263,7 +263,7 @@ Interaction 資源。
     - `gemini-flash-latest`: Gemini Flash 的最新版本
     - `gemini-flash-lite-latest`: Gemini Flash-Lite 的最新版本
     - `gemini-pro-latest`: Gemini Pro 的最新版本
-    - `gemini-2.5-flash`: 我們的第一款混合推理模型，支援 100 萬權杖的上下文視窗，並具備思考預算。
+    - `gemini-2.5-flash`: 我們的第一款混合推理模型，支援 100 萬 tokens 的上下文視窗，並具備思考預算。
     - `gemini-2.5-pro`: 我們最先進的多用途模型，擅長程式設計與複雜推理工作。
     - `gemini-2.5-flash-lite`: 我們最小且最具成本效益的模型，專為大規模使用而打造。
     - `gemini-3.5-flash-lite`: Gemini 3.5 Flash-Lite：我們速度最快、最具成本效益的 3.5 模型，適合高輸送量執行。
@@ -364,7 +364,7 @@ Interaction 資源。
 
 
 
-    ??? note "**thinking_level**: `ThinkingLevel` 模型應生成的思考權杖等級。"
+    ??? note "**thinking_level**: `ThinkingLevel` 模型應生成的思考 token 等級。"
 
         可能值：
 
@@ -389,7 +389,7 @@ Interaction 資源。
 
       **max_output_tokens**: `integer`
 
-      回應中可包含的權杖數量上限。
+      回應中可包含的 token 數量上限。
 
 
 
@@ -556,21 +556,21 @@ Interaction 資源。
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。 互動請求的權杖用量統計。"
+??? note "**usage**: `Usage` 僅供輸出。 互動請求的 token 用量統計。"
 
       **total_input_tokens**: `integer`
 
-      提示詞（上下文）中的權杖數量。
+      提示詞（上下文）中的 token 數量。
 
       **initial_input_tokens**: `integer`
 
-      本次互動第一輪所使用的輸入權杖數量。
+      本次互動第一輪所使用的輸入 token 數量。
 
 
 
-    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+    ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
             可能值：
 
@@ -584,19 +584,19 @@ Interaction 資源。
 
           **tokens**: `integer`
 
-          此模態的權杖數量。
+          此模態的 token 數量。
 
 
 
       **total_cached_tokens**: `integer`
 
-      提示詞中已快取部分（快取內容）的權杖數量。
+      提示詞中已快取部分（快取內容）的 token 數量。
 
 
 
-    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+    ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
             可能值：
 
@@ -610,19 +610,19 @@ Interaction 資源。
 
           **tokens**: `integer`
 
-          此模態的權杖數量。
+          此模態的 token 數量。
 
 
 
       **total_output_tokens**: `integer`
 
-      所有生成回應的權杖總數。
+      所有生成回應的 token 總數。
 
 
 
-    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+    ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
             可能值：
 
@@ -636,19 +636,19 @@ Interaction 資源。
 
           **tokens**: `integer`
 
-          此模態的權杖數量。
+          此模態的 token 數量。
 
 
 
       **total_tool_use_tokens**: `integer`
 
-      工具使用提示詞中的權杖數量。
+      工具使用提示詞中的 token 數量。
 
 
 
-    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+    ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
-        ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+        ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
             可能值：
 
@@ -662,17 +662,17 @@ Interaction 資源。
 
           **tokens**: `integer`
 
-          此模態的權杖數量。
+          此模態的 token 數量。
 
 
 
       **total_thought_tokens**: `integer`
 
-      思考模型的思考權杖數量。
+      思考模型的思考 token 數量。
 
       **total_tokens**: `integer`
 
-      互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+      互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
 
@@ -1007,7 +1007,7 @@ Interaction 資源。
 
   **continuation_token**: `string`
 
-  用於繼續長時間解碼的不透明權杖。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動傳回最新權杖，即可繼續解碼。
+  用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動傳回最新 token，即可繼續解碼。
 
   
 
@@ -1081,7 +1081,7 @@ Interaction 資源。
 
         **max_total_tokens**: `string`
 
-        代理執行的權杖總數上限。
+        代理執行的 token 總數上限。
 
 
 
@@ -1142,7 +1142,7 @@ Interaction 資源。
 
   **max_total_tokens**: `string`
 
-  代理執行的權杖總數上限。
+  代理執行的 token 總數上限。
 
   
 
@@ -2783,7 +2783,7 @@ Interaction 資源。
 
       **enable_widget**: `boolean`
 
-      是否在回應的工具呼叫結果中傳回小工具上下文權杖。
+      是否在回應的工具呼叫結果中傳回小工具上下文 token。
 
 
 
@@ -3489,7 +3489,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**
@@ -3551,22 +3551,22 @@ Interaction 資源。
           僅供輸出。回應的最後更新時間，採 ISO 8601 格式。
 
 
-        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的權杖用量統計。"
+        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的 token 用量統計。"
 
 
               **total_input_tokens**: `integer`
 
-              提示詞（上下文）中的權杖數量。
+              提示詞（上下文）中的 token 數量。
 
               **initial_input_tokens**: `integer`
 
-              本次互動第一輪所使用的輸入權杖數量。
+              本次互動第一輪所使用的輸入 token 數量。
 
 
-            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3580,18 +3580,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_cached_tokens**: `integer`
 
-              提示詞中已快取部分（快取內容）的權杖數量。
+              提示詞中已快取部分（快取內容）的 token 數量。
 
 
-            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3605,18 +3605,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_output_tokens**: `integer`
 
-              所有生成回應的權杖總數。
+              所有生成回應的 token 總數。
 
 
-            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3630,18 +3630,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_tool_use_tokens**: `integer`
 
-              工具使用提示詞中的權杖數量。
+              工具使用提示詞中的 token 數量。
 
 
-            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3655,16 +3655,16 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_thought_tokens**: `integer`
 
-              思考模型的思考權杖數量。
+              思考模型的思考 token 數量。
 
               **total_tokens**: `integer`
 
-              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+              互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
             ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -3700,7 +3700,7 @@ Interaction 資源。
 
           **continuation_token**: `string`
 
-          用於恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
 
           **agent**: `string`
 
@@ -3724,7 +3724,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**
@@ -3790,22 +3790,22 @@ Interaction 資源。
           僅供輸出。回應的最後更新時間，採 ISO 8601 格式。
 
 
-        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的權杖用量統計。"
+        ??? note "**usage**: `Usage` 僅供輸出。 互動請求的 token 用量統計。"
 
 
               **total_input_tokens**: `integer`
 
-              提示詞（上下文）中的權杖數量。
+              提示詞（上下文）中的 token 數量。
 
               **initial_input_tokens**: `integer`
 
-              本次互動第一輪所使用的輸入權杖數量。
+              本次互動第一輪所使用的輸入 token 數量。
 
 
-            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3819,18 +3819,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_cached_tokens**: `integer`
 
-              提示詞中已快取部分（快取內容）的權杖數量。
+              提示詞中已快取部分（快取內容）的 token 數量。
 
 
-            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3844,18 +3844,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_output_tokens**: `integer`
 
-              所有生成回應的權杖總數。
+              所有生成回應的 token 總數。
 
 
-            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3869,18 +3869,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_tool_use_tokens**: `integer`
 
-              工具使用提示詞中的權杖數量。
+              工具使用提示詞中的 token 數量。
 
 
-            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -3894,16 +3894,16 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_thought_tokens**: `integer`
 
-              思考模型的思考權杖數量。
+              思考模型的思考 token 數量。
 
               **total_tokens**: `integer`
 
-              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+              互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
             ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -3939,7 +3939,7 @@ Interaction 資源。
 
           **continuation_token**: `string`
 
-          用於恢復長時間解碼的不透明權杖。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新權杖，以繼續解碼。
+          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
 
           **agent**: `string`
 
@@ -3963,7 +3963,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**
@@ -4009,7 +4009,7 @@ Interaction 資源。
           - `failed`: 互動失敗。
           - `cancelled`: 互動已取消。
           - `incomplete`: 互動已完成，但包含不完整的結果（例如達到 max_tokens）。
-          - `requires_continuation`: 互動至少還需要再提出一次請求才能完成。下一次請求應將 continuation_token 設為本次請求傳回的權杖。
+          - `requires_continuation`: 互動至少還需要再提出一次請求才能完成。下一次請求應將 continuation_token 設為本次請求傳回的 token。
 
 
     ---
@@ -4025,7 +4025,7 @@ Interaction 資源。
 
       **continuation_token**: `string`
 
-      選用的不透明接續權杖，用於在串流中斷後從最新檢查點恢復解碼。
+      選用的不透明接續 token，用於在串流中斷後從最新檢查點恢復解碼。
 
 
     ---
@@ -4036,17 +4036,17 @@ Interaction 資源。
 
           **total_input_tokens**: `integer`
 
-          提示詞（上下文）中的權杖數量。
+          提示詞（上下文）中的 token 數量。
 
           **initial_input_tokens**: `integer`
 
-          本次互動第一輪所使用的輸入權杖數量。
+          本次互動第一輪所使用的輸入 token 數量。
 
 
-        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -4060,18 +4060,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_cached_tokens**: `integer`
 
-          提示詞中已快取部分（快取內容）的權杖數量。
+          提示詞中已快取部分（快取內容）的 token 數量。
 
 
-        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -4085,18 +4085,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_output_tokens**: `integer`
 
-          所有生成回應的權杖總數。
+          所有生成回應的 token 總數。
 
 
-        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -4110,18 +4110,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_tool_use_tokens**: `integer`
 
-          工具使用提示詞中的權杖數量。
+          工具使用提示詞中的 token 數量。
 
 
-        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -4135,16 +4135,16 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_thought_tokens**: `integer`
 
-          思考模型的思考權杖數量。
+          思考模型的思考 token 數量。
 
           **total_tokens**: `integer`
 
-          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+          互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
         ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -4169,7 +4169,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**
@@ -4455,7 +4455,7 @@ Interaction 資源。
 
                   **widget_context_token**: `string`
 
-                  Google Maps 小工具內容權杖的資源名稱。
+                  Google Maps 小工具內容 token 的資源名稱。
 
 
               **signature**: `string`
@@ -4946,7 +4946,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
     ---
@@ -4955,22 +4955,22 @@ Interaction 資源。
     ??? note "**metadata**: `StepDeltaMetadata`"
 
 
-        ??? note "**total_usage**: `Usage` 互動請求的權杖用量統計。"
+        ??? note "**total_usage**: `Usage` 互動請求的 token 用量統計。"
 
 
               **total_input_tokens**: `integer`
 
-              提示詞（上下文）中的權杖數量。
+              提示詞（上下文）中的 token 數量。
 
               **initial_input_tokens**: `integer`
 
-              本次互動第一輪所使用的輸入權杖數量。
+              本次互動第一輪所使用的輸入 token 數量。
 
 
-            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+            ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -4984,18 +4984,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_cached_tokens**: `integer`
 
-              提示詞中已快取部分（快取內容）的權杖數量。
+              提示詞中已快取部分（快取內容）的 token 數量。
 
 
-            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+            ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -5009,18 +5009,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_output_tokens**: `integer`
 
-              所有生成回應的權杖總數。
+              所有生成回應的 token 總數。
 
 
-            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+            ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -5034,18 +5034,18 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_tool_use_tokens**: `integer`
 
-              工具使用提示詞中的權杖數量。
+              工具使用提示詞中的 token 數量。
 
 
-            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+            ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-                ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+                ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                       可能值：
@@ -5059,16 +5059,16 @@ Interaction 資源。
 
                   **tokens**: `integer`
 
-                  此模態的權杖數量。
+                  此模態的 token 數量。
 
 
               **total_thought_tokens**: `integer`
 
-              思考模型的思考權杖數量。
+              思考模型的思考 token 數量。
 
               **total_tokens**: `integer`
 
-              互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+              互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
             ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -5133,7 +5133,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**
@@ -5177,17 +5177,17 @@ Interaction 資源。
 
           **total_input_tokens**: `integer`
 
-          提示詞（上下文）中的權杖數量。
+          提示詞（上下文）中的 token 數量。
 
           **initial_input_tokens**: `integer`
 
-          本次互動第一輪所使用的輸入權杖數量。
+          本次互動第一輪所使用的輸入 token 數量。
 
 
-        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5201,18 +5201,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_cached_tokens**: `integer`
 
-          提示詞中已快取部分（快取內容）的權杖數量。
+          提示詞中已快取部分（快取內容）的 token 數量。
 
 
-        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5226,18 +5226,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_output_tokens**: `integer`
 
-          所有生成回應的權杖總數。
+          所有生成回應的 token 總數。
 
 
-        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5251,18 +5251,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_tool_use_tokens**: `integer`
 
-          工具使用提示詞中的權杖數量。
+          工具使用提示詞中的 token 數量。
 
 
-        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5276,16 +5276,16 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_thought_tokens**: `integer`
 
-          思考模型的思考權杖數量。
+          思考模型的思考 token 數量。
 
           **total_tokens**: `integer`
 
-          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+          互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
         ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -5313,17 +5313,17 @@ Interaction 資源。
 
           **total_input_tokens**: `integer`
 
-          提示詞（上下文）中的權杖數量。
+          提示詞（上下文）中的 token 數量。
 
           **initial_input_tokens**: `integer`
 
-          本次互動第一輪所使用的輸入權杖數量。
+          本次互動第一輪所使用的輸入 token 數量。
 
 
-        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入權杖用量明細。"
+        ??? note "**input_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸入 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5337,18 +5337,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_cached_tokens**: `integer`
 
-          提示詞中已快取部分（快取內容）的權杖數量。
+          提示詞中已快取部分（快取內容）的 token 數量。
 
 
-        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取權杖用量明細。"
+        ??? note "**cached_tokens_by_modality**: `ModalityTokens array` 依模態區分的快取 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5362,18 +5362,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_output_tokens**: `integer`
 
-          所有生成回應的權杖總數。
+          所有生成回應的 token 總數。
 
 
-        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出權杖用量明細。"
+        ??? note "**output_tokens_by_modality**: `ModalityTokens array` 依模態區分的輸出 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5387,18 +5387,18 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_tool_use_tokens**: `integer`
 
-          工具使用提示詞中的權杖數量。
+          工具使用提示詞中的 token 數量。
 
 
-        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用權杖用量明細。"
+        ??? note "**tool_use_tokens_by_modality**: `ModalityTokens array` 依模態區分的工具使用 token 用量明細。"
 
 
-            ??? note "**modality**: `ResponseModality` 與權杖數量關聯的模態。"
+            ??? note "**modality**: `ResponseModality` 與 token 數量關聯的模態。"
 
 
                   可能值：
@@ -5412,16 +5412,16 @@ Interaction 資源。
 
               **tokens**: `integer`
 
-              此模態的權杖數量。
+              此模態的 token 數量。
 
 
           **total_thought_tokens**: `integer`
 
-          思考模型的思考權杖數量。
+          思考模型的思考 token 數量。
 
           **total_tokens**: `integer`
 
-          互動請求的權杖總數（提示詞 + 回應 + 其他內部權杖）。
+          互動請求的 token 總數（提示詞 + 回應 + 其他內部 token）。
 
 
         ??? note "**grounding_tool_count**: `GroundingToolCount array` 接地工具計數。"
@@ -5446,7 +5446,7 @@ Interaction 資源。
 
       **event_id**: `string`
 
-      要用於從此事件恢復互動串流的 event_id 權杖。
+      要用於從此事件恢復互動串流的 event_id token。
 
 
       **範例**

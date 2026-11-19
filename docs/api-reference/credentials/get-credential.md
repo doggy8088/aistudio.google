@@ -56,8 +56,8 @@
 
     可能的值：
 
-    - `bearer_token`：以標頭形式注入的靜態權杖。無更新邏輯。
-    - `oauth2`：使用儲存的更新權杖，自動更新已過期的存取權杖。
+    - `bearer_token`：以標頭形式注入的靜態 token。無更新邏輯。
+    - `oauth2`：使用儲存的更新 token，自動更新已過期的存取 token。
     - `environment_variable`：注入沙箱容器的環境變數。
 
 

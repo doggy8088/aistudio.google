@@ -1,8 +1,8 @@
-# 建立臨時驗證權杖
+# 建立臨時驗證 token
 
 `POST` `https://generativelanguage.googleapis.com/v1beta/auth_tokens`
 
-建立一個權杖，可用來限制 BidiGenerateContent 工作階段的行為。
+建立一個 token，可用來限制 BidiGenerateContent 工作階段的行為。
 
 
   
@@ -11,7 +11,7 @@
   
   
 
-??? note "**config**：`Union type` 所產生權杖的方法專屬設定。"
+??? note "**config**：`Union type` 所產生 token 的方法專屬設定。"
 
       聯集欄位 `config` 只能是下列其中之一：
 
@@ -37,7 +37,7 @@
 
               **maxOutputTokens**：`integer`
 
-              選填。回應候選中可包含的權杖數量上限。注意：預設值依模型而異，請參閱 `Model.output_token_limit` 屬性；該屬性屬於一個 `Model`，由 `getModel` 函式傳回。
+              選填。回應候選中可包含的 token 數量上限。注意：預設值依模型而異，請參閱 `Model.output_token_limit` 屬性；該屬性屬於一個 `Model`，由 `getModel` 函式傳回。
 
               **temperature**：`number`
 
@@ -45,11 +45,11 @@
 
               **topP**：`number`
 
-              選填。取樣時要考量的權杖累積機率上限。模型會結合 Top-k 與 Top-p（nucleus）取樣。權杖會依其指派的機率排序，因此只會考量最有可能的權杖。Top-k 取樣直接限制要考量的權杖數量上限，而 Nucleus 取樣則依累積機率限制權杖數量。注意：預設值依 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。若 `top_k` 屬性為空，表示該模型不套用 top-k 取樣，也不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，會被靜默忽略。
+              選填。取樣時要考量的 token 累積機率上限。模型會結合 Top-k 與 Top-p（nucleus）取樣。token 會依其指派的機率排序，因此只會考量最有可能的 token。Top-k 取樣直接限制要考量的 token 數量上限，而 Nucleus 取樣則依累積機率限制 token 數量。注意：預設值依 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。若 `top_k` 屬性為空，表示該模型不套用 top-k 取樣，也不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，會被靜默忽略。
 
               **topK**：`integer`
 
-              選填。取樣時要考量的權杖數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣會考量 `top_k` 個最有可能的權杖。採用 nucleus 取樣的模型不允許設定 top_k。注意：預設值依 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。若 `top_k` 屬性為空，表示該模型不套用 top-k 取樣，也不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，會被靜默忽略。
+              選填。取樣時要考量的 token 數量上限。Gemini 模型使用 Top-p（nucleus）取樣，或 Top-k 與 nucleus 取樣的組合。Top-k 取樣會考量 `top_k` 個最有可能的 token。採用 nucleus 取樣的模型不允許設定 top_k。注意：預設值依 `Model` 而異，由 `Model.top_p` 屬性指定，該屬性由 `getModel` 函式傳回。若 `top_k` 屬性為空，表示該模型不套用 top-k 取樣，也不允許在請求中設定 `top_k`。此欄位在 Gemini 3.6 Flash 及更新的模型上已不再支援，會被靜默忽略。
 
               **seed**：`integer`
 
@@ -65,11 +65,11 @@
 
               **presencePenalty**：`number`
 
-              選填。若某個權杖已在回應中出現過，則對下一個權杖的 logprobs 套用的 presence penalty。此懲罰為二元的開／關，不取決於權杖被使用的次數（第一次之後）。若要使用隨使用次數增加的懲罰，請使用 frequency_penalty。正值會抑制使用已在回應中出現過的權杖，進而增加詞彙量。負值則會鼓勵使用已在回應中出現過的權杖，進而減少詞彙量。
+              選填。若某個 token 已在回應中出現過，則對下一個 token 的 logprobs 套用的 presence penalty。此懲罰為二元的開／關，不取決於 tokens 被使用的次數（第一次之後）。若要使用隨使用次數增加的懲罰，請使用 frequency_penalty。正值會抑制使用已在回應中出現過的 token，進而增加詞彙量。負值則會鼓勵使用已在回應中出現過的 token，進而減少詞彙量。
 
               **frequencyPenalty**：`number`
 
-              選填。對下一個權杖的 logprobs 套用的 frequency penalty，會乘上每個權杖到目前為止在回應中出現的次數。正值會依權杖被使用的次數比例抑制重複使用：權杖用得越多，模型就越難再次使用該權杖，進而增加回應的詞彙量。注意：*負值*懲罰會依權杖被使用的次數比例，鼓勵模型重複使用權杖。較小的負值會減少回應的詞彙量；較大的負值會使模型開始重複某個常見權杖，直到達到 max_output_tokens 上限為止。
+              選填。對下一個 token 的 logprobs 套用的 frequency penalty，會乘上每個 token 到目前為止在回應中出現的次數。正值會依 tokens 被使用的次數比例抑制重複使用：token 用得越多，模型就越難再次使用該 token，進而增加回應的詞彙量。注意：*負值*懲罰會依 tokens 被使用的次數比例，鼓勵模型重複使用 token。較小的負值會減少回應的詞彙量；較大的負值會使模型開始重複某個常見 token，直到達到 max_output_tokens 上限為止。
 
               **responseLogprobs**：`boolean`
 
@@ -180,7 +180,7 @@
 
                   **thinkingBudget**：`integer`
 
-                  模型應產生的思考權杖數量。
+                  模型應產生的思考 token 數量。
 
 
 
@@ -218,9 +218,9 @@
                 可能的值：
 
                 - `MEDIA_RESOLUTION_UNSPECIFIED`：尚未設定媒體解析度。
-                - `MEDIA_RESOLUTION_LOW`：媒體解析度設定為低（64 個權杖）。
-                - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設定為中（256 個權杖）。
-                - `MEDIA_RESOLUTION_HIGH`：媒體解析度設定為高（以 256 個權杖放大重新取景）。
+                - `MEDIA_RESOLUTION_LOW`：媒體解析度設定為低（64 tokens）。
+                - `MEDIA_RESOLUTION_MEDIUM`：媒體解析度設定為中（256 tokens）。
+                - `MEDIA_RESOLUTION_HIGH`：媒體解析度設定為高（以 256 tokens 放大重新取景）。
 
 
 
@@ -510,13 +510,13 @@
 
                     **targetTokens**：`string`
 
-                    要保留的目標權杖數量。預設值為 trigger_tokens/2。捨棄部分上下文視窗會造成延遲暫時增加，因此應校準此值，以避免頻繁進行壓縮操作。
+                    要保留的目標 token 數量。預設值為 trigger_tokens/2。捨棄部分上下文視窗會造成延遲暫時增加，因此應校準此值，以避免頻繁進行壓縮操作。
 
 
 
               **triggerTokens**：`string`
 
-              觸發上下文視窗壓縮所需的權杖數量（在執行一個輪次之前）。此設定可用來在品質與延遲之間取得平衡，因為較短的上下文視窗可能帶來更快的模型回應。不過，任何壓縮操作都會造成延遲暫時增加，因此不應頻繁觸發。若未設定，預設為模型上下文視窗上限的 80%。這樣會為下一個使用者請求／模型回應保留 20%。
+              觸發上下文視窗壓縮所需的 token 數量（在執行一個輪次之前）。此設定可用來在品質與延遲之間取得平衡，因為較短的上下文視窗可能帶來更快的模型回應。不過，任何壓縮操作都會造成延遲暫時增加，因此不應頻繁觸發。若未設定，預設為模型上下文視窗上限的 80%。這樣會為下一個使用者請求／模型回應保留 20%。
 
 
 
@@ -637,7 +637,7 @@
 
   **expireTime**：`string`
 
-  選填。僅供輸入。不可變。使用所產生的權杖時，超過此時間之後，BidiGenerateContent 工作階段中的訊息將被拒絕。（Gemini 可能會在此時間之後預先關閉工作階段。）若未設定，預設為 30 分鐘後。若有設定，此值必須小於未來 20 小時。
+  選填。僅供輸入。不可變。使用所產生的 token 時，超過此時間之後，BidiGenerateContent 工作階段中的訊息將被拒絕。（Gemini 可能會在此時間之後預先關閉工作階段。）若未設定，預設為 30 分鐘後。若有設定，此值必須小於未來 20 小時。
 
   
 
@@ -646,7 +646,7 @@
 
   **newSessionExpireTime**：`string`
 
-  選填。僅供輸入。不可變。超過此時間之後，使用本次請求所產生權杖的新 Live API 工作階段將被拒絕。若未設定，預設為 60 秒後。若有設定，此值必須小於未來 20 小時。
+  選填。僅供輸入。不可變。超過此時間之後，使用本次請求所產生 token 的新 Live API 工作階段將被拒絕。若未設定，預設為 60 秒後。若有設定，此值必須小於未來 20 小時。
 
   
 
@@ -655,7 +655,7 @@
 
   **uses**：`integer`
 
-  選填。僅供輸入。不可變。權杖可被使用的次數。若此值為零，則不套用上限。恢復 Live API 工作階段不計為一次使用。若未指定，預設為 1。
+  選填。僅供輸入。不可變。token 可被使用的次數。若此值為零，則不套用上限。恢復 Live API 工作階段不計為一次使用。若未指定，預設為 1。
 
   
 
@@ -691,7 +691,7 @@
   
   **name**：`string`
 
-  僅供輸出。識別碼。權杖本身。
+  僅供輸出。識別碼。token 本身。
 
   
 
@@ -1235,7 +1235,7 @@
                           聯集欄位 `value` 只能是下列其中之一：
 
 
-                        ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+                        ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
 
                               可能的值：
@@ -1504,7 +1504,7 @@
 
 
 
-            ??? note "**level**：`string enum` 用於指定媒體的權杖化品質。適用於 Gemini API 支援。"
+            ??? note "**level**：`string enum` 用於指定媒體的 Tokenizer 品質。適用於 Gemini API 支援。"
 
                 可能的值：
 
@@ -2057,4 +2057,4 @@
 
     **enableWidget**：`boolean`
 
-    選填。是否在回應的 GroundingMetadata 中傳回小工具上下文權杖。開發人員可以使用小工具上下文權杖，算繪一個帶有地理空間上下文的 Google Maps 小工具，該上下文與模型在回應中參照的地點相關。
+    選填。是否在回應的 GroundingMetadata 中傳回小工具上下文 token。開發人員可以使用小工具上下文 token，算繪一個帶有地理空間上下文的 Google Maps 小工具，該上下文與模型在回應中參照的地點相關。

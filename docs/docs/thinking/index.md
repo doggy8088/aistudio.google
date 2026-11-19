@@ -640,17 +640,17 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
 
 ### 了解思考等級 {#understanding-thinking-levels}
 
-`thinking_level` 是你在 [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/) 與 [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 中控制品質、延遲與權杖用量的主要方式。這兩個模型預設皆為 `high`，且皆支援 `xhigh`：
+`thinking_level` 是你在 [Gemini 4 Neon](/docs/whats-new-gemini-4-neon/) 與 [Gemini 4 Hydrogen](/docs/whats-new-gemini-4-hydrogen/) 中控制品質、延遲與 token 用量的主要方式。這兩個模型預設皆為 `high`，且皆支援 `xhigh`：
 
-| 思考等級 | 權杖用量 | 適用時機 |
+| 思考等級 | token 用量 | 適用時機 |
 | :--- | :--- | :--- |
-| `low` | 權杖最少、延遲最低 | 對成本與延遲敏感的工作負載，例如快速聊天與高輸送量處理。在代理任務上仍具備不錯的能力。 |
-| `medium` | 權杖用量較低、回應較快 | 互動式程式設計、即時 UI 原型製作、反應靈敏的聊天，以及對延遲敏感的工具呼叫。（`gemini-4-carbon`、`gemini-4-argon`、`gemini-3.8-flash` 與 `gemini-3.6-flash` 的預設值。） |
+| `low` | token 最少、延遲最低 | 對成本與延遲敏感的工作負載，例如快速聊天與高輸送量處理。在代理任務上仍具備不錯的能力。 |
+| `medium` | token 用量較低、回應較快 | 互動式程式設計、即時 UI 原型製作、反應靈敏的聊天，以及對延遲敏感的工具呼叫。（`gemini-4-carbon`、`gemini-4-argon`、`gemini-3.8-flash` 與 `gemini-3.6-flash` 的預設值。） |
 | `high`（`gemini-4-neon` 與 `gemini-4-hydrogen` 的預設值） | 在智慧與速度之間取得平衡 | 在 `gemini-4-neon` 與 `gemini-4-hydrogen` 上是大多數任務的建議預設值，包括複雜程式設計、代理執行、工具呼叫與多模態知識工作。在 `gemini-4-carbon`、`gemini-4-argon` 與 Gemini 3 模型上為最大推理深度。 |
-| `xhigh` | 權杖最多、推理最深入 | 保留給 `high` 仍不足以應付的困難多步驟程式設計與代理問題，且你願意以較高的延遲與權杖用量交換（僅 `gemini-4-neon` 與 `gemini-4-hydrogen` 支援）。 |
+| `xhigh` | token 最多、推理最深入 | 保留給 `high` 仍不足以應付的困難多步驟程式設計與代理問題，且你願意以較高的延遲與 token 用量交換（僅 `gemini-4-neon` 與 `gemini-4-hydrogen` 支援）。 |
 | `minimal` | 接近關閉思考、延遲最低 | 在 `gemini-3.6-flash`、`gemini-3.5-flash-lite`（預設）、`gemini-3.1-flash-lite`、`gemini-3-flash-preview` 與 `gemini-robotics-er-2-preview` 上，大多數查詢都接近關閉設定。Gemini 4 模型與 `gemini-3.8-flash` 不支援。 |
 
-大多數複雜任務可先從 `high` 開始，`xhigh` 則保留給 `high` 仍不足以應付的困難多步驟問題。使用 `xhigh` 會增加延遲與權杖用量，在文字或 JSON 擷取等較簡單的提示詞上，可能導致過度思考或耗盡 `max_output_tokens`。請在四個等級下都以較高的 `max_output_tokens` 執行評估，確保上限不會截斷答案，再挑選能達到品質標準的最低 `thinking_level`。
+大多數複雜任務可先從 `high` 開始，`xhigh` 則保留給 `high` 仍不足以應付的困難多步驟問題。使用 `xhigh` 會增加延遲與 token 用量，在文字或 JSON 擷取等較簡單的提示詞上，可能導致過度思考或耗盡 `max_output_tokens`。請在四個等級下都以較高的 `max_output_tokens` 執行評估，確保上限不會截斷答案，再挑選能達到品質標準的最低 `thinking_level`。
 
 
 === "Python"
@@ -831,19 +831,19 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
 
 
 
-### 權杖上限與 `max_output_tokens` {#token-limits}
+### token 上限與 `max_output_tokens` {#token-limits}
 
-[`max_output_tokens`](/api-reference/interactions-api/create-interaction/#request-body) 生成參數設定了回應可生成的權杖數量上限，包括思考權杖在內。
+[`max_output_tokens`](/api-reference/interactions-api/create-interaction/#request-body) 生成參數設定了回應可生成的 token 數量上限，包括思考 token 在內。
 
 設定這個參數時，它會成為由基礎架構強制執行的硬性上限，不會改變模型分配思考預算（`thinking_level`）的方式。
 
-如果模型在推理過程中達到這個上限，就會以 `"incomplete"` 狀態停止生成，並回傳截斷或空白的輸出（同時仍會針對已生成的思考權杖計費）。若要在不截斷回應的情況下降低成本或延遲，請調低 `thinking_level`（`low` 或 `medium`），而不是設定較小的 `max_output_tokens`。
+如果模型在推理過程中達到這個上限，就會以 `"incomplete"` 狀態停止生成，並回傳截斷或空白的輸出（同時仍會針對已生成的思考 token 計費）。若要在不截斷回應的情況下降低成本或延遲，請調低 `thinking_level`（`low` 或 `medium`），而不是設定較小的 `max_output_tokens`。
 
 使用 Gemini 4 模型（`gemini-4-carbon`、`gemini-4-argon`、`gemini-4-neon` 與 `gemini-4-hydrogen`）時，請留意下列上下文與輸出上限：
 
-* **共用 1M 上下文視窗：** 輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（`1,048,576` 個權杖）。如果輸入權杖加上 `max_output_tokens` 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入權杖數）。
-* **預設同步輸出上限（64K）：** 當 `background=False` 時，預設的 `max_output_tokens` 上限為 65,536 個權杖。單次前景跳轉在串流呼叫，以及 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流呼叫中最多可生成 65,536 個權杖；在 `gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫中則最多為 32,768 個權杖。
-* **長解碼（最多 1M 個權杖）：** 若要讓 Gemini 4 推理並生成超過 `65,536` 個權杖的內容（最多 `1,048,576` 個權杖），請將 `max_output_tokens` 設定為大於 `65,536`，並搭配 `background=True` 或用戶端接續。詳情請參閱[長解碼](/docs/long-decode/)。
+* **共用 1M 上下文視窗：** 輸入、思考與輸出 tokens 共用單一 100 萬 tokens 的上下文視窗（`1,048,576` 個 token）。如果輸入 tokens 加上 `max_output_tokens` 超過 1,048,576 tokens，API 會自動將輸出上限設為上下文視窗的剩餘空間（`1,048,576` 減去輸入 token 數）。
+* **預設同步輸出上限（64K）：** 當 `background=False` 時，預設的 `max_output_tokens` 上限為 65,536 tokens。單次前景跳轉在串流呼叫，以及 `gemini-4-neon` 與 `gemini-4-hydrogen` 的非串流呼叫中最多可生成 65,536 tokens；在 `gemini-4-carbon` 與 `gemini-4-argon` 的非串流呼叫中則最多為 32,768 tokens。
+* **長解碼（最多 1M tokens）：** 若要讓 Gemini 4 推理並生成超過 `65,536` 個 token 的內容（最多 `1,048,576` 個 token），請將 `max_output_tokens` 設定為大於 `65,536`，並搭配 `background=True` 或用戶端接續。詳情請參閱[長解碼](/docs/long-decode/)。
 
 ## 思考簽章 {#signatures}
 
@@ -871,7 +871,7 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
 
 ## 定價 {#pricing}
 
-啟用思考功能時，回應的定價是輸出權杖與思考權杖的總和。你可以從 `total_thought_tokens` 欄位取得生成的思考權杖總數。
+啟用思考功能時，回應的定價是輸出 tokens 與思考 token 的總和。你可以從 `total_thought_tokens` 欄位取得生成的思考 token 總數。
 
 
 === "Python"
@@ -961,22 +961,22 @@ Gemini 模型預設會進行動態思考，依請求的複雜程度自動調整�
       ```
 
 
-思考模型會生成完整的思考內容來提升最終回應的品質，再輸出[摘要](/docs/thinking/#summaries)，讓你了解思考流程。定價是依模型需要生成的完整思考權杖計算，即使 API 只輸出摘要也一樣。
+思考模型會生成完整的思考內容來提升最終回應的品質，再輸出[摘要](/docs/thinking/#summaries)，讓你了解思考流程。定價是依模型需要生成的完整思考 token 計算，即使 API 只輸出摘要也一樣。
 
 
 !!! note " "
 
-      由於 `max_output_tokens` 適用於思考權杖與輸出權杖的合計總數，設定過低的上限可能會截斷回應。詳情請參閱[權杖上限與 `max_output_tokens`](/docs/thinking/#token-limits)。
+      由於 `max_output_tokens` 適用於思考 token 與輸出 tokens 的合計總數，設定過低的上限可能會截斷回應。詳情請參閱[token 上限與 `max_output_tokens`](/docs/thinking/#token-limits)。
 
 
-你可以在[計算權杖數](/docs/tokens/)指南中進一步了解權杖。
+你可以在[計算 token 數](/docs/tokens/)指南中進一步了解 token。
 
 ## 最佳做法 {#best-practices}
 
 請遵循下列準則，有效率地使用思考模型。
 
 - **檢視推理**：分析思考摘要，了解失敗原因並改善提示詞。
-- **控制思考預算**：在需要冗長輸出時，提示模型減少思考，以節省權杖。
+- **控制思考預算**：在需要冗長輸出時，提示模型減少思考，以節省 token。
 - **簡單任務**：事實檢索或分類使用最低限度的思考（例如「DeepMind 是在哪裡創立的？」）。
 - **中等任務**：比較概念或創意推理使用預設思考（例如比較電動車與油電混合車）。
 - **複雜任務**：進階程式設計、數學或多步驟規劃使用最大思考（例如解 AIME 數學題）。

@@ -4,7 +4,7 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
 (`gemini-3.5-flash-lite`) 是 Gemini 3 系列中前一代的版本，目前仍可供正式環境使用。如需最新的 Flash 模型，請參閱
 [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)。
 
-* **Gemini 3.6 Flash**：在複雜的代理與多模態任務上效能更強，同時減少權杖用量，價格也低於 3.5 Flash。
+* **Gemini 3.6 Flash**：在複雜的代理與多模態任務上效能更強，同時減少 token 用量，價格也低於 3.5 Flash。
 * **Gemini 3.5 Flash-Lite**：3.5 家族中速度最快、成本最低的模型。在高輸送量執行上，表現優於先前的 Flash-Lite 世代。
 
 本指南說明每個模型導入的新功能、會影響程式碼的 API 變更，以及遷移方式。
@@ -48,10 +48,10 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
 
 | 模型 | 模型 ID | 預設思考層級 | 定價 | 說明 |
 | :--- | :--- | :---: | --- | :--- |
-| Gemini 3.6 Flash | `gemini-3.6-flash` | `medium` | 輸入權杖每 1M $1.50、輸出權杖每 1M $7.50 | 在速度與智慧之間取得平衡，適合代理與多模態任務。 |
-| Gemini 3.5 Flash-Lite | `gemini-3.5-flash-lite` | `minimal` | 輸入權杖每 1M $0.30、輸出權杖每 1M $2.50 | 速度最快、成本最低的 3.5 模型，適合高輸送量執行。 |
+| Gemini 3.6 Flash | `gemini-3.6-flash` | `medium` | 輸入 tokens 每 1M $1.50、輸出 tokens 每 1M $7.50 | 在速度與智慧之間取得平衡，適合代理與多模態任務。 |
+| Gemini 3.5 Flash-Lite | `gemini-3.5-flash-lite` | `minimal` | 輸入 tokens 每 1M $0.30、輸出 tokens 每 1M $2.50 | 速度最快、成本最低的 3.5 模型，適合高輸送量執行。 |
 
-這兩個模型都支援 1M 權杖上下文視窗、64k 輸出權杖上限、思考功能，以及包含 [Computer Use](/docs/computer-use/) 在內的整套內建工具。
+這兩個模型都支援 1Mtokens上下文視窗、64k 輸出 token 上限、思考功能，以及包含 [Computer Use](/docs/computer-use/) 在內的整套內建工具。
 
 如需完整規格，請參閱模型頁面：
 
@@ -110,7 +110,7 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
 
 ## Gemini 3.6 Flash 的新功能 {#whats-new-gemini-3-6-flash}
 
-* **減少權杖與回合數**：以更少的推理步驟、對話回合與工具呼叫完成多步驟工作流程，表現優於 Gemini 3.5。同時也能減少執行迴圈失控打轉的情況。
+* **減少 token 與回合數**：以更少的推理步驟、對話回合與工具呼叫完成多步驟工作流程，表現優於 Gemini 3.5。同時也能減少執行迴圈失控打轉的情況。
 * **改善程式碼產生**：產生品質更高、可直接用於正式環境的程式碼，減少不必要的修改與除錯迴圈。
 * **更佳的指令遵循能力**：在診斷任務中減少不必要的檔案變更。
 * **強大的多模態與空間推理**：在圖表解讀、視覺藍圖轉換與多元素網頁版面產生上，效能有所提升。
@@ -118,7 +118,7 @@ Gemini 3.6 Flash (`gemini-3.6-flash`) 與 Gemini 3.5 Flash-Lite
 * **Computer Use 支援**：支援作為內建工具，用於代理式 UI 自動化。
 * **UI 樣式偏好**：更擅長建立功能完整的程式碼，不過人類評測人員在視覺版面與樣式方面較偏好先前的模型。你可以提供明確的設計準則來緩解這個問題。
 * **預設思考投入（medium）**：採用與 Gemini 3.5 Flash 相同的 `medium` 預設思考層級。
-* **價格調降**：輸出權杖成本降低（每 1M 為 $7.50，3.5 Flash 為 $9.00）。輸入權杖維持每 1M $1.50。
+* **價格調降**：輸出 tokens 成本降低（每 1M 為 $7.50，3.5 Flash 為 $9.00）。輸入 tokens 維持每 1M $1.50。
 
 ## Gemini 3.5 Flash-Lite 的新功能 {#whats-new-gemini-3-5-flash-lite}
 

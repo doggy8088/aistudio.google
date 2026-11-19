@@ -13,7 +13,7 @@
 | --- | --- |
 | 代理代碼 | **Interactions API** `deep-research-max-preview-04-2026` |
 | 支援的資料類型 | **輸入**文字、圖片、PDF、音訊、影片 **輸出**文字（附引用報告）、圖片 |
-| 權杖上限[[*]](/docs/tokens/) | **輸入上下文視窗** 1,048,576 **輸出權杖上限** 65,536 |
+| token 上限[[*]](/docs/tokens/) | **輸入上下文視窗** 1,048,576 **輸出 token 上限** 65,536 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。預覽版：`deep-research-max-preview-04-2026` |
 | 最近更新 | 2026 年 4 月 |
 | 定價 | [定價](/docs/pricing/#pricing-for-agents) |

@@ -283,10 +283,10 @@ Gemini API 使用 [Cloud Billing 帳戶](https://cloud.google.com/billing/docs/c
 
 Gemini API 的定價依據如下：
 
-- 輸入權杖數量
-- 輸出權杖數量
-- 快取權杖數量
-- 快取權杖儲存時間
+- 輸入 token 數量
+- 輸出 token 數量
+- 快取 token 數量
+- 快取 tokens 儲存時間
 
 定價資訊請參閱[定價頁面](/docs/pricing/)。
 
@@ -310,9 +310,9 @@ AI Studio 的用量維持免費，除非使用者連結付費 API 金鑰以存�
 
 如要存取更高的級別，你必須為專案設定計費。在 Google AI Studio 中點選 [**Set up billing**](/docs/billing/#setup-billing)。這會引導你選擇或建立 Cloud Billing 帳戶。如果你必須使用預付計費模式，**Set up billing** 流程會引導你建立連結至 Cloud Billing 帳戶的 Prepay 帳戶。
 
-### 我可以在免費級別中使用 1M 權杖嗎？ {#can-i-use-1m-tokens-for-free}
+### 我可以在免費級別中使用 1Mtokens嗎？ {#can-i-use-1m-tokens-for-free}
 
-Gemini API 的免費級別會依所選模型而有所不同。目前，你可以透過以下方式試用 1M 權杖上下文視窗：
+Gemini API 的免費級別會依所選模型而有所不同。目前，你可以透過以下方式試用 1Mtokens上下文視窗：
 
 - 在 Google AI Studio 中
 - 使用特定模型的免費方案
@@ -322,9 +322,9 @@ Gemini API 的免費級別會依所選模型而有所不同。目前，你可以
 
 如要降級至 Free Tier，你可以對你想降級的每個專案[停用計費](https://docs.cloud.google.com/billing/docs/how-to/modify-project#disable_billing_for_a_project)。部分專案可能需要先完成[專案驗證](/docs/verification/)，才能使用 Free Tier。
 
-### 如何計算我正在使用的權杖數量？ {#count-tokens}
+### 如何計算我正在使用的 token 數量？ {#count-tokens}
 
-使用 [`countTokens`](/api-reference/tokens/count-tokens/) 方法來計算權杖數量。如要進一步了解權杖，請參閱[權杖指南](/docs/tokens/)。
+使用 [`countTokens`](/api-reference/tokens/count-tokens/) 方法來計算 token 數量。如要進一步了解 token，請參閱[token 指南](/docs/tokens/)。
 
 ### 如果我透過 AI Studio 註冊我的第一個 Cloud Billing 帳戶，我還能獲得 Google Cloud 免費試用嗎？ {#free-trial-through-ais}
 
@@ -352,7 +352,7 @@ Gemini API 的計費由 [Cloud billing](https://cloud.google.com/billing/docs/co
 
 ### 失敗的請求會被收費嗎？ {#am-i-charged-for-failed-requests}
 
-如果你的請求以 400 或 500 錯誤失敗，你不會為所使用的權杖付費。不過，該請求仍會計入你的配額。
+如果你的請求以 400 或 500 錯誤失敗，你不會為所使用的 token 付費。不過，該請求仍會計入你的配額。
 
 ### `GetTokens` 會被計費嗎？ {#is-gettokens-billed}
 
