@@ -20,7 +20,7 @@ AI 程式設計代理仰賴的訓練資料有固定的截止日期。因此，�
 
 代理技能為程式設計代理提供程序規則、目前的模型名稱與 SDK 程式碼模式。代理不需要在提示詞中加入冗長的指令，而是只在需要時才載入各項技能。這能協助代理避開已淘汰的 SDK，並採用現代的 Gemini 模式。
 
-技能可與 Gemini Docs MCP 伺服器搭配運作。如果代理未安裝 MCP 伺服器，技能會改用 [`llms.txt`](https://aistudio.google.com/llms.txt) 作為備援。如需進一步瞭解技能的運作方式，請參閱 [Gemini API Skills guide](https://aistudio.google.com/learn/gemini-api-skills)。
+技能可與 Gemini Docs MCP 伺服器搭配運作。如果代理未安裝 MCP 伺服器，技能會改用 [`llms.txt`](https://aistudio.google.com/llms.txt) 作為備援。如需進一步瞭解技能的運作方式，請參閱 [Gemini API Skills guide](/learn/gemini-api-skills/)。
 
 
 !!! note " "
@@ -84,7 +84,7 @@ npx skills add google-gemini/gemini-skills --skill gemini-omni-flash-api --globa
 
 ### 在 Managed Agents 中掛載技能 {#managed-agents-skills}
 
-透過 Interactions API 執行遠端受管理代理時，你可以將 `google-gemini/gemini-skills` 儲存庫掛載到代理的工作區。詳情請參閱 [Gemini API Skills guide](https://aistudio.google.com/learn/gemini-api-skills)：
+透過 Interactions API 執行遠端受管理代理時，你可以將 `google-gemini/gemini-skills` 儲存庫掛載到代理的工作區。詳情請參閱 [Gemini API Skills guide](/learn/gemini-api-skills/)：
 
 ```python
 from google import genai
@@ -259,7 +259,7 @@ Look up the request schema for the Gemini Interactions API in the documentation.
 ## 後續步驟  {#whats-next}
 
 - [Gemini API CLI](/docs/cli/)
-- [Gemini API Skills guide](https://aistudio.google.com/learn/gemini-api-skills)
+- [Gemini API Skills guide](/learn/gemini-api-skills/)
 - [Gemini API skills on GitHub](https://github.com/google-gemini/gemini-skills)
 - [Interactions API](/docs/interactions-overview/)
 - [Available models](/docs/models/)

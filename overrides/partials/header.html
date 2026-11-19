@@ -12,9 +12,13 @@
       <span class="ais-wordmark__tag">文件｜繁體中文版</span>
     </a>
     {% set is_api = page and page.url and page.url.startswith('api-reference') %}
-    <div class="ais-switch" aria-label="文件／API 參考">
-      <a href="{{ 'docs/' | url }}" class="ais-switch__item{% if not is_api %} ais-switch__item--active{% endif %}">文件</a>
+    {% set is_learn = page and page.url and page.url.startswith('learn') %}
+    {% set is_case = page and page.url and page.url.startswith('case-studies') %}
+    <div class="ais-switch" aria-label="文件／API 參考／學習／案例研究">
+      <a href="{{ 'docs/' | url }}" class="ais-switch__item{% if not is_api and not is_learn and not is_case %} ais-switch__item--active{% endif %}">文件</a>
       <a href="{{ 'api-reference/' | url }}" class="ais-switch__item{% if is_api %} ais-switch__item--active{% endif %}">API 參考</a>
+      <a href="{{ 'learn/' | url }}" class="ais-switch__item{% if is_learn %} ais-switch__item--active{% endif %}">學習</a>
+      <a href="{{ 'case-studies/' | url }}" class="ais-switch__item{% if is_case %} ais-switch__item--active{% endif %}">案例研究</a>
     </div>
     <div class="ais-header__spacer"></div>
     {% if config.theme.palette %}

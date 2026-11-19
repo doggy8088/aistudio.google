@@ -14,14 +14,14 @@ Gemini 4 Argon 支援統一的 1M 權杖上下文視窗、最長可達 1M 權杖
 
   
 
-**[應用程式圖庫](https://aistudio.google.com/learn/gemini-4-argon-showcase)**
+**[應用程式圖庫](/learn/gemini-4-argon-showcase/)**
 
 遊玩並混搭使用 Gemini 4 Argon 打造的應用程式。
 
 
   
 
-**[開始使用](https://aistudio.google.com/learn/gemini-4-argon)**
+**[開始使用](/learn/gemini-4-argon/)**
 
 透過入門提示詞開始使用 Gemini 4 Argon。
 

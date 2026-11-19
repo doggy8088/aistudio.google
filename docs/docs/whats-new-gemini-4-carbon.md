@@ -21,7 +21,7 @@ Gemini 4 Carbon 可在 Gemini API 的付費層級與 Google AI Studio 中使用�
 
   
 
-**[開發人員指南](https://aistudio.google.com/learn/gemini-4-carbon-developer-guide)**
+**[開發人員指南](/learn/gemini-4-carbon-developer-guide/)**
 
 閱讀 Gemini 4 Carbon 的實用提示詞與多代理模式。
 
@@ -424,7 +424,7 @@ Gemini 4 Carbon 不提供免費層級。如需完整的定價層級，請參閱[
 
 ## 後續步驟 {#whats-next}
 
-* 閱讀 [Gemini 4 Carbon 開發人員指南](https://aistudio.google.com/learn/gemini-4-carbon-developer-guide)，了解提示詞與多代理模式。
+* 閱讀 [Gemini 4 Carbon 開發人員指南](/learn/gemini-4-carbon-developer-guide/)，了解提示詞與多代理模式。
 * 閱讀[長解碼指南](/docs/long-decode/)，了解串流、重新連線與權杖計算。
 * 在[思考指南](/docs/thinking/)中了解思考層級與思考摘要的運作方式。
 * 在[背景執行指南](/docs/background-execution/)中了解長時間執行的工作。

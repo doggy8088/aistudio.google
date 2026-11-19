@@ -47,9 +47,9 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 extra_css:
-  - assets/aistudio-v11.css
+  - assets/aistudio-v12.css
 extra_javascript:
-  - assets/aistudio-v11.js
+  - assets/aistudio-v12.js
 extra:
   generator: false
 
@@ -420,6 +420,74 @@ nav:
           - api-reference/decisions/index.md
           - api-reference/decisions/create-decision.md
       - api-reference/all-methods.md
+  - learn.md
+  - learn/agentic-video-understanding-with-gemini.md
+  - learn/ai-ui-design-google-ai-studio.md
+  - learn/build-app-from-drawing.md
+  - learn/build-apps-with-gemini-3-8-flash.md
+  - learn/build-website-vibe-code.md
+  - learn/building-3d-games-and-worlds-with-gemini-4-argon.md
+  - learn/deep-research-developer-guide.md
+  - learn/developer-guide-gemini-3-5-flash.md
+  - learn/gemini-3-5-transcribe-developer-guide.md
+  - learn/gemini-3-7-flash-developer-guide.md
+  - learn/gemini-3-8-flash-tts-developer-guide.md
+  - learn/gemini-4-argon.md
+  - learn/gemini-4-argon-developer-guide.md
+  - learn/gemini-4-argon-showcase.md
+  - learn/gemini-api-skills.md
+  - learn/gemini-tts-prompt-guide-with-tags.md
+  - learn/getting-started-with-open-claw-and-gemini.md
+  - learn/managed-agents-updated-harness-files-credentials.md
+  - learn/multimodal-rag-file-search.md
+  - learn/starter-templates.md
+  - learn/sync-your-ai-studio-apps-with-github.md
+  - learn/templates-personal-blog.md
+  - learn/text-to-speech.md
+  - learn/use-google-ai-plan-credits-in-ai-studio.md
+  - learn/yc-gdm-startups-day-building-agi-era.md
+  - case-studies.md
+  - case-studies/addglow.md
+  - case-studies/agentops.md
+  - case-studies/assorthealth.md
+  - case-studies/ava.md
+  - case-studies/bug0.md
+  - case-studies/calcam.md
+  - case-studies/calm-studios.md
+  - case-studies/cartwheel.md
+  - case-studies/cartwheel-2.md
+  - case-studies/compscience.md
+  - case-studies/diia.md
+  - case-studies/fal.md
+  - case-studies/firecrawl.md
+  - case-studies/forio.md
+  - case-studies/harvey.md
+  - case-studies/holywater.md
+  - case-studies/hubx.md
+  - case-studies/instalily.md
+  - case-studies/joltai.md
+  - case-studies/langbase.md
+  - case-studies/optimalai.md
+  - case-studies/pascalai.md
+  - case-studies/passionfroot.md
+  - case-studies/promisestudios.md
+  - case-studies/raindrop.md
+  - case-studies/recap.md
+  - case-studies/resembleai.md
+  - case-studies/rooms.md
+  - case-studies/shopify.md
+  - case-studies/sourcegraph.md
+  - case-studies/spline.md
+  - case-studies/sublayer.md
+  - case-studies/synthesia.md
+  - case-studies/tldraw.md
+  - case-studies/toongether.md
+  - case-studies/toonsutra-2.md
+  - case-studies/vela.md
+  - case-studies/viggle.md
+  - case-studies/volley-2.md
+  - case-studies/wolffun-game.md
+  - case-studies/wolfgames.md
   - Models:
       - docs/models/gemini-4-neon.md
   - docs/choosing-a-model.md

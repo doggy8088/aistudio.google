@@ -1,0 +1,45 @@
+# Gemini API 開發者故事
+
+### 探索精選案例
+
+- [re:cap 如何運用 Gemini Managed Agents 打造 Capital Advisory](/case-studies/recap/)（Gemini 3.7 Flash）
+- [Calm Studios 運用 Gemini API 擴展 Calmlings 健康宇宙](/case-studies/calm-studios/)（Gemini 3 Pro Image、Veo 3）
+- [從數個月到一天：以 Gemini 3 Pro Image 加速時尚照片製作](/case-studies/addglow/)（Gemini 3 Pro Image、Gemini Flash-Lite）
+- [Wolffun Game Studio 運用 Gemini 2.5 Flash Image 與 2.5 Pro 加速 PvP 遊戲開發](/case-studies/wolffun-game/)（Gemini 2.5 Pro、Gemini 2.5 Flash Image）
+- [Holywater 以 Veo 3 與 Gemini 2.5 Pro 加速 AI 娛樂的創意製作](/case-studies/holywater/)（Gemini 2.5 Pro、Veo 3）
+- [烏克蘭數位轉型部以 Gemini 2.0 Flash 革新政府服務](/case-studies/diia/)（Gemini 2.0 Flash）
+- [Assort Health 以 Gemini 2.5 Flash 自動處理數百萬通患者來電，改善醫療可近性](/case-studies/assorthealth/)（Gemini 2.5 Flash）
+- [CompScience 運用隨需影像與影片分析提升工業場域安全](/case-studies/compscience/)（Gemini 2.5 Pro、Gemini 2.5 Flash）
+- [以 Veo 在華頓商學院 MBA 學程中實現創意表達](/case-studies/forio/)（Veo 2）
+- [以 Gemini 3 Flash 提供即時深偽情報](/case-studies/resembleai/)（Gemini 3 Flash）
+- [InstaLILY：讓企業在單一系統中同時擁有兩個 AI 的力量](/case-studies/instalily/)（Gemini 3 Pro、Gemma）
+- [Shopify 以 Live API 驅動的多模態 AI 助理 Sidekick 協助商家致勝](/case-studies/shopify/)（Gemini 2.5 Flash）
+- [Ava：以 Gemini 2.5 Flash 與 Live API 打造代理式工作流程](/case-studies/ava/)（Gemini 2.5 Flash）
+- [Toongether 運用 Gemini 2.5 Flash Image 維持畫風一致性](/case-studies/toongether/)（Gemini 2.5 Flash Image）
+- [HubX 整合 Gemini 2.5 Flash Image，實現低延遲、具情境理解的照片編輯](/case-studies/hubx/)（Gemini 2.5 Flash Image）
+- [超越文字提示詞：Cartwheel 如何以 Gemini Flash 2.5 打造忠於姿勢的 3D 生成](/case-studies/cartwheel-2/)（Gemini 2.5 Flash Image）
+- [以 Gemini 2.5 Pro 建置高準確度的金融文件智慧系統](/case-studies/pascalai/)（Gemini 2.5 Pro）
+- [Raindrop 使用 Gemini 2.5 Flash 大規模監控 AI 代理效能](/case-studies/raindrop/)（Gemini 2.5 Flash）
+- [Bug0 運用 Gemini 2.5 Pro 將手動測試除錯減少 60%](/case-studies/bug0/)（Gemini 2.5 Pro）
+- [Firecrawl 以 Gemini 2.5 Pro 為 AI 應用結構化網路資料](/case-studies/firecrawl/)（Gemini 2.5 Pro）
+- [Passionfroot 運用 Gemini 2.5 Flash 將創作者行銷擴展速度提升約 5 倍](/case-studies/passionfroot/)（Gemini 2.5 Flash）
+- [Toonsutra 讓漫畫活起來：由 Gemini API、Gemini 2.5 Pro Preview 與 Lyria 2 驅動的沉浸式閱讀體驗](/case-studies/toonsutra-2/)（Lyria 2、Gemini 2.5 Pro）
+- [Synthesia 與 Veo 2：打造更沉浸的 AI 虛擬人像體驗](/case-studies/synthesia/)（Veo 2）
+- [Volley 運用 Gemini 2.5 與 Veo 2 打造沉浸式語音 AI 地牢冒險](/case-studies/volley-2/)（Veo 2、Gemini 2.5 Pro）
+- [讓開發者以 Veo 打造新一代影片工作流程](/case-studies/fal/)（Veo 2）
+- [以 Gemini API 開創電影製作的新浪潮](/case-studies/promisestudios/)（Gemini 2.5 Pro、Veo 2）
+- [以 Gemini API 塑造互動式 3D 的未來](/case-studies/spline/)（Gemini 2.5 Pro）
+- [Cartwheel 運用 Gemini API 推動角色動畫進展](/case-studies/cartwheel/)（Gemini 2.5 Pro、Imagen 3）
+- [Harvey：以 BigLaw Bench 驗證 Gemini 2.5 Pro Preview 的進階法律推理能力](/case-studies/harvey/)（Gemini 2.5 Pro）
+- [Wolf Games 如何運用 Gemini API 每日打造沉浸式犯罪故事](/case-studies/wolfgames/)（Gemini 2.0 Flash）
+- [以 Gemini API 變革創投：Vela Partners 如何運用 Google 搜尋接地獲得更深入、更快速的洞見](/case-studies/vela/)（Gemini 2.0 Flash）
+- [擴展程式碼理解：Jolt AI 如何運用 Gemini API](/case-studies/joltai/)（Gemini 2.0 Flash）
+- [Optimal AI 運用 Gemini API 將程式碼審查時間縮短 50%](/case-studies/optimalai/)（Gemini 1.5 Pro、Gemini 1.5 Flash）
+- [在 Langbase 上以 Gemini Flash 打造高輸送量、低成本的 AI 代理](/case-studies/langbase/)（Gemini 1.5 Flash）
+- [CalCam 運用 Gemini 2.0 Flash 進行快速、準確的營養分析](/case-studies/calcam/)（Gemini 2.0 Flash）
+- [Gemini 為 tldraw 的自然語言運算體驗提供動力](/case-studies/tldraw/)（Gemini 1.5 Flash、Gemini 2.0 Flash）
+- [Rooms 運用 Gemini 2.0 Flash 以互動式虛擬替身重新想像 3D 空間](/case-studies/rooms/)（Gemini 2.0 Flash）
+- [以 Gemini 2.0 Flash 重新想像影片創作](/case-studies/viggle/)（Gemini 2.0 Flash、Imagen 3）
+- [以 Gemini API 強化 AI 驅動的開發者工具](/case-studies/sublayer/)（Gemini 1.5 Pro、Gemini 1.5 Flash）
+- [以 Gemini 模型的長上下文強化 AI 程式設計助理](/case-studies/sourcegraph/)（Gemini 1.5 Pro、Gemini 1.5 Flash）
+- [以 Gemini API 將 AI 代理推向正式環境](/case-studies/agentops/)（Gemini 1.5 Flash）
