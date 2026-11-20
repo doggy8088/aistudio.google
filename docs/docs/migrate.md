@@ -2292,10 +2292,10 @@ Google GenAI SDK 現已在所有支援的平台上
 === "JavaScript"
 
       ```javascript
-      import {GoogleGenAI} from '@google/genai';
+      import {GoogleGenAI, createPartFromUri, createUserContent} from '@google/genai';
 
       const ai = new GoogleGenAI({ apiKey: "GEMINI_API_KEY", httpOptions: { apiVersion: "v1beta" } });
-      const filePath = path.join(media, "a11.txt");
+      const filePath = "path/to/a11.txt";
       const document = await ai.files.upload({
         file: filePath,
         config: { mimeType: "text/plain" },

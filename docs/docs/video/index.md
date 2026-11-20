@@ -1,6 +1,6 @@
 # Gemini API 中的影片生成
 
-在 Gemini API 中進行影片生成與對話式影片編輯時，請使用 [Gemini Omni Flash](/docs/omni/)（`gemini-omni-1.2-flash`）作為模型。它可生成最長 15 秒的影片，並具備原生音訊、多輸入推理（支援文字、圖片與影片輸入）、最多 6 張參考圖片之間的角色一致性，以及多輪對話式編輯與延伸功能。
+在 Gemini API 中，請使用 [Gemini Omni Flash](/docs/omni/)（`gemini-omni-1.2-flash`）進行片段式影片生成與對話式影片編輯，或使用 [Genie 4](/docs/genie/)（`models/genie-4`）進行即時互動世界生成。
 
 Gemini API 中的 Veo 3.1 Preview 已停止服務。
 
@@ -9,6 +9,13 @@ Gemini API 中的 Veo 3.1 Preview 已停止服務。
 Gemini Omni Flash（`gemini-omni-1.2-flash`）是一款速度快的多模態模型，專為影片生成與對話式影片編輯而設計。它擅長將文字提示詞與參考圖片轉換為 3 至 15 秒、附原生音訊的影片，並能透過 Interactions API 在多個回合之間精修或延伸成果。
 
 [開始使用 Gemini Omni Flash →](/docs/omni/)
+
+## Genie 4（互動世界） {#genie-4}
+
+Genie 4（`models/genie-4`）透過 Interactions API，經由 WebRTC 與 WebSockets 串流即時的 `24 fps` 互動式 `16:9` 世界，並同步 `48 kHz` 立體聲音訊。以文字、`16:9` 參考圖片或兩者播種世界，並以 `WASD`、方向鍵與工作階段中的文字提示詞即時操控移動與世界事件。
+
+*   [開始使用 Genie 4 →](/docs/genie/)
+*   [Genie 4 提示詞與控制指南 →](/docs/genie-prompting/)
 
 ## Veo 3.1 {#veo}
 

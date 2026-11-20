@@ -260,6 +260,14 @@
 | `gemini-omni-flash-preview` | 2026 年 6 月 30 日 | 2026 年 10 月 22 日 | `gemini-omni-1.2-flash` |
 
 
+## Genie 模型 {#genie-models}
+
+
+| 模型 | 發布日期 | 關閉日期 | 建議替代模型 |
+| --- | --- | --- | --- |
+| [`models/genie-4`](/docs/models/genie-4/) | 2026 年 11 月 19 日 | 尚未公布關閉日期 |  |
+
+
 ## Lyria 模型 {#lyria-models}
 
 

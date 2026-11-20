@@ -77,6 +77,23 @@ Tier 2 與 Tier 3 的資格，取決於與你專案連結的計費帳戶在 Goog
 | Tier 3 | 40 | 2,000 |
 
 
+### Genie 4 速率限制 {#genie-4}
+
+以下並行工作階段與每日請求限制適用於 [Interactions API](/docs/genie/) 上的
+[`models/genie-4`](/docs/models/genie-4/)：
+
+
+| 使用層級 | 並行進行中的工作階段 | 每日請求數（RPD） |
+| --- | --- | --- |
+| Free | Not supported | Not supported |
+| Tier 1 | 2 | 50 |
+| Tier 2 | 5 | 250 |
+| Tier 3 | 10 | 1,000 |
+
+
+工作階段內的即時控制訊息（`user_action` 與工作階段中的 `input` 事件）不會另外消耗 RPM 或 RPD 配額。Genie 4
+不支援 [Batch API](/docs/batch-api/)、[Flex 推論](/docs/flex-inference/)或[優先推論](/docs/priority-inference/)。
+
 ### Gemini Decision 1 速率限制 {#gemini-decision}
 
 以下標準互動式速率限制適用於 [Decisions API](/docs/decisions-api/) 上的 [Gemini Decision 1](/docs/models/gemini-decision-1/)：

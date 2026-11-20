@@ -2554,6 +2554,22 @@ Interaction 資源。
       函式參數的 JSON Schema。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行。
 
 
+    ---
+
+
+      **defer_loading**: `boolean`
+
+      若為 true，系統會延遲載入此函式。
+
+
+    ---
+
+
+      **short_description**: `string`
+
+      函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+
+
 
 
 
@@ -3163,6 +3179,14 @@ Interaction 資源。
           允許的工具名稱。
 
 
+    ---
+
+
+      **defer_loading**: `boolean`
+
+      若為 true，系統會延遲載入此 MCP 伺服器上的工具。
+
+
 
 
 
@@ -3317,6 +3341,52 @@ Interaction 資源。
           ```
 
 
+
+??? note "**ToolSearch**"
+
+
+      一種工具，可讓模型動態進行工具擷取，按需將工具載入模型的上下文中。如此一來，用戶端無需預先載入所有工具定義，並有助於降低整體 token 用量與成本。
+
+
+      **type**: required `object`
+
+      值：`tool_search`
+
+
+    ---
+
+
+      **name**: `string`
+
+      函式名稱。僅供用戶端執行時設定。
+
+
+    ---
+
+
+      **description**: `string`
+
+      函式描述。僅供用戶端執行時設定。
+
+
+    ---
+
+
+      **parameters**: `object`
+
+      函式參數的 JSON Schema。僅供用戶端執行時設定。
+
+
+    ---
+
+
+    ??? note "**execution**: `string enum` 工具擷取的執行模式。"
+
+
+          可能的值：
+
+          - `server`: 伺服器端執行模式。預設。
+          - `client`: 用戶端執行模式。
 
 ??? note "**UrlContext**"
 
@@ -6935,6 +7005,101 @@ Interaction 資源。
       ```
 
 
+
+??? note "**ToolSearchCallStep**"
+
+
+      工具擷取呼叫步驟。
+
+
+    ??? note "**arguments**: required `ToolSearchCallStepArguments` 工具擷取的引數。"
+
+
+          **function_names**: `string array`
+
+          要明確載入的函式名稱清單。
+
+
+    ---
+
+
+      **id**: required `string`
+
+      此特定工具呼叫的唯一 ID。
+
+
+    ---
+
+
+      **type**: required `object`
+
+      值：`tool_search_call`
+
+
+    ---
+
+
+      **signature**: `string`
+
+      供後端驗證用的簽章雜湊。
+
+
+??? note "**ToolSearchResultStep**"
+
+
+      工具擷取結果步驟。
+
+
+      **call_id**: required `string`
+
+      用來與函式呼叫區塊中的 ID 對應的 ID。
+
+
+    ---
+
+
+      **type**: required `object`
+
+      值：`tool_search_result`
+
+
+    ---
+
+
+    ??? note "**result**: `Function array` 擷取到的函式定義。"
+
+
+          **type**: required `object`
+
+          值：`function`
+
+          **name**: `string`
+
+          函式的名稱。
+
+          **description**: `string`
+
+          函式的說明。
+
+          **parameters**: `object`
+
+          函式參數的 JSON Schema。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行。
+
+          **defer_loading**: `boolean`
+
+          若為 true，系統會延遲載入此函式。
+
+          **short_description**: `string`
+
+          函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+
+
+    ---
+
+
+      **signature**: `string`
+
+      供後端驗證用的簽章雜湊。
 
 ??? note "**UrlContextCallStep**"
 

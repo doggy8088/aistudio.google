@@ -1400,6 +1400,11 @@ arguments={'color_temp': 'warm', 'brightness': 25}
       ```
 
 
+!!! note " "
+
+      工具宣告不會隨互動儲存。請在每次請求傳送相同的 `tools` 陣列，包括傳入 `previous_interaction_id` 的請求，如本節範例所示。若後續請求省略工具，模型只會知道它已呼叫過的工具。這一點在使用[工具擷取](/docs/tool-retrieval/#resend-tools)時最為重要。
+
+
 ### 無狀態函式呼叫 {#stateless-function-calling}
 
 你也可以在用戶端自行管理對話記錄，並設定 `store=false`，以無狀態模式使用函式呼叫。
@@ -1409,6 +1414,10 @@ arguments={'color_temp': 'warm', 'brightness': 25}
 1. 最初的 `user_input` 步驟。
 2. 第 1 回合回傳的所有模型產生步驟（包括 `thought` 與 `function_call` 步驟），須原封不動地照收到的內容傳入。
 3. 包含函式執行結果的 `function_result` 步驟。
+
+若你使用具備 `defer_loading` 的[工具擷取](/docs/tool-retrieval/)，模型產生的步驟還會包含 `tool_search_call` 與
+`tool_search_result` 步驟。請原封不動地傳回這些步驟，包括其 `signature` 欄位，否則下一個請求會失敗並傳回
+`400` 錯誤。請參閱[無狀態對話](/docs/tool-retrieval/#stateless)。
 
 
 === "Python"
@@ -2263,6 +2272,34 @@ Gemini 3 系列模型會運用內部的[「thinking」](/docs/thinking/)流程�
       }
       ```
 
+
+## 擴充至大型工具程式庫 {#tool-retrieval}
+
+你傳送的每個函式宣告，在每次請求時都會以輸入 tokens 計費，且隨著候選工具數量增加，工具選擇的準確度會下降。當工具數量超過約 20 至 30 個時，請考慮使用[工具擷取](/docs/tool-retrieval/)。它能讓模型搜尋你的工具程式庫，並只載入目前任務所需的結構描述。
+
+以 `defer_loading: true` 標記你想延遲載入的工具，並加入 `tool_search` 工具：
+
+```python
+tools = [
+    {"type": "tool_search"},
+    {
+        "type": "function",
+        "name": "convert_currency",
+        "description": "Convert an amount from one currency to another.",
+        "defer_loading": True,
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "amount": {"type": "number"},
+                "to": {"type": "string"},
+            },
+            "required": ["amount", "to"],
+        },
+    },
+]
+```
+
+延遲載入的工具在初始上下文中只會提供名稱與描述。Gemini 會在需要時載入完整結構描述，或你也可以設定 `execution: "client"` 自行執行搜尋。請參閱[工具擷取](/docs/tool-retrieval/)指南。
 
 ## 函式呼叫模式 {#function_calling_modes}
 

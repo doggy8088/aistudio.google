@@ -88,7 +88,7 @@ Live API 是一個有狀態的 API，使用 [WebSockets](https://en.wikipedia.or
 
 用戶端傳遞的目前對話增量更新。此處的所有內容都會無條件附加至對話記錄，並作為提示詞的一部分供模型生成內容。
 
-此處的訊息會中斷目前進行中的任何模型生成。
+對於對話式 Live 模型，此處的訊息會中斷目前進行中的任何模型生成。對於 TTS 模型，`turn_complete = false` 會將文字、風格與速度排入佇列，而不會中斷進行中的音訊生成；`turn_complete = true` 則會將該回合送出。
 
 
 | Field | Type | Description |

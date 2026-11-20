@@ -1,7 +1,5 @@
 # Harvey：以 BigLaw Bench 驗證 Gemini 2.5 Pro Preview 的進階法律推理能力
 
-## Harvey：以 BigLaw Bench 驗證 Gemini 2.5 Pro Preview 的進階法律推理能力
-
 法律產業需要能以精確與細膩的方式，在龐大且複雜的資訊中導航的 AI 解決方案。傳統 AI 基準往往無法捕捉法律實務的真實需求，使得辨識真正能勝任高價值法律工作的模型成為挑戰。Harvey 是一家致力於以 AI 改造法律工作流程的活力新創公司，他們為此開發了 BigLaw Bench——一套全面性的框架，用於評估大型語言模型（LLM）在模擬實際法律工作的任務上的表現。在近期嚴謹的評估中，Gemini 2.5 Pro Preview 脫穎而出，展現了在關鍵法律領域提升效率的卓越潛力。
 
 ## Gemini 2.5 Pro Preview 在 BigLaw Bench 上領先

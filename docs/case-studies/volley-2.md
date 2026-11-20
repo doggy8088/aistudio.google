@@ -16,6 +16,6 @@ Volley 以其語音驅動的遊戲吸引了數百萬玩家。他們最初的「2
 
 ## 開始使用 Gemini API：打造你自己的冒險
 
-Volley 的開創性工作展現了 Google AI 模型在創造新一代創新且引人入勝的遊戲體驗上的潛力。開發人員可以運用 Gemini 2.0 Flash 的圖片產生功能、Veo 2 令人驚豔的影片與圖片產生能力，以及 Gemini 2.5 Pro Preview 先進的程式設計與內容協助，打造自己的互動世界。準備好開始打造了嗎？立即探索 [Gemini API 文件](/docs/)，並開始使用 [Google AI Studio](https://aistudio.google.com/)。Volley 是 [Google AI Futures Fund](https://labs.google.aifuturesfund) 的參與者，該基金投資並與雄心勃勃的新創公司合作，共同打造 AI 的下一步。
+Volley 的開創性工作展現了 Google AI 模型在創造新一代創新且引人入勝的遊戲體驗上的潛力。開發人員可以運用 Gemini 2.0 Flash 的圖片產生功能、Veo 2 令人驚豔的影片與圖片產生能力，以及 Gemini 2.5 Pro Preview 先進的程式設計與內容協助，打造自己的互動世界。準備好開始打造了嗎？立即探索 [Gemini API 文件](/docs/)，並開始使用 [Google AI Studio](https://aistudio.google.com/)。Volley 是 [Google AI Futures Fund](https://labs.google/aifuturesfund) 的參與者，該基金投資並與雄心勃勃的新創公司合作，共同打造 AI 的下一步。
 
 ### 作者

@@ -300,6 +300,14 @@
 
             函式參數的 JSON Schema。支援 JSON Schema 的一部分。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略，不會強制執行。
 
+            **defer_loading**: `boolean`
+
+            若為 true，系統會延遲載入此函式。
+
+            **short_description**: `string`
+
+            函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+
 
 
 
@@ -387,6 +395,42 @@
                   **tools**: `string array`
 
                   允許使用的工具名稱。
+
+                  **defer_loading**: `boolean`
+
+                  若為 true，系統會延遲載入此 MCP 伺服器上的工具。
+
+
+        ??? note "**ToolSearch**"
+
+
+              一種工具，可讓模型動態進行工具擷取，按需將工具載入模型的上下文中。如此一來，用戶端無需預先載入所有工具定義，並有助於降低整體 token 用量與成本。
+
+              **type**: required `object`
+
+              值：`tool_search`
+
+              **name**: `string`
+
+              函式名稱。僅供用戶端執行時設定。
+
+              **description**: `string`
+
+              函式描述。僅供用戶端執行時設定。
+
+              **parameters**: `object`
+
+              函式參數的 JSON Schema。僅供用戶端執行時設定。
+
+
+            ??? note "**execution**: `string enum` 工具擷取的執行模式。"
+
+
+                可能的值：
+
+                - `server`: 伺服器端執行模式。預設。
+                - `client`: 用戶端執行模式。
+
 
 
 

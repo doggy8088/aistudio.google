@@ -2,6 +2,27 @@
 
 本頁記錄 Gemini API 的更新內容。
 
+## 2026 年 11 月 19 日 {#11-19-2026}
+
+*   **Genie 4（`models/genie-4`）正式推出（GA）**：推出
+    [Genie 4](/docs/models/genie-4/)（`models/genie-4`），於
+    [Interactions API](/docs/genie/)（`v1beta`）上實現即時互動世界生成，串流可操控的
+    `24 fps` `16:9` 影片，並同步 `48 kHz` 立體聲音訊，透過 WebRTC 與 WebSockets 傳輸。以文字、
+    `16:9` 參考圖片或兩者播種世界，並以 `WASD`/方向鍵與工作階段中的文字事件即時操控。
+    付費層級的[定價](/docs/pricing/#genie-4)為每 100 萬個輸入 tokens `$1.50`、每 100 萬個文字輸出
+    tokens `$9.00`，以及每 100 萬個影片輸出 tokens `$17.50`（約 `~$0.10/sec`，含立體聲音訊）；請參閱
+    [使用 Genie 4 生成互動世界](/docs/genie/)、[Genie 4 提示詞與控制指南](/docs/genie-prompting/)與
+    [速率限制](/docs/rate-limits/#genie-4)。
+
+*   **工具擷取（預覽版）**：Interactions API 現在可以搜尋你的工具程式庫，並按需載入函式結構描述，
+    因此大型工具集不再需要在每次請求時完整傳送。以 `defer_loading: true` 標記工具，並加入
+    `{"type": "tool_search"}` 工具，讓 Gemini 為你擷取結構描述，或設定 `execution: "client"`
+    以執行你自己的擷取邏輯。遠端 MCP 伺服器也支援 `defer_loading`。
+
+    工具擷取適用於 Gemini 3.6 及更新模型，包括所有 Gemini 4 模型，於 Interactions API 中使用。請參閱
+    [工具擷取](/docs/tool-retrieval/)指南。
+
+
 ## 2026 年 11 月 18 日 {#11-18-2026}
 
 *   **Gemini 4 Neon（`gemini-4-neon`）正式推出（GA）**：推出

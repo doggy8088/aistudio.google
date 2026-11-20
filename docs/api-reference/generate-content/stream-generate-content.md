@@ -2078,7 +2078,7 @@
                     - `AGENTIC`：模型驅動的動態導覽。建議用於大多數使用情境。
 
 
-                ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                     ??? note "**value**：`Union type` 媒體解析度等級。"
@@ -2170,7 +2170,7 @@
 
         ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具叫用時，會填入此欄位。預期用戶端會將此訊息回傳給 API。"
 
-            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                 可能的值：
 
@@ -2198,7 +2198,7 @@
 
         ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。"
 
-            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，其 `tool_type` 與對應的 `ToolCall` 相符。"
+            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，其 `tool_type` 與對應的 `ToolCall` 相符。"
 
                 可能的值：
 
@@ -2319,7 +2319,7 @@
 
       與 Part 相關聯的自訂中繼資料。使用 genai.Part 作為內容表示的代理，可能需要追蹤額外資訊。例如，它可以是 Part 來源檔案／來源的名稱，或是多工處理多個 Part 串流的方式。
 
-    ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+    ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
         ??? note "**value**：`Union type` 媒體解析度等級。"
 

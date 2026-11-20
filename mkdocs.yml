@@ -490,5 +490,9 @@ nav:
   - case-studies/wolfgames.md
   - Models:
       - docs/models/gemini-4-neon.md
+      - docs/models/genie-4.md
   - docs/choosing-a-model.md
+  - docs/genie.md
+  - docs/genie-prompting.md
+  - docs/tool-retrieval.md
   - docs/whats-new-gemini-4-neon.md

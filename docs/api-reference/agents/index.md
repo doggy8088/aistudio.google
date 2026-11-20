@@ -293,6 +293,14 @@ CreateAgent API 的代理定義。
 
         函式參數的 JSON Schema。支援 JSON Schema 的子集。 `minLength`, `maxLength`, `minProperties`, `maxProperties`, `uniqueItems`, `contains`, `minContains`, and `maxContains` 會被忽略且不強制執行。
 
+        **defer_loading**: `boolean`
+
+        若為 true，系統會延遲載入此函式。
+
+        **short_description**: `string`
+
+        函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+
 
 
 
@@ -356,6 +364,10 @@ CreateAgent API 的代理定義。
               **tools**: `string array`
 
               允許的工具名稱。
+
+              **defer_loading**: `boolean`
+
+              若為 true，系統會延遲載入此 MCP 伺服器上的工具。
 
 
 

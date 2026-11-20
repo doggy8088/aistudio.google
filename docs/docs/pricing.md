@@ -708,6 +708,43 @@
       \*\* 可在 Google AI Studio 中測試。
 
 
+## Genie 4 {#genie-4}
+
+
+  
+  *[`models/genie-4`](/docs/models/genie-4/)*
+
+  
+
+  
+  [在 Google AI Studio 中試用](https://aistudio.google.com/live?model=genie-4)
+
+  
+
+
+---
+
+
+我們的即時互動世界生成模型，串流可操控的 `24 fps` `16:9` 影片，並同步 `48 kHz` 立體聲音訊，於
+[Interactions API](/docs/genie/) 上提供，適用於 Gemini API 付費級。
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.50（文字 / 參考圖片） |
+    | 輸出價格 | 不提供 | $9.00（文字） $17.50（影片，含音訊）* |
+    | 上下文快取價格 | 不提供 | 不提供 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+
+* 計費以實際產生的影片輸出 token 為準，每影格 `240` tokens（`24 fps` 下每秒 `5,760` tokens），`48 kHz`
+立體聲音訊已包含在影片 token 費率中。在 Standard 定價（每 100 萬個影片輸出 tokens `$17.50`）下，相當於每秒約
+`$0.10` 的有效價格（每分鐘 `~$6.05`）。請務必呼叫 `complete()` 結束進行中的工作階段並停止計費。Genie 4
+不支援免費級、Batch API、Flex 推論或優先推論。
+
 ## Gemini Omni 1.2 Flash {#gemini-omni-1.2-flash}
 
 
@@ -2018,6 +2055,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人設計的視覺語言模型端�
 | [URL 上下文](/docs/url-context/#limitations) | 免費 | 依模型定價以輸入 tokens 收費。 |
 | [電腦使用](/docs/computer-use/) | 不提供 | 依模型定價以一般 token 收費（例如標準的 [Gemini 3.8 Flash](/docs/pricing/#gemini-3.8-flash) 定價）。 |
 | [檔案搜尋](/docs/file-search/#pricing) | 免費 | 嵌入向量按 [Gemini Embedding](/docs/pricing/#gemini-embedding)（$0.15 / 100 萬 tokens）或 [Gemini Embedding 2](/docs/pricing/#gemini-embedding-2) 的費率收費。擷取的文件 token 依模型定價以一般 token 收費。 |
+| [工具擷取](/docs/tool-retrieval/#pricing) | 免費 | 不另行收費。延遲載入的工具清單、工具搜尋指示與已載入的工具結構描述，均依模型定價以輸入 tokens 收費。每次伺服器端工具搜尋會額外執行一次模型呼叫，其提示詞會以工具使用 token 的形式回報，並按輸入 token 費率收費。 |
 | [Custom Tools 端點（Gemini 3.1 Pro Preview）](/docs/models/gemini-3.1-pro-preview/) | 不提供 | 與 [Gemini 3.1 Pro Preview](/docs/pricing/#gemini-3.1-pro-preview) 定價相同 |
 
 

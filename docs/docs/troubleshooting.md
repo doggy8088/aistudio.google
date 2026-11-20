@@ -12,6 +12,30 @@
 
 如需所有錯誤代碼的完整參考文件，包括 HTTP 狀態碼、生成封鎖代碼及內容錯誤代碼，請參閱 [API 錯誤](/docs/api-errors/)頁面。
 
+## 工具擷取錯誤 {#tool-retrieval-errors}
+
+使用[工具擷取](/docs/tool-retrieval/)的請求會在以下情況傳回 `400`：
+
+*   工具設定了 `defer_loading: true`，但請求中沒有伺服器端 `{"type": "tool_search"}` 工具。請加入一個，或移除
+    `defer_loading`。`defer_loading` 無法搭配用戶端 `tool_search` 使用。在後續請求中，請再次傳送完整的
+    `tools` 陣列，包括 `tool_search`。
+*   `tools` 陣列宣告了多個 `tool_search`。請恰好宣告一個。
+*   用戶端 `tool_search` 缺少必要的 `name` 或 `description` 欄位，或伺服器端 `tool_search` 設定了
+    `name`、`description` 或 `parameters`。
+*   函式設定了 `short_description`，但未設定 `defer_loading: true`。
+*   模型不支援延遲載入。請參閱[支援的模型](/docs/tool-retrieval/#supported-models)。
+*   在無狀態請求（`store=false`）中，記錄缺少延遲載入工具的 `tool_search_call` 與 `tool_search_result`
+    步驟。此錯誤會在你傳送 `function_result` 後的第二次呼叫時出現。請原封不動地傳回每個擷取步驟，包括其
+    `signature`。請參閱[無狀態對話](/docs/tool-retrieval/#stateless)。
+*   在無狀態請求中，`tool_search_call` 或 `tool_search_result` 步驟缺少其 `signature` 欄位
+    （`Tool call part is missing thought_signature.` 或 `Tool response part is missing
+    thought_signature.`）。請傳回帶有 `signature` 值的步驟，且不得更動。
+*   模型呼叫了一個未經搜尋載入的延遲載入函式，而你傳回了其 `function_result`。這種情況通常發生在函式名稱出現在你的系統指令或另一個工具的輸出中。請勿延遲載入你以名稱提及的工具。請參閱[最佳做法](/docs/tool-retrieval/#best-practices)。
+
+如需確切的錯誤字串，請參閱[工具擷取錯誤](/docs/tool-retrieval/#errors)。
+
+有些問題不會傳回錯誤。在多回合對話中，模型可能停止尋找延遲載入的工具、只持續呼叫先前回合中使用過的工具、呼叫請求中未宣告的函式，或傳回名稱以 `retriever:` 開頭的內部呼叫步驟。在上述每種情況中，請檢查每次請求是否都傳送了完整的 `tools` 陣列，包括使用 `previous_interaction_id` 的鏈式請求。API 不會在請求之間儲存工具宣告。請參閱[在每次請求傳送完整的 tools 陣列](/docs/tool-retrieval/#resend-tools)。
+
 ## 重試策略 {#retry-strategy}
 
 如果你收到表示應重試要求的錯誤（例如 `429 RESOURCE_EXHAUSTED` 或 `503 UNAVAILABLE`），建議採用指數退避策略。也就是在第一次重試前先短暫等待，然後逐漸增加後續重試之間的等待時間。

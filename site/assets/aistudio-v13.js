@@ -4,6 +4,18 @@
    while filtering, and the original fold state is restored on clear. */
 (function () {
   function init() {
+  // wrap nav link text so CSS can ellipsis-truncate it (official rows never wrap)
+  document.querySelectorAll(".md-nav--primary .md-nav__link").forEach(function (link) {
+    if (link.querySelector(".ais-nav-text")) return;
+    var nodes = Array.prototype.slice.call(link.childNodes);
+    var hasText = nodes.some(function (n) { return n.nodeType === 3 && n.textContent.trim(); });
+    if (!hasText) return;
+    var span = document.createElement("span");
+    span.className = "ais-nav-text";
+    nodes.forEach(function (n) { if (n.nodeType === 3) span.appendChild(n); });
+    link.insertBefore(span, link.firstChild);
+  });
+
     var wrap = document.querySelector(".md-sidebar--primary .md-sidebar__scrollwrap");
     if (!wrap || wrap.querySelector(".ais-filter")) return;
     var box = document.createElement("div");
@@ -26,16 +38,17 @@
     /* The top bar already switches between Docs and API reference, so
        the sidebar shows only the current section's tree (like the
        official site): hide the other section's group and landing page. */
-    var mode = window.location.pathname.indexOf("/api-reference") === 0 ? "api" : "docs";
-    var keepPrefix = mode === "api" ? "/api-reference/" : "/docs/";
-    var otherPrefix = mode === "api" ? "/docs/" : "/api-reference/";
+    var prefixes = ["/api-reference/", "/learn/", "/case-studies/", "/docs/"];
+    var keepPrefix = prefixes.filter(function (p) {
+      return window.location.pathname.indexOf(p) === 0;
+    })[0] || "/docs/";
     var rootList = wrap.querySelector(".md-nav--primary > .md-nav__list");
     if (rootList) {
       Array.prototype.forEach.call(rootList.children, function (li) {
         var a = li.querySelector(":scope > a.md-nav__link") || li.querySelector("a.md-nav__link");
         if (!a) return;
         var p = new URL(a.getAttribute("href"), window.location.href).pathname;
-        if (p.indexOf(otherPrefix) === 0) {
+        if (p.indexOf(keepPrefix) !== 0) {
           li.classList.add("ais-offsection");
         }
       });

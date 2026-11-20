@@ -412,6 +412,91 @@
 
       [閱讀文件](/docs/live-api/)
 
+=== "互動世界"
+
+
+    === "Python"
+
+          ```python
+          import asyncio
+          from google import genai
+
+
+          async def main():
+              client = genai.Client(http_options={"api_version": "v1beta"})
+              interaction = await client.aio.interactions.create(
+                  model="models/genie-4", api_version="v1beta"
+              )
+              async with client.aio.interactions.connect(
+                  interaction.id, api_version="v1beta"
+              ) as session:
+                  await session.send(
+                      {
+                          "event_type": "world_setup",
+                          "world_prompt": {
+                              "text": "First-person POV on a cobblestone bridge inside a living oil painting at twilight. Audio: Water lapping against stone, leaves rustling.",
+                          },
+                      }
+                  )
+                  frames = 0
+                  async for event in session.receive():
+                      if event.event_type == "step.delta" and getattr(event.delta, "type", None) == "video":
+                          frames += 1
+                          if frames == 1:
+                              await session.send(
+                                  {"event_type": "user_action", "action": "key_down", "input": "key_w"}
+                              )
+                          elif frames == 72:
+                              await session.complete()
+                      elif event.event_type == "interaction.completed":
+                          break
+
+
+          asyncio.run(main())
+          ```
+
+    === "JavaScript"
+
+          ```javascript
+          import { GoogleGenAI } from "@google/genai";
+
+          // Connect in browser using an interaction-scoped authToken from your server
+          const clientAi = new GoogleGenAI({ apiKey: authToken, apiVersion: "v1beta" });
+          const session = await clientAi.interactions.connect(interactionId, {
+            transport: "webrtc",
+            api_version: "v1beta",
+          });
+
+          session.transport.setVideoElement(document.querySelector("#world-video"));
+
+          await session.send({
+            event_type: "world_setup",
+            world_prompt: {
+              text: "First-person POV on a cobblestone bridge inside a living oil painting at twilight. Audio: Water lapping against stone, leaves rustling.",
+            },
+          });
+
+          await session.send({
+            event_type: "user_action",
+            action: "key_down",
+            input: "key_w",
+          });
+          // Call await session.complete() when the user exits to stop billing
+          ```
+
+
+    ### 互動世界生成
+
+      使用 Genie 4，透過 Interactions API，經由 WebRTC 與 WebSockets 串流可操控的 `24 fps` `16:9` 世界，並同步 `48 kHz` 立體聲音訊。
+
+
+      *    **即時鍵盤與鏡頭控制**（`WASD` 與方向鍵）
+      *    **即時自然語言世界轉換**與語音對話
+      *    **文字與 16:9 參考圖片**世界播種
+
+
+      [閱讀文件](/docs/genie/)
+
 === "決策"
 
 

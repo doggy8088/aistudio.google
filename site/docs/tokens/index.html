@@ -27,7 +27,7 @@
     
     
       
-        <title>瞭解並計算權杖 - Google AI Studio 文件｜繁體中文版</title>
+        <title>瞭解並計算 token - Google AI Studio 文件｜繁體中文版</title>
       
     
     
@@ -47,7 +47,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/aistudio-v10.css">
+      <link rel="stylesheet" href="../../assets/aistudio-v14.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -65,8 +65,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Google AI Studio 文件｜繁體中文版">
   <meta property="og:locale" content="zh_TW">
-  <meta property="og:title" content="瞭解並計算權杖｜Google AI Studio 文件｜繁體中文版">
-  <meta property="og:description" content="瞭解並計算權杖 — Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。">
+  <meta property="og:title" content="瞭解並計算 token｜Google AI Studio 文件｜繁體中文版">
+  <meta property="og:description" content="瞭解並計算 token — Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。">
   <meta property="og:url" content="https://aistudio.gh.miniasp.com/docs/tokens/">
   <meta property="og:image" content="https://aistudio.gh.miniasp.com/assets/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -74,8 +74,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Google AI Studio 文件｜繁體中文版">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="瞭解並計算權杖｜Google AI Studio 文件｜繁體中文版">
-  <meta name="twitter:description" content="瞭解並計算權杖 — Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。">
+  <meta name="twitter:title" content="瞭解並計算 token｜Google AI Studio 文件｜繁體中文版">
+  <meta name="twitter:description" content="瞭解並計算 token — Google AI Studio 與 Gemini API 官方文件的繁體中文翻譯，每日同步官方版本。">
   <meta name="twitter:image" content="https://aistudio.gh.miniasp.com/assets/og-image.png">
   <meta name="theme-color" content="#1a73e8">
 
@@ -98,7 +98,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#token" class="md-skip">
           跳轉到
         </a>
       
@@ -119,9 +119,13 @@
       <span class="ais-wordmark__tag">文件｜繁體中文版</span>
     </a>
     
-    <div class="ais-switch" aria-label="文件／API 參考">
+    
+    
+    <div class="ais-switch" aria-label="文件／API 參考／學習／案例研究">
       <a href="../" class="ais-switch__item ais-switch__item--active">文件</a>
       <a href="../../api-reference/" class="ais-switch__item">API 參考</a>
+      <a href="../../learn/" class="ais-switch__item">學習</a>
+      <a href="../../case-studies/" class="ais-switch__item">案例研究</a>
     </div>
     <div class="ais-header__spacer"></div>
     
@@ -5222,7 +5226,7 @@
   <span class="md-ellipsis">
     
   
-    Live API 中的短期權杖
+    Live API 中的短期 token
   
 
     
@@ -5872,7 +5876,7 @@
   <span class="md-ellipsis">
     
   
-    瞭解並計算權杖
+    瞭解並計算 token
   
 
     
@@ -5890,7 +5894,7 @@
   <span class="md-ellipsis">
     
   
-    瞭解並計算權杖
+    瞭解並計算 token
   
 
     
@@ -5919,7 +5923,7 @@
   <a href="#about-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        關於權杖
+        關於 token
       
     </span>
   </a>
@@ -5930,19 +5934,19 @@
   <a href="#count-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算權杖
+        計算 token
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="計算權杖">
+    <nav class="md-nav" aria-label="計算 token">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#text-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算文字權杖
+        計算文字 token
       
     </span>
   </a>
@@ -5953,7 +5957,7 @@
   <a href="#multi-turn-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算多輪對話的權杖
+        計算多輪對話的 token
       
     </span>
   </a>
@@ -5964,19 +5968,19 @@
   <a href="#multimodal-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算多模態權杖
+        計算多模態 token
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="計算多模態權杖">
+    <nav class="md-nav" aria-label="計算多模態 token">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#images" class="md-nav__link">
     <span class="md-ellipsis">
       
-        圖片權杖
+        圖片 token
       
     </span>
   </a>
@@ -5987,7 +5991,7 @@
   <a href="#video" class="md-nav__link">
     <span class="md-ellipsis">
       
-        影片權杖
+        影片 token
       
     </span>
   </a>
@@ -5998,7 +6002,7 @@
   <a href="#audio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        音訊權杖
+        音訊 token
       
     </span>
   </a>
@@ -6014,7 +6018,7 @@
   <a href="#system-instructions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算系統指令的權杖
+        計算系統指令的 token
       
     </span>
   </a>
@@ -6025,7 +6029,7 @@
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算工具的權杖
+        計算工具的 token
       
     </span>
   </a>
@@ -8920,7 +8924,7 @@
   <span class="md-ellipsis">
     
   
-    建立臨時驗證權杖
+    建立臨時驗證 token
   
 
     
@@ -12067,7 +12071,7 @@
   <span class="md-ellipsis">
     
   
-    計算權杖數
+    計算 token 數
   
 
     
@@ -12556,8 +12560,1846 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    透過 Google AI Studio 學習
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/agentic-video-understanding-with-gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 的代理式影片理解：開發人員指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/ai-ui-design-google-ai-studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI UI 設計：讓 vibe coding 應用程式更好看的 8 種方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/build-app-from-drawing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何從單一模型稿或草圖打造應用程式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/build-apps-with-gemini-3-8-flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 Gemini 3.8 Flash 建置應用程式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/build-website-vibe-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何在 10 分鐘內建置自訂網站
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/building-3d-games-and-worlds-with-gemini-4-argon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 Gemini 4 Argon 打造 3D 遊戲與程序化世界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/deep-research-developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何透過 Gemini API 使用 Deep Research
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/developer-guide-gemini-3-5-flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 3.5 Flash 開發人員指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-3-5-transcribe-developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 3.5 Transcribe：開發者指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-3-7-flash-developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 3.7 Flash：開發者指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-3-8-flash-tts-developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 3.8 Flash TTS：開發者指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-4-argon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 Gemini 4 Argon 建置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-4-argon-developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 4 Argon：開發者指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-4-argon-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 4 Argon 建置者展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-api-skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    搭配程式設計代理使用 Gemini API 技能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/gemini-tts-prompt-guide-with-tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    如何為 Gemini 3.1 的文字轉語音模型下提示詞
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/getting-started-with-open-claw-and-gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenClaw 與 Gemini 入門
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/managed-agents-updated-harness-files-credentials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini API 受管理代理更新
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/multimodal-rag-file-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    運用 Gemini API File Search 工具的多模態 RAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/starter-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Starter templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/sync-your-ai-studio-apps-with-github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    將你的 AI Studio 應用程式與 GitHub 同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/templates-personal-blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打造精美的個人部落格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/text-to-speech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文字轉語音 AI 語音產生器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/use-google-ai-plan-credits-in-ai-studio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在 AI Studio 中使用你的 Google AI 方案點數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learn/yc-gdm-startups-day-building-agi-era/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YC x Google DeepMind Startups Day：為 AGI 時代而打造
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini API 開發者故事
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/addglow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    從數個月到一天：以 Gemini 3 Pro Image 加速時尚照片製作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/agentops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini API 將 AI 代理推向正式環境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/assorthealth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assort Health 以 Gemini 2.5 Flash 自動處理數百萬通患者來電，改善醫療可近性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/ava/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ava：以 Gemini 2.5 Flash 與 Live API 打造代理式工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/bug0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bug0 運用 Gemini 2.5 Pro 將手動測試除錯減少 60%
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/calcam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CalCam 運用 Gemini 2.0 Flash 進行快速、準確的營養分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/calm-studios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calm Studios 運用 Gemini API 擴展 Calmlings 健康宇宙
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/cartwheel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cartwheel 運用 Gemini API 推動角色動畫進展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/cartwheel-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    超越文字提示詞：Cartwheel 如何以 Gemini Flash 2.5 打造忠於姿勢的 3D 生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/compscience/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CompScience 運用隨需影像與影片分析提升工業場域安全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/diia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    烏克蘭數位轉型部以 Gemini 2.0 Flash 革新政府服務
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/fal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    讓開發者以 Veo 打造新一代影片工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/firecrawl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firecrawl 以 Gemini 2.5 Pro 為 AI 應用結構化網路資料
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/forio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Veo 在華頓商學院 MBA 學程中實現創意表達
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/harvey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harvey：以 BigLaw Bench 驗證 Gemini 2.5 Pro Preview 的進階法律推理能力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/holywater/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Holywater 以 Veo 3 與 Gemini 2.5 Pro 加速 AI 娛樂的創意製作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/hubx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HubX 整合 Gemini 2.5 Flash Image，實現低延遲、具情境理解的照片編輯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/instalily/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    InstaLILY：讓企業在單一系統中同時擁有兩個 AI 的力量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/joltai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    擴展程式碼理解：Jolt AI 如何運用 Gemini API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/langbase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    在 Langbase 上以 Gemini Flash 打造高輸送量、低成本的 AI 代理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/optimalai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimal AI 運用 Gemini API 將程式碼審查時間縮短 50%
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/pascalai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini 2.5 Pro 建置高準確度的金融文件智慧系統
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/passionfroot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passionfroot 運用 Gemini 2.5 Flash 將創作者行銷擴展速度提升約 5 倍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/promisestudios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini API 開創電影製作的新浪潮
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/raindrop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raindrop 使用 Gemini 2.5 Flash 大規模監控 AI 代理效能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/recap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    re:cap 如何運用 Gemini Managed Agents 打造 Capital Advisory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/resembleai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini 3 Flash 提供即時深偽情報
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/rooms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rooms 運用 Gemini 2.0 Flash 以互動式虛擬替身重新想像 3D 空間
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/shopify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shopify 以 Live API 驅動的多模態 AI 助理 Sidekick 協助商家致勝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/sourcegraph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini 模型的長上下文強化 AI 程式設計助理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/spline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini API 塑造互動式 3D 的未來
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/sublayer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini API 強化 AI 驅動的開發者工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/synthesia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synthesia 與 Veo 2：打造更沉浸的 AI 虛擬人像體驗
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/tldraw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini 為 tldraw 的自然語言運算體驗提供動力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/toongether/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toongether 運用 Gemini 2.5 Flash Image 維持畫風一致性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/toonsutra-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toonsutra 讓漫畫活起來：由 Gemini API、Gemini 2.5 Pro Preview 與 Lyria 2 驅動的沉浸式閱讀體驗
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/vela/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini API 變革創投：Vela Partners 如何運用 Google 搜尋接地獲得更深入、更快速的洞見
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/viggle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    以 Gemini 2.0 Flash 重新想像影片創作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/volley-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Volley 運用 Gemini 2.5 與 Veo 2 打造沉浸式語音 AI 地牢冒險
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/wolffun-game/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wolffun Game Studio 運用 Gemini 2.5 Flash Image 與 2.5 Pro 加速 PvP 遊戲開發
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../case-studies/wolfgames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wolf Games 如何運用 Gemini API 每日打造沉浸式犯罪故事
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
+      
+        
       
         
       
@@ -12574,10 +14416,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_86" >
         
           
-          <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="">
+          <label class="md-nav__link" for="__nav_86" id="__nav_86_label" tabindex="">
             
   
   
@@ -12595,8 +14437,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_18">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_86_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_86">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -12634,6 +14476,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models/genie-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genie 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12656,6 +14526,87 @@
     
   
     選擇模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用 Genie 4 生成互動世界
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie-prompting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genie 4 提示與控制指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool-retrieval/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具擷取
   
 
     
@@ -12725,7 +14676,7 @@
   <a href="#about-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        關於權杖
+        關於 token
       
     </span>
   </a>
@@ -12736,19 +14687,19 @@
   <a href="#count-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算權杖
+        計算 token
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="計算權杖">
+    <nav class="md-nav" aria-label="計算 token">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#text-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算文字權杖
+        計算文字 token
       
     </span>
   </a>
@@ -12759,7 +14710,7 @@
   <a href="#multi-turn-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算多輪對話的權杖
+        計算多輪對話的 token
       
     </span>
   </a>
@@ -12770,19 +14721,19 @@
   <a href="#multimodal-tokens" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算多模態權杖
+        計算多模態 token
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="計算多模態權杖">
+    <nav class="md-nav" aria-label="計算多模態 token">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#images" class="md-nav__link">
     <span class="md-ellipsis">
       
-        圖片權杖
+        圖片 token
       
     </span>
   </a>
@@ -12793,7 +14744,7 @@
   <a href="#video" class="md-nav__link">
     <span class="md-ellipsis">
       
-        影片權杖
+        影片 token
       
     </span>
   </a>
@@ -12804,7 +14755,7 @@
   <a href="#audio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        音訊權杖
+        音訊 token
       
     </span>
   </a>
@@ -12820,7 +14771,7 @@
   <a href="#system-instructions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算系統指令的權杖
+        計算系統指令的 token
       
     </span>
   </a>
@@ -12831,7 +14782,7 @@
   <a href="#tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        計算工具的權杖
+        計算工具的 token
       
     </span>
   </a>
@@ -12899,33 +14850,33 @@
 
 
 
-<h1 id="_1">瞭解並計算權杖<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Gemini 與其他生成式 AI 模型處理輸入與輸出時，所採用的粒度單位稱為<em>權杖</em>。</p>
-<p><strong>對 Gemini 模型而言，1 個權杖約等於 4 個字元。
-100 個權杖約等於 60 到 80 個英文字。</strong></p>
-<h2 id="about-tokens">關於權杖<a class="headerlink" href="#about-tokens" title="Permanent link">&para;</a></h2>
-<p>權杖可以是單一字元，例如 <code>z</code>，也可以是完整的單字，例如 <code>cat</code>。較長的單字
-會被拆成多個權杖。模型所使用的全部權杖集合稱為詞彙表，而將文字拆分
-為權杖的過程則稱為<em>權杖化</em>。</p>
+<h1 id="token">瞭解並計算 token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h1>
+<p>Gemini 與其他生成式 AI 模型處理輸入與輸出時，所採用的粒度單位稱為<em>token</em>。</p>
+<p><strong>對 Gemini 模型而言，1 token 約等於 4 個字元。
+100 tokens 約等於 60 到 80 個英文字。</strong></p>
+<h2 id="about-tokens">關於 token<a class="headerlink" href="#about-tokens" title="Permanent link">&para;</a></h2>
+<p>token 可以是單一字元，例如 <code>z</code>，也可以是完整的單字，例如 <code>cat</code>。較長的單字
+會被拆成多個 tokens。模型所使用的全部 token 集合稱為詞彙表，而將文字拆分
+為 token 的過程則稱為<em>Tokenizer</em>。</p>
 <p>啟用計費後，<a href="/docs/pricing/">呼叫 Gemini API 的費用</a>有一部分取決於輸入與
-輸出權杖的數量，因此瞭解如何計算權杖數量會很有幫助。</p>
-<h2 id="count-tokens">計算權杖<a class="headerlink" href="#count-tokens" title="Permanent link">&para;</a></h2>
-<p>Gemini API 的所有輸入與輸出都會經過權杖化處理，包括文字、圖片檔案，
+輸出 tokens 的數量，因此瞭解如何計算 token 數量會很有幫助。</p>
+<h2 id="count-tokens">計算 token<a class="headerlink" href="#count-tokens" title="Permanent link">&para;</a></h2>
+<p>Gemini API 的所有輸入與輸出都會經過 Tokenizer 處理，包括文字、圖片檔案，
 以及其他非文字模態。</p>
-<p>你可以透過以下方式計算權杖數量：</p>
+<p>你可以透過以下方式計算 token 數量：</p>
 <ul>
 <li>
-<p><strong>以請求的輸入內容呼叫 <code>count_tokens</code></strong>：回傳的僅是<em>輸入內容</em>的權杖
+<p><strong>以請求的輸入內容呼叫 <code>count_tokens</code></strong>：回傳的僅是<em>輸入內容</em>的 token
   總數。在送出輸入之前先呼叫此方法，即可確認請求的大小。</p>
 </li>
 <li>
 <p><strong>使用互動回應中的 <code>usage</code></strong>：會回傳輸入（<code>total_input_tokens</code>）、
   輸出（<code>total_output_tokens</code>）、思考（<code>total_thought_tokens</code>）、快取內容
   （<code>total_cached_tokens</code>）、工具使用（<code>total_tool_use_tokens</code>）與總計
-  （<code>total_tokens</code>）的權杖數量。</p>
+  （<code>total_tokens</code>）的 token 數量。</p>
 </li>
 </ul>
-<h3 id="text-tokens">計算文字權杖<a class="headerlink" href="#text-tokens" title="Permanent link">&para;</a></h3>
+<h3 id="text-tokens">計算文字 token<a class="headerlink" href="#text-tokens" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">JavaScript</label><label for="__tabbed_1_3">Java</label><label for="__tabbed_1_4">Go</label><label for="__tabbed_1_5">REST</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -13040,8 +14991,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h3 id="multi-turn-tokens">計算多輪對話的權杖<a class="headerlink" href="#multi-turn-tokens" title="Permanent link">&para;</a></h3>
-<p>使用 <code>previous_interaction_id</code> 計算整個對話記錄的權杖數量：</p>
+<h3 id="multi-turn-tokens">計算多輪對話的 token<a class="headerlink" href="#multi-turn-tokens" title="Permanent link">&para;</a></h3>
+<p>使用 <code>previous_interaction_id</code> 計算整個對話記錄的 token 數量：</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">JavaScript</label><label for="__tabbed_2_3">Java</label><label for="__tabbed_2_4">Go</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -13188,23 +15139,23 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h3 id="multimodal-tokens">計算多模態權杖<a class="headerlink" href="#multimodal-tokens" title="Permanent link">&para;</a></h3>
-<p>Gemini API 的所有輸入都會經過權杖化處理，包括圖片、影片與音訊。
-關於權杖化，有幾個重點：</p>
+<h3 id="multimodal-tokens">計算多模態 token<a class="headerlink" href="#multimodal-tokens" title="Permanent link">&para;</a></h3>
+<p>Gemini API 的所有輸入都會經過 Tokenizer 處理，包括圖片、影片與音訊。
+關於 Tokenizer，有幾個重點：</p>
 <ul>
 <li>
-<p><strong>圖片</strong>：兩個維度皆不超過 384 像素的圖片，計為 258 個權杖。較大的
-  圖片會被切割為 768x768 像素的圖塊，每塊計為 258 個權杖。</p>
+<p><strong>圖片</strong>：兩個維度皆不超過 384 像素的圖片，計為 258 tokens。較大的
+  圖片會被切割為 768x768 像素的圖塊，每塊計為 258 tokens。</p>
 </li>
 <li>
-<p><strong>影片</strong>：每秒 263 個權杖（適用於靜態處理）。代理式處理的權杖用量
-  則不固定。詳見<a href="/docs/tokens/#video">依處理模式計算的影片權杖用量</a>。</p>
+<p><strong>影片</strong>：每秒 263 tokens（適用於靜態處理）。代理式處理的 token 用量
+  則不固定。詳見<a href="/docs/tokens/#video">依處理模式計算的影片 token 用量</a>。</p>
 </li>
 <li>
-<p><strong>音訊</strong>：每秒 32 個權杖</p>
+<p><strong>音訊</strong>：每秒 32 tokens</p>
 </li>
 </ul>
-<h4 id="images">圖片權杖<a class="headerlink" href="#images" title="Permanent link">&para;</a></h4>
+<h4 id="images">圖片 token<a class="headerlink" href="#images" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">JavaScript</label><label for="__tabbed_3_3">Java</label><label for="__tabbed_3_4">Go</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -13422,15 +15373,15 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h4 id="video">影片權杖<a class="headerlink" href="#video" title="Permanent link">&para;</a></h4>
-<p>影片的權杖計算方式取決於處理模式：</p>
+<h4 id="video">影片 token<a class="headerlink" href="#video" title="Permanent link">&para;</a></h4>
+<p>影片的 token 計算方式取決於處理模式：</p>
 <table>
 <thead>
 <tr>
 <th><strong>處理模式</strong></th>
 <th><strong>取樣的影格</strong></th>
-<th><strong>每秒權杖數</strong></th>
-<th><strong>60 秒影片的權杖數</strong></th>
+<th><strong>每秒 token 數</strong></th>
+<th><strong>60 秒影片的 token 數</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -13452,11 +15403,11 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 <a href="/docs/video-understanding/#agentic-video-understanding">代理式影片理解</a>。</p>
 <div class="admonition note">
 <p class="admonition-title"> </p>
-<p>靜態處理的權杖計算以預設取樣率 1 FPS 為準。若你在 GenerateContent API
+<p>靜態處理的 token 計算以預設取樣率 1 FPS 為準。若你在 GenerateContent API
   中設定了<a href="/docs/video-understanding/?generate-content=true#custom-frame-rate">自訂影格率</a>，
-  權杖用量會依設定的 FPS 等比例調整。</p>
+  token 用量會依設定的 FPS 等比例調整。</p>
 </div>
-<p>若要查看某個請求的實際權杖用量，請檢查 <code>interaction.usage</code>。代理式影片的權杖會分別記錄在以下欄位：</p>
+<p>若要查看某個請求的實際 token 用量，請檢查 <code>interaction.usage</code>。代理式影片的 token 會分別記錄在以下欄位：</p>
 <ul>
 <li><strong>初始提示詞</strong>（影片參照 + 使用者提示詞）：<code>total_input_tokens</code></li>
 <li><strong>導覽思考</strong>：<code>total_thought_tokens</code></li>
@@ -13559,7 +15510,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h4 id="audio">音訊權杖<a class="headerlink" href="#audio" title="Permanent link">&para;</a></h4>
+<h4 id="audio">音訊 token<a class="headerlink" href="#audio" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">Java</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -13641,8 +15592,8 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h3 id="system-instructions">計算系統指令的權杖<a class="headerlink" href="#system-instructions" title="Permanent link">&para;</a></h3>
-<p>系統指令會計入輸入權杖的一部分：</p>
+<h3 id="system-instructions">計算系統指令的 token<a class="headerlink" href="#system-instructions" title="Permanent link">&para;</a></h3>
+<p>系統指令會計入輸入 tokens 的一部分：</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Python</label><label for="__tabbed_7_2">Java</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -13686,7 +15637,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 </div>
-<h3 id="tools">計算工具的權杖<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
+<h3 id="tools">計算工具的 token<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
 <p>工具（函式、程式碼執行、Google Search）也會列入計算：</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Python</label><label for="__tabbed_8_2">Java</label></div>
 <div class="tabbed-content">
@@ -13769,10 +15720,10 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
 </div>
 </div>
 <h2 id="context-window">上下文視窗<a class="headerlink" href="#context-window" title="Permanent link">&para;</a></h2>
-<p>每個 Gemini 模型都有可處理的權杖數量上限。</p>
+<p>每個 Gemini 模型都有可處理的 token 數量上限。</p>
 <ul>
-<li><strong>Gemini 4 模型（<code>gemini-4-carbon</code>、<code>gemini-4-argon</code>、<code>gemini-4-neon</code> 與 <code>gemini-4-hydrogen</code>）</strong>：輸入、思考與輸出權杖共用單一 100 萬權杖的上下文視窗（<code>1,048,576</code> 個權杖）。同步回應（<code>background=False</code>，無論串流或非串流）預設的輸出權杖上限為 <code>65,536</code> 個，你也可以使用 <a href="/docs/long-decode/">long decode</a> 生成最多 <code>1,048,576</code> 個權杖。若輸入權杖加上 <code>max_output_tokens</code> 超過 1,048,576 個權杖，API 會自動將輸出上限設為上下文視窗的剩餘空間（<code>1,048,576</code> 減去輸入權杖數）。</li>
-<li><strong>Gemini 3 與 2.5 模型</strong>：輸入（<code>1,048,576</code> 個權杖）與輸出（<code>65,536</code> 個權杖）各自有獨立的預算。</li>
+<li><strong>Gemini 4 模型（<code>gemini-4-carbon</code>、<code>gemini-4-argon</code>、<code>gemini-4-neon</code> 與 <code>gemini-4-hydrogen</code>）</strong>：輸入、思考與輸出 tokens 共用單一 100 萬 tokens 的上下文視窗（<code>1,048,576</code> 個 token）。同步回應（<code>background=False</code>，無論串流或非串流）預設的輸出 token 上限為 <code>65,536</code> 個，你也可以使用 <a href="/docs/long-decode/">long decode</a> 生成最多 <code>1,048,576</code> 個 token。若輸入 tokens 加上 <code>max_output_tokens</code> 超過 1,048,576 tokens，API 會自動將輸出上限設為上下文視窗的剩餘空間（<code>1,048,576</code> 減去輸入 token 數）。</li>
+<li><strong>Gemini 3 與 2.5 模型</strong>：輸入（<code>1,048,576</code> 個 token）與輸出（<code>65,536</code> 個 token）各自有獨立的預算。</li>
 </ul>
 <h3 id="get-context-window">以程式方式取得上下文視窗大小<a class="headerlink" href="#get-context-window" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><input id="__tabbed_9_3" name="__tabbed_9" type="radio" /><input id="__tabbed_9_4" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Python</label><label for="__tabbed_9_2">JavaScript</label><label for="__tabbed_9_3">Java</label><label for="__tabbed_9_4">Go</label></div>
@@ -13941,7 +15892,7 @@ curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </spa
     
       <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
-        <script src="../../assets/aistudio-v10.js"></script>
+        <script src="../../assets/aistudio-v13.js"></script>
       
     
   </body>

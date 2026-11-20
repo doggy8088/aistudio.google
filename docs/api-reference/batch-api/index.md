@@ -291,7 +291,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                        ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                        ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                                             ??? note "**value**：`Union type` 媒體解析度等級。"
@@ -399,7 +399,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                 ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測某個工具叫用應在伺服器上執行時，會填入這個欄位。用戶端應將這則訊息原樣回傳給 API。"
 
-                                    ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+                                    ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                                         可能的值：
 
@@ -431,7 +431,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                 ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。這個欄位由用戶端填入，內容為執行對應 `ToolCall` 的結果。"
 
-                                    ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
+                                    ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
 
                                         可能的值：
 
@@ -561,7 +561,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                            ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                            ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
                                 ??? note "**value**：`Union type` 媒體解析度等級。"
 
@@ -866,7 +866,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                        ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                        ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                                             ??? note "**value**：`Union type` 媒體解析度等級。"
@@ -974,7 +974,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                 ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測某個工具叫用應在伺服器上執行時，會填入這個欄位。用戶端應將這則訊息原樣回傳給 API。"
 
-                                    ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+                                    ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                                         可能的值：
 
@@ -1006,7 +1006,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                 ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。這個欄位由用戶端填入，內容為執行對應 `ToolCall` 的結果。"
 
-                                    ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
+                                    ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
 
                                         可能的值：
 
@@ -1136,7 +1136,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                            ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                            ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
                                 ??? note "**value**：`Union type` 媒體解析度等級。"
 
@@ -2432,7 +2432,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                                ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                                ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                                                     ??? note "**value**：`Union type` 媒體解析度等級。"
@@ -2540,7 +2540,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                         ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測某個工具叫用應在伺服器上執行時，會填入這個欄位。用戶端應將這則訊息原樣回傳給 API。"
 
-                                            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+                                            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                                                 可能的值：
 
@@ -2572,7 +2572,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                         ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。這個欄位由用戶端填入，內容為執行對應 `ToolCall` 的結果。"
 
-                                            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
+                                            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
 
                                                 可能的值：
 
@@ -2702,7 +2702,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                    ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                    ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
                                         ??? note "**value**：`Union type` 媒體解析度等級。"
 
@@ -3146,7 +3146,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                                    ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                                    ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                                                         ??? note "**value**：`Union type` 媒體解析度等級。"
@@ -3254,7 +3254,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                             ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測某個工具叫用應在伺服器上執行時，會填入這個欄位。用戶端應將這則訊息原樣回傳給 API。"
 
-                                                ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+                                                ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                                                     可能的值：
 
@@ -3286,7 +3286,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
                                             ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。這個欄位由用戶端填入，內容為執行對應 `ToolCall` 的結果。"
 
-                                                ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
+                                                ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，與 `tool_type`（在對應的 `ToolCall` 中）相符。"
 
                                                     可能的值：
 
@@ -3416,7 +3416,7 @@ Gemini API 支援批次 API，可讓你在單次呼叫中處理多個要求。�
 
 
 
-                                        ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                                        ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
                                             ??? note "**value**：`Union type` 媒體解析度等級。"
 

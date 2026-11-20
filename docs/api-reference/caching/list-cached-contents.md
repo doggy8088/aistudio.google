@@ -470,7 +470,7 @@
 
 
 
-                    ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                    ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                         ??? note "**value**: `Union type` 媒體解析度等級。"
@@ -578,7 +578,7 @@
 
             ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測有應在伺服器上執行的工具呼叫時，會填入此欄位。用戶端應將此訊息回傳給 API。"
 
-                ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
+                ??? note "**toolType**: required `ToolType` 被呼叫的工具類型。"
 
                     可能的值：
 
@@ -610,7 +610,7 @@
 
             ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。用戶端會以執行相對應 `ToolCall` 的結果填入此欄位。"
 
-                ??? note "**toolType**：必填 `V1mainToolType`，被呼叫的工具類型，與 `tool_type` 相符，該欄位位於相對應的 `ToolCall` 中。"
+                ??? note "**toolType**：必填 `ToolType`，被呼叫的工具類型，與 `tool_type` 相符，該欄位位於相對應的 `ToolCall` 中。"
 
                     可能的值：
 
@@ -740,7 +740,7 @@
 
 
 
-        ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+        ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
             ??? note "**value**: `Union type` 媒體解析度等級。"
 
@@ -1050,7 +1050,7 @@
 
 
 
-                    ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                    ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                         ??? note "**value**: `Union type` 媒體解析度等級。"
@@ -1158,7 +1158,7 @@
 
             ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測有應在伺服器上執行的工具呼叫時，會填入此欄位。用戶端應將此訊息回傳給 API。"
 
-                ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
+                ??? note "**toolType**: required `ToolType` 被呼叫的工具類型。"
 
                     可能的值：
 
@@ -1190,7 +1190,7 @@
 
             ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。用戶端會以執行相對應 `ToolCall` 的結果填入此欄位。"
 
-                ??? note "**toolType**：必填 `V1mainToolType`，被呼叫的工具類型，與 `tool_type` 相符，該欄位位於相對應的 `ToolCall` 中。"
+                ??? note "**toolType**：必填 `ToolType`，被呼叫的工具類型，與 `tool_type` 相符，該欄位位於相對應的 `ToolCall` 中。"
 
                     可能的值：
 
@@ -1320,7 +1320,7 @@
 
 
 
-        ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+        ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
             ??? note "**value**: `Union type` 媒體解析度等級。"
 

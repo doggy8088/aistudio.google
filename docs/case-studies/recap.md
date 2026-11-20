@@ -6,7 +6,14 @@
 
 ## 在真實客戶問題上測試 Gemini Managed Agents
 
-re:cap 從 Capital Advisory 擷取了 29 個常見的客戶問題，這些問題先前在舊設定上執行過，並以相同順序使用 Gemini Managed Agents 重播。Gemini Managed Agents 依據即時平台資料，給出了快速、低成本的答案。re:cap Capital Advisory 基準測試 Gemini Managed Agents（Gemini 3.7 Flash） 先前的受管理代理實作 平均回答時間 25.4 秒 65.6 秒 最慢的回答 46 秒 236 秒 每個問題的平均成本 6.0¢（−73%） 22.4¢ 回答風格 簡潔（團隊偏好） 較為詳細 換算下來，在 re:cap Capital Advisory 基準測試中，**平均回應快約 2.6 倍、最慢的回答快 5 倍、模型成本降低 73%**。29 個問題的每個答案都緊扣即時平台資料。這些結果是針對 re:cap 的工作負載與實作，而非兩個平台的通用基準測試。成本以定價計算。在顧問諮詢中，答案品質最為重要，而 Gemini Managed Agents 以更快的速度、更低的成本做到了。
+re:cap 從 Capital Advisory 擷取了 29 個常見的客戶問題，這些問題先前在舊設定上執行過，並以相同順序使用 Gemini Managed Agents 重播。Gemini Managed Agents 依據即時平台資料，給出了快速、低成本的答案。換算下來，在 re:cap Capital Advisory 基準測試中，**平均回應快約 2.6 倍、最慢的回答快 5 倍、模型成本降低 73%**。29 個問題的每個答案都緊扣即時平台資料。這些結果是針對 re:cap 的工作負載與實作，而非兩個平台的通用基準測試。成本以定價計算。在顧問諮詢中，答案品質最為重要，而 Gemini Managed Agents 以更快的速度、更低的成本做到了。
+
+| re:cap Capital Advisory 基準測試 | Gemini Managed Agents（Gemini 3.7 Flash） | 先前的受管理代理實作 |
+| --- | --- | --- |
+| 平均回答時間 | 25.4 秒 | 65.6 秒 |
+| 最慢的回答 | 46 秒 | 236 秒 |
+| 每個問題的平均成本 | 6.0¢（−73%） | 22.4¢ |
+| 回答風格 | 簡潔（團隊偏好） | 較為詳細 |
 
 > 「代理正逐漸成為我們經營 re:cap 的方式，無論是對客戶還是對我們自己的團隊都是如此。Gemini Managed Agents 給了我們以大規模量做到這一點的速度與成本，而且它的運作方式與我們既有的建置方式一致：技能就是檔案，像我們其他的程式碼一樣發布。」
 

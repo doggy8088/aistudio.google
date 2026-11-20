@@ -2070,7 +2070,7 @@
               config=types.GenerateContentConfig(
                   candidate_count=1,
                   stop_sequences=["x"],
-                  max_output_tokens=20,
+                  max_output_tokens=800,
                   temperature=1.0,
               ),
           )
@@ -2090,7 +2090,7 @@
             config: {
               candidateCount: 1,
               stopSequences: ['x'],
-              maxOutputTokens: 20,
+              maxOutputTokens: 800,
               temperature: 1.0,
             },
           });
@@ -2107,7 +2107,7 @@
               GenerateContentConfig.builder()
                   .candidateCount(1)
                   .stopSequences(List.of("x"))
-                  .maxOutputTokens(20)
+                  .maxOutputTokens(800)
                   .temperature(1.0F)
                   .build();
 
@@ -2132,7 +2132,7 @@
 
           // Create local variables for parameters.
           candidateCount := int32(1)
-          maxOutputTokens := int32(20)
+          maxOutputTokens := int32(800)
           temperature := float32(1.0)
 
           response, err := client.Models.GenerateContent(
@@ -3697,7 +3697,7 @@
 
 
 
-                ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                     ??? note "**value**：`Union type` 媒體解析度層級。"
@@ -3809,7 +3809,7 @@
 
         ??? note "**toolCall**：`ToolCall` 伺服器端工具呼叫。當模型預測應在伺服器上執行的工具呼叫時，會填入此欄位。預期用戶端會將此訊息回傳給 API。"
 
-            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型。"
+            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型。"
 
                 可能的值：
 
@@ -3842,7 +3842,7 @@
 
         ??? note "**toolResponse**：`ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端以執行對應 `ToolCall` 的結果填入。"
 
-            ??? note "**toolType**：必填 `V1mainToolType` 被呼叫的工具類型，與對應的 `tool_type`（位於對應的 `ToolCall` 中）相符。"
+            ??? note "**toolType**：必填 `ToolType` 被呼叫的工具類型，與對應的 `tool_type`（位於對應的 `ToolCall` 中）相符。"
 
                 可能的值：
 
@@ -3973,7 +3973,7 @@
 
 
 
-    ??? note "**mediaResolution**：`V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+    ??? note "**mediaResolution**：`MediaResolution` 選填。輸入媒體的媒體解析度。"
 
         ??? note "**value**：`Union type` 媒體解析度層級。"
 

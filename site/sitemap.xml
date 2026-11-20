@@ -2,1250 +2,1538 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/all-methods/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/api-versions/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/agents/create-agent/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/agents/delete-agent/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/agents/get-agent/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/agents/list-agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/async-batch-embed-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/batch-generate-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/cancel-batch/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/delete-batch/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/get-batch/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/list-batches/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/update-embed-content-batch/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/batch-api/update-generate-content-batch/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/create-cached-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/delete-cached-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/get-cached-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/list-cached-contents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/caching/update-cached-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/create-credential/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/delete-credential/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/get-credential/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/list-credentials/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/credentials/update-credential/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/decisions/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/decisions/create-decision/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/embeddings/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/embeddings/async-batch-embed-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/embeddings/batch-embed-contents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/embeddings/embed-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/create-environment/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/delete-environment/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/get-environment-files/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/get-environment/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/list-environments/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/environments/start-environment-file-upload/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/documents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/documents/delete-document/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/documents/get-document/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/documents/list-documents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/create-file-search-store/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/delete-file-search-store/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/get-file-search-store-operation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/get-file-search-store-upload-operation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/get-file-search-store/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/import-file/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/list-file-search-stores/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/file-search/file-search-stores/upload-to-file-search-store/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/create-file/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/delete-file/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/get-file/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/list-files/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/files/register-files/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/generate-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/generate-content/create-token/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/generate-content/generate-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/generate-content/stream-generate-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/interactions-api/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/interactions-api/cancel-interaction-by-id/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/interactions-api/create-interaction/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/interactions-api/delete-interaction/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/interactions-api/get-interaction-by-id/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/live/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/live/bidi-generate-content/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/live-music/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/live-music/bidi-generate-music/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/models/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/models/get-model/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/models/list-models/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/tokens/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/tokens/count-tokens/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/create-trigger/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/delete-trigger/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/get-trigger/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/list-trigger-executions/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/list-triggers/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/run-trigger/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/triggers/update-trigger/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/voices/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/voices/create-voice/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/voices/delete-voice/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/voices/get-voice/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/voices/list-voices/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/create-webhook/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/delete-webhook/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/get-webhook/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/list-webhooks/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/ping-webhook/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/rotate-signing-secret/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/api-reference/webhooks/update-webhook/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/addglow/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/agentops/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/assorthealth/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/ava/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/bug0/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/calcam/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/calm-studios/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/cartwheel-2/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/cartwheel/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/compscience/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/diia/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/fal/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/firecrawl/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/forio/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/harvey/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/holywater/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/hubx/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/instalily/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/joltai/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/langbase/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/optimalai/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/pascalai/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/passionfroot/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/promisestudios/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/raindrop/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/recap/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/resembleai/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/rooms/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/shopify/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/sourcegraph/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/spline/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/sublayer/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/synthesia/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/tldraw/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/toongether/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/toonsutra-2/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/vela/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/viggle/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/volley-2/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/wolffun-game/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/case-studies/wolfgames/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/agent-credentials/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/agent-environment/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/agent-hooks/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/ai-studio-quickstart/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-android/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-build-mode/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-custom-domains/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-deploying/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/aistudio-fullstack/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/antigravity-agent/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/api-errors/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/api-key/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/audio/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/available-regions/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/background-execution/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/batch-api/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/billing/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/caching/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/changelog/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/choosing-a-model/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/cli/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/code-execution/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/coding-agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/computer-use/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/crewai-example/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/custom-agents/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/decisions-api/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/deep-research/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/deprecations/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/document-processing/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/documentation-policy/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/embeddings/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/feedback-policies/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/file-input-methods/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/file-search/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/files/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/flex-inference/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/function-calling/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/gemini-for-research/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/docs/genie-prompting/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/docs/genie/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/get-started/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/google-ai-plans/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/google-search/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/image-generation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/image-understanding/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/imagen/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/interactions-breaking-changes-may-2026/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/interactions-overview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/langgraph-example/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/learnlm/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/libraries/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/llama-index/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/logs-datasets/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/logs-policy/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/long-context/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/long-decode/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/lyria-prompt-guide/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/managed-agents-quickstart/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/maps-grounding/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/media-resolution/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/migrate-to-cloud/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/migrate-to-interactions/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/migrate/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/model-tuning/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/music-generation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/oauth/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/omni/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/openai/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/optimization/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/partner-integration/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/pricing/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/priority-inference/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/prompting-strategies/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/rate-limits/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/realtime-music-generation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-agentic/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-orchestration/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-spatial/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-streaming/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-video-progress/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/safety-guidance/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/safety-settings/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/speech-generation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/streaming/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/structured-output/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/temporal-example/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/text-generation/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/thought-signatures/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/tokens/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/tool-combination/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/docs/tool-retrieval/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/tools/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/transcribe/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/troubleshoot-ai-studio/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/troubleshooting/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/url-context/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/usage-policies/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/veo/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/vercel-ai-sdk-example/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/verification/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/video-understanding/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/voice-design/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/voice-remixing/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/voice-replication/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/webhooks/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-3.5/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-3.6/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-3.7/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-3.8/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-4-argon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-4-carbon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-4-hydrogen/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/whats-new-gemini-4-neon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/workspace/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/zdr/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/latest-model/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/best-practices/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/capabilities/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/ephemeral-tokens/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/get-started-sdk/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/get-started-websocket/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/live-transcribe/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/live-translate/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/session-management/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/thinking/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/live-api/tools/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/antigravity-preview-05-2026/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/antigravity-preview-09-2026/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/deep-research-max-preview-04-2026/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/deep-research-preview-04-2026/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/deep-research-pro-preview-12-2025/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.0-flash-lite/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.0-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-computer-use-preview-10-2025/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-image/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-lite-preview-09-2025/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-lite/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-native-audio-preview-12-2025/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-preview-09-2025/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash-preview-tts/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-pro-preview-tts/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-2.5-pro/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3-flash-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3-pro-image/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3-pro-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-image/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-lite-image/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-lite-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-lite/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-live-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-flash-tts-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.1-pro-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.5-flash-lite/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.5-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.5-live-translate-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.5-transcribe/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.6-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.7-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.8-flash-lite-tts/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.8-flash-tts/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.8-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.8-live-extended-thinking/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-3.8-live/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-4-argon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-4-carbon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-4-hydrogen/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-4-neon/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-decision-1/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-embedding-001/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-embedding-2-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-embedding-2/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-nano-banana-2.1/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-omni-flash/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-robotics-er-1.5-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-robotics-er-1.6-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-robotics-er-2-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/gemini-robotics-er-2-streaming-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/docs/models/genie-4/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/imagen/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/lyria-3-clip-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/lyria-3-pro-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/lyria-3.5/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/lyria-realtime-exp/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/veo-2.0-generate-001/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/veo-3.1-generate-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/models/veo-3.1-lite-generate-preview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/robotics-overview/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_02_05_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_02_15_24/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_03_20_24/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_04_03_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_05_02_24/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_05_10_23/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_05_14_24/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_05_20_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_08_28_23/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_09_20_23/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_09_25_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_10_07_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_10_17_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_11_20_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_12_13_23/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_12_18_25/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/terms_12_20_24/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/terms-archive/index/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/thinking/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
     </url>
     <url>
          <loc>https://aistudio.gh.miniasp.com/docs/video/</loc>
-         <lastmod>2026-11-19</lastmod>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/agentic-video-understanding-with-gemini/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/ai-ui-design-google-ai-studio/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/build-app-from-drawing/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/build-apps-with-gemini-3-8-flash/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/build-website-vibe-code/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/building-3d-games-and-worlds-with-gemini-4-argon/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/deep-research-developer-guide/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/developer-guide-gemini-3-5-flash/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-3-5-transcribe-developer-guide/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-3-7-flash-developer-guide/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-3-8-flash-tts-developer-guide/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-4-argon-developer-guide/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-4-argon-showcase/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-4-argon/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-api-skills/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/gemini-tts-prompt-guide-with-tags/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/getting-started-with-open-claw-and-gemini/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/managed-agents-updated-harness-files-credentials/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/multimodal-rag-file-search/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/starter-templates/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/sync-your-ai-studio-apps-with-github/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/templates-personal-blog/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/text-to-speech/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/use-google-ai-plan-credits-in-ai-studio/</loc>
+         <lastmod>2026-11-20</lastmod>
+    </url>
+    <url>
+         <loc>https://aistudio.gh.miniasp.com/learn/yc-gdm-startups-day-building-agi-era/</loc>
+         <lastmod>2026-11-20</lastmod>
     </url>
 </urlset>

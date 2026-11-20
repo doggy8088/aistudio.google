@@ -1075,7 +1075,7 @@ Gemini API 支援以圖片、音訊、程式碼、工具等方式產生內容。
 
 
 
-                ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+                ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
 
                     ??? note "**value**: `Union type` 媒體解析度等級。"
@@ -1183,7 +1183,7 @@ Gemini API 支援以圖片、音訊、程式碼、工具等方式產生內容。
 
         ??? note "**toolCall**: `ToolCall` 伺服器端工具呼叫。當模型預測到應在伺服器上執行的工具叫用時，會填入此欄位。用戶端應將此訊息原樣回傳給 API。"
 
-            ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型。"
+            ??? note "**toolType**: required `ToolType` 被呼叫的工具類型。"
 
                 可能的值：
 
@@ -1215,7 +1215,7 @@ Gemini API 支援以圖片、音訊、程式碼、工具等方式產生內容。
 
         ??? note "**toolResponse**: `ToolResponse` 伺服器端 `ToolCall` 執行的輸出。此欄位由用戶端填入對應 `ToolCall` 的執行結果。"
 
-            ??? note "**toolType**: required `V1mainToolType` 被呼叫的工具類型，與對應的 `tool_type`（位於對應的 `ToolCall` 中）相符。"
+            ??? note "**toolType**: required `ToolType` 被呼叫的工具類型，與對應的 `tool_type`（位於對應的 `ToolCall` 中）相符。"
 
                 可能的值：
 
@@ -1345,7 +1345,7 @@ Gemini API 支援以圖片、音訊、程式碼、工具等方式產生內容。
 
 
 
-    ??? note "**mediaResolution**: `V1mainMediaResolution` 選填。輸入媒體的媒體解析度。"
+    ??? note "**mediaResolution**: `MediaResolution` 選填。輸入媒體的媒體解析度。"
 
         ??? note "**value**: `Union type` 媒體解析度等級。"
 
