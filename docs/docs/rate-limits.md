@@ -80,7 +80,7 @@ Tier 2 與 Tier 3 的資格，取決於與你專案連結的計費帳戶在 Goog
 ### Genie 4 速率限制 {#genie-4}
 
 以下並行工作階段與每日請求限制適用於 [Interactions API](/docs/genie/) 上的
-[`models/genie-4`](/docs/models/genie-4/)：
+[`genie-4`](/docs/models/genie-4/)：
 
 
 | 使用層級 | 並行進行中的工作階段 | 每日請求數（RPD） |

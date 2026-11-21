@@ -4,13 +4,13 @@
 
 ## 2026 年 11 月 19 日 {#11-19-2026}
 
-*   **Genie 4（`models/genie-4`）正式推出（GA）**：推出
-    [Genie 4](/docs/models/genie-4/)（`models/genie-4`），於
+*   **Genie 4（`genie-4`）正式推出（GA）**：推出
+    [Genie 4](/docs/models/genie-4/)（`genie-4`），於
     [Interactions API](/docs/genie/)（`v1beta`）上實現即時互動世界生成，串流可操控的
-    `24 fps` `16:9` 影片，並同步 `48 kHz` 立體聲音訊，透過 WebRTC 與 WebSockets 傳輸。以文字、
-    `16:9` 參考圖片或兩者播種世界，並以 `WASD`/方向鍵與工作階段中的文字事件即時操控。
-    付費層級的[定價](/docs/pricing/#genie-4)為每 100 萬個輸入 tokens `$1.50`、每 100 萬個文字輸出
-    tokens `$9.00`，以及每 100 萬個影片輸出 tokens `$17.50`（約 `~$0.10/sec`，含立體聲音訊）；請參閱
+    24 fps 16:9 影片，並同步 48 kHz 立體聲音訊，透過 WebRTC 與 WebSockets 傳輸。以文字、
+    16:9 參考圖片或兩者播種世界，並以 WASD/方向鍵與工作階段中的文字事件即時操控。
+    付費層級的[定價](/docs/pricing/#genie-4)為每 100 萬個輸入 tokens $1.50、每 100 萬個文字輸出
+    tokens $9.00，以及每 100 萬個影片輸出 tokens $17.50（約 ~$0.10/sec，含立體聲音訊）；請參閱
     [使用 Genie 4 生成互動世界](/docs/genie/)、[Genie 4 提示詞與控制指南](/docs/genie-prompting/)與
     [速率限制](/docs/rate-limits/#genie-4)。
 

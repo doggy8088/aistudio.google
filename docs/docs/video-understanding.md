@@ -1167,7 +1167,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{
@@ -1250,7 +1250,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{
@@ -1401,7 +1401,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
 
       ```shell
       # 1. Scan the transcript first at low token cost.
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{
@@ -1421,7 +1421,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
         }'
 
       # 2. Zoom into the matching clip with frames.
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{

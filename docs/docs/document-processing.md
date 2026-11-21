@@ -1569,12 +1569,10 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
       import com.google.genai.gaos.models.interactions.TextContent;
       import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
       import com.google.genai.types.File;
-      import com.google.genai.types.HttpOptions;
       import com.google.genai.types.UploadFileConfig;
       import java.util.List;
 
-      Client client =
-          Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+      Client client = new Client();
 
       File uploadedDoc =
           client.files.upload(
@@ -1632,9 +1630,7 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 
       func main() {
           ctx := context.Background()
-          client, err := genai.NewClient(ctx, &genai.ClientConfig{
-              HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
-          })
+          client, err := genai.NewClient(ctx, nil)
           if err != nil {
               log.Fatal(err)
           }
@@ -1686,7 +1682,7 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "Content-Type: application/json" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -d '{
@@ -1824,12 +1820,10 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
       import com.google.genai.gaos.models.interactions.TextContent;
       import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
       import com.google.genai.types.File;
-      import com.google.genai.types.HttpOptions;
       import com.google.genai.types.UploadFileConfig;
       import java.util.List;
 
-      Client client =
-          Client.builder().httpOptions(HttpOptions.builder().apiVersion("v1beta").build()).build();
+      Client client = new Client();
 
       File workbook =
           client.files.upload(
@@ -1894,9 +1888,7 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 
       func main() {
           ctx := context.Background()
-          client, err := genai.NewClient(ctx, &genai.ClientConfig{
-              HTTPOptions: genai.HTTPOptions{APIVersion: "v1beta"},
-          })
+          client, err := genai.NewClient(ctx, nil)
           if err != nil {
               log.Fatal(err)
           }
@@ -1950,7 +1942,7 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "Content-Type: application/json" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -d '{

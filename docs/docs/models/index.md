@@ -319,7 +319,7 @@
 | [Nano Banana 2](/docs/models/gemini-3.1-flash-image/) | 高效率的正式環境規模視覺創作，結合 Gemini 3 系列的智慧與極快的生成速度。 | `gemini-3.1-flash-image` |
 | [Nano Banana 2 Lite](/docs/models/gemini-3.1-flash-lite-image/) | 我們速度最快、價格最低的 Gemini 圖片模型，專為速度與規模而設計，適合以速度與成本為主要營運考量的情境。不針對多個參考輸入或多回合連續編輯最佳化。 | `gemini-3.1-flash-lite-image` |
 | [Nano Banana Pro](/docs/models/gemini-3-pro-image/) | 具備推理核心的專業設計引擎，能打造錄音室品質的 4K 視覺內容、複雜版面與精準的文字呈現。 | `gemini-3-pro-image` |
-| [Genie 4](/docs/models/genie-4/) | 即時互動世界生成，串流 24 fps 16:9 影片，並同步 48 kHz 立體聲音訊，透過 WebRTC 與 WebSockets 傳輸。 | `models/genie-4` |
+| [Genie 4](/docs/models/genie-4/) | 即時互動世界生成，串流 24 fps 16:9 影片，並同步 48 kHz 立體聲音訊，透過 WebRTC 與 WebSockets 傳輸。 | `genie-4` |
 | [Gemini Omni Flash](/docs/models/gemini-omni-flash/) | 快速生成與編輯最長 15 秒的影片，具備原生音訊、關鍵影格插值與影片延伸。 | `gemini-omni-1.2-flash` `gemini-omni-1.1-flash` |
 | [Nano Banana](/docs/models/gemini-2.5-flash-image/) | 頂尖的原生圖片生成與編輯，專為快速、創意的工作流程設計。 | `gemini-2.5-flash-image` |
 | Imagen 4（已關閉） | 文字轉圖片模型，具備快速與超快速生成（已關閉）。 | `imagen-4.0-generate` |

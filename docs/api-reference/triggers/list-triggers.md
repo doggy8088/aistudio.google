@@ -35,7 +35,7 @@
 
   **page_token**: `string`
 
-  選填。先前 ListTriggers 呼叫所傳回的分頁 token。
+  選填。先前呼叫列出觸發條件時所傳回的分頁 token。
 
   
 
@@ -72,7 +72,7 @@
 
   **next_page_token**: `string`
 
-  先前 `ListTriggers` 呼叫所傳回的分頁 token。提供此 token 即可擷取下一頁。
+  用來擷取下一頁觸發條件的 token。請在下一個要求中將其做為 `page_token` 傳送。若為空值，表示沒有其他頁面。
 
   
 
@@ -1020,7 +1020,7 @@
 
       **continuation_token**: `string`
 
-      用來繼續長時間解碼的不透明 token。輸出：當 status 為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動傳回最新 token，以繼續解碼。
+      用來繼續長時間解碼的不透明 token。輸出：當 status 為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在建立下一個互動時原封不動傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

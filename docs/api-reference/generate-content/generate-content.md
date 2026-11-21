@@ -1295,22 +1295,16 @@
           ```java
           Client client = new Client();
 
-          Content userContent = Content.fromParts(Part.fromText("Hello"));
-          Content modelContent =
-              Content.builder()
-                  .role("model")
-                  .parts(
-                      Collections.singletonList(
-                          Part.fromText("Great to meet you. What would you like to know?")))
-                  .build();
-
-          Chat chat =
-              client.chats.create(
-                  "gemini-3.8-flash",
-                  GenerateContentConfig.builder()
-                      .systemInstruction(userContent)
-                      .systemInstruction(modelContent)
+          // Pass initial history as the third argument of chats.create.
+          List<Content> history =
+              List.of(
+                  Content.fromParts(Part.fromText("Hello")),
+                  Content.builder()
+                      .role("model")
+                      .parts(Part.fromText("Great to meet you. What would you like to know?"))
                       .build());
+
+          Chat chat = client.chats.create("gemini-3.8-flash", null, history);
 
           GenerateContentResponse response1 = chat.sendMessage("I have 2 dogs in my house.");
           System.out.println(response1.text());
@@ -2566,18 +2560,15 @@
           response = client.models.generate_content(
               model="gemini-3.8-flash",
               contents=(
-                  "Write and execute code that calculates the sum of the first 50"
-                  " prime numbers. Ensure that only the executable code and its"
-                  " resulting output are generated."
+                  "What is the sum of the first 50 prime numbers? Generate and run"
+                  " code for the calculation, and make sure you get all 50."
+              ),
+              config=types.GenerateContentConfig(
+                  tools=[types.Tool(code_execution=types.ToolCodeExecution())],
               ),
           )
-          # Each part may contain text, executable code, or an execution result.
-          for part in response.candidates[0].content.parts:
-            print(part, "\n")
-
-          print("-" * 80)
-          # The .text accessor concatenates the parts into a markdown-formatted text.
-          print("\n", response.text)
+          print(response.executable_code)
+          print(response.code_execution_result)
           ```
 
     === "Java"
@@ -2587,19 +2578,23 @@
 
           String prompt =
               """
-              Write and execute code that calculates the sum of the first 50 prime numbers.
-              Ensure that only the executable code and its resulting output are generated.
+              What is the sum of the first 50 prime numbers?
+              Generate and run code for the calculation, and make sure you get all 50.
               """;
 
-          GenerateContentResponse response =
-              client.models.generateContent("gemini-3.8-flash", prompt, null);
+          GenerateContentConfig config =
+              GenerateContentConfig.builder()
+                  .tools(
+                      Collections.singletonList(
+                          Tool.builder().codeExecution(ToolCodeExecution.builder().build()).build()))
+                  .build();
 
-          for (Part part : response.candidates().get().getFirst().content().get().parts().get()) {
-            System.out.println(part + "\n");
-          }
+          GenerateContentResponse response =
+              client.models.generateContent("gemini-3.8-flash", prompt, config);
 
           System.out.println("-".repeat(80));
-          System.out.println(response.text());
+          System.out.println(response.executableCode());
+          System.out.println(response.codeExecutionResult());
           ```
 
     === "Go"
@@ -2618,10 +2613,13 @@
               ctx,
               "gemini-3.8-flash",
               genai.Text(
-                  `Write and execute code that calculates the sum of the first 50 prime numbers.
-                   Ensure that only the executable code and its resulting output are generated.`,
+                  "What is the sum of the first 50 prime numbers? Generate and run code for the calculation, and make sure you get all 50.",
               ),
-              &genai.GenerateContentConfig{},
+              &genai.GenerateContentConfig{
+                  Tools: []*genai.Tool{
+                      {CodeExecution: &genai.ToolCodeExecution{}},
+                  },
+              },
           )
           if err != nil {
               log.Fatal(err)
@@ -2631,7 +2629,9 @@
           printResponse(response)
 
           fmt.Println("--------------------------------------------------------------------------------")
-          fmt.Println(response.Text())
+
+          fmt.Println(response.ExecutableCode())
+          fmt.Println(response.CodeExecutionResult())
           ```
 
 

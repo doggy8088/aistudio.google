@@ -32,7 +32,7 @@
     thought_signature.`）。請傳回帶有 `signature` 值的步驟，且不得更動。
 *   模型呼叫了一個未經搜尋載入的延遲載入函式，而你傳回了其 `function_result`。這種情況通常發生在函式名稱出現在你的系統指令或另一個工具的輸出中。請勿延遲載入你以名稱提及的工具。請參閱[最佳做法](/docs/tool-retrieval/#best-practices)。
 
-如需確切的錯誤字串，請參閱[工具擷取錯誤](/docs/tool-retrieval/#errors)。
+請參閱[常見錯誤](/docs/tool-retrieval/#errors)，了解錯誤訊息範例與修正方法。
 
 有些問題不會傳回錯誤。在多回合對話中，模型可能停止尋找延遲載入的工具、只持續呼叫先前回合中使用過的工具、呼叫請求中未宣告的函式，或傳回名稱以 `retriever:` 開頭的內部呼叫步驟。在上述每種情況中，請檢查每次請求是否都傳送了完整的 `tools` 陣列，包括使用 `previous_interaction_id` 的鏈式請求。API 不會在請求之間儲存工具宣告。請參閱[在每次請求傳送完整的 tools 陣列](/docs/tool-retrieval/#resend-tools)。
 

@@ -880,7 +880,7 @@
 
       **continuation_token**: `string`
 
-      用來恢復長時間解碼的不透明 token。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
+      用來恢復長時間解碼的不透明 token。輸出：當 status 為 REQUIRES_CONTINUATION 且可恢復解碼時設定。輸入：在建立下一個互動時原封不動地傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

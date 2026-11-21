@@ -2755,7 +2755,7 @@ tools = [
 
 ## 多模態函式回應 {#multimodal}
 
-對於 Gemini 3 系列模型，你可以在傳送給模型的函式回應中加入多模態內容。模型能在下一個回合處理這些多模態內容，產生資訊更充分的回應。
+對於 Gemini 3 及後續模型，你可以在傳送給模型的函式回應中加入多模態內容。模型能在下一個回合處理這些多模態內容，產生資訊更充分的回應。
 
 若要在函式回應中加入多模態資料，請將它以一或多個內容區塊的形式放入 `result` 欄位（屬於 `function_result` 步驟）。每個內容區塊都必須指定其 `type`。支援的類型如下：
 
@@ -2766,7 +2766,6 @@ tools = [
   （DOCX、DOC、DOTX、ODT、PPTX、PPT、ODP、XLSX、XLS、ODS）
 * **`audio`**：[支援的音訊格式](/docs/audio/#supported-formats)
 * **`video`**：[支援的影片格式](/docs/video-understanding/#supported-formats)
-  （適用於 `v1beta` 與 `v1alpha`）
 
 每個媒體區塊都接受以 base64 編碼的 `data` 或 `uri`，例如
 [Files API](/docs/files/) 的 URI。函式結果中的檔案，其處理方式與一般輸入中的相同檔案相同。範例請見
@@ -2858,7 +2857,7 @@ INVALID_ARGUMENT` 錯誤，指出問題欄位並列出可接受的類型。
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{
@@ -3117,7 +3116,7 @@ INVALID_ARGUMENT` 錯誤，指出問題欄位並列出可接受的類型。
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{
@@ -3291,7 +3290,7 @@ INVALID_ARGUMENT` 錯誤，指出問題欄位並列出可接受的類型。
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "Content-Type: application/json" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -d '{

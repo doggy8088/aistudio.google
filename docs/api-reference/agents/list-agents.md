@@ -182,7 +182,7 @@
 
 ### Agent {#Resource:Agent}
 
-CreateAgent API 的代理定義。
+建立代理時使用的代理定義。
 此訊息是以註解剖析器為基礎的 JSON 剖析目標。
 新格式：
 

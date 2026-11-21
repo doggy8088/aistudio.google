@@ -26,7 +26,7 @@
 
   **page_token**: `string`
 
-  選用。從先前的 `ListWebhooks` 呼叫取得的分頁 token。提供此值即可擷取下一頁。
+  選用。從先前呼叫列出 webhook 時取得的分頁 token。提供此值即可擷取下一頁。
 
   
 

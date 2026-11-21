@@ -425,7 +425,7 @@
           async def main():
               client = genai.Client(http_options={"api_version": "v1beta"})
               interaction = await client.aio.interactions.create(
-                  model="models/genie-4", api_version="v1beta"
+                  model="genie-4", api_version="v1beta"
               )
               async with client.aio.interactions.connect(
                   interaction.id, api_version="v1beta"

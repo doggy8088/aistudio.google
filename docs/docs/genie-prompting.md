@@ -1,6 +1,6 @@
 # Genie 4 提示與控制指南
 
-寫得像電影預告片的提示詞在 Genie 4（`models/genie-4`）中的表現難以預測。`"an upbeat synth soundtrack"`、`"quick cuts to an aerial drone shot"` 或 `"a room that flashes red when I walk in"` 這類要求，在 `24 fps` 的即時攝影機串流上效果不佳。涵蓋整個房間的觸發條件會在第 1 幀就提前觸發，背景音樂關鍵字會變成實體的擬音效果，而攝影機切換會破壞空間連續性。
+寫得像電影預告片的提示詞在 Genie 4（`genie-4`）中的表現難以預測。`"an upbeat synth soundtrack"`、`"quick cuts to an aerial drone shot"` 或 `"a room that flashes red when I walk in"` 這類要求，在 `24 fps` 的即時攝影機串流上效果不佳。涵蓋整個房間的觸發條件會在第 1 幀就提前觸發，背景音樂關鍵字會變成實體的擬音效果，而攝影機切換會破壞空間連續性。
 
 本指南說明如何在 Google AI Studio 中建立世界原型，以及五種經過測試的提示詞與控制模式，協助你在 [Interactions API](/docs/genie/) 上打造可靠的互動體驗。
 

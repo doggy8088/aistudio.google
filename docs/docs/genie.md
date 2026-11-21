@@ -1,6 +1,6 @@
 # 使用 Genie 4 生成互動世界
 
-Genie 4（`models/genie-4`）可透過 [Interactions API](/docs/interactions-overview/) 生成連續的互動式 `16:9` 世界，以 `24 fps` 播放，並搭配同步的 `48 kHz` 立體聲音訊。與使用 [Gemini Omni 1.2 Flash](/docs/omni/) 的離線片段生成不同，Genie 4 會即時回應鍵盤移動（`WASD` 與方向鍵）與你在串流中途傳送的自然語言事件，即時算繪畫面。
+Genie 4（`genie-4`）可透過 [Interactions API](/docs/interactions-overview/) 生成連續的互動式 `16:9` 世界，以 `24 fps` 播放，並搭配同步的 `48 kHz` 立體聲音訊。與使用 [Gemini Omni 1.2 Flash](/docs/omni/) 的離線片段生成不同，Genie 4 會即時回應鍵盤移動（`WASD` 與方向鍵）與你在串流中途傳送的自然語言事件，即時算繪畫面。
 
 [在 Google AI Studio 中試用 Genie 4](https://aistudio.google.com/live?model=genie-4)
 
@@ -19,7 +19,7 @@ Genie 4（`models/genie-4`）可透過 [Interactions API](/docs/interactions-ove
 
 每個 Genie 4 工作階段在 `v1beta` 上都遵循四步驟生命週期：
 
-1.  **在伺服器上建立互動**（`interactions.create`，搭配 `model: 'models/genie-4'`）。若是瀏覽器用戶端，請核發單次工作階段的暫時 token（`interactions.authTokens.create(interaction.id)`），讓長期有效的 `GEMINI_API_KEY` 絕不離開後端。
+1.  **在伺服器上建立互動**（`interactions.create`，搭配 `model: 'genie-4'`）。若是瀏覽器用戶端，請核發單次工作階段的暫時 token（`interactions.authTokens.create(interaction.id)`），讓長期有效的 `GEMINI_API_KEY` 絕不離開後端。
 2.  **連接即時工作階段**（`interactions.connect`），透過 **WebRTC**（瀏覽器應用程式）或 **WebSocket**（Python、Node.js 或瀏覽器應用程式）。
 3.  **設定並操控世界**，先傳送一個 `world_setup` 事件，再傳送 `user_action` 移動事件（`WASD`／方向鍵）或 `input` 文字事件。
 4.  **完成工作階段**（完成時執行 `await session.complete()`），讓伺服器端生成與計費乾淨地終止。
@@ -43,7 +43,7 @@ Genie 4（`models/genie-4`）可透過 [Interactions API](/docs/interactions-ove
 
       export async function createWorldSession() {
         const interaction = await serverAi.interactions.create({
-          model: 'models/genie-4',
+          model: 'genie-4',
           api_version: 'v1beta',
         });
         const { auth_token } = await serverAi.interactions.authTokens.create(
@@ -184,7 +184,7 @@ Genie 4（`models/genie-4`）可透過 [Interactions API](/docs/interactions-ove
       async def main() -> None:
           client = genai.Client(http_options={"api_version": "v1beta"})  # Uses GEMINI_API_KEY
           interaction = await client.aio.interactions.create(
-              model="models/genie-4", api_version="v1beta"
+              model="genie-4", api_version="v1beta"
           )
 
           pcm_chunks: list[bytes] = []
@@ -261,7 +261,7 @@ Genie 4（`models/genie-4`）可透過 [Interactions API](/docs/interactions-ove
         apiVersion: 'v1beta',
       });
       const interaction = await ai.interactions.create({
-        model: 'models/genie-4',
+        model: 'genie-4',
         api_version: 'v1beta',
       });
 
@@ -335,7 +335,7 @@ Genie 4 在 `interactions.connect` 上支援兩種即時傳輸方式：
         apiVersion: 'v1beta',
       });
       const interaction = await serverAi.interactions.create({
-        model: 'models/genie-4',
+        model: 'genie-4',
         api_version: 'v1beta',
       });
       const { auth_token } = await serverAi.interactions.authTokens.create(
@@ -359,7 +359,7 @@ Genie 4 在 `interactions.connect` 上支援兩種即時傳輸方式：
       # Backend: create interaction and mint single-session token
       server_client = genai.Client(http_options={"api_version": "v1beta"})
       interaction = await server_client.aio.interactions.create(
-          model="models/genie-4", api_version="v1beta"
+          model="genie-4", api_version="v1beta"
       )
       token_resp = await server_client.aio.interactions.auth_tokens.create(
           interaction_id=interaction.id, api_version="v1beta"
@@ -384,7 +384,7 @@ Genie 4 在 `interactions.connect` 上支援兩種即時傳輸方式：
         "https://generativelanguage.googleapis.com/v1beta/interactions" \
         -H "x-goog-api-key: ${GEMINI_API_KEY}" \
         -H "Content-Type: application/json" \
-        -d '{"model": "models/genie-4"}' | jq -r '.id')
+        -d '{"model": "genie-4"}' | jq -r '.id')
 
       # 2. Mint an ephemeral auth token scoped to INTERACTION_ID
       AUTH_TOKEN=$(curl -s -X POST \
@@ -438,7 +438,7 @@ Genie 4 在 `interactions.connect` 上支援兩種即時傳輸方式：
       ```
 
 
-!!! tip " "
+!!! note " "
 
       **WebRTC 種子圖片請保持在 `48 KB` 以下**： WebRTC SCTP 資料通道強制執行 `65,536` 位元組（`64 KB`）的最大訊息大小。由於 base64 編碼會增加約 33% 的負擔，請先將參考圖片調整為 `1280x720`（或 `640x360`）並壓縮為 `48 KB` 以下的 `image/jpeg` 再做 base64 編碼；若要傳送較大的無損 `image/png` 種子圖，請改用 WebSocket 連接。
 
@@ -553,7 +553,7 @@ for await (const event of session.receive()) {
 
 | 使用情境 | 建議模型 | API 介面 |
 | --- | --- | --- |
-| 即時可操控的世界、可遊玩的視覺原型、互動式空間探索（`24 fps` 即時串流） | [**Genie 4**（`models/genie-4`）](/docs/models/genie-4/) | [Interactions API](/docs/genie/)（`interactions.connect`，透過 WebRTC／WebSocket） |
+| 即時可操控的世界、可遊玩的視覺原型、互動式空間探索（`24 fps` 即時串流） | [**Genie 4**（`genie-4`）](/docs/models/genie-4/) | [Interactions API](/docs/genie/)（`interactions.connect`，透過 WebRTC／WebSocket） |
 | 離線片段生成（`3s-15s`）、多輪影片編輯、影片延長至 `30s`、`1080p`／`4K` 升頻、最多 6 張參考圖片 | [**Gemini Omni 1.2 Flash**（`gemini-omni-1.2-flash`）](/docs/models/gemini-omni-flash/) | [Interactions API](/docs/omni/)（`interactions.create`） |
 | 即時語音代理、雙向麥克風／攝影機理解、工具呼叫、Google 搜尋接地 | [**Gemini 3.8 Live**（`gemini-3.8-live`）](/docs/models/gemini-3.8-live/) | [Live API](/docs/live-api/)（`live.connect`） |
 

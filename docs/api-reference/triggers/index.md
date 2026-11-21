@@ -865,7 +865,7 @@ Trigger 可讓你依 cron 排程排定代理執行的時間，實現自動化與
 
       **continuation_token**: `string`
 
-      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原樣傳回最新的 token 以繼續解碼。
+      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在建立下一個互動時原樣傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

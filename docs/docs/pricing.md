@@ -712,7 +712,7 @@
 
 
   
-  *[`models/genie-4`](/docs/models/genie-4/)*
+  *[`genie-4`](/docs/models/genie-4/)*
 
   
 
@@ -725,7 +725,7 @@
 ---
 
 
-我們的即時互動世界生成模型，串流可操控的 `24 fps` `16:9` 影片，並同步 `48 kHz` 立體聲音訊，於
+我們的即時互動世界生成模型，串流可操控的 24 fps 16:9 影片，並同步 48 kHz 立體聲音訊，於
 [Interactions API](/docs/genie/) 上提供，適用於 Gemini API 付費級。
 
 

@@ -2,11 +2,9 @@
 
 請根據推理深度、回應速度與 token 價格，為您的任務挑選合適的 Gemini 模型。每個通用 Gemini 模型都能接受文字、圖片、音訊、影片與 PDF。
 
-* **預設使用 [`gemini-4-hydrogen`](/docs/models/gemini-4-hydrogen/)：** 速度快且成本效益高，適用於日常程式設計、互動式應用程式、使用工具的代理，以及多模態文件。
-* **複雜的高頻率任務請使用 [`gemini-4-neon`](/docs/models/gemini-4-neon/)：** 介於 Hydrogen 與 Carbon 之間，推理比 Hydrogen 更深入，任務完成速度比 Carbon 更快。專為多檔案程式設計、知識工作與科學工作流程而打造。僅適用於付費層級。
-* **最困難的問題請使用 [`gemini-4-carbon`](/docs/models/gemini-4-carbon/)：** 投入更多思考 token，驗證系統架構、除錯、科學與安全領域的邊界情況。
-* **大量文字生成請使用 [`gemini-3.5-flash-lite`](/docs/models/gemini-3.5-flash-lite/)：** 成本最低的通用模型，適用於擷取、翻譯、摘要，以及次秒級延遲目標。
-* **專用任務與模態請查看專用模型**：我們也有專為特定用途打造的模型，例如用於分類、路由與評分的 [`gemini-decision-1`](/docs/decisions-api/)（您的程式碼會根據其決策結果分支），用於圖片的 [Nano Banana](/docs/image-generation/)、用於影片的 [Gemini Omni](/docs/omni/)，以及用於即時語音的 [Gemini 3.8 Live](/docs/live-api/)。
+![](https://www.gstatic.com/cloud-cms/ad47744272093d7db793ad58b8526755.png)
+
+比較 [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen/)、[Gemini 4 Neon](/docs/models/gemini-4-neon/)、[Gemini 4 Carbon](/docs/models/gemini-4-carbon/) 與 [Gemini 3.5 Flash-Lite](/docs/models/gemini-3.5-flash-lite/)，請參閱[通用模型與推理模型](/docs/choosing-a-model/#reasoning-models)。至於 [`gemini-decision-1`](/docs/decisions-api/)（路由與評分）、[Nano Banana](/docs/image-generation/)（圖片）、[Gemini Omni](/docs/omni/)（影片）與 [Gemini 3.8 Live](/docs/live-api/)（語音）等專用端點，請參閱[專用模型與媒體模型](/docs/choosing-a-model/#specialized-models)。
 
 請使用 [Interactions API](/docs/interactions-overview/) 傳送要求，並切換 `model`，在您的提示詞上測試任何層級：
 
@@ -67,24 +65,24 @@ Gemini 4 Carbon、Neon 與 Hydrogen 共用一個 100 萬 tokens 的統一上下�
 
 表格未提及的幾個細節：
 
-* **推廣定價**：Carbon 的價格為推廣價，有效期至 2026 年 11 月 30 日。自 2026 年 12 月 1 日起，每 100 萬 tokens 的輸入為 $4.00、輸出為 $20.00。Neon 沒有推廣價。
-* **免費層級**：Hydrogen 與 Flash-Lite 可在免費層級使用，Carbon 與 Neon 則不行。
+* **推廣定價**：Carbon 的推廣價為每 100 萬 tokens 輸入 $2.00、輸出 $10.00，有效期至 2026 年 11 月 30 日。自 2026 年 12 月 1 日起，Carbon 的價格為每 100 萬 tokens 輸入 $4.00、輸出 $20.00。Neon 沒有推廣價。
+* **AI Studio 與 API 存取權限**：Hydrogen 與 Flash-Lite 可在免費與付費 API 層級使用，在 Google AI Studio 的所有方案中皆為免費。Neon 與 Carbon 需要付費 API 層級。在 Google AI Studio 中，您也可以在 AI Pro 或 Ultra 方案上使用 Neon，在 AI Ultra 方案上使用 Carbon（參見 [Google AI 方案](/docs/google-ai-plans/)）。
 * **上下文與輸出**：Flash-Lite 擁有 100 萬 tokens 的輸入視窗與另外的 64K 輸出上限，而非統一的 100 萬視窗。
 
 完整的層級詳情與速率限制請參閱[定價](/docs/pricing/)與[速率限制](/docs/rate-limits/)。
 
 ### 何時選擇各模型 {#when-to-choose}
 
-* **Gemini 4 Hydrogen（`gemini-4-hydrogen`）**：大多數新專案請從這裡開始。相較於 [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)，Hydrogen 會標示缺少的上下文而非憑空猜測，將虛構的主張減少 5 倍以上，並以平行方式批次執行讀取與搜尋工具呼叫。日常程式設計、互動式 Web 應用程式、多模態文件管線與平行工作者代理都適合選用它。
-* **Gemini 4 Neon（`gemini-4-neon`）**：介於 Hydrogen 與 Carbon 之間。相較於 Carbon，它的輸出 tokens 更少、完成速度更快，同時能處理比 Hydrogen 更困難的推理。適用於複雜的軟體工程、密集的知識工作與科學工作流程——也就是 Hydrogen 不足以應付、但又不需要 Carbon 額外驗證的情況。
-* **Gemini 4 Carbon（`gemini-4-carbon`）**：我們最強大的推理模型。Carbon 在每一輪投入更多思考 token，用於測試假設、跨儲存庫隔離根本原因，並以測試驗證修正。適用於系統架構、多檔案除錯、密集的多模態分析、形式化證明與安全稽核，或在較快的模型卡住時使用。
-* **Gemini 3.5 Flash-Lite（`gemini-3.5-flash-lite`）**：我們速度最快、成本最低的通用模型。當您需要大量生成文字（例如翻譯、摘要與結構化 JSON 擷取），或有次秒級延遲目標時，請選用它。如果您的程式碼只需要一個標籤、是／否答案或分數來決定分支（分類、路由或內容審查），請考慮 [`gemini-decision-1`](/docs/decisions-api/)，它會以零輸出 tokens 傳回經過校準的答案。
+* **Gemini 4 Hydrogen（`gemini-4-hydrogen`）**：速度快且成本效益高，適用於日常程式設計與代理工作流程。相較於 [Gemini 3.8 Flash](/docs/whats-new-gemini-3.8/)，Hydrogen 會標示缺少的上下文而非憑空猜測，將虛構的主張減少 5 倍以上，並以平行方式批次執行讀取與搜尋工具呼叫。互動式 Web 應用程式、例行程式碼編輯、多模態文件管線與平行工作者子代理都適合選用它。
+* **Gemini 4 Neon（`gemini-4-neon`）**：專為複雜的互動式軟體工程、密集的知識工作與科學工作流程而打造。相較於 Hydrogen，它的推理更深入；相較於 Carbon，它的輸出 tokens 更少、完成速度更快。適用於多檔案重構、跨儲存庫除錯，以及開發人員或程式設計代理正等待回應的分析任務。
+* **Gemini 4 Carbon（`gemini-4-carbon`）**：專為長時程非同步工作與深度驗證而打造。Carbon 在每一輪投入更多思考 token，用於測試假設、跨儲存庫隔離根本原因，並以測試驗證修正。適用於多小時的背景執行、深度研究、形式化證明與安全稽核；或在 Neon 以 `high` 或 `xhigh` 思考層級仍卡住時，升級至 Carbon。
+* **Gemini 3.5 Flash-Lite（`gemini-3.5-flash-lite`）**：我們速度最快、成本最低的通用模型，適用於大量任務。大規模翻譯、摘要與結構化 JSON 擷取，或有次秒級延遲目標時，請選用它。如果您的程式碼只需要一個標籤、是／否答案或分數來決定分支（分類、路由或內容審查），請考慮 [`gemini-decision-1`](/docs/decisions-api/)，它會以零輸出 tokens 傳回經過校準的答案。
 
 ## 在多步驟工作流程中搭配使用模型 {#pair-models}
 
 您不必為整個應用程式只挑一個模型。由於 Carbon、Neon 與 Hydrogen 共用相同的要求結構描述、上下文視窗與工具，您可以將每個步驟導向最適合的模型。
 
-常見的模式是將 `gemini-4-carbon` 與 `gemini-4-hydrogen` 搭配使用。在第一輪請 Carbon 設計系統介面或隔離困難的錯誤。接著將 `previous_interaction_id` 傳給 Hydrogen，讓它撰寫程式碼編輯、執行平行的子代理任務，並以更低的延遲與成本反覆測試。
+常見的模式是將 `gemini-4-neon` 或 `gemini-4-carbon` 與 `gemini-4-hydrogen` 搭配使用。在第一輪請 Carbon 或 Neon 設計系統介面或隔離困難的錯誤。接著將 `previous_interaction_id` 傳給 Hydrogen，讓它撰寫程式碼編輯、執行平行的子代理任務，並以更低的延遲與成本反覆測試。
 
 
 === "Python"

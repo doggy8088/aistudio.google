@@ -23,21 +23,20 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
 ### Voice {#Resource:Voice}
 
-代表自訂語音（透過
-`CreateVoice` 建立）或預建系統語音（由 `ListVoices` 傳回）的語音資源。
+代表自訂語音（由你建立）或預建系統語音（列出語音時傳回）的語音資源。
 
 **屬性：**
 
 
   
 
-??? note "**type**: required `VoiceType` 語音的類型。在 `CreateVoice` 中，必須是 `"replicated"` 或 `"prompted"`。在 `ListVoices` 回應中，也可以是 `"prebuilt"`。"
+??? note "**type**: required `VoiceType` 語音的類型。建立語音時，必須是 `"replicated"` 或 `"prompted"`。列出語音時，也可以是 `"prebuilt"`。"
 
     可能的值：
 
     - `replicated`：根據參考音訊範本與說話者同意錄音複製出的自訂語音。
     - `prompted`：根據自然語言文字提示詞產生的自訂語音（可選擇編輯或混音 `base_voice`）。
-    - `prebuilt`：Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中傳回；無法在 `CreateVoice` 中指定為類型。
+    - `prebuilt`：Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中傳回；建立語音時無法指定為類型。
 
 
 
@@ -50,9 +49,9 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   僅供輸出。語音的唯一識別碼。
 
-  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，前綴為 `voice_`（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在 `GetVoice` 與 `DeleteVoice` 中傳入；在語音合成時，將 `{id}` 直接傳給 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
-  - 對於預建目錄語音（`"prebuilt"`，由 `ListVoices` 傳回），這是說話者名稱（例如 `Puck` 或 `Charon`）。
-  - 當 `CreateVoice` 以 `store = false` 呼叫時不會設定。
+  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，前綴為 `voice_`（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在取得或刪除語音時傳入；在語音合成時，將 `{id}` 直接傳給 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  - 對於預建目錄語音（`"prebuilt"`，列出語音時傳回），這是說話者名稱（例如 `Puck` 或 `Charon`）。
+  - 建立語音時若 `store = false`，不會設定。
 
   
 
@@ -61,7 +60,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   **model**: `string`
 
-  選填。用於設計或複製語音的模型。在 `CreateVoice` 中省略時，預設使用最新支援的語音設計模型。會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中針對自訂語音（`"prompted"` 與 `"replicated"`）傳回；`"prebuilt"` 語音則不會設定。建立的語音可透過任何支援的 TTS 合成模型進行合成。
+  選填。用於設計或複製語音的模型。建立語音時若省略，預設使用最新支援的語音設計模型。會在建立、取得或列出語音的回應中針對自訂語音（`"prompted"` 與 `"replicated"`）傳回；`"prebuilt"` 語音則不會設定。建立的語音可透過任何支援的 TTS 合成模型進行合成。
 
   
 
@@ -70,7 +69,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   **key**: `string`
 
-  僅供輸出。由用戶端管理的語音複製金鑰（前綴為 `voicekey_`）。僅由 `CreateVoice` 在 `type` 為 `"replicated"` 且 `store` 為 `false` 時傳回。在語音合成時，將此金鑰傳給 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  僅供輸出。由用戶端管理的語音複製金鑰（前綴為 `voicekey_`）。僅在建立語音時，於 `type` 為 `"replicated"` 且 `store` 為 `false` 的情況下傳回。在語音合成時，將此金鑰傳給 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
 
   
 
@@ -114,7 +113,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   **expire_time**: `string`
 
-  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在 `CreateVoice` 中使用時，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為這類語音不會到期。
+  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在建立另一個語音時使用，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為這類語音不會到期。
 
   
 
@@ -132,7 +131,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   
 
-??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。在 `CreateVoice` 中，當 `type` 為 `"prompted"` 時必填。會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中針對提示詞語音傳回。"
+??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。建立語音時，當 `type` 為 `"prompted"` 時必填。建立、取得或列出提示詞語音時，會在回應中針對提示詞語音傳回。"
 
     **input**: required `string`
 
@@ -231,7 +230,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 用量統計。僅在 `CreateVoice` 的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及 `GetVoice` 與 `ListVoices` 回應中不會設定。"
+??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 用量統計。僅在建立語音的回應中，當 `type` 為 `"prompted"` 時填入；`"replicated"` 以及取得或列出語音時不會設定。"
 
       **total_input_tokens**: `integer`
 
@@ -375,7 +374,7 @@ Voices API 讓你能從自然語言提示詞（Voice Design）或參考音訊與
 
   
 
-??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在 `CreateVoice` 與 `GetVoice` 回應中，當 `type` 為 `"prompted"` 時填入；`ListVoices` 回應以及 `"replicated"` 或 `"prebuilt"` 語音不會設定。"
+??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在建立或取得語音時，當 `type` 為 `"prompted"` 時填入；列出語音時以及 `"replicated"` 或 `"prebuilt"` 語音不會設定。"
 
     **mime_type**: required `string`
 

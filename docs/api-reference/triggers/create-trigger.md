@@ -848,7 +848,7 @@
 
       **continuation_token**: `string`
 
-      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
+      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在建立下一個互動時原封不動地傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 
@@ -1838,7 +1838,7 @@
 
       **continuation_token**: `string`
 
-      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
+      用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在建立下一個互動時原封不動地傳回最新 token，以繼續解碼。
 
       **stream**: `boolean`
 

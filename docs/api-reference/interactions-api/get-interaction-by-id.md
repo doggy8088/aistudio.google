@@ -285,6 +285,7 @@ Interaction 資源。
     - `gemini-4-argon`: Gemini 4 Argon：我們全新的前沿模型，為真實世界的軟體工程與知識工作而打造，能以深度與精確度解決最困難的問題。
     - `gemini-4-carbon`: Gemini 4 Carbon：我們能力最強的推理模型，為持續性的代理程式設計、多模態知識工作、科學探索與資安防禦而打造。
     - `gemini-4-hydrogen`: Gemini 4 Hydrogen：具備前沿級智慧的模型，為程式設計、代理工作流程與多模態知識工作提供快速可靠的執行。
+    - `gemini-4-neon`: Gemini 4 Neon：具備前沿級智慧的模型，為複雜的軟體工程、分析與科學工作流程提供快速的端到端任務完成。
     - `gemini-3.8-flash-tts`: Gemini 3.8 Flash TTS：旗艦 TTS 模型，支援 Voice Design 與雙講者劇本控制。可提示自訂聲音角色、逐行引導語音呈現，並加入聲音爆發效果。
     - `gemini-3.8-flash-lite-tts`: Gemini 3.8 Flash Lite TTS：高速且具成本效益，適合快速配音、媒體在地化與高輸送量語音代理。可直接取代 gemini-3.1-flash-tts-preview。
     - `gemini-3.5-transcribe`: Gemini 3.5 Transcribe：低延遲的語音轉文字模型，具備以語句為單位的語言偵測、講者分離、單字級時間戳記與自訂詞彙偏置。
@@ -502,6 +503,16 @@ Interaction 資源。
 
 
 
+
+
+            ??? note "**text_normalization**: `string enum` 控制語音合成前的文字正規化。"
+
+
+                  可能的值：
+
+                  - `auto`：根據模型與語音模式自動決定是否套用文字正規化。
+                  - `enabled`：針對數字、貨幣、日期與單位啟用文字正規化。
+                  - `disabled`：針對已正規化或語音輸入停用文字正規化。
 
 
         ??? note "**SpeechConfig array**"
@@ -841,7 +852,7 @@ Interaction 資源。
 
           **environment_id**: `string`
 
-          可選。互動的環境 ID。若指定，請求將更新現有環境，而非建立新環境。
+          可選。互動的環境 ID。若指定，請求將更新現有環境，而非建立新環境；建立時專用的欄位（`env` 和 `sources`）在恢復現有環境時無法更新。
 
 
 
@@ -1007,7 +1018,7 @@ Interaction 資源。
 
   **continuation_token**: `string`
 
-  用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在 CreateInteraction 中原封不動傳回最新 token，即可繼續解碼。
+  用於繼續長時間解碼的不透明 token。輸出：當狀態為 REQUIRES_CONTINUATION 且可繼續解碼時設定。輸入：在建立下一個互動時原封不動傳回最新 token，即可繼續解碼。
 
   
 
@@ -1201,7 +1212,7 @@ Interaction 資源。
 **多型類型**：
 
 
-??? note "**AudioContent**"
+??? note "**[AudioContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent)**"
 
       音訊內容區塊。
 
@@ -1331,7 +1342,7 @@ Interaction 資源。
 
 
 
-??? note "**DocumentContent**"
+??? note "**[DocumentContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent)**"
 
       文件內容區塊。
 
@@ -1822,7 +1833,7 @@ Interaction 資源。
 
 
 
-??? note "**VideoContent**"
+??? note "**[VideoContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)**"
 
       影片內容區塊。
 
@@ -2515,7 +2526,7 @@ Interaction 資源。
 
 
 
-??? note "**Function**"
+??? note "**[Function](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function)**"
 
       模型可使用的工具。
 
@@ -3770,7 +3781,7 @@ Interaction 資源。
 
           **continuation_token**: `string`
 
-          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
+          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在建立下一個互動時原封不動地傳回最新 token，以繼續解碼。
 
           **agent**: `string`
 
@@ -4009,7 +4020,7 @@ Interaction 資源。
 
           **continuation_token**: `string`
 
-          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在 CreateInteraction 中原封不動地傳回最新 token，以繼續解碼。
+          用於恢復長時間解碼的不透明 token。輸出：當狀態為 INCOMPLETE 且可恢復解碼時設定。輸入：在建立下一個互動時原封不動地傳回最新 token，以繼續解碼。
 
           **agent**: `string`
 
@@ -4432,16 +4443,16 @@ Interaction 資源。
         ??? note "**FunctionResultDelta**"
 
 
-            ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string`"
+            ??? note "**result**: required ([`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) `array` or `object` or `string`"
 
 
                   **可能類型**：
 
 
-                ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+                ??? note "**([AudioContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [DocumentContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [Function](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [VideoContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) array**"
 
 
-                      清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+                      清單中的每個項目為下列其中之一：[`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent)、[`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent)、[`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function)、[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)、[`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)。
 
 
                 ??? note "**string**"
@@ -4631,16 +4642,16 @@ Interaction 資源。
         ??? note "**McpServerToolResultDelta**"
 
 
-            ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string`"
+            ??? note "**result**: required ([`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) `array` or `object` or `string`"
 
 
                   **可能類型**：
 
 
-                ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+                ??? note "**([AudioContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [DocumentContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [Function](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [VideoContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) array**"
 
 
-                      清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+                      清單中的每個項目為下列其中之一：[`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent)、[`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent)、[`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function)、[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)、[`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)。
 
 
                 ??? note "**string**"
@@ -4907,6 +4918,41 @@ Interaction 資源。
               **content**: [`Content`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Content)
 
               要加入思考內容的新摘要項目。
+
+
+        ??? note "**ToolSearchCallDelta**"
+
+
+              **type**: required `object`
+
+              Value: `tool_search_call`
+
+
+            ??? note "**arguments**: `ToolSearchCallStepArguments`"
+
+
+                  **function_names**: `string array`
+
+                  要明確載入的函式名稱清單。
+
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
+
+
+        ??? note "**ToolSearchResultDelta**"
+
+
+              **type**: required `object`
+
+              Value: `tool_search_result`
+
+              **result**: [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) `array`
+
+              **signature**: `string`
+
+              供後端驗證的簽章雜湊。
 
 
         ??? note "**UrlContextCallDelta**"
@@ -6259,15 +6305,15 @@ Interaction 資源。
 
 
 
-    ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string` 工具呼叫的結果。"
+    ??? note "**result**: required ([`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) `array` or `object` or `string` 工具呼叫的結果。"
 
           **可能類型**：
 
 
 
-        ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+        ??? note "**([AudioContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [DocumentContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [Function](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [VideoContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) array**"
 
-            清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+            清單中的每個項目為下列其中之一：[`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent)、[`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent)、[`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function)、[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)、[`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)。
 
 
 
@@ -6762,15 +6808,15 @@ Interaction 資源。
 
 
 
-    ??? note "**result**: required `(`[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)`) array` or `object` or `string` MCP 伺服器呼叫的輸出。可以是簡單文字或豐富內容。"
+    ??? note "**result**: required ([`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) `array` or `object` or `string` MCP 伺服器呼叫的輸出。可以是簡單文字或豐富內容。"
 
           **可能類型**：
 
 
 
-        ??? note "**([ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)) array**"
+        ??? note "**([AudioContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent) or [DocumentContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent) or [Function](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) or [ImageContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent) or [TextContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent) or [VideoContent](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)) array**"
 
-            清單中的每個項目為下列其中之一：[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)。
+            清單中的每個項目為下列其中之一：[`AudioContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:AudioContent)、[`DocumentContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:DocumentContent)、[`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function)、[`ImageContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:ImageContent)、[`TextContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:TextContent)、[`VideoContent`](/api-reference/interactions-api/get-interaction-by-id/#Resource:VideoContent)。
 
 
 
@@ -7066,32 +7112,9 @@ Interaction 資源。
     ---
 
 
-    ??? note "**result**: `Function array` 擷取到的函式定義。"
+    **result**: [`Function`](/api-reference/interactions-api/get-interaction-by-id/#Resource:Function) `array`
 
-
-          **type**: required `object`
-
-          值：`function`
-
-          **name**: `string`
-
-          函式的名稱。
-
-          **description**: `string`
-
-          函式的說明。
-
-          **parameters**: `object`
-
-          函式參數的 JSON Schema。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行。
-
-          **defer_loading**: `boolean`
-
-          若為 true，系統會延遲載入此函式。
-
-          **short_description**: `string`
-
-          函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+    擷取到的函式定義。
 
 
     ---
@@ -7430,7 +7453,7 @@ Interaction 資源。
 
   **environment_id**: `string`
 
-  可選。互動的環境 ID。若指定，請求將更新現有環境，而非建立新環境。
+  可選。互動的環境 ID。若指定，請求將更新現有環境，而非建立新環境；建立時專用的欄位（`env` 和 `sources`）在恢復現有環境時無法更新。
 
   
 
@@ -7701,6 +7724,571 @@ Interaction 資源。
   
 
 
+### AudioContent {#Resource:AudioContent}
+
+音訊內容區塊。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  值：`audio`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  音訊內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  音訊的 URI。
+
+  
+
+---
+
+
+  **channels**: `integer`
+
+  音訊聲道數量。
+
+  
+
+---
+
+
+  **sample_rate**: `integer`
+
+  音訊的取樣率。
+
+  
+
+---
+
+
+  
+
+??? note "**processing**: `AudioMediaProcessing` or `string enum` 模型如何處理此音訊以進行理解。"
+
+
+      **可能類型**：
+
+
+    ??? note "**AudioMediaProcessing**"
+
+
+          **type**: required `object`
+
+          值：`static`
+
+          **start_offset**: `string`
+
+          可選。片段開始時間，相對於音訊串流的開頭。以小數秒數表示，後接 's' 後綴，例如 "10.5s"。必須為非負數。
+
+          **end_offset**: `string`
+
+          可選。片段結束時間，相對於音訊串流的開頭。以小數秒數表示，後接 's' 後綴，例如 "30s"。必須為正數，且在設定 `start_offset` 時必須大於 `start_offset`。
+
+
+    ??? note "**string enum**"
+
+
+          可能值：
+
+          - `static`: 所有音訊皆放入上下文。
+
+
+  
+
+---
+
+
+  
+
+??? note "**mime_type**: `string enum` 音訊的 MIME 類型。"
+
+
+      可能值：
+
+      - `audio/wav`: WAV 音訊格式
+      - `audio/mp3`: MP3 音訊格式
+      - `audio/aiff`: AIFF 音訊格式
+      - `audio/aac`: AAC 音訊格式
+      - `audio/ogg`: OGG 音訊格式
+      - `audio/flac`: FLAC 音訊格式
+      - `audio/mpeg`: MPEG 音訊格式
+      - `audio/m4a`: M4A 音訊格式
+      - `audio/l16`: L16 音訊格式
+      - `audio/opus`: OPUS 音訊格式
+      - `audio/alaw`: ALAW 音訊格式
+      - `audio/mulaw`: MULAW 音訊格式
+      - `audio/webm`: WEBM 音訊格式
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **音訊**
+
+  **Example**
+
+  **Audio**
+
+  ```json
+  {
+    "type": "audio",
+    "data": "BASE64_ENCODED_AUDIO",
+    "mime_type": "audio/wav"
+  }
+  ```
+### DocumentContent {#Resource:DocumentContent}
+
+文件內容區塊。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  值：`document`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  文件內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  文件的 URI。
+
+  
+
+---
+
+
+  
+
+??? note "**resolution**: `MediaResolution` 媒體的解析度。當在 content_layers 中選取 PAGE_IMAGE 時適用。"
+
+
+      可能值：
+
+      - `low`: 低解析度。
+      - `medium`: 中解析度。
+      - `high`: 高解析度。
+      - `ultra_high`: 超高解析度。
+
+
+  
+
+---
+
+
+  
+
+??? note "**processing**: `DocumentMediaProcessing` or `string enum` 模型如何處理此文件以進行理解。"
+
+
+      **可能類型**：
+
+
+    ??? note "**DocumentMediaProcessing**"
+
+
+          **type**: required `object`
+
+          值：`static`
+
+
+        ??? note "**page_options**: `PageProcessingOptions` 分頁文件的選項。僅適用於分頁文件 MIME 類型（例如 PDF、Office 文件與簡報）。"
+
+
+              **start_page**: `integer`
+
+              可選。起始頁，以 1 起算，包含起始頁。
+
+              **end_page**: `integer`
+
+              可選。結束頁，以 1 起算，包含結束頁。若設定了 `start_page`，必須大於或等於 `start_page`。
+
+
+            ??? note "**content_layers**: `string enum array` 可選。要從分頁文件中擷取的內容層。"
+
+
+                  可能值：
+
+                  - `page_image`: 頁面的轉譯影像。
+                  - `page_text`: 頁面的文字。
+
+
+        ??? note "**spreadsheet_options**: `SpreadsheetProcessingOptions` 試算表的選項。僅適用於試算表 MIME 類型（.xlsx、.xls、.ods）。"
+
+
+              **visible_cells**: `string`
+
+              可選。要擷取的儲存格範圍，以 A1 標記法表示（例如 "A1:D10"）。若未設定，將使用工作表已佔用的完整範圍。
+
+              **sheet_index**: `integer`
+
+              可選。要擷取的工作表索引，以 1 起算，依活頁簿順序。若未設定，會擷取全部工作表。
+
+
+            ??? note "**content_layers**: `string enum array` 可選。要從試算表中擷取的內容層。"
+
+
+                  可能值：
+
+                  - `visual`: 工作表的轉譯影像。
+                  - `data`: 儲存格值、合併儲存格與格式。
+                  - `formulas`: 公式運算式及其計算結果。
+
+
+    ??? note "**string enum**"
+
+
+          可能值：
+
+          - `static`: 已擷取的所有頁面皆放入上下文。
+
+
+  
+
+---
+
+
+  
+
+??? note "**mime_type**: `string enum` 文件的 MIME 類型。"
+
+
+      可能值：
+
+      - `application/pdf`: PDF 文件格式
+      - `text/csv`: CSV 文件格式
+      - `application/vnd.openxmlformats-officedocument.presentationml.presentation`: PPTX 簡報格式
+      - `application/vnd.ms-powerpoint`: PPT 簡報格式
+      - `application/vnd.oasis.opendocument.presentation`: ODP 簡報格式
+      - `application/vnd.openxmlformats-officedocument.wordprocessingml.document`: DOCX 文件格式
+      - `application/msword`: DOC 文件格式
+      - `application/vnd.openxmlformats-officedocument.wordprocessingml.template`: DOTX 文件範本格式
+      - `application/vnd.oasis.opendocument.text`: ODT 文件格式
+      - `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`: XLSX 試算表格式
+      - `application/vnd.ms-excel`: XLS 試算表格式
+      - `application/vnd.oasis.opendocument.spreadsheet`: ODS 試算表格式
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **文件**
+
+  **Example**
+
+  **Document**
+
+  ```json
+  {
+    "type": "document",
+    "data": "BASE64_ENCODED_DOCUMENT",
+    "mime_type": "application/pdf"
+  }
+  ```
+### Function {#Resource:Function}
+
+模型可使用的工具。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  值：`function`
+
+  
+
+---
+
+
+  **name**: `string`
+
+  函式名稱。
+
+  
+
+---
+
+
+  **description**: `string`
+
+  函式的說明。
+
+  
+
+---
+
+
+  **parameters**: `object`
+
+  函式參數的 JSON Schema。支援 JSON Schema 的子集。`minLength`、`maxLength`、`minProperties`、`maxProperties`、`uniqueItems`、`contains`、`minContains` 與 `maxContains` 會被忽略且不強制執行。
+
+  
+
+---
+
+
+  **defer_loading**: `boolean`
+
+  若為 true，系統會延遲載入此函式。
+
+  
+
+---
+
+
+  **short_description**: `string`
+
+  函式的簡短描述；對於設定了 `defer_loading` 的函式，模型會看到這段摘要。
+
+  
+
+  
+
+  
+  **範例**
+
+  **Example**
+
+  
+
+=== "REST"
+
+      ```sh
+      curl -X POST https://generativelanguage.googleapis.com/v1beta/interactions \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d '{
+          "model": "gemini-3.8-flash",
+          "tools": [{
+            "type": "function",
+            "name": "get_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "type": "string",
+                  "description": "The city and state, e.g. San Francisco, CA"
+                }
+              },
+              "required": ["location"]
+            }
+          }],
+          "input": "What is the weather like in Boston, MA?"
+        }'
+      ```
+
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client()
+      response = client.interactions.create(
+          model="gemini-3.8-flash",
+          tools=[{
+              "type": "function",
+              "name": "get_weather",
+              "description": "Get the current weather in a given location",
+              "parameters": {
+                  "type": "object",
+                  "properties": {
+                      "location": {
+                          "type": "string",
+                          "description": (
+                              "The city and state, e.g. San Francisco, CA"
+                          ),
+                      }
+                  },
+                  "required": ["location"],
+              },
+          }],
+          input="What is the weather like in Boston?",
+      )
+      print(response.steps[-1])
+      ```
+
+=== "JavaScript"
+
+      ```javascript
+      import {GoogleGenAI} from '@google/genai';
+
+      const ai = new GoogleGenAI({});
+      const interaction = await ai.interactions.create({
+        model: 'gemini-3.8-flash',
+        tools: [
+          {
+            type: 'function',
+            name: 'get_weather',
+            description: 'Get the current weather in a given location',
+            parameters: {
+              type: 'object',
+              properties: {
+                location: {
+                  type: 'string',
+                  description: 'The city and state, e.g. San Francisco, CA',
+                },
+              },
+              required: ['location'],
+            },
+          },
+        ],
+        input: 'What is the weather like in Boston?',
+      });
+      console.log(interaction.steps.at(-1));
+      ```
+
+=== "Java"
+
+      ```java
+      import com.google.genai.Client;
+      import com.google.genai.gaos.models.interactions.CreateModelInteraction;
+      import com.google.genai.gaos.models.interactions.Function;
+      import com.google.genai.gaos.models.interactions.Interaction;
+      import com.google.genai.gaos.models.interactions.InteractionsInput;
+      import com.google.genai.gaos.models.interactions.Step;
+      import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
+      import com.google.genai.gaos.models.operations.CreateInteractionResponse;
+      import java.util.List;
+
+      Client client = new Client();
+      Map<String, Object> parameters =
+          Map.of(
+              "type", "object",
+              "properties",
+                  Map.of(
+                      "location",
+                      Map.of(
+                          "type", "string",
+                          "description", "The city and state, e.g. San Francisco, CA")),
+              "required", List.of("location"));
+      Function functionTool =
+          Function.builder()
+              .name("get_weather")
+              .description("Get the current weather in a given location")
+              .parameters(parameters)
+              .build();
+      CreateModelInteraction params =
+          CreateModelInteraction.builder()
+              .model("gemini-3.8-flash")
+              .tools(List.of(functionTool))
+              .input(InteractionsInput.of("What is the weather like in Boston?"))
+              .build();
+      CreateInteractionResponse response =
+          client.interactions.create(CreateInteractionRequestBody.of(params));
+      Interaction interaction =
+          response.interaction().orElseThrow(() -> new RuntimeException("No interaction returned"));
+      List<Step> steps = interaction.steps().orElse(List.of());
+      if (!steps.isEmpty()) {
+        System.out.println(steps.get(steps.size() - 1));
+      }
+      ```
+
+=== "function_calling"
+
+      ```go
+      package main
+
+      import (
+          "context"
+          "fmt"
+          "log"
+          "google.golang.org/genai"
+          gaos_interactions "google.golang.org/genai/interactions/models/interactions"
+          "google.golang.org/genai/interactions/models/operations"
+      )
+
+      func main() {
+          ctx := context.Background()
+          client, err := genai.NewClient(ctx, nil)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          function := gaos_interactions.Function{
+              Name:        genai.Ptr("get_weather"),
+              Description: genai.Ptr("Get the current weather in a given location"),
+              Parameters: map[string]any{
+                  "type": "object",
+                  "properties": map[string]any{
+                      "location": map[string]any{
+                          "type":        "string",
+                          "description": "The city and state, e.g. San Francisco, CA",
+                      },
+                  },
+                  "required": []string{"location"},
+              },
+          }
+
+          tool := gaos_interactions.NewTool(function)
+
+          body := operations.NewCreateInteractionRequestBody(gaos_interactions.CreateModelInteraction{
+              Model: gaos_interactions.Model("gemini-3.8-flash"),
+              Input: genai.Ptr(gaos_interactions.NewInteractionsInput("What is the weather like in Boston, MA?")),
+              Tools: []gaos_interactions.Tool{tool},
+          })
+
+          req := operations.CreateInteractionRequest{
+              Body: body,
+          }
+
+          res, err := client.Interactions.Create(ctx, req)
+          if err != nil {
+              log.Fatal(err)
+          }
+
+          if res.Interaction != nil {
+              for _, step := range res.Interaction.Steps {
+                  if step.FunctionCallStep != nil {
+                      fmt.Println("Function Call:", step.FunctionCallStep.Name)
+                      fmt.Println("Arguments:", step.FunctionCallStep.Arguments)
+                  }
+              }
+          }
+      }
+      ```
 ### ImageContent {#Resource:ImageContent}
 
 圖片內容區塊。
@@ -8037,3 +8625,156 @@ Interaction 資源。
 
   
 
+
+### VideoContent {#Resource:VideoContent}
+
+影片內容區塊。
+
+
+  
+  **屬性**：
+
+  
+  **type**: required `object`
+
+  值：`video`
+
+  
+
+---
+
+
+  **data**: `string`
+
+  影片內容。
+
+  
+
+---
+
+
+  **uri**: `string`
+
+  影片的 URI。
+
+  
+
+---
+
+
+  
+
+??? note "**resolution**: `MediaResolution` 媒體的解析度。"
+
+
+      可能值：
+
+      - `low`: 低解析度。
+      - `medium`: 中解析度。
+      - `high`: 高解析度。
+      - `ultra_high`: 超高解析度。
+
+
+  
+
+---
+
+
+  
+
+??? note "**processing**: `MediaProcessing` or `string enum` 模型如何處理此影片以進行理解。"
+
+
+      **可能類型**：
+
+
+    ??? note "**MediaProcessing**"
+
+
+          **type**: required `object`
+
+          值：`static`
+
+          **start_offset**: `string`
+
+          可選。片段開始時間。以小數秒數表示，後接 's' 後綴，例如 "10.5s"。必須為非負數。
+
+          **end_offset**: `string`
+
+          可選。片段結束時間。以小數秒數表示，後接 's' 後綴，例如 "30s"。必須為非負數，且在設定 `start_offset` 時必須大於 `start_offset`。
+
+          **fps**: `number`
+
+          可選。影片影格率取樣密度。
+
+
+        ??? note "**content_layers**: `string enum array` 可選。要從影片中擷取的內容層。"
+
+
+              可能值：
+
+              - `frames`: 影片的影格。
+              - `audio`: 影片的音訊。
+              - `transcript`: 音軌的逐字稿。
+
+
+    ??? note "**string enum**"
+
+
+          可能值：
+
+          - `static`: 固定速率影格擷取。所有影格皆放入上下文。
+          - `agentic`: 由模型驅動的動態導覽。
+
+
+  
+
+---
+
+
+  **name**: `string`
+
+  此內容區塊的使用者自訂名稱。模型可在最終回應中參照此名稱。
+
+  
+
+---
+
+
+  
+
+??? note "**mime_type**: `string enum` 影片的 MIME 類型。"
+
+
+      可能值：
+
+      - `video/mp4`: MP4 影片格式
+      - `video/mpeg`: MPEG 影片格式
+      - `video/mpg`: MPG 影片格式
+      - `video/mov`: MOV 影片格式
+      - `video/avi`: AVI 影片格式
+      - `video/x-flv`: FLV 影片格式
+      - `video/webm`: WebM 影片格式
+      - `video/wmv`: WMV 影片格式
+      - `video/3gpp`: 3GPP 影片格式
+
+
+  
+
+  
+
+  
+  **範例**
+
+  **影片**
+
+  **Example**
+
+  **Video**
+
+  ```json
+  {
+    "type": "video",
+    "uri": "https://www.youtube.com/watch?v=9hE5-98ZeCg"
+  }
+  ```

@@ -44,7 +44,7 @@
 
   **page_token**: `string`
 
-  先前 ListTriggerExecutions 呼叫所傳回的分頁 token。
+  先前呼叫列出觸發執行記錄時所傳回的分頁 token。
 
 
 
@@ -130,7 +130,7 @@
 
   **next_page_token**: `string`
 
-  從先前的 `ListTriggerExecutions` 呼叫收到的分頁 token。提供此 token 即可擷取下一頁。
+  用來擷取下一頁觸發執行記錄的 token。請在下一個要求中將其做為 `page_token` 傳送。若為空值，表示沒有其他頁面。
 
 
 

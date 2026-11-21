@@ -28,7 +28,7 @@
 
   選填。建立的語音是否由 Google 持久保存並管理。
 
-  - 當為 `true` 時，Google 會儲存該語音並回傳 `Voice.id`（例如 `voice_abc123def456`），可透過 `GetVoice`、`ListVoices` 與 `DeleteVoice` 管理，並在合成請求中以 ID 參照。已儲存的語音在 1 年未使用後到期；在語音合成中使用已儲存的語音，或作為 `base_voice` 在 `CreateVoice` 中使用，都會延長其 `expire_time`。每個專案都有使用中已儲存語音的配額上限；超過配額會回傳 `RESOURCE_EXHAUSTED`。
+  - 當為 `true` 時，Google 會儲存該語音並回傳 `Voice.id`（例如 `voice_abc123def456`），可取得、列出及刪除，並在合成請求中以 ID 參照。已儲存的語音在 1 年未使用後到期；在語音合成中使用已儲存的語音，或作為 `base_voice` 在建立另一個語音時使用，都會延長其 `expire_time`。每個專案都有使用中已儲存語音的配額上限；超過配額會回傳 `RESOURCE_EXHAUSTED`。
   - 當為 `false`（預設）時，Google 不會儲存該語音，而是回傳 `Voice.key`（例如 `voicekey_...`）供用戶端儲存與合成使用。`voice` 上的選填探索中繼資料欄位，在 `store` 為 `false` 時不會被持久保存，也不會回傳。
   - 必須為 `true`：當 `voice.type` 為 `"prompted"` 時（否則會以 `INVALID_ARGUMENT` 失敗）。
 
@@ -157,13 +157,13 @@
 
   
 
-??? note "**type**: required `VoiceType` 語音的類型。在 `CreateVoice` 中，必須為 `"replicated"` 或 `"prompted"`。在 `ListVoices` 回應中，也可以是 `"prebuilt"`。"
+??? note "**type**: required `VoiceType` 語音的類型。建立語音時，必須為 `"replicated"` 或 `"prompted"`。列出語音時，也可以是 `"prebuilt"`。"
 
     可能的值：
 
     - `replicated`: 透過參考音訊範本與說話者同意錄音複製出的自訂語音。
     - `prompted`: 透過自然語言文字提示詞產生的自訂語音（可選擇編輯或混音 `base_voice`）。
-    - `prebuilt`: Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中回傳；無法在 `CreateVoice` 中指定為類型。
+    - `prebuilt`: Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中回傳；建立語音時無法指定為類型。
 
 
 
@@ -176,9 +176,9 @@
 
   僅供輸出。語音的唯一識別碼。
 
-  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，帶有 `voice_` 前綴（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在 `GetVoice` 與 `DeleteVoice` 中傳入；在語音合成期間，將 `{id}` 直接傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
-  - 對於預建目錄語音（`"prebuilt"`，由 `ListVoices` 回傳），這是說話者名稱（例如 `Puck` 或 `Charon`）。
-  - `CreateVoice` 以 `store = false` 呼叫時不會設定。
+  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，帶有 `voice_` 前綴（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在取得或刪除語音時傳入；在語音合成期間，將 `{id}` 直接傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  - 對於預建目錄語音（`"prebuilt"`，列出語音時回傳），這是說話者名稱（例如 `Puck` 或 `Charon`）。
+  - 建立語音時若 `store = false`，不會設定。
 
   
 
@@ -187,7 +187,7 @@
 
   **model**: `string`
 
-  選填。用來設計或複製語音的模型。若在 `CreateVoice` 中省略，預設為最新支援的語音設計模型。對於自訂語音，會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中回傳（`"prompted"` 與 `"replicated"`）；對於 `"prebuilt"` 語音則不會設定。建立的語音可在任何支援的 TTS 合成模型間合成。
+  選填。用來設計或複製語音的模型。若在建立語音時省略，預設為最新支援的語音設計模型。對於自訂語音，會在建立、取得或列出語音的回應中回傳（`"prompted"` 與 `"replicated"`）；對於 `"prebuilt"` 語音則不會設定。建立的語音可在任何支援的 TTS 合成模型間合成。
 
   
 
@@ -196,7 +196,7 @@
 
   **key**: `string`
 
-  僅供輸出。由用戶端管理的語音複製金鑰（帶有 `voicekey_` 前綴）。僅由 `CreateVoice` 回傳，條件為 `type` 為 `"replicated"` 且 `store` 為 `false`。在語音合成期間，將此金鑰傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  僅供輸出。由用戶端管理的語音複製金鑰（帶有 `voicekey_` 前綴）。僅在建立語音時回傳，條件為 `type` 為 `"replicated"` 且 `store` 為 `false`。在語音合成期間，將此金鑰傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
 
   
 
@@ -205,7 +205,7 @@
 
   **expire_time**: `string`
 
-  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在 `CreateVoice` 中使用時，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為它們不會到期。
+  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在建立另一個語音時使用，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為它們不會到期。
 
   
 
@@ -223,7 +223,7 @@
 
   
 
-??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。在 `CreateVoice` 中，當 `type` 為 `"prompted"` 時必填。對於提示詞語音，會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中回傳。"
+??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。建立語音時，當 `type` 為 `"prompted"` 時必填。對於提示詞語音，會在建立、取得或列出語音的回應中回傳。"
 
     **input**: required `string`
 
@@ -321,7 +321,7 @@
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 使用統計。僅在 `CreateVoice` 的回應中填入，條件為 `type` 為 `"prompted"`；對於 `"replicated"`，以及在 `GetVoice` 與 `ListVoices` 回應中，則不會設定。"
+??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 使用統計。僅在建立語音的回應中填入，條件為 `type` 為 `"prompted"`；對於 `"replicated"`，以及在取得或列出語音時，則不會設定。"
 
       **total_input_tokens**: `integer`
 
@@ -465,7 +465,7 @@
 
   
 
-??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在 `CreateVoice` 與 `GetVoice` 回應中填入，條件為 `type` 為 `"prompted"`；在 `ListVoices` 回應中，以及對於 `"replicated"` 或 `"prebuilt"` 語音，則不會設定。"
+??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在建立或取得語音時填入，條件為 `type` 為 `"prompted"`；在列出語音時，以及對於 `"replicated"` 或 `"prebuilt"` 語音，則不會設定。"
 
     **mime_type**: required `string`
 
@@ -481,20 +481,20 @@
 
 ### Voice {#Resource:Voice}
 
-語音資源，表示自訂語音（透過 `CreateVoice` 建立）或預建系統語音（由 `ListVoices` 回傳）。
+語音資源，表示自訂語音（由你建立）或預建系統語音（列出語音時回傳）。
 
 **屬性**：
 
 
   
 
-??? note "**type**: required `VoiceType` 語音的類型。在 `CreateVoice` 中，必須為 `"replicated"` 或 `"prompted"`。在 `ListVoices` 回應中，也可以是 `"prebuilt"`。"
+??? note "**type**: required `VoiceType` 語音的類型。建立語音時，必須為 `"replicated"` 或 `"prompted"`。列出語音時，也可以是 `"prebuilt"`。"
 
     可能的值：
 
     - `replicated`: 透過參考音訊範本與說話者同意錄音複製出的自訂語音。
     - `prompted`: 透過自然語言文字提示詞產生的自訂語音（可選擇編輯或混音 `base_voice`）。
-    - `prebuilt`: Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中回傳；無法在 `CreateVoice` 中指定為類型。
+    - `prebuilt`: Google 語音目錄中的內建系統語音（例如 `Puck`、`Charon`）。會在回應中回傳；建立語音時無法指定為類型。
 
 
 
@@ -507,9 +507,9 @@
 
   僅供輸出。語音的唯一識別碼。
 
-  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，帶有 `voice_` 前綴（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在 `GetVoice` 與 `DeleteVoice` 中傳入；在語音合成期間，將 `{id}` 直接傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
-  - 對於預建目錄語音（`"prebuilt"`，由 `ListVoices` 回傳），這是說話者名稱（例如 `Puck` 或 `Charon`）。
-  - `CreateVoice` 以 `store = false` 呼叫時不會設定。
+  - 對於 Google 管理的自訂語音（`store = true`），這是產生的 ID，帶有 `voice_` 前綴（例如 `voice_abc123def456`）。將 `voices/{id}` 作為 `name`，在取得或刪除語音時傳入；在語音合成期間，將 `{id}` 直接傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  - 對於預建目錄語音（`"prebuilt"`，列出語音時回傳），這是說話者名稱（例如 `Puck` 或 `Charon`）。
+  - 建立語音時若 `store = false`，不會設定。
 
   
 
@@ -518,7 +518,7 @@
 
   **model**: `string`
 
-  選填。用來設計或複製語音的模型。若在 `CreateVoice` 中省略，預設為最新支援的語音設計模型。對於自訂語音，會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中回傳（`"prompted"` 與 `"replicated"`）；對於 `"prebuilt"` 語音則不會設定。建立的語音可在任何支援的 TTS 合成模型間合成。
+  選填。用來設計或複製語音的模型。若在建立語音時省略，預設為最新支援的語音設計模型。對於自訂語音，會在建立、取得或列出語音的回應中回傳（`"prompted"` 與 `"replicated"`）；對於 `"prebuilt"` 語音則不會設定。建立的語音可在任何支援的 TTS 合成模型間合成。
 
   
 
@@ -527,7 +527,7 @@
 
   **key**: `string`
 
-  僅供輸出。由用戶端管理的語音複製金鑰（帶有 `voicekey_` 前綴）。僅由 `CreateVoice` 回傳，條件為 `type` 為 `"replicated"` 且 `store` 為 `false`。在語音合成期間，將此金鑰傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
+  僅供輸出。由用戶端管理的語音複製金鑰（帶有 `voicekey_` 前綴）。僅在建立語音時回傳，條件為 `type` 為 `"replicated"` 且 `store` 為 `false`。在語音合成期間，將此金鑰傳入 `SpeechConfig.voice_config.voice`（或 `SpeechConfig.voice`）。
 
   
 
@@ -571,7 +571,7 @@
 
   **expire_time**: `string`
 
-  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在 `CreateVoice` 中使用時，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為它們不會到期。
+  僅供輸出。自訂已儲存語音（`store = true`）或複製語音金鑰（`store = false`）到期的時間戳記。對於自訂已儲存語音（`store = true`），當語音用於語音合成，或作為 `base_voice` 在建立另一個語音時使用，此到期時間會延長。預建目錄語音（`"prebuilt"`）不會設定，因為它們不會到期。
 
   
 
@@ -589,7 +589,7 @@
 
   
 
-??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。在 `CreateVoice` 中，當 `type` 為 `"prompted"` 時必填。對於提示詞語音，會在 `CreateVoice`、`GetVoice` 與 `ListVoices` 回應中回傳。"
+??? note "**prompted**: `PromptedVoice` 提示詞語音產生的參數。建立語音時，當 `type` 為 `"prompted"` 時必填。對於提示詞語音，會在建立、取得或列出語音的回應中回傳。"
 
     **input**: required `string`
 
@@ -687,7 +687,7 @@
 
   
 
-??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 使用統計。僅在 `CreateVoice` 的回應中填入，條件為 `type` 為 `"prompted"`；對於 `"replicated"`，以及在 `GetVoice` 與 `ListVoices` 回應中，則不會設定。"
+??? note "**usage**: `Usage` 僅供輸出。語音建立請求的 token 使用統計。僅在建立語音的回應中填入，條件為 `type` 為 `"prompted"`；對於 `"replicated"`，以及在取得或列出語音時，則不會設定。"
 
       **total_input_tokens**: `integer`
 
@@ -831,7 +831,7 @@
 
   
 
-??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在 `CreateVoice` 與 `GetVoice` 回應中填入，條件為 `type` 為 `"prompted"`；在 `ListVoices` 回應中，以及對於 `"replicated"` 或 `"prebuilt"` 語音，則不會設定。"
+??? note "**sample_audio**: `AudioData` 僅供輸出。為提示詞語音產生的範例音訊（合成器提示詞音訊）。僅在建立或取得語音時填入，條件為 `type` 為 `"prompted"`；在列出語音時，以及對於 `"replicated"` 或 `"prebuilt"` 語音，則不會設定。"
 
     **mime_type**: required `string`
 

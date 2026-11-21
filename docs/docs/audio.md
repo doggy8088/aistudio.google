@@ -1342,7 +1342,7 @@ Gemini 可以分析並理解音訊輸入，再產生文字回應，支援以下�
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      curl -X POST "https://generativelanguage.googleapis.com/v1/interactions" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -H 'Content-Type: application/json' \
         -d '{

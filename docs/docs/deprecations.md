@@ -265,7 +265,7 @@
 
 | 模型 | 發布日期 | 關閉日期 | 建議替代模型 |
 | --- | --- | --- | --- |
-| [`models/genie-4`](/docs/models/genie-4/) | 2026 年 11 月 19 日 | 尚未公布關閉日期 |  |
+| [`genie-4`](/docs/models/genie-4/) | 2026 年 11 月 19 日 | 尚未公布關閉日期 |  |
 
 
 ## Lyria 模型 {#lyria-models}
