@@ -422,30 +422,51 @@ nav:
       - api-reference/all-methods.md
   - learn.md
   - learn/agentic-video-understanding-with-gemini.md
+  - learn/ai-app-builder.md
   - learn/ai-ui-design-google-ai-studio.md
+  - learn/argon.md
+  - learn/automate-pdf-with-the-gemini-api.md
+  - learn/build-a-custom-app-with-pdf.md
+  - learn/build-android-apps.md
   - learn/build-app-from-drawing.md
   - learn/build-apps-with-gemini-3-8-flash.md
+  - learn/build-custom-text-to-speech-app.md
   - learn/build-website-vibe-code.md
+  - learn/build-with-gemini-4-argon.md
+  - learn/build-with-google-maps.md
   - learn/building-3d-games-and-worlds-with-gemini-4-argon.md
+  - learn/claim-google-ai-plan-credits-in-ai-studio.md
   - learn/deep-research-developer-guide.md
   - learn/developer-guide-gemini-3-5-flash.md
+  - learn/dynamic-tool-retrieval-gemini-api.md
   - learn/gemini-3-5-transcribe-developer-guide.md
   - learn/gemini-3-7-flash-developer-guide.md
   - learn/gemini-3-8-flash-tts-developer-guide.md
   - learn/gemini-4-argon.md
   - learn/gemini-4-argon-developer-guide.md
   - learn/gemini-4-argon-showcase.md
+  - learn/gemini-4-carbon-developer-guide.md
+  - learn/gemini-4-carbon-showcase.md
   - learn/gemini-api-skills.md
   - learn/gemini-tts-prompt-guide-with-tags.md
   - learn/getting-started-with-open-claw-and-gemini.md
+  - learn/index.md
+  - learn/introducing-the-gemini-api-cli.md
   - learn/managed-agents-updated-harness-files-credentials.md
   - learn/multimodal-rag-file-search.md
+  - learn/partner-cua-computer-use-gemini.md
   - learn/starter-templates.md
   - learn/sync-your-ai-studio-apps-with-github.md
   - learn/templates-personal-blog.md
   - learn/text-to-speech.md
+  - learn/unlock-pdf-insights-gemini.md
   - learn/use-google-ai-plan-credits-in-ai-studio.md
+  - learn/what-is-the-gemini-api-cli.md
+  - learn/what-is-vibe-coding.md
+  - learn/xr-blocks-in-ai-studio.md
+  - learn/xr-blocks-showcase.md
   - learn/yc-gdm-startups-day-building-agi-era.md
+  - learn/youtube-video-summarizer.md
   - case-studies.md
   - case-studies/addglow.md
   - case-studies/agentops.md
