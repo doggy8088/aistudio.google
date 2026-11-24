@@ -24,7 +24,22 @@ Gemini 3.8 Live（`gemini-3.8-live`）是低延遲、音訊對音訊語音代理
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-3.8-live` |
 | 最近更新 | 2026 年 9 月 |
 | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-3-8-audio/) |
-| 定價 | [定價](/docs/pricing/#gemini-3.8-live) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-3.8-live/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+| 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+| --- | --- | --- |
+| 輸入價格 | 免費 | $0.75（文字） $3.00 或 $0.005/分鐘 （音訊） $1.00 或 $0.002/分鐘 （圖片/影片） |
+| 輸出價格（含思考 token） | 免費 | $4.50（文字） $12.00 或 $0.018/分鐘 （音訊） |
+| 使用 Google 搜尋接地* | 支援 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+| 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
 
 
 ## 從 Gemini 3.1 Flash Live 移轉 {#migrating}

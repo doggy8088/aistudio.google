@@ -111,7 +111,7 @@ Gemini Decision 1 適用於要求分流、同時對多條規則進行政策檢�
 
 ## 文件 {#documentation}
 
-要求架構、條件設計、多模態輸入與校準細節，請參閱 [Decisions API](/docs/decisions-api/) 指南。計費與配額層級請參閱[定價](/docs/pricing/#gemini-decision)與[速率限制](/docs/rate-limits/#gemini-decision)。
+要求架構、條件設計、多模態輸入與校準細節，請參閱 [Decisions API](/docs/decisions-api/) 指南。計費與配額層級請參閱[定價](/docs/models/gemini-decision-1/#pricing)與[速率限制](/docs/rate-limits/#gemini-decision)。
 
 ## 範例應用程式 {#sample-apps}
 
@@ -136,6 +136,20 @@ Gemini Decision 1 適用於要求分流、同時對多條規則進行政策檢�
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | `gemini-decision-1` |
 | 最近更新 | 2026 年 11 月 |
 | 速率限制 | [速率限制](/docs/rate-limits/#gemini-decision) |
-| 定價 | [定價](/docs/pricing/#gemini-decision) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-decision-1/#pricing)。 |
 
 
+## 定價 {#pricing}
+
+每次請求僅對共用的輸入 token 計費一次，與問題數量無關。每個問題會為自身的指令、評判標準與格式增加 token，且不產生任何輸出 token。[Batch API](/docs/batch-api/) 不支援。
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格（文字、圖片、影片、音訊、PDF） | 免費 | $0.10 |
+    | 輸出價格 | 不適用（0 個輸出 tokens） | 不適用（0 個輸出 tokens） |
+    | 上下文快取價格 | 不提供 | 不提供 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

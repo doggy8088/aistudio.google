@@ -8,7 +8,7 @@ Gemini 3.5 Transcribe 是以 Gemini 音訊理解能力為基礎的語音轉文�
 
 Gemini 3.5 Transcribe 可將音訊檔案中的語音轉換為文字。它能自動偵測 85 種以上的語言、處理多語言混雜切換、辨識個別說話者、輸出單字層級的時間戳記，並透過自訂詞彙偏置來適應特定領域的術語。
 
-非串流功能的完整說明請參閱[音訊轉錄](/docs/transcribe/)指南。如需透過 WebSocket 進行即時、低延遲的串流轉錄，請參閱使用 `gemini-3.5-transcribe-live` 的[即時轉錄](/docs/live-api/live-transcribe/)指南。詳細定價請參閱[定價頁面](/docs/pricing/#gemini-3.5-transcribe)。
+非串流功能的完整說明請參閱[音訊轉錄](/docs/transcribe/)指南。如需透過 WebSocket 進行即時、低延遲的串流轉錄，請參閱使用 `gemini-3.5-transcribe-live` 的[即時轉錄](/docs/live-api/live-transcribe/)指南。詳細定價請參閱下方的[定價章節](/docs/models/gemini-3.5-transcribe/#pricing)。
 
 ## gemini-3.5-transcribe {#gemini-35-transcribe}
 
@@ -22,7 +22,43 @@ Gemini 3.5 Transcribe 可將音訊檔案中的語音轉換為文字。它能自�
 | 使用方式 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**Priority 推論**](/docs/priority-inference/) 不支援 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | `gemini-3.5-transcribe`（單次） | `gemini-3.5-transcribe-live`（Live API） |
 | 最近更新 | 2026 年 8 月 |
-| 定價 | [Gemini 3.5 Transcribe](/docs/pricing/#gemini-3.5-transcribe) [Gemini 3.5 Transcribe Live](/docs/pricing/#gemini-3.5-transcribe-live) |
+| 定價 | [Gemini 3.5 Transcribe](/docs/models/gemini-3.5-transcribe/#pricing-gemini-3.5-transcribe) [Gemini 3.5 Transcribe Live](/docs/models/gemini-3.5-transcribe/#pricing-gemini-3.5-transcribe-live) |
+
+
+## 定價 {#pricing}
+
+### Gemini 3.5 Transcribe {#pricing-gemini-3.5-transcribe}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $2.00 或 $0.003/分鐘* （音訊） |
+    | 輸出價格（含思考 token） | 免費 | $12.00 或 $0.002/分鐘* （文字） |
+    | 使用 Google 搜尋接地 | 不支援 |  |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 估計價格以輸入每秒 25 個音訊 token、輸出每分鐘 175 個文字 token 計算，Transcribe 的有效混合費率約為每分鐘 $0.005。
+
+### Gemini 3.5 Transcribe Live {#pricing-gemini-3.5-transcribe-live}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $3.50 或 $0.005/分鐘* （音訊） |
+    | 輸出價格（含思考 token） | 免費 | $21.00 或 $0.004/分鐘* （文字） |
+    | 使用 Google 搜尋接地 | 不支援 |  |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 估計價格以輸入每秒 25 個音訊 token、輸出每分鐘 175 個文字 token 計算，Live Transcribe 的有效混合費率約為每分鐘 $0.009。
+
 
 
 ## 功能支援與限制 {#feature-support-and-limitations}

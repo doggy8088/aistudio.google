@@ -16,8 +16,24 @@
 | token 上限[[*]](/docs/tokens/) | **輸入 token 上限** 2,048 **輸出維度大小** 彈性，支援：128 - 3072，建議：768、1536、3072 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-embedding-001` |
 | 最近更新 | 2025 年 6 月 |
-| 定價 | [定價](/docs/pricing/#gemini-embedding) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-embedding-001/#pricing)。 |
 
 
+## 定價 {#pricing}
 
 
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $0.15 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.075 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

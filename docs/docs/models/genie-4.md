@@ -23,5 +23,22 @@ Genie 4（`genie-4`）是 [Interactions API](/docs/interactions-overview/) 上�
 | 使用選項 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**優先推論**](/docs/priority-inference/) 不支援 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`genie-4` |
 | 最近更新 | 2026 年 11 月 |
-| 定價 | [定價](/docs/pricing/#genie-4) |
+| 定價 | 請參閱下方的[定價](/docs/models/genie-4/#pricing)。 |
 | 速率限制 | [速率限制](/docs/rate-limits/#genie-4) |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.50（文字 / 參考圖片） |
+    | 輸出價格 | 不提供 | $9.00（文字） $17.50（影片，含音訊）* |
+    | 上下文快取價格 | 不提供 | 不提供 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+
+* 計費以實際產生的影片輸出 token 為準，每影格 `240` tokens（`24 fps` 下每秒 `5,760` tokens），`48 kHz` 立體聲音訊已包含在影片 token 費率中。在 Standard 定價（每 100 萬個影片輸出 tokens `$17.50`）下，相當於每秒約 `$0.10` 的有效價格（每分鐘 `~$6.05`）。請務必呼叫 `complete()` 結束進行中的工作階段並停止計費。Genie 4 不支援免費級、Batch API、Flex 推論或優先推論。

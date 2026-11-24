@@ -36,4 +36,26 @@ Gemini 3.1 Flash TTS Preview 模型導入了富表現力的 [音訊標籤](/docs
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | `gemini-3.1-flash-tts-preview` |
 | 最近更新 | 2026 年 4 月 |
 | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/) |
-| 定價 | [定價](/docs/pricing/#gemini-3.1-flash-tts-preview) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-3.1-flash-tts-preview/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $1.00（文字） |
+    | 輸出價格 | 免費 | $20.00（音訊） |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.50（文字） |
+    | 輸出價格 | 不提供 | $10.00（音訊） |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

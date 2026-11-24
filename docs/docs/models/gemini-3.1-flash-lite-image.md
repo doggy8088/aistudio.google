@@ -33,4 +33,29 @@
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-3.1-flash-lite-image` |
 | 最近更新 | 2026 年 6 月 |
 | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-3-1-flash-lite-image/) |
-| 定價 | [定價](/docs/pricing/#gemini-3.1-flash-lite-image) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-3.1-flash-lite-image/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.25（文字/圖片/影片） |
+    | 輸出價格 | 不提供 | $1.50（文字與思考）$30.00（圖片），相當於每張 1K 解析度圖片 $0.0336* |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.125（文字/圖片/影片） |
+    | 輸出價格 | 不提供 | $0.75（文字與思考）$15.00（圖片），相當於每張 1K 解析度圖片 $0.0168* |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 圖片輸出價格為每 1,000,000 tokens $30。1K（1024x1024px）輸出圖片消耗 1120 tokens，相當於每張圖片 $0.0336。

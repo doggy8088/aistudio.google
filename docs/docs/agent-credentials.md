@@ -483,17 +483,12 @@ proxy 就會將驗證標頭注入每一個送往該伺服器的請求：
               Body: operations.NewCreateInteractionRequestBody(interactions.CreateAgentInteraction{
                   Agent: interactions.AgentOption("antigravity-preview-09-2026"),
                   Input: interactions.NewInteractionsInput("Create a new issue in my-org/my-repo"),
-                  Environment: genai.Ptr(interactions.NewCreateAgentInteractionEnvironment(interactions.Environment{
-                      Network: genai.Ptr(interactions.NewNetwork(interactions.EnvironmentNetworkEgressAllowlist{
-                          Allowlist: genai.Ptr(interactions.NewAllowlist([]interactions.AllowlistEntry{
-                              {Domain: "api.githubcopilot.com", Credential: genai.Ptr("github-production")},
-                          })),
-                      })),
-                  })),
+                  Environment: genai.Ptr(interactions.NewCreateAgentInteractionEnvironment("remote")),
                   Tools: []interactions.Tool{
                       interactions.NewTool(interactions.MCPServer{
-                          Name: genai.Ptr("github"),
-                          URL:  genai.Ptr("https://api.githubcopilot.com/mcp"),
+                          Name:       genai.Ptr("github"),
+                          URL:        genai.Ptr("https://api.githubcopilot.com/mcp"),
+                          Credential: genai.Ptr("github-production"),
                       }),
                   },
               }),
@@ -1643,4 +1638,3 @@ OAuth2 憑證需要 `client_id`、`client_secret`、`refresh_token` 與
 *   [環境](/docs/agent-environment/)：了解代理如何執行程式碼並保存檔案。
 *   [代理總覽](/docs/agents/)：了解受管理代理的核心概念。
 *   [建立自訂代理](/docs/custom-agents/)：使用 `AGENTS.md` 與 `SKILL.md` 定義您自己的代理。
-

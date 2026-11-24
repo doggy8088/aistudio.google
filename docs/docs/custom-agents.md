@@ -889,14 +889,28 @@ Antigravity 執行階段會掃描 `.agents/`（以及環境的根目錄）來尋
 === "REST"
 
       ```shell
-      curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
+      # Step 1: set up the environment interactively
+      RESPONSE=$(curl -s -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \
         -H "Content-Type: application/json" \
         -H "x-goog-api-key: $GEMINI_API_KEY" \
         -d '{
             "agent": "antigravity-preview-09-2026",
             "input": "Install pandas, matplotlib, and seaborn. Create an analysis template at /workspace/template.py.",
             "environment": "remote"
-        }'
+        }')
+
+      ENVIRONMENT_ID=$(echo "$RESPONSE" | jq -r '.environment_id')
+
+      # Step 2: fork that environment into a managed agent
+      curl -X POST "https://generativelanguage.googleapis.com/v1beta/agents" \
+        -H "Content-Type: application/json" \
+        -H "x-goog-api-key: $GEMINI_API_KEY" \
+        -d "{
+            \"id\": \"my-data-analyst\",
+            \"base_agent\": \"antigravity-preview-09-2026\",
+            \"system_instruction\": \"You are a data analyst. Use the template at /workspace/template.py for all reports.\",
+            \"base_environment\": \"$ENVIRONMENT_ID\"
+        }"
       ```
 
 === "Java"
@@ -1933,4 +1947,3 @@ Antigravity 執行階段會掃描 `.agents/`（以及環境的根目錄）來尋
 * [Antigravity Agent](/docs/antigravity-agent/)：探索預設代理的功能、工具與定價。
 * [代理環境](/docs/agent-environment/)：設定沙箱、來源與網路。
 * [Agent Platform 上的受管代理 API](https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/managed-agents)：建立具備內建組織治理功能的代理。
-

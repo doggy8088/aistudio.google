@@ -20,7 +20,22 @@
 | [工具擷取（預覽版）](/docs/tool-retrieval/) | 讓模型搜尋你的工具程式庫，並只載入其所需的結構描述。 | 擁有數十個函式的代理，或連接數個 MCP 伺服器的情境。 |
 
 
-特定工具的相關費用詳情，請參閱[定價頁面](/docs/pricing/#pricing-for-tools)。
+如需了解特定工具的相關費用詳情，請參閱下方的[定價](/docs/tools/#pricing)。
+
+## 定價 {#pricing}
+
+
+| 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+| --- | --- | --- |
+| [Google Search](/docs/google-search/#pricing) | 500 RPD 免費（Flash 與 Flash-Lite 共用上限）。Pro 不提供。 | Gemini 2.5 模型：1,500 RPD 免費（Flash 與 Flash-Lite 共用上限），其後每 1,000 次接地提示詞 $35。Gemini 3 及更新模型：每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14。（Gemini Developer API 每個專案預設每日上限為 1,500 次請求（RPD）。） |
+| [Google Maps](/docs/maps-grounding/#pricing-and-rate-limits) | 500 RPD，Pro 不提供。 | Gemini 2.5 模型：1,500 RPD 免費（Flash 與 Flash-Lite 共用上限），Pro 免費 10,000 RPD，其後每 1,000 次接地提示詞 $25。Gemini 3 及更新模型：每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+| [Code execution](/docs/code-execution/#billing) | 免費 | 程式碼執行依所選模型的標準 token 費率計費。費用完全取決於工具使用量，工作階段執行時間不計費。產生的程式碼與執行結果在建立時以 **輸出 token** 計費，在模型反覆推理過程中使用時則以 **輸入 token** 計費。 |
+| [URL context](/docs/url-context/#limitations) | 免費 | 依模型定價以輸入 token 計費。 |
+| [Computer use](/docs/computer-use/) | 不提供 | 依模型定價以一般 token 計費（例如標準 [Gemini 3.8 Flash](/docs/pricing/#gemini-3.8-flash) 定價）。 |
+| [File search](/docs/file-search/#pricing) | 免費 | 嵌入向量依 [Gemini Embedding](/docs/pricing/#gemini-embedding)（每 100 萬 tokens $0.15）或 [Gemini Embedding 2](/docs/pricing/#gemini-embedding-2) 費率計費。取回的文件 token 依模型定價以一般 token 計費。 |
+| [Tool retrieval](/docs/tool-retrieval/#pricing) | 免費 | 不另收費。延遲的工具清單、工具搜尋指令與已載入的工具結構描述依模型定價以輸入 token 計費。每次伺服器端工具搜尋會執行一次額外的模型呼叫，其提示詞以工具使用 token 回報，並依輸入 token 費率計費。 |
+| [Custom Tools endpoint (Gemini 3.1 Pro Preview)](/docs/models/gemini-3.1-pro-preview/) | 不提供 | 與 [Gemini 3.1 Pro Preview](/docs/pricing/#gemini-3.1-pro-preview) 定價相同 |
+
 
 ## 工具的執行方式 {#how-tools-execution-works}
 

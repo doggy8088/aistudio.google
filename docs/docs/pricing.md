@@ -480,6 +480,10 @@
     | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
 
 
+* 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+\*\* 可在 Google AI Studio 中測試。
+
 ## Gemini 3.6 Flash {#gemini-3.6-flash}
 
 
@@ -794,7 +798,9 @@
 ---
 
 
-上一代影片生成與編輯模型。自 2026 年 12 月 3 日起，所有對 `gemini-omni-1.1-flash` 的 API 請求都會自動轉送至 [`gemini-omni-1.2-flash`](/docs/models/gemini-omni-flash/#gemini-omni-1.2-flash)，並按 `gemini-omni-1.2-flash` 的費率計費。
+上一代影片生成與編輯模型。
+
+自 2026 年 12 月 3 日起，所有對 `gemini-omni-1.1-flash` 的 API 請求都會自動轉送至 [`gemini-omni-1.2-flash`](/docs/models/gemini-omni-flash/#gemini-omni-1.2-flash)，並按 `gemini-omni-1.2-flash` 的費率計費。
 
 
 === "標準"
@@ -1119,6 +1125,10 @@ Gemini 3.1 Flash Image 生成模型專為速度與效率設計，能有效提供
 
 * 圖片輸出價格為每 1,000,000 tokens $60。0.5K（512px）輸出圖片消耗 747 tokens，相當於每張圖片 $0.045。1K（1024x1024px）輸出圖片消耗 1120 tokens，相當於每張圖片 $0.067。2K（2048x2048px）輸出圖片消耗 1680 tokens，相當於每張圖片 $0.101。4K（4096x4096px）輸出圖片消耗 2520 tokens，相當於每張圖片 $0.151。
 
+\*\* 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。使用 Google 搜尋接地提供的取回上下文（文字或圖片）不會以輸入 token 計費。
+
+\*\*\* 可在 Google AI Studio 中測試。
+
 ## Gemini 3.1 Flash Lite Image (Nano Banana 2 Lite) 🍌 {#gemini-3.1-flash-lite-image}
 
 
@@ -1316,8 +1326,6 @@ Gemini 3.1 Flash Lite Image 模型是圖片生成家族中的效率專家，專�
     | 輸出價格 | 不提供 | $10.00（音訊） |
     | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
 
-
-* 音訊 token 以每秒音訊 25 tokens 計算。
 
 ## Gemini 3 Flash Preview {#gemini-3-flash-preview}
 
@@ -1679,7 +1687,9 @@ Gemini 3.1 Flash Lite Image 模型是圖片生成家族中的效率專家，專�
        **警告：** Gemini 2.5 Flash Image（`gemini-2.5-flash-image`）已[淘汰](/docs/deprecations/)，將於 2027 年 3 月 15 日關閉；請遷移至 [Gemini 3.1 Flash Lite Image](/docs/models/gemini-3.1-flash-lite-image/)，以避免服務中斷。 
 
 
-原生圖片生成模型，針對速度、彈性與上下文理解最佳化。文字輸入與輸出的定價與 [2.5 Flash](/docs/pricing/#gemini-2.5-flash) 相同。
+原生圖片生成模型，針對速度、彈性與上下文理解最佳化。
+
+文字輸入與輸出的定價與 [Gemini 2.5 Flash](/docs/pricing/#gemini-2.5-flash) 相同。
 
 
 === "標準"
@@ -2067,8 +2077,8 @@ Gemini Robotics ER 2 Streaming 是專為機器人設計的視覺語言模型端�
 | 功能 | 模型 | 工具 |
 | --- | --- | --- |
 | [Gemini Deep Research 代理](/docs/deep-research/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 工具使用費依現行定價結構收取，並維持標準區別：Search Grounding（不含擷取的 token）與 Url_context／File Search（其他所有工具均包含擷取的 token）。 |
-| [Gemini API 中的代管代理](/docs/agents/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 （請參閱[定價詳情](/docs/agents/#pricing)。） | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
-| [Antigravity Agent](/docs/antigravity-agent/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 （請參閱[定價詳情](/docs/agents/#pricing)。） | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
+| [Gemini API 中的代管代理](/docs/agents/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
+| [Antigravity Agent](/docs/antigravity-agent/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
 
 
 ## 備註 {#notes}
@@ -2084,5 +2094,3 @@ Gemini Robotics ER 2 Streaming 是專為機器人設計的視覺語言模型端�
 *   如果您使用[動態擷取](/docs/google-search/)來最佳化成本，只有回應中包含至少一個來自網路的接地支援 URL 的請求，才會收取使用 Google 搜尋接地的費用。Gemini 的費用一律適用。速率限制可能變更。
 
 *   **Search Grounding 速率限制**：在 Gemini Developer API 上，Gemini 3 及更新模型的使用 Google 搜尋接地，在所有付費級中，每個專案受每日 1,500 次請求（RPD）的預設每日速率限制約束，並於太平洋時間每日午夜重設。對於需要更高每日上限的大量生產工作負載，建議使用 [Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-google-search#considerations)，其預設配額為每日 1,000,000 次搜尋查詢。
-
-

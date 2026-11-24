@@ -244,9 +244,9 @@ The sum of the first 50 prime numbers is 5117.
 * `code_execution_call`：模型生成、待執行的程式碼
 * `code_execution_result`：可執行程式碼的結果
 
-## 搭配圖片的程式碼執行（Gemini 3） {#images}
+## 搭配圖片的程式碼執行 {#images}
 
-Gemini 3 Flash 模型現在可以撰寫並執行 Python 程式碼，主動操作與檢視圖片。
+Gemini 模型可以撰寫並執行 Python 程式碼，主動操作與檢視圖片。
 
 **使用案例**
 
@@ -264,7 +264,7 @@ Gemini 3 Flash 模型現在可以撰寫並執行 Python 程式碼，主動操作
 
 ## 啟用搭配圖片的程式碼執行 {#code-exec-with-images}
 
-搭配圖片的程式碼執行已在 Gemini 3 Flash 中正式支援。同時啟用程式碼執行工具與思考功能，即可啟動此行為。
+搭配圖片的程式碼執行支援 Gemini 3 Flash 及後續模型，包括 Gemini 3.8 Flash 與 Gemini 4 系列模型。同時啟用程式碼執行工具與思考功能，即可啟動此行為。
 
 
 === "Python"

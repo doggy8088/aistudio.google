@@ -2088,7 +2088,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "code_execution"
+    === "Go"
 
           ```go
           package main
@@ -2283,7 +2283,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "computer_use"
+    === "Go"
 
           ```go
           package main
@@ -2477,7 +2477,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "file_search"
+    === "Go"
 
           ```go
           package main
@@ -2726,7 +2726,7 @@ Interaction 資源。
           }
           ```
 
-    === "function_calling"
+    === "Go"
 
           ```go
           package main
@@ -2923,7 +2923,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "google_maps"
+    === "Go"
 
           ```go
           package main
@@ -3081,7 +3081,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "google_search"
+    === "Go"
 
           ```go
           package main
@@ -3302,7 +3302,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "mcp_server"
+    === "Go"
 
           ```go
           package main
@@ -3492,7 +3492,7 @@ Interaction 資源。
           System.out.println(interaction.outputText().orElse(""));
           ```
 
-    === "url_context"
+    === "Go"
 
           ```go
           package main
@@ -8226,7 +8226,7 @@ Interaction 資源。
       }
       ```
 
-=== "function_calling"
+=== "Go"
 
       ```go
       package main

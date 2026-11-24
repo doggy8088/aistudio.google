@@ -24,7 +24,7 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
     | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 預覽版：`gemini-robotics-er-2-preview` |
     | 最近更新 | 2026 年 7 月 |
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
-    | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2) |
+    | 定價 | 請參閱本頁的定價一節。 |
 
 === "Gemini Robotics ER 2 Streaming Preview"
 
@@ -39,7 +39,7 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
     | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 預覽版：`gemini-robotics-er-2-streaming-preview` |
     | 最近更新 | 2026 年 7 月 |
     | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-robotics-er-2/) |
-    | 定價 | [定價](/docs/pricing/#gemini-robotics-er-2-streaming) |
+    | 定價 | 請參閱本頁的定價一節。 |
 
 === "Gemini Robotics ER 1.6 Preview"
 
@@ -56,4 +56,27 @@ Gemini Robotics ER 2 是用於機器人領域的視覺語言模型（VLM），�
     | 知識截止日期 | 2025 年 1 月 |
 
 
+## 定價 {#pricing}
 
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $1.00（文字 / 圖片 / 影片 / 音訊）至 2026 年 12 月 31 日止。\\ $2.00（文字 / 圖片 / 影片 / 音訊）自 2027 年 1 月 1 日起。 |
+    | 輸出價格（含思考 token） | 免費 | $5.00 至 2026 年 12 月 31 日止。\\ $10.00 自 2027 年 1 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.10 至 2026 年 12 月 31 日止。\\ $0.20 自 2027 年 1 月 1 日起。\\ $0.50 / 1,000,000tokens/小時（儲存價格）至 2026 年 12 月 31 日止。\\ $1.00 / 1,000,000tokens/小時（儲存價格）自 2027 年 1 月 1 日起。 |
+    | 使用 Google 搜尋接地 | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.50（文字 / 圖片 / 影片 / 音訊）至 2026 年 12 月 31 日止。\\ $1.00（文字 / 圖片 / 影片 / 音訊）自 2027 年 1 月 1 日起。 |
+    | 輸出價格（含思考 token） | 不提供 | $2.50 至 2026 年 12 月 31 日止。\\ $5.00 自 2027 年 1 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.05 至 2026 年 12 月 31 日止。\\ $0.10 自 2027 年 1 月 1 日起。\\ $0.50 / 1,000,000tokens/小時（儲存價格）至 2026 年 12 月 31 日止。\\ $1.00 / 1,000,000tokens/小時（儲存價格）自 2027 年 1 月 1 日起。 |
+    | 使用 Google 搜尋接地 | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

@@ -30,9 +30,9 @@ Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費�
 
 ## 新模型 {#new-model}
 
-| 模型 | 模型 ID | 思考層級 | 付費層級價格 |
+| 模型 | 模型 ID | 思考層級 | 定價 |
 | :--- | :--- | :--- | :--- |
-| Gemini 4 Hydrogen | `gemini-4-hydrogen` | `low`、`medium`、`high`（預設）、`xhigh` | 每 1M 輸入 $1.50、每 1M 輸出 $7.50 |
+| Gemini 4 Hydrogen | `gemini-4-hydrogen` | `low`、`medium`、`high`（預設）、`xhigh` | 請參閱下方的[定價](/docs/whats-new-gemini-4-hydrogen/#pricing)。 |
 
 完整規格請參閱 [Gemini 4 Hydrogen 模型頁面](/docs/models/gemini-4-hydrogen/) 與[最新 Gemini 模型](/docs/latest-model/)。
 
@@ -387,17 +387,79 @@ Gemini 4 Hydrogen 採用與 Carbon 和 Argon 相同的 Gemini 4 API 設計。從
 
 ## 定價 {#pricing}
 
-Gemini 4 Hydrogen 可在 Gemini API 與 Google AI Studio 的免費層級使用；付費層級則在完整的 100 萬上下文視窗範圍內採用單一標準定價：
+!!! note " "
 
-* **免費層級**：免費使用（受速率限制約束；請參閱[速率限制](/docs/rate-limits/)）
-* **輸入 tokens**：每 100 萬 tokens $1.50
-  *   **快取的輸入 tokens**：隱含快取為快取的輸入提供 95% 的折扣，降至每 100 萬 tokens $0.075。
+      模型處理的每一個 token 都會計算並收費，包括思考 token，以及使用接地時的內部工具系統指令與函式宣告。
 
-* **輸出 tokens（包括思考 token）**：每 100 萬 tokens $7.50
 
-我們會計算並收費模型處理的每一個 token，包括使用接地時所涉及的思考 token，以及內部工具的系統指令與函式宣告。使用 Google 搜尋接地仍依查詢次數計費。
+=== "標準"
 
-完整的層級詳情與速率限制請參閱[定價頁面](/docs/pricing/#gemini-4-hydrogen) 與[速率限制頁面](/docs/rate-limits/)。
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $1.50 |
+    | 輸出價格（含思考 token） | 免費 | $7.50 |
+    | 上下文快取價格 | 免費 | $0.075 僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.75 |
+    | 輸出價格（含思考 token） | 不提供 | $3.75 |
+    | 上下文快取價格 | 不提供 | $0.0375 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "彈性"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.75 |
+    | 輸出價格（含思考 token） | 不提供 | $3.75 |
+    | 上下文快取價格 | 不提供 | $0.0375 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "優先"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $2.70 |
+    | 輸出價格（含思考 token） | 免費 | $13.50 |
+    | 上下文快取價格 | 免費 | $0.135 僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+=== "貢獻者"
+
+
+    !!! note " "
+
+          Gemini API Contributor Tier 以非公開預覽形式提供，僅限受邀者。速度與可靠性與 [Standard Tier 推論](/docs/optimization/) 相同。符合資格的使用者將收到電子郵件邀請，並在 AI Studio 中看到提示。
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元）* |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $0.75 |
+    | 輸出價格（含思考 token） | 免費 | $3.75 |
+    | 上下文快取價格 | 免費 | $0.0375 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [是](/docs/logs-policy/#contributor-tier) |
+
+      * 折扣與模型供應情況可能變更。
+
+如需了解速率限制，請參閱[速率限制頁面](/docs/rate-limits/)。
 
 ## 其他模型 {#other-models}
 
@@ -417,4 +479,3 @@ Gemini 4 Hydrogen 可在 Gemini API 與 Google AI Studio 的免費層級使用�
 * 在[背景執行指南](/docs/background-execution/)中了解非同步工作。
 * 在 [Antigravity 代理指南](/docs/antigravity-agent/)中設定受管理的程式設計工作流程。
 * 在 [Google AI Studio](https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen) 中測試並優化提示詞。
-

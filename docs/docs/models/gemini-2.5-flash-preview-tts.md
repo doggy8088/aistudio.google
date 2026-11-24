@@ -20,4 +20,26 @@
 | 使用方式 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex inference**](/docs/flex-inference/) 不支援 [**Priority inference**](/docs/priority-inference/) 不支援 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | `gemini-2.5-flash-preview-tts` |
 | 最近更新 | 2025 年 12 月 |
-| 定價 | [定價](/docs/pricing/#gemini-2.5-flash-preview-tts) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-2.5-flash-preview-tts/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $0.50（文字） |
+    | 輸出價格 | 免費 | $10.00（音訊） |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.25（文字） |
+    | 輸出價格 | 不提供 | $5.00（音訊） |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

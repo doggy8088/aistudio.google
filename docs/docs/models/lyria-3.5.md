@@ -20,7 +20,13 @@ Lyria 3.5 是 Google 的旗艦音樂生成模型，專為生成結構連貫複�
 | 使用選項 | [**Batch API**](/docs/batch-api/) 不支援 [**Flex 推論**](/docs/flex-inference/) 不支援 [**Priority 推論**](/docs/priority-inference/) 不支援 |
 | 版本 | 如需詳細資訊，請參閱[模型版本命名模式](/docs/models/#model-versions)。 | 穩定版：`lyria-3.5` |
 | 最近更新 | 2026 年 9 月 |
-| 定價 | [定價](/docs/pricing/#lyria-3-5) |
+| 定價 | 請參閱下方的[定價](/docs/models/lyria-3.5/#pricing)。 |
 
 
+## 定價 {#pricing}
 
+
+| 功能 | 免費級 | 付費級，每次請求（美元） |
+| --- | --- | --- |
+| Lyria 3.5（完整歌曲） | 不提供 | 每首歌曲 $0.08 |
+| 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

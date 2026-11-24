@@ -62,7 +62,15 @@ Gemini API 上的受管代理提供可設定的代理框架。只要一次 API �
 
 ## 定價 {#pricing}
 
-受管代理採用 [按量付費模式](/docs/pricing/#pricing-for-agents)，依 Gemini 模型 token 與工具使用量計費。單次互動可能觸發多輪推理循環，通常會消耗 100k 到 3M tokens。預覽期間，環境運算**不計費**。如需各任務的費用明細，請參閱[預估成本](/docs/antigravity-agent/#availability-and-pricing)。
+受管代理採用按量付費模式，依 Gemini 模型 token 與工具使用量計費。單次互動可能觸發多輪推理循環，通常會消耗 100k 到 3M tokens。預覽期間，環境運算**不計費**。如需各任務的費用明細，請參閱[預估成本](/docs/antigravity-agent/#availability-and-pricing)。
+
+
+| 功能 | 模型 | 工具 |
+| --- | --- | --- |
+| [Gemini Deep Research 代理](/docs/deep-research/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 工具使用費依現行定價結構收取，並維持標準區別：Search Grounding（不含擷取的 token）與 Url_context／File Search（其他所有工具均包含擷取的 token）。 |
+| [Gemini API 中的代管代理](/docs/agents/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
+| [Antigravity Agent](/docs/antigravity-agent/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
+
 
 ## 限制 {#limits}
 

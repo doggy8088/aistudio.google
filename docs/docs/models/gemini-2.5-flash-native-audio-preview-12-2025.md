@@ -21,4 +21,14 @@ Live API 讓 Gemini 2.5 Flash 能進行低延遲、即時的語音與影片互�
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 預覽版：`gemini-2.5-flash-native-audio-preview-12-2025` |
 | 最近更新 | 2025 年 9 月 |
 | 知識截止日期 | 2025 年 1 月 |
-| 定價 | [定價](/docs/pricing/#gemini-2.5-flash-native-audio) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-2.5-flash-native-audio-preview-12-2025/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+| 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+| --- | --- | --- |
+| 輸入價格 | 免費 | $0.50（文字） $3.00（音訊 / 影片） |
+| 輸出價格（含思考 token） | 免費 | $2.00（文字） $12.00（音訊） |
+| 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |

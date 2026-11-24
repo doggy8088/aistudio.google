@@ -21,4 +21,20 @@ Gemini 3.5 Live Translate 是我們的低延遲音訊轉音訊模型，針對口
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 預覽版：`gemini-3.5-live-translate-preview` |
 | 最近更新 | 2026 年 6 月 |
 | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-3-5-audio/) |
-| 定價 | [定價](/docs/pricing/#gemini-3.5-live-translate-preview) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-3.5-live-translate-preview/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 免費 | $3.50 或 $0.0053/分鐘* （音訊） |
+    | 輸出價格（含思考 token） | 免費 | $21.00 或 $0.0315/分鐘* （音訊） |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 計費以輸入與輸出音訊 token 的總消耗量為準，以每秒音訊 25 tokens 計算，相當於每分鐘約 $0.0368 的有效價格。

@@ -18,4 +18,14 @@
 | token 上限[[*]](/docs/tokens/) | **輸入上下文視窗** 1,048,576（約 135k 時壓縮） **輸出 token 上限** 65,536 |
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。預覽版：`antigravity-preview-09-2026` |
 | 最近更新 | 2026 年 9 月 |
-| 定價 | [定價](/docs/pricing/#pricing-for-agents) |
+| 定價 | 請參閱下方的[定價](/docs/models/antigravity-preview-09-2026/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+| 功能 | 模型 | 工具 |
+| --- | --- | --- |
+| [Gemini Deep Research 代理](/docs/deep-research/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 工具使用費依現行定價結構收取，並維持標準區別：Search Grounding（不含擷取的 token）與 Url_context／File Search（其他所有工具均包含擷取的 token）。 |
+| [Gemini API 中的代管代理](/docs/agents/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |
+| [Antigravity Agent](/docs/antigravity-agent/) | 所有模型推論均按 Gemini 標準牌價收費，包括代理迴圈期間產生的輸入、輸出與中間輸入／推理 token。 | 預覽期間不收取環境運算（CPU、記憶體、沙箱執行）費用。 |

@@ -70,7 +70,7 @@
 
 ## XR Blocks 中的全息圖技能
 
-在 XR Blocks 框架中，你可以直接從輸入的文字提示詞或附加的參考圖片，生成 3D 全息圖（360 度轉盤全息素材），以便在空中從任何角度進行高傳真空間檢視。只要以 `「為⋯⋯生成 3D 全息圖」` 提示，或如上方 [Hologram Museum](https://ai.studio/apps/b528d1a4-65a4-4f92-bdec-e36936f5c281) 與 [Hologram Memories](https://ai.studio/apps/73e6014f-f8f3-4fbc-a69b-80dad64b2192) 所示附加參考照片即可。
+在 XR Blocks 框架中，你可以直接從輸入的文字提示詞或附加的參考圖片，生成 3D 全息圖（360 度轉盤全息素材），以便在空中從任何角度進行高傳真空間檢視。只要以 `“Generate a 3D hologram for …”` 提示，或如上方 [Hologram Museum](https://ai.studio/apps/b528d1a4-65a4-4f92-bdec-e36936f5c281) 與 [Hologram Memories](https://ai.studio/apps/73e6014f-f8f3-4fbc-a69b-80dad64b2192) 所示附加參考照片即可。
 
 ## 準備好把想法變成擴增實境了嗎？
 

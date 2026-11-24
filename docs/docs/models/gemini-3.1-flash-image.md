@@ -37,4 +37,25 @@
 | 版本 | 詳情請參閱[模型版本模式](/docs/models/#model-versions)。 | 穩定版：`gemini-3.1-flash-image` |
 | 最近更新 | 2026 年 2 月 |
 | 模型卡 | [模型卡](https://deepmind.google/models/model-cards/gemini-3-1-flash-image/) |
-| 定價 | [定價](/docs/pricing/#gemini-3.1-flash-image) |
+| 定價 | 請參閱下方的[定價](/docs/models/gemini-3.1-flash-image/#pricing)。 |
+
+
+## 定價 {#pricing}
+
+
+=== "標準"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $0.50（文字/圖片） |
+    | 輸出價格 | 不提供 | $3（文字與思考）$60.00（圖片），相當於每張 0.5K 圖片 $0.045、每張 1K 圖片 $0.067、每張 2K 圖片 $0.101 與每張 4K 圖片 $0.151。 |
+    | 使用 Google 網頁與圖片搜尋接地 | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後文字與圖片接地每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
+
+
+* 圖片輸出價格為每 1,000,000 tokens $60。0.5K（512px）輸出圖片消耗 747 tokens，相當於每張圖片 $0.045。1K（1024x1024px）輸出圖片消耗 1120 tokens，相當於每張圖片 $0.067。2K（2048x2048px）輸出圖片消耗 1680 tokens，相當於每張圖片 $0.101。4K（4096x4096px）輸出圖片消耗 2520 tokens，相當於每張圖片 $0.151。
+
+\*\* 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。使用 Google 搜尋接地提供的取回上下文（文字或圖片）不會以輸入 token 計費。
+
+\*\*\* 可在 Google AI Studio 中測試。

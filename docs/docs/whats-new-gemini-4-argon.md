@@ -32,9 +32,9 @@ Gemini 4 Argon 支援統一的 1Mtokens上下文視窗、最長可達 1Mtokens�
 
 | 模型 | 模型 ID | 預設思考層級 | 定價 | 說明 |
 | :--- | :--- | :---: | :--- | :--- |
-| Gemini 4 Argon | `gemini-4-argon` | `medium` | 2026 年 11 月 30 日前享有優惠價：輸入 tokens 每 1M 個 $2、輸出 tokens 每 1M 個 $10（之後為輸入每 1M 個 $4、輸出每 1M 個 $20）。詳情請參閱[定價](/docs/pricing/)。 | 我們高效能的 Gemini 4 前沿推理模型。與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 相比，它在複雜的程式設計、代理、數學與科學任務上，能以更快的回應速度和更低的每回合 token 消耗提供服務。 |
+| Gemini 4 Argon | `gemini-4-argon` | `medium` | 請參閱下方的[定價](/docs/whats-new-gemini-4-argon/#pricing)。 | 我們高效能的 Gemini 4 前沿推理模型。與 [Gemini 4 Carbon](/docs/whats-new-gemini-4-carbon/) 相比，它在複雜的程式設計、代理、數學與科學任務上，能以更快的回應速度和更低的每回合 token 消耗提供服務。 |
 
-如需完整詳情，請參閱 [Gemini 4 Argon 模型頁面](/docs/models/gemini-4-argon/)與[最新 Gemini 模型](/docs/latest-model/)。如需優惠定價詳情，請參閱本頁後段的[定價章節](/docs/whats-new-gemini-4-argon/#pricing)或[定價頁面](/docs/pricing/#gemini-4-argon)。
+如需完整詳情，請參閱 [Gemini 4 Argon 模型頁面](/docs/models/gemini-4-argon/)與[最新 Gemini 模型](/docs/latest-model/)。如需完整定價詳情，請參閱本頁的[定價章節](/docs/whats-new-gemini-4-argon/#pricing)或[定價頁面](/docs/pricing/#gemini-4-argon)。
 
 ## 快速入門 {#quickstart}
 
@@ -92,7 +92,7 @@ Gemini 4 Argon 支援統一的 1Mtokens上下文視窗、最長可達 1Mtokens�
 * **代理式影片理解：** [代理式影片理解](/docs/video-understanding/#agentic-video-understanding)現已正式推出。
 * **支援 Managed Agents：** Gemini Managed Agents 中的 [Antigravity 代理](/docs/antigravity-agent/)現已支援 Gemini 4 Argon。
 
-如需更多詳情，請參閱 [Gemini 4 Argon 模型頁面](/docs/models/gemini-4-argon/)。如需定價詳情，請參閱[定價頁面](/docs/pricing/#gemini-4-argon)。
+如需更多詳情，請參閱 [Gemini 4 Argon 模型頁面](/docs/models/gemini-4-argon/)。定價詳情請參閱[定價章節](/docs/whats-new-gemini-4-argon/#pricing)。
 
 ## 在 Carbon、Argon 與其他模型之間做選擇 {#choosing-between-models}
 
@@ -396,16 +396,76 @@ Gemini Managed Agents 中的 [Antigravity 代理](/docs/antigravity-agent/)支�
 
 ## 定價 {#pricing}
 
-Gemini 4 Argon 在 2026 年 11 月 30 日前享有優惠定價：
+!!! note " "
 
-* **輸入 tokens：** 每 1M tokens $2.00（2026 年 12 月 1 日起為 $4.00）
-  *   **快取的輸入 tokens：** 隱含快取為快取的輸入提供 95% 折扣，降至每 1M tokens $0.10（2026 年 12 月 1 日起為 $0.20）。
+      Gemini 4 Argon 不提供免費級。模型處理的每一個 token 都會計算並收費，包括思考 token，以及使用接地時的內部工具系統指令與函式宣告。
 
-* **輸出 tokens（包括思考 token）：** 每 1M tokens $10.00（2026 年 12 月 1 日起為 $20.00）
 
-模型處理的每個 token 都會計算並計費，包括思考 token，以及使用接地時的內部工具系統指令與函式宣告。使用 Google 搜尋接地也會繼續按查詢計費。
+=== "標準"
 
-Gemini 4 Argon 不提供免費層級。如需完整的定價層級，請參閱[定價頁面](/docs/pricing/#gemini-4-argon)。
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $2.00 至 2026 年 11 月 30 日止。$4.00 自 2026 年 12 月 1 日起。 |
+    | 輸出價格（含思考 token） | 不提供 | $10.00 至 2026 年 11 月 30 日止。$20.00 自 2026 年 12 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.10 至 2026 年 11 月 30 日止。$0.20 自 2026 年 12 月 1 日起。僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.00 至 2026 年 11 月 30 日止。$2.00 自 2026 年 12 月 1 日起。 |
+    | 輸出價格（含思考 token） | 不提供 | $5.00 至 2026 年 11 月 30 日止。$10.00 自 2026 年 12 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.05 至 2026 年 11 月 30 日止。$0.10 自 2026 年 12 月 1 日起。僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+=== "彈性"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.00 至 2026 年 11 月 30 日止。$2.00 自 2026 年 12 月 1 日起。 |
+    | 輸出價格（含思考 token） | 不提供 | $5.00 至 2026 年 11 月 30 日止。$10.00 自 2026 年 12 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.05 至 2026 年 11 月 30 日止。$0.10 自 2026 年 12 月 1 日起。僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+=== "優先"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $3.60 至 2026 年 11 月 30 日止。$7.20 自 2026 年 12 月 1 日起。 |
+    | 輸出價格（含思考 token） | 不提供 | $18.00 至 2026 年 11 月 30 日止。$36.00 自 2026 年 12 月 1 日起。 |
+    | 上下文快取價格 | 不提供 | $0.18 至 2026 年 11 月 30 日止。$0.36 自 2026 年 12 月 1 日起。僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+=== "貢獻者"
+
+
+    !!! note " "
+
+          Gemini API Contributor Tier 以非公開預覽形式提供，僅限受邀者。速度與可靠性與 [Standard Tier 推論](/docs/optimization/) 相同。符合資格的使用者將收到電子郵件邀請，並在 AI Studio 中看到提示。
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元）* |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.00 |
+    | 輸出價格（含思考 token） | 不提供 | $5.00 |
+    | 上下文快取價格 | 不提供 | $0.05 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | 不提供 | [是](/docs/logs-policy/#contributor-tier) |
+      * 折扣與模型供應情況可能變更。
 
 ## 其他模型 {#other-models}
 

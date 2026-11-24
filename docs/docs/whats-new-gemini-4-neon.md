@@ -7,13 +7,6 @@ Gemini 4 Neon 可在 Gemini API 的付費層級使用（同時支援 `generateCo
 
   
 
-**[模型卡](/docs/models/gemini-4-neon/)**
-
-查看 token 上限、支援的功能與完整規格。
-
-
-  
-
 **[在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon)**
 
 在 Google AI Studio 中使用 Gemini 4 Neon 測試提示詞。
@@ -26,13 +19,20 @@ Gemini 4 Neon 可在 Gemini API 的付費層級使用（同時支援 `generateCo
 使用遷移檢查清單將現有工作負載移轉至 Gemini 4 Neon。
 
 
+  
+
+**[模型卡](/docs/models/gemini-4-neon/)**
+
+查看 token 上限、支援的功能與完整規格。
+
+
 本指南說明 Gemini 4 Neon 的新功能、API 變更、程式碼範例與遷移指引。
 
 ## 新模型 {#new-model}
 
-| 模型 | 模型 ID | 思考層級 | 付費層級價格 |
+| 模型 | 模型 ID | 思考層級 | 定價 |
 | :--- | :--- | :--- | :--- |
-| Gemini 4 Neon | `gemini-4-neon` | `low`、`medium`、`high`（預設）、`xhigh` | 每 1M 輸入 $3.00、每 1M 輸出 $15.00 |
+| Gemini 4 Neon | `gemini-4-neon` | `low`、`medium`、`high`（預設）、`xhigh` | 請參閱下方的[定價](/docs/whats-new-gemini-4-neon/#pricing)。 |
 
 完整規格請參閱 [Gemini 4 Neon 模型頁面](/docs/models/gemini-4-neon/) 與[最新 Gemini 模型](/docs/latest-model/)。
 
@@ -326,16 +326,61 @@ Gemini 4 Neon 採用與 Carbon、Argon 及 Hydrogen 相同的 Gemini 4 API 設�
 
 ## 定價 {#pricing}
 
-Gemini 4 Neon 僅適用於 Gemini API 的付費層級，並在完整的 100 萬上下文視窗範圍內採用單一標準定價：
+!!! note " "
 
-* **輸入 tokens**：每 100 萬 tokens $3.00
-  *   **快取的輸入 tokens**：隱含快取為快取的輸入提供 95% 的折扣，降至每 100 萬 tokens $0.15。
+      Gemini 4 Neon 不提供免費級。模型處理的每一個 token 都會計算並收費，包括思考 token，以及使用接地時的內部工具系統指令與函式宣告。
 
-* **輸出 tokens（包括思考 token）**：每 100 萬 tokens $15.00
 
-我們會計算並收費模型處理的每一個 token，包括使用接地時所涉及的思考 token，以及內部工具的系統指令與函式宣告。使用 Google 搜尋接地仍依查詢次數計費。
+=== "標準"
 
-完整的層級詳情與速率限制請參閱[定價頁面](/docs/pricing/#gemini-4-neon) 與[速率限制頁面](/docs/rate-limits/)。
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $3.00 |
+    | 輸出價格（含思考 token） | 不提供 | $15.00 |
+    | 上下文快取價格 | 不提供 | $0.15 僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+=== "批次"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.50 |
+    | 輸出價格（含思考 token） | 不提供 | $7.50 |
+    | 上下文快取價格 | 不提供 | $0.075 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+=== "彈性"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $1.50 |
+    | 輸出價格（含思考 token） | 不提供 | $7.50 |
+    | 上下文快取價格 | 不提供 | $0.075 僅支援隱含快取（不支援明確快取）。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+=== "優先"
+
+
+    | 功能 | 免費級 | 付費級，每 100 萬 tokens（美元） |
+    | --- | --- | --- |
+    | 輸入價格 | 不提供 | $5.40 |
+    | 輸出價格（含思考 token） | 不提供 | $27.00 |
+    | 上下文快取價格 | 不提供 | $0.27 僅支援隱含快取（不支援明確快取）。 |
+    | 使用 Google 搜尋接地* | 不提供 | 每月 5,000 次免費搜尋請求（所有 Gemini 3 及更新模型共用），其後每 1,000 次請求 $14（受[每日上限](/docs/pricing/#pricing-for-tools)限制，每日 1,500 次請求）。 |
+    | 使用 Google 地圖接地 | 不提供 | 每月 5,000 次請求（免費，所有 Gemini 3 及更新模型共用），其後每 1,000 次搜尋查詢 $14。 |
+    | 用於改善我們的產品 | 不提供 | [否](/docs/terms/) |
+
+      * 客戶提交給 Gemini 的請求可能會產生一或多個 Google 搜尋查詢。每一次個別搜尋查詢都會向您收費。
+
+如需了解速率限制，請參閱[速率限制頁面](/docs/rate-limits/)。
 
 ## 其他模型 {#other-models}
 
