@@ -2,6 +2,8 @@
 
 Google AI Studio 是免程式碼的 AI 應用程式建置工具。把提示詞、草圖或精選應用程式變成可實際運作的網站、遊戲或工具，完全免費。
 
+閱讀時間 5 分鐘
+
 ## 幾分鐘內可以打造的內容
 
 ![在 Google AI Studio 中建置的 Aura Quiet Living 網站](https://www.gstatic.com/aistudio/starter-apps/thumbnails/aura_quiet_living.png)

@@ -2,7 +2,7 @@
 
 Gemini 3.5 Flash 已正式推出（GA），穩定可靠，可用於大規模正式環境。
 
-![Patrick Loeber](https://www.gstatic.com/aistudio-static/editorial/authors/54f6334eb7a549668f54.jpg)
+作者：[Patrick Loeber](https://x.com/patloeber)
 
 作為我們最聰明的 Flash 模型，它在代理執行、程式設計與長時程任務上，都能大規模地持續提供前沿水準的效能。本指南概述 Gemini 3.5 Flash 的改進、API 變更與遷移指引。Gemini 3.5 Flash 支援 1Mtokens上下文視窗、最多 65k 個輸出 tokens、思考功能，以及與 Gemini 3 Flash 相同的一整套工具與平台功能。目前尚不支援 [Computer Use](https://ai.google.dev/gemini-api/docs/computer-use)。完整規格請參閱[模型總覽](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash)。定價請參閱[定價頁面](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.5-flash)。
 

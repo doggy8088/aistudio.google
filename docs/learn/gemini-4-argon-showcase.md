@@ -2,7 +2,8 @@
 
 遊玩並混搭我們的互動式 3D 遊戲、物理模擬，以及在 Google AI Studio 中以 Gemini 4 Argon 建置的 Gemini Managed Agent 應用程式。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
+作者：[Geneviève Huskens](https://aistudio.google.com/)
+發布於 2026 年 10 月 13 日
 
 Gemini 4 Argon 是我們最新的前沿模型，旨在把你最複雜的任務從頭到尾完成，並把雄心勃勃的想法變成你能實際使用的真實專案。憑藉視覺編程、空間推理與數學精確度的大幅提升，Argon 讓你比以往更快地從提示詞、草圖或照片出發，在瀏覽器中做出能運作的原型。在這個頁面，我們展示一些最喜歡的、以 Gemini 4 Argon 建置的應用程式——從高擬真 3D 遊戲到互動式分析工具——你可以在全螢幕試玩，或在 [Google AI Studio Build](http://ai.studio/build) 中混搭改作，另外還有協助你開始使用的起始提示詞與指南。
 

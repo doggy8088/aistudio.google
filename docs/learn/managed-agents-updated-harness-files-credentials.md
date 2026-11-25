@@ -2,9 +2,8 @@
 
 更新版代理框架、Files API 與受管理憑證。
 
-![Philipp Schmid](https://www.gstatic.com/aistudio-static/editorial/managed-agents-updated-harness-files-credentials/4316f675.png)
-
-![Mariano Cocirio](https://www.gstatic.com/aistudio-static/editorial/managed-agents-updated-harness-files-credentials/bc324cec.png)
+作者：[Philipp Schmid](https://x.com/_philschmid)、[Mariano Cocirio](https://x.com/mcocirio)
+閱讀時間 13 分鐘
 
 Gemini 受管理代理迎來更新版框架。`antigravity-preview-09-2026` 讓代理的工具與行為更接近 Antigravity Coding Agent，即日起於 [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview) 與 [AI Studio](https://aistudio.google.com/) 上線，底層運行 Gemini 3.8 Flash，模型可依每次互動[設定](https://ai.google.dev/gemini-api/docs/antigravity-agent#model-selection)。我們同時推出兩個新 API，讓使用受管理代理開發更簡單、更安全：[Files API](https://ai.google.dev/gemini-api/docs/agent-environment#download-files)，負責把資料送進、取出代理的環境；以及 [Credentials API](https://ai.google.dev/gemini-api/docs/agent-credentials)，讓代理能安全地使用你既有的服務，從 MCP 伺服器到第三方 API 都沒問題。
 

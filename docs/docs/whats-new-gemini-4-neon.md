@@ -7,6 +7,13 @@ Gemini 4 Neon 可在 Gemini API 的付費層級使用（同時支援 `generateCo
 
   
 
+**[模型卡](/docs/models/gemini-4-neon/)**
+
+查看 token 上限、支援的功能與完整規格。
+
+
+  
+
 **[在 AI Studio 中試用](https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon)**
 
 在 Google AI Studio 中使用 Gemini 4 Neon 測試提示詞。
@@ -17,13 +24,6 @@ Gemini 4 Neon 可在 Gemini API 的付費層級使用（同時支援 `generateCo
 **[遷移至 Neon](/docs/whats-new-gemini-4-neon/#migration-checklist)**
 
 使用遷移檢查清單將現有工作負載移轉至 Gemini 4 Neon。
-
-
-  
-
-**[模型卡](/docs/models/gemini-4-neon/)**
-
-查看 token 上限、支援的功能與完整規格。
 
 
 本指南說明 Gemini 4 Neon 的新功能、API 變更、程式碼範例與遷移指引。

@@ -2,7 +2,9 @@
 
 Google AI Pro 與 Ultra 包含每月 Gemini API 點數，現在你可以在 AI Studio 中透過一個引導流程直接領取。連結付費金鑰，突破每日上限，盡情使用 Gemini API。
 
-![Seth Odoom](https://www.gstatic.com/aistudio-static/editorial/use-google-ai-plan-credits-to/8b57357f.jpg)
+作者：Seth Odoom
+發布於 2026 年 10 月 20 日
+閱讀時間 6 分鐘
 
 ## 將 Google AI 方案福利延伸到 Gemini API，直接在 AI Studio 中完成
 

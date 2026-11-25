@@ -2,9 +2,7 @@
 
 將 GitHub 儲存庫連接到 AI Studio，無縫同步提交，讓你的專案隨時保持最新狀態。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
-
-![Kat Kampf](https://www.gstatic.com/aistudio-static/editorial/authors/XB4xLvDe8HVeqPSalRsV.webp)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)、[Kat Kampf](https://x.com/kat_kampf)
 
 你不再受限於一次性的儲存庫匯入或單向的程式碼匯出。AI Studio 現在支援與 **GitHub 的雙向同步**：將你在 AI Studio 中透過提示詞做出的變更直接推送到儲存庫、在 IDE 中或以 Antigravity 等代理在本機編輯、接收隊友的拉取請求，再將這些變更拉回 AI Studio！將 GitHub 與你的 AI Studio 應用程式同步，有以下主要好處：**處理 Git 事務**：AI Studio 為你處理進行中的同步，不需要任何 Git 指令。**完全的彈性**：由你掌控要整合哪些應用程式並連接到 GitHub。**自動生成的提交**：Gemini 會分析你暫存的檔案差異，並撰寫結構化的 Conventional Commit 訊息。**進階工作流程**：複製你的儲存庫並執行測試、讓隊友推送變更，或在 GitHub 中加入自訂 CI/CD，然後將變更同步回 AI Studio。
 

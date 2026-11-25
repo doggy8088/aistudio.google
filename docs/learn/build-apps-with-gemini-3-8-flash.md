@@ -2,9 +2,7 @@
 
 幾分鐘內從想法到能運作的應用程式。探索你能在 Google AI Studio 中用 Gemini 3.8 Flash 建置什麼。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/build-apps-with-gemini-3-8-flash/354fae05.jpg)
-
-![Vamsi Batchu](https://www.gstatic.com/aistudio-static/editorial/build-apps-with-gemini-3-8-flash/481b65d2.jpg)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)、[Vamsi Batchu](https://x.com/vamsibatchuk)
 
 Gemini 3.8 Flash 剛剛推出，為 Google AI Studio 的輸出品質與整體建置體驗帶來顯著的提升。從更精準的初版實作，到更可靠的編輯與程式碼，用 Gemini 建置應用程式比以往更容易。讓我們實際測試這個最新模型，透過 3 個能在幾分鐘內建置、自訂與發布的不同應用程式，展示它最出色的地方。
 

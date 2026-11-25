@@ -2,9 +2,9 @@
 
 使用 Antigravity MCP 或 Interactions API，建立一個 Gemini 代理，在您繼續打字的同時於背景操作真正的桌面應用程式。
 
-![Mark McDonald](https://www.gstatic.com/aistudio-static/editorial/partner-cua-computer-use-gemini/5a7b2bea.jpg)
-
-![Francesco Bonacci](https://www.gstatic.com/aistudio-static/editorial/partner-cua-computer-use-gemini/737ac402.webp)
+作者：[Mark McDonald](https://linktr.ee/markmcd)、[Francesco Bonacci](https://cua.ai/)
+發布於 2026 年 11 月 2 日
+閱讀時間 8 分鐘
 
 ## 總覽
 

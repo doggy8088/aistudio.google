@@ -2,7 +2,7 @@
 
 Gemini 3.5 Transcribe 為你的語音應用程式帶來低延遲、高準確率的語音轉文字、講者分離與智慧格式化功能。
 
-![Thor Schaeff](https://www.gstatic.com/aistudio-static/editorial/gemini-3-5-transcribe-developer-guide/cfbb7ccd.jpg)
+作者：[Alisa Fortin](https://x.com/alisa_fortin)、[Thor Schaeff](https://x.com/thorwebdev)
 
 **Gemini 3.5 Transcribe** 是我們專為高準確率、低延遲與強大的多語言語音理解而設計的先進專用語音轉文字模型套件。無論你是在打造即時字幕、對話式語音代理、智慧會議摘要，還是 Podcast 典藏，Gemini 3.5 Transcribe 都為開發者提供強大且多用途的語音辨識引擎，可用於：**使用 `gemini-3.5-transcribe-live` 即時串流**：透過 WebSocket 或 Google Gen AI SDK 以 [Live API](https://ai.google.dev/gemini-api/docs/live-api/live-transcribe) 連線，實現連續、次秒級延遲的語音轉文字。**使用 `gemini-3.5-transcribe` 轉錄音訊檔案**：透過 [Audio Transcription API](https://ai.google.dev/gemini-api/docs/transcribe) 轉錄最長 1 小時的錄音，具備講者分離與逐字時間戳記。你今天就可以在 [Google AI Studio](https://aistudio.google.com/) 中試用 Gemini 3.5 Transcribe，並運用我們的快速入門資源開始打造應用。
 

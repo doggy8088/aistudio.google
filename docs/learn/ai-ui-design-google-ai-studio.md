@@ -2,7 +2,9 @@
 
 在幾分鐘內從想法到精緻的網頁應用程式。學習如何結合聰明的提示技巧與 AI Studio 內建的 UI 工具，打造美觀的應用程式。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
+作者：[Geneviève Huskens](https://aistudio.google.com/)
+發布於 2026 年 9 月 16 日
+閱讀時間 6 分鐘
 
 打造一個能正確運作的應用程式，比打造一個真正美觀的應用程式容易。放任 AI 模型自行發揮，往往會產生感覺千篇一律、老套或雜亂的介面。優秀的介面，正是讓應用程式看起來像隨手做的實驗、還是像真正的產品之間的差別。你不必將就樣板式的樣式，也不必花好幾個小時跟 CSS 提示詞搏鬥。將有針對性的設計提示詞與 AI Studio 的視覺化 Edit 工具搭配使用，你就能親手掌控你的介面。以下八個實用技巧，能讓你的應用程式設計從粗略的原型，提升為精緻、可正式上線的產品。
 

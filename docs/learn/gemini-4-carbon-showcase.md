@@ -2,9 +2,8 @@
 
 遊玩並自訂以 Gemini 4 Carbon 建置的遊戲、空間模擬與代理。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
-
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)、[Geneviève Huskens](https://x.com/genevieve__h)
+發布於 2026 年 11 月 10 日
 
 Gemini 4 Carbon 現已推出，隨時可以接受考驗，協助你實現應用程式構想。Carbon 為持續性的代理式程式設計、多模態知識工作、網路安全與科學推理而生。模型會花更多時間推理，探索假設、檢查邊界情況，並驗證程式碼與渲染後的 UI 元素。它能把雄心勃勃的提示詞變成完整、可運作的應用程式。來探索我們最喜歡的八個以 Gemini 4 Carbon 建置的應用程式。啟動任一應用程式快速試玩，或在 [Google AI Studio Build](https://aistudio.google.com/apps?model=gemini-4-carbon) 中混搭改作，讓它成為你自己的。
 

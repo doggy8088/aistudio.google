@@ -10,11 +10,11 @@ AI 程式設計代理仰賴的訓練資料有固定的截止日期。因此，�
 
 | 資源 | 提供內容 | 可用性 |
 | :--- | :--- | :--- |
-| **[Gemini Agent Skills](/docs/coding-agents/#available-skills)** | 針對特定功能的逐步規則、SDK 模式與輔助指令碼（`gemini-api-dev`、`gemini-live-api-dev`、`gemini-omni-flash-api`）。 | 已預先安裝於 [AI Studio Build](https://ai.studio/build)；可透過 `skills.sh`、Context7 或 Managed Agents 安裝。 |
+| **[Gemini Agent Skills](/docs/coding-agents/#available-skills)** | 針對特定功能的逐步規則、SDK 模式與輔助指令碼（`gemini-api-dev`、`gemini-api-cli`、`gemini-live-api-dev`、`gemini-omni-flash-api`）。 | 已預先安裝於 [AI Studio Build](https://ai.studio/build)；可透過 `skills.sh`、Context7 或 Managed Agents 安裝。 |
 | **[Gemini Docs MCP Server](/docs/coding-agents/#mcp-setup)** | 可即時搜尋（`gemini_search_docs`）並完整讀取所有文件頁面（`gemini_get_doc`）。 | 支援 Claude Code、Cursor、OpenAI Codex 與 VS Code。 |
 | **[Gemini API Plugin](/docs/coding-agents/#gemini-api-plugin)** | 整合官方 Gemini 技能、Docs MCP 伺服器與 API 金鑰工具的套裝套件。 | Antigravity。 |
 | **[Machine-Readable Docs](/docs/coding-agents/#machine-readable-docs)** | 乾淨的 Markdown 頁面、`llms.txt` 索引與內容協商標頭。 | `aistudio.google.com/docs` 上的所有文件頁面。 |
-| **[Gemini API CLI](/docs/cli/)** | 無狀態 CLI（`gemini-api`），可在不撰寫 SDK 程式碼的情況下，從殼層產生媒體、分析檔案並執行受管理代理。 | 可透過安裝指令碼、Go 或預先建置的二進位檔，安裝於 macOS、Linux 或 Windows。 |
+| **[Gemini API CLI](/docs/cli/)** | 無狀態 CLI（`gemini-api`），可在不撰寫 SDK 程式碼的情況下，從殼層產生媒體、分析檔案並執行受管理代理。 | 可安裝於 macOS、Linux 或 Windows，並搭配 `gemini-api-cli` 技能使用（`npx skills add google-gemini/gemini-skills --skill gemini-api-cli`）。 |
 
 ## 安裝 Gemini 代理技能 {#available-skills}
 
@@ -56,6 +56,19 @@ npx ctx7 skills install /google-gemini/gemini-skills <skill-name>
 
 ```bash
 npx skills add google-gemini/gemini-skills --skill gemini-api-dev --global
+```
+
+#### `gemini-api-cli` {#gemini-api-cli}
+
+此技能用於在程式設計代理、shell 指令碼與 CI 管線中執行無狀態的 [Gemini API CLI](/docs/cli/)（`gemini-api`），無需在專案中加入 SDK 程式碼。此技能涵蓋：
+
+- 將文字、圖片、語音（TTS）、音樂與影片產生至磁碟上的檔案
+- 分析 PDF、圖片、音訊、影片與 YouTube 網址，並撰寫格式化的轉錄稿
+- 啟動並輪詢背景 [Gemini 託管代理](/docs/agents/)，例如 Deep Research
+- 離線旗標與 JSON 結構描述查詢（`--usage`、`--schema`、`--dry-run`）以及多步驟工作流程串連
+
+```bash
+npx skills add google-gemini/gemini-skills --skill gemini-api-cli --global
 ```
 
 #### `gemini-live-api-dev` {#gemini-live-api-dev}
@@ -180,7 +193,7 @@ npx add-mcp "https://gemini-api-docs-mcp.dev"
 
 ## Gemini API plugin {#gemini-api-plugin}
 
-如果你使用 **Antigravity**，**Gemini API plugin** 是設定工作區最快速的方式。它將 Gemini Docs MCP 伺服器、所有官方 Gemini 技能（`gemini-api-dev`、`gemini-live-api-dev`、`gemini-omni-flash-api`）與 API 金鑰工具整合在單一下載中。
+如果你使用 **Antigravity**，**Gemini API plugin** 是設定工作區最快速的方式。它將 Gemini Docs MCP 伺服器、所有官方 Gemini 技能（`gemini-api-dev`、`gemini-api-cli`、`gemini-live-api-dev`、`gemini-omni-flash-api`）與 API 金鑰工具整合在單一下載中。
 
 - **在 Antigravity 中安裝（UI）**：前往 **Settings > Customizations > Build with Google Plugins**，並下載 **Gemini API**。
 - **使用 CLI 安裝**：

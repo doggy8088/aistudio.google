@@ -2,7 +2,8 @@
 
 如何挑選合適的 3D 工具、使用 Gemini 4 Argon 建立 3D 場景的六大核心工作流程，以及 Desk Racer 的幕後直擊。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
+作者：[Geneviève Huskens](https://aistudio.google.com/)
+發布於 2026 年 10 月 13 日
 
 在過去幾週裡，Google 各地的工程師與創意技術專家在數百個 3D 作品上全力運用 **Gemini 4 Argon**——從歷史建築重建、物理解謎遊戲到即時 WebGPU 著色器。Argon 之所以擅長 3D，歸結於三件事：**長時間自主運作**：憑藉 100 萬 tokens 的上下文視窗與輸出視窗，Argon 能自主規劃、撰寫大型多檔案 3D 程式碼庫，並長時間迭代而不迷失整體架構。**原生多模態**：如同先前的 Gemini 模型，Argon 能看懂你的照片、粗略草圖、概念稿，以及它自己渲染的截圖，從而理解 3D 空間、光線與比例。**強大的空間與數學推理能力**：你負責提供創意方向與視覺品味，Argon 則在幕後處理 3D 座標運算、物理、鏡頭光學與網格幾何。我們撰寫這份指南，是**同時寫給人類與代理看的**——你可以自己照著這些步驟做，也可以直接把這份指南的連結傳給你的程式設計代理，請它遵循這些最佳實務。下文將說明如何挑選合適的工具、我們在各個作品中採用的六大核心工作流程，並幕後直擊我如何運用這些方法打造 *Desk Racer*。
 

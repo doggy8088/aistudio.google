@@ -2,7 +2,8 @@
 
 把粗略的想法、照片與雜亂的檔案，變成能運作的應用程式、可遊玩的 3D 世界與精緻的專案——你只需要描述你想要什麼。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
+作者：[Geneviève Huskens](https://aistudio.google.com/)
+發布於 2026 年 10 月 13 日
 
 **Gemini 4 Argon** 是我們最新的前沿模型，旨在把你最大膽的想法從頭到尾完整實現。無論你是用 vibe coding 打造第一個網頁應用程式、把書桌的照片變成可遊玩的 3D 遊戲，或是把一資料夾雜亂的檔案整理成互動式儀表板，Argon 都能把白話描述、草圖與上傳的檔案，變成可以遊玩、使用與分享的真實專案。Argon 能在漫長的多步驟專案中保持上下文，深入遵循你的創意方向，並帶來強得多的版面、設計與 3D 空間感。你不需要從零開始寫程式碼就能開始建置。在 [Google AI Studio Playground](https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon) 試用起始提示詞、在 [AI Studio Build](https://aistudio.google.com/build) 遊玩並混搭發表應用程式，或探索下方的指南。
 

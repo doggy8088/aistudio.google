@@ -2,11 +2,7 @@
 
 為開發者而打造，Gemini 3.7 Flash 是我們迄今最聰明的主力模型，專為程式設計與代理而生。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
-
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
-
-![Omar Sanseviero](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/omar-sanseviero.webp)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)、[Geneviève Huskens](https://x.com/genevieve__h)、[Omar Sanseviero](https://x.com/osanseviero)
 
 今天，我們推出 [Gemini 3.7 Flash](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/)，這是我們迄今最聰明的主力模型，適用於 Google Antigravity、透過 Google AI Studio 提供的 Gemini API，以及 Gemini Enterprise Agent Platform 中的程式設計與代理應用。Gemini 3.7 Flash 專為開發者打造、作為聰明的日常主力，在軟體工程上帶來一大進步，用起來感覺明顯更好。本次發布為你的日常工作流程帶來更強的智慧，適用於複雜任務、指令遵循與工具呼叫。Gemini 3.7 Flash 的上市優惠價為輸入 tokens **$0.75/1M**、輸出 tokens **$3.75/1M**。優惠價至 2026 年 12 月 31 日截止；屆時將適用輸入 tokens $1.50/1M、輸出 tokens $7.50/1M。我們迫不及待想看你把程式設計任務丟給它，讓 3.7 Flash 證明自己。
 

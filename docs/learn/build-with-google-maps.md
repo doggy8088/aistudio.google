@@ -2,7 +2,9 @@
 
 幾分鐘內從構想變成可實際運作的互動式 Google Maps 應用程式。AI Studio 一鍵處理程式碼、設定與 API 金鑰佈建。
 
-![Mike Taylor-Cai](https://www.gstatic.com/aistudio-static/editorial/build-with-google-maps/7e5306cc.webp)
+作者：[Mike Taylor-Cai](https://x.com/miketaylorcai)
+發布於 2026 年 11 月 9 日
+閱讀時間 5 分鐘
 
 ## 立即在你的 AI Studio 應用程式中加入 Google Maps
 

@@ -2,9 +2,8 @@
 
 在 Google AI Studio 中描述你的應用程式、連接 Firebase，並直接從 Google Play 安裝。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/build-apps-with-gemini-3-8-flash/354fae05.jpg)
-
-![Mike Taylor-Cai](https://www.gstatic.com/aistudio-static/editorial/build-android-apps/fe350ee4.jpg)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)、[Mike Taylor-Cai](https://x.com/miketaylorcai)
+閱讀時間 9 分鐘
 
 每個人心裡都有一個個人 Android 應用程式的點子，但從點子到口袋裡真正能用的應用程式，才是困難的部分。直到最近，想把自訂應用程式裝到自己的手機上，還得安裝 Android Studio、設定 Gradle、透過 USB 線安裝，或支付 25 美元的開發人員註冊費。現在不用了，我們做了許多改進，讓你現在可以用 [Google AI Studio](https://aistudio.google.com/apps?features=build_android_app)，在幾分鐘內從提示詞做出完整的全端 Android 應用程式並裝到自己的手機上。用你自己的話描述一個 Android 應用程式，讓 Gemini 幫你建立，在瀏覽器中即時測試語音與 UI、連接 Firebase，並免費從 Google Play 的個人書庫安裝你的應用程式。
 

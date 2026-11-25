@@ -2,7 +2,7 @@
 
 Gemini Deep Research 代理能自主規劃、搜尋並綜整長程研究任務，產出附引用來源的詳細報告。
 
-![Philipp Schmid](https://www.gstatic.com/aistudio-static/editorial/authors/6Rob36HABNTobLBfUOv5.webp)
+作者：[Philipp Schmid](https://x.com/_philschmid)
 
 - `deep-research-preview-04-2026`：為速度與效率設計，適合串流回傳至用戶端 UI
 - `deep-research-max-preview-04-2026`：最大程度的全面性，適合自動化的上下文蒐集與綜整

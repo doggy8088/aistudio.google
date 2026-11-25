@@ -2,9 +2,9 @@
 
 為開發人員提供快速的終端機遊樂場，並為程式設計代理提供確定性的執行軌道。
 
-![Dmitry Lyalin](https://www.gstatic.com/aistudio-static/editorial/introducing-the-gemini-api-cli/66517f00.jpg)
-
-![Philipp Schmid](https://www.gstatic.com/aistudio-static/editorial/introducing-the-gemini-api-cli/8475d524.png)
+作者：[Dmitry Lyalin](https://x.com/LyalinDotCom)、[Philipp Schmid](https://x.com/_philschmid)
+發布於 2026 年 10 月 19 日
+閱讀時間 4 分鐘
 
 今天，我們正式發布 [Gemini API CLI](https://github.com/google-gemini/gemini-api-cli)（`gemini-api`）的實驗性預覽版，這是一個零相依性的二進位檔，可將 Google 最新的推理模型、媒體生成、多模態分析與 [Managed Agents](/learn/managed-agents-updated-harness-files-credentials/) 帶進你的終端機與程式設計代理。在 macOS 與 Linux（`bash`）上安裝 `gemini-api` CLI，或從原始碼（`go`）安裝：
 
@@ -73,6 +73,12 @@ gemini-api music "Lo-fi ambient background track for a focus app" --out ./assets
 ```
 
 ### 聆聽多講者 TTS、音樂與轉錄音訊範例
+
+gemini-api tts --multi-speaker "Alice=Kore,Bob=Puck"
+
+gemini-api music "Lo-fi ambient background track"
+
+輸入音訊已轉錄為 earnings_call.srt
 
 使用 `-i` 傳入本機 PDF、圖片或音訊檔，摘要文件或把音訊轉錄為附時間戳記的 SRT 字幕：
 

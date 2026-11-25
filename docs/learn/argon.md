@@ -2,9 +2,8 @@
 
 Gemini 4 Argon 是我們為複雜工作流程打造的新一代尖端模型，適用於真實世界的軟體工程、企業知識工作與資安防禦。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
-
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
+作者：[Geneviève Huskens](https://aistudio.google.com/)、[Jack Wotherspoon](https://aistudio.google.com/)
+發布於 2026 年 10 月 13 日
 
 今天，我們開始在全球向開發者與企業[推出 **Gemini 4 Argon**](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/)。你可以透過 Google AI Studio 中 Gemini API 的付費層級開始建構；Google AI Ultra 訂閱者則可在 AI Studio 以及我們以代理為核心的開發平台 [Google Antigravity](https://antigravity.google/) 中使用。Gemini 4 Argon 經過訓練，能比以往任何 Gemini 模型**工作更久**、**更能保留上下文**。從大規模程式碼庫重構與效能最佳化，到漏洞修補與多模態合成，它就是為你最艱鉅的任務而打造，從頭到尾一手包辦。
 

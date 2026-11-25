@@ -2,6 +2,8 @@
 
 你不需要學會寫程式，就能打造自己的工具。從手繪的願景開始，讓 Google AI Studio 把你的草圖變成可運作的應用程式。
 
+閱讀時間 10 分鐘
+
 ![如何從一幅圖畫打造應用程式](https://ytimg.googleusercontent.com/vi/b1Pvt072wKQ/maxresdefault.jpg)
 
 ### 將你的草圖上傳到 Build 分頁

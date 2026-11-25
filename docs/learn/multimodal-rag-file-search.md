@@ -2,7 +2,7 @@
 
 一份開發者指南，說明如何建立 Store、上傳文件與圖片、以接地生成進行查詢，以及擷取圖片引用。
 
-![Patrick Loeber](https://www.gstatic.com/aistudio-static/editorial/authors/patloeber.jpg)
+作者：[Patrick Loeber](https://x.com/patloeber)
 
 ## 什麼是 File Search？
 

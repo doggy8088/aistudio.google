@@ -2,7 +2,9 @@
 
 讓數百個工具隨時待命，並在需要時按需載入參數結構描述，透過內建工具搜尋或您自己的用戶端登錄檔。
 
-![Philipp Schmid](https://www.gstatic.com/aistudio-static/editorial/openclaw/19dd8130.png)
+作者：[Philipp Schmid](https://x.com/_philschmid)
+發布於 2026 年 11 月 20 日
+閱讀時間 9 分鐘
 
 [動態工具擷取](/docs/tool-retrieval/)（工具搜尋工具）已在 [Gemini API](/docs/interactions-overview/) 提供預覽版。您的代理可以讓數百個工具隨時待命，起初只看到簡短的名稱與說明，並只在任務需要時才載入完整的參數結構描述。
 

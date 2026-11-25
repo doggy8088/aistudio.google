@@ -2,9 +2,9 @@
 
 Gemini API 技能是可重複使用的目錄套件，能為程式設計代理提供最新的 SDK 指令、遷移指南與可執行的輔助腳本。
 
-![Patrick Löber](https://www.gstatic.com/aistudio-static/editorial/authors/patloeber.jpg)
-
-![Amy Burns](https://www.gstatic.com/aistudio-static/editorial/gemini-api-skills/e9657c0c.jpg)
+作者：[Patrick Löber](https://aistudio.google.com/)、[Amy Burns](https://x.com/timeyoutakeit)
+發布於 2026 年 9 月 22 日
+閱讀時間 11 分鐘
 
 語言模型的訓練資料有固定的截止點，因此程式設計代理常會建議已淘汰的套件或舊版 API 方法。安裝 Gemini API 技能，能讓你的程式設計代理掌握現行 `google-genai` Python SDK 與 `@google/genai` TypeScript SDK 的正確規則與程式碼模式。本指南將說明代理技能的運作方式、如何設定官方 Gemini API 技能，以及如何在常見的開發工作流程中使用它們。
 

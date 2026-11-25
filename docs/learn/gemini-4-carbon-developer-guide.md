@@ -2,9 +2,8 @@
 
 Gemini 4 Carbon 是我們最強大的模型，在資訊安全與長程能力方面展現前沿水準，涵蓋複雜的軟體工程、企業知識工作與科學推理。
 
-![Geneviève Huskens](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/genevieve-huskens.webp)
-
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
+作者：[Geneviève Huskens](https://x.com/genevieve__h)、[Jack Wotherspoon](https://x.com/JackWoth98)
+發布於 2026 年 11 月 10 日
 
 今天，我們開始向開發者、企業、科學家與消費者[推出 **Gemini 4 Carbon**](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/)。它於[兩週前宣布](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/)，並已透過我們的 [Fairwind Program](https://deepmind.google/fairwind-program/) 提供給資訊安全防禦者；現在，你可以透過 Google AI Studio 中 Gemini API 的付費層級開始建構，Google AI Ultra 訂閱者則可在 AI Studio 與 [Google Antigravity](https://antigravity.google/) 中使用。Gemini 4 Carbon 專為徹底探索、深度推理，以及在持續的代理工作流程中執行延伸的驗證循環而打造。從多步驟軟體工程與全端 Web 應用程式，到開放式問題、科學探索與根本原因弱點修補，Carbon 為從頭到尾的深度複雜任務帶來更多智慧。
 

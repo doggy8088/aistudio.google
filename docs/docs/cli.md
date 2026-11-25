@@ -2,6 +2,16 @@
 
 Gemini API CLI（`gemini-api`）是一款無狀態、零相依性的命令列用戶端，專為具備 shell 存取權限的 AI 代理、指令碼與 CI 管線打造。您的程式設計代理可以用它生成文字與媒體、分析檔案，並將任務委派給 [Gemini 託管代理](/docs/agents/)。它可與 Antigravity、Claude Code、Cursor 以及任何標準 shell 環境搭配使用。
 
+
+!!! info " "
+
+      **使用 AI 程式設計代理嗎？**請在二進位檔旁一併安裝 [`gemini-api-cli`](https://github.com/google-gemini/gemini-skills/tree/main/skills/gemini-api-cli) 技能，讓您的代理知道何時該呼叫 `gemini-api`，以及如何使用其旗標、結構描述與輸出格式：
+
+      ```bash
+      npx skills add google-gemini/gemini-skills --skill gemini-api-cli
+      ```
+
+
 所有功能都以標準 shell 指令的形式，透過 [Interactions API](/docs/interactions-overview/) 執行。您可以從代理的子行程、您的終端機或 CI 管線執行相同的指令：
 
 ```bash
@@ -68,7 +78,7 @@ gemini-api agent run "Compare WebRTC SFU architectures and cite sources" \
 
 ## 開始使用 {#get-started}
 
-安裝 CLI、將 `gemini-api` 加入 `PATH`、設定 `GEMINI_API_KEY`，並為您的程式設計代理加入使用規則。
+安裝 CLI、將 `gemini-api` 加入 `PATH`、設定 `GEMINI_API_KEY`，並為您的程式設計代理安裝 `gemini-api-cli` 技能。
 
 ### 1. 安裝二進位檔 {#install}
 
@@ -127,20 +137,34 @@ gemini-api generate "Confirm CLI setup in one sentence." --dry-run
       請將 `GEMINI_API_KEY` 視為機密。在 CI 中，請從您的機密儲存空間注入該金鑰，不要將它提交到存放庫或建置檔案中。
 
 
-### 3. 為您的代理提供指示 {#agent-instructions}
+### 3. 安裝代理技能 {#agent-instructions}
 
-將以下片段加入專案的 `AGENTS.md`、`CLAUDE.md`、`.cursorrules` 或系統提示詞，讓您的程式設計代理知道如何使用 `gemini-api`：
+安裝 [`gemini-api-cli`](https://github.com/google-gemini/gemini-skills/tree/main/skills/gemini-api-cli) 技能，讓您的程式設計代理知道何時該使用 `gemini-api`、如何查看 `--usage` 與 `--schema`，以及如何串連檔案路徑與互動 ID：
 
-```markdown
-## Gemini API CLI (`gemini-api`)
-
-You have access to `gemini-api` through the shell. Use it to generate text or media (images, speech, music, video), analyze documents and recordings, or run and manage Gemini managed agents.
-
-1. Run `gemini-api --help` or `gemini-api --usage` to choose a command, and `gemini-api <command> --schema` before building a `--body` JSON payload.
-2. Preview unfamiliar or complex calls offline with `--dry-run -o json`.
-3. For a single JSON result or `--jq` filtering on `generate` or `agent run`, pass `--stream=false -o json`.
-4. To chain multi-step workflows, capture the output paths that media and transcription commands print to stdout, and the `id` values returned by `generate` or `agent run`.
+```bash
+# Install in your current project (add --global to install across all projects)
+npx skills add google-gemini/gemini-skills --skill gemini-api-cli
 ```
+
+在 Antigravity 中，您也可以安裝 [Gemini API plugin](/docs/coding-agents/#gemini-api-plugin)（`agy plugin install https://github.com/google-gemini/gemini-skills`），它將 `gemini-api-cli` 與所有官方 Gemini 技能及 Docs MCP 伺服器打包在一起。
+
+
+??? note "手動備援（`AGENTS.md` / `CLAUDE.md`）"
+
+
+      如果您的環境不支援代理技能，請將以下片段加入專案的 `AGENTS.md`、`CLAUDE.md`、`.cursorrules` 或系統提示詞：
+
+      ```markdown
+      ## Gemini API CLI (`gemini-api`)
+
+      You have access to `gemini-api` through the shell. Use it to generate text or media (images, speech, music, video), analyze documents and recordings, or run and manage Gemini managed agents.
+
+      1. Run `gemini-api --help` or `gemini-api --usage` to choose a command, and `gemini-api <command> --schema` before building a `--body` JSON payload.
+      2. Preview unfamiliar or complex calls offline with `--dry-run -o json`.
+      3. For a single JSON result or `--jq` filtering on `generate` or `agent run`, pass `--stream=false -o json`.
+      4. To chain multi-step workflows, capture the output paths that media and transcription commands print to stdout, and the `id` values returned by `generate` or `agent run`.
+      ```
+
 
 接著照常向您的程式設計代理下達提示詞：
 
@@ -323,4 +347,5 @@ cat logs.txt | gemini-api generate "Extract every error message from these logs.
 - [程式設計代理設定](/docs/coding-agents/)
 - [Interactions API](/docs/interactions-overview/)
 - [Gemini 託管代理](/docs/agents/)
+- [GitHub 上的 gemini-api-cli 技能](https://github.com/google-gemini/gemini-skills/tree/main/skills/gemini-api-cli)
 - [GitHub 上的 gemini-api-cli](https://github.com/google-gemini/gemini-api-cli)

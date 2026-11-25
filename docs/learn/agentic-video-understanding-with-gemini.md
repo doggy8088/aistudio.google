@@ -2,9 +2,7 @@
 
 了解代理式影片分析如何將 token 消耗量減少多達 88%、成本降低多達 66%，同時提升準確度。
 
-![Patrick Loeber](https://www.gstatic.com/aistudio-static/editorial/authors/54f6334eb7a549668f54.jpg)
-
-![Maarten Grootendorst](https://www.gstatic.com/aistudio-static/editorial/authors/mgrootendorst.jpg)
+作者：[Patrick Loeber](https://x.com/patloeber)、[Maarten Grootendorst](https://x.com/MaartenGr)
 
 在多模態 LLM 中分析長篇影片，傳統上仰賴均勻取樣：以固定的靜態影格率（通常為 1 FPS）解碼整條時間軸，並將全部視覺資料填入上下文視窗。[**代理式影片理解**](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-agentic-video-in-gemini/) 以主動的伺服器端工具迴圈取代靜態解碼。模型不再預先載入整部影片，而是依需求檢視時間軸：搜尋轉錄稿、以自適應影格率擷取目標影格序列，並分離出關鍵音軌。相較於靜態（1 FPS）處理，主要優勢包括：每次要求的**token 數量減少多達 88%**、長篇媒體的**分析成本降低多達 66%**、細粒度視覺推理任務的**準確度提高多達 7%**。
 

@@ -2,9 +2,8 @@
 
 符合資格的 Google AI 方案包含每月的 Google Cloud 點數，你可以將其用於在 Google AI Studio 中打造作品。
 
-![Evan Otero](https://www.gstatic.com/aistudio-static/editorial/use-google-ai-plan-credits-to/518d7ba8.jpg)
-
-![Seth Odoom](https://www.gstatic.com/aistudio-static/editorial/use-google-ai-plan-credits-to/8b57357f.jpg)
+作者：[Evan Otero](https://x.com/EvanOtero)、Seth Odoom
+更新於 2026 年 11 月 3 日
 
 ## 讓你的每月點數在 Google AI Studio 中發揮作用
 

@@ -13,8 +13,8 @@ Google AI Pro 與 Ultra 訂閱可解鎖付費模型與更高的每日速率限�
 | 方案 | AI Studio 每日配額 | 模型存取權限 | 每月 API 點數 |
 | :--- | :--- | :--- | :--- |
 | **Free** | 配額較低 | 基本存取權限，包含 [Gemini 4 Hydrogen](/docs/models/gemini-4-hydrogen/)。 | 無 |
-| **AI Pro** | 配額較高 | 可存取 [Gemini 4 Neon](/docs/models/gemini-4-neon/)、Gemini Pro、[Gemini Nano Banana 2.1](/docs/models/gemini-nano-banana-2.1/) 與 [Lyria 3.5](/docs/models/lyria-3.5/)。 | 每月 $10 |
-| **AI Ultra** | 配額最高 | 最高上限與前沿模型，包含 [Gemini 4 Carbon](/docs/models/gemini-4-carbon/) 與 [Gemini 4 Neon](/docs/models/gemini-4-neon/)。 | 每月 $40（Ultra 5x）或 $100（Ultra 20x） |
+| **AI Pro** | 配額較高 | 可存取 [Gemini 4 Neon](/docs/models/gemini-4-neon/)、[Gemini Nano Banana 2.1](/docs/models/gemini-nano-banana-2.1/) 與 [Lyria 3.5](/docs/models/lyria-3.5/)。 | 每月 $10 |
+| **AI Ultra** | 配額最高 | 最高上限與前沿模型，包含 [Gemini 4 Carbon](/docs/models/gemini-4-carbon/) 與 [Gemini 4 Neon](/docs/models/gemini-4-neon/)。 | 每月 $40（Ultra 5x）或 $100（Ultra 20x） |
 
 ## 在 AI Studio 中領取每月 API 點數 {#claim-api-credits}
 
@@ -57,6 +57,7 @@ Google AI Pro 與 Ultra 訂閱者可以透過 AI Studio 內的引導流程領取
 
 ## 限制 {#limitations}
 
+* **僅限個人 Google 帳號**：本頁的方案僅適用於個人 Google 帳號。AI Studio 中的 AI Pro 與 AI Ultra 權益[不包含在 Google Workspace](https://one.google.com/about/google-ai-plans/#:~:text=I%E2%80%99m%20a%20Google%20Workspace%20customer%2C%20can%20I%20sign%20up%20for%20Google%20AI%20plans%3F) 方案及其關聯方案中。如需更高的速率限制並存取所有模型，建議改用 [Gemini API 金鑰](https://aistudio.google.com/apikey)。
 * **訂閱配額與 API 點數的差異**：你的 Google AI 方案每日配額僅適用於 Google AI Studio 網頁介面。已領取的 Google Cloud 點數適用於使用付費 API 金鑰發出的 Gemini API 要求，無論是在 AI Studio 內或外部應用程式中皆然。
 * **與 API 計費不同**：AI Studio 的 Google AI 方案與 [Gemini API 用量級別](/docs/billing/)是分開的，後者規範 API 速率限制與支出上限。
 * **僅限主要訂閱者**：每月 API 點數僅發放給主要訂閱者的 Google 帳號，且只能套用至單一 Cloud Billing 帳戶。家庭方案成員與 Google AI Plus 方案不符合 Google Developer Program API 點數的領取資格。

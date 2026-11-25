@@ -2,7 +2,7 @@
 
 Demis Hassabis 與 Google DeepMind 的研究主管們，在 Y Combinator 與 Garry Tan 及頂尖創辦人共同勾勒邁向 AGI 的路徑，以及自主代理的崛起。
 
-![Matt Ridenour](https://www.gstatic.com/aistudio-static/editorial/page-mqphhem2/a090d45d.webp)
+作者：[Matt Ridenour](https://x.com/patloeber)
 
 ![](https://www.gstatic.com/aistudio-static/editorial/page-mqphhem2/20ab7bd1.webp)
 

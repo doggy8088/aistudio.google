@@ -2,7 +2,9 @@
 
 這個新的 CLI 是什麼、它的設計用途，以及為什麼給你的代理一個專用的媒體工具，能節省 85% 的 token 並讓速度提升近 2 倍。
 
-![Jack Wotherspoon](https://www.gstatic.com/aistudio-static/editorial/page-msrgq2u0/jack-wotherspoon.webp)
+作者：[Jack Wotherspoon](https://x.com/JackWoth98)
+發布於 2026 年 10 月 27 日
+閱讀時間 4 分鐘
 
 ## 什麼是 Gemini API CLI？
 

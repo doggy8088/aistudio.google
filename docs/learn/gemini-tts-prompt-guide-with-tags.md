@@ -2,7 +2,7 @@
 
 Gemini 3.1 Flash 文字轉語音（TTS）是一個新模型，你可以透過指示，讓它給出你想要的精確音訊表現。在這篇文章中，我將分享一些以提示詞引導這個模型的技巧，並分享一些展現其強項的範例。
 
-![fofr](https://www.gstatic.com/aistudio-static/editorial/authors/X0eNuhoU4Ar85HbcjcZE.webp)
+作者：[fofr](https://x.com/fofrAI)
 
 `gemini-3.1-flash-tts-preview` 開箱即能原生理解逐字稿，判斷你的文字應該如何唸出來。沒有額外提示的簡單逐字稿，聽起來就很自然。但 3.1 Flash TTS 也附帶了能讓你引導它的工具。
 
@@ -15,6 +15,20 @@ Gemini 3.1 Flash 文字轉語音（TTS）是一個新模型，你可以透過指
 ## 簡單的逐字稿與創意標籤
 
 為了展示光靠標籤就能得到多大的變化，這裡有一組範例，每個範例說的都是同一句話、使用同一個聲音，但唸法會依我所用的標籤而改變。我選了 Algenib 語音，一個略帶沙啞的男聲。
+
+「嗨，我是新的文字轉語音模型，我能用很多不同的方式說話。今天我能幫你什麼？」
+
+「嗨，我是新的文字轉語音模型，我能用很多不同的方式說話。今天我能幫你什麼？」
+
+「嗨，我是新的文字轉語音模型，我能用很多不同的方式說話。今天我能幫你什麼？」
+
+嗨，我是新的文字轉語音模型，
+
+我能用很多不同的方式說話。
+
+今天我能幫你什麼？
+
+「嗨，我是新的文字轉語音模型，我能用很多不同的方式說話。今天我能幫你什麼？」
 
 更多你可以試試的標籤：[amazed] [crying] [curious] [gasp] [giggles] [mischievously] [panicked] [sarcastic] [serious] [sighs] [snorts] [tired] [trembling]
 

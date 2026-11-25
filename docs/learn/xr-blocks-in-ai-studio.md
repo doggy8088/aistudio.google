@@ -2,11 +2,9 @@
 
 用單一提示詞設計 3D 場景、想像空間互動，並建立具備物理感知的 Android XR 體驗
 
-![Ruofei Du](https://www.gstatic.com/aistudio-static/editorial/xr-blocks-in-ai-studio/b977c9df.webp)
-
-![Asier Ríos](https://www.gstatic.com/aistudio-static/editorial/xr-blocks-in-ai-studio/1e9e7b27.webp)
-
-![Mike Taylor-Cai](https://www.gstatic.com/aistudio-static/editorial/xr-blocks-in-ai-studio/1b6beabb.webp)
+作者：[Ruofei Du](https://x.com/DuRuofei)、[Asier Ríos](https://x.com/asierrios)、[Mike Taylor-Cai](https://aistudio.google.com/)
+發布於 2026 年 10 月 28 日
+閱讀時間 10 分鐘
 
 為擴增實境（XR）開發，一向意味著在測試簡單的捏合手勢互動之前，必須先串接沉重的 3D 遊戲引擎、低階感知管線與裝置專屬 SDK。今年稍早，我們推出 [Vibe Coding XR](https://research.google/blog/vibe-coding-xr-accelerating-ai-xr-prototyping-with-xr-blocks-and-gemini/)，展示大型語言模型如何將自然語言直接轉換為一次到位的互動式空間體驗。今天，配合 XREAL [AURA](https://www.xreal.com/us/aura) 的發表，我們把榮獲 [Auggie 獎](https://www.awexr.com/blog/auggie-Award-Winners-at-AWE-USA-2026)的框架 [XR Blocks](https://xrblocks.github.io/) 帶進 **Google AI Studio Build**。在 Gemini 的驅動下，你現在可以用單一提示詞即興編寫（vibe-code）完整、具備物理感知的 WebXR 應用程式，無論是直接在有線 XR 眼鏡或 Android XR 驅動的 XR 頭戴式裝置（例如 XREAL [AURA](https://www.xreal.com/us/aura) 與 Samsung [Galaxy XR](https://www.samsung.com/us/xr/galaxy-xr/galaxy-xr/)）上的 Chrome 瀏覽器中，或直接在電腦上使用 XR Blocks 內建的桌面模擬器。
 
