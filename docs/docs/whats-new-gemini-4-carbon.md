@@ -7,13 +7,6 @@ Gemini 4 Carbon 可在 Gemini API 的付費層級與 Google AI Studio 中使用�
 
   
 
-**[模型卡](/docs/models/gemini-4-carbon/)**
-
-查看 token 上限、支援的功能與完整規格。
-
-
-  
-
 **[在 AI Studio 中建置](https://aistudio.google.com/apps?model=gemini-4-carbon)**
 
 使用 Gemini 4 Carbon 建置並驗證全端 Web 與 3D 應用程式。
@@ -24,6 +17,13 @@ Gemini 4 Carbon 可在 Gemini API 的付費層級與 Google AI Studio 中使用�
 **[開發人員指南](/learn/gemini-4-carbon-developer-guide/)**
 
 閱讀 Gemini 4 Carbon 的實用提示詞與多代理模式。
+
+
+  
+
+**[模型卡](/docs/models/gemini-4-carbon/)**
+
+查看 token 上限、支援的功能與完整規格。
 
 
 本指南說明 Gemini 4 Carbon 的新功能、如何在各 Gemini 4 模型之間做選擇、API 變更、程式碼範例，以及遷移指南。

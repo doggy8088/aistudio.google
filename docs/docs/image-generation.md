@@ -1087,6 +1087,7 @@ Nano Banana 模型可讓你混合最多 14 張參考圖像。這 14 張圖像可
 === "CLI"
 
       ```bash
+      # The CLI caps inline -i inputs at ~14 MB combined raw data per request (20 MB body with base64). Use gemini-api files upload --wait for larger files.
       gemini-api image "An office group photo of these people, they are making funny faces." \
         -i person1.png -i person2.png -i person3.png -i person4.png -i person5.png \
         --aspect-ratio 5:4 \
@@ -1297,6 +1298,7 @@ Nano Banana 模型可讓你混合最多 14 張參考圖像。這 14 張圖像可
 === "CLI"
 
       ```bash
+      # --out saves only the image; pass --raw-response -o json instead to inspect grounding metadata (search_suggestions / url_citation).
       gemini-api image "Visualize the current weather forecast for the next 5 days in San Francisco as a clean, modern weather chart. Add a visual on what I should wear each day" \
         --body '{"tools":[{"type":"google_search"}]}' \
         --output-mime-type image/jpeg \

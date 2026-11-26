@@ -46,8 +46,7 @@ Interactions API 與 `generateContent`：
 | **核心 API 能力** |  |  |
 | [Interactions API](/docs/get-started/) | 支援 | 支援 |
 | [函式呼叫](/docs/function-calling/) | 支援 | 支援 |
-| Media Processing Options (Interactions API): [documents](/docs/document-processing/#customize-document-processing), [audio](/docs/audio/#clipping-intervals), [video](/docs/video-understanding/#customize-video-processing) | 支援 | 支援 |
-| Media Processing Options (generateContent): [documents](/docs/document-processing/?generate-content=true#customize-document-processing), [audio](/docs/audio/?generate-content=true#clipping-intervals), [video content layers](/docs/video-understanding/?generate-content=true#video-content-layers) |  | 支援 |
+| Media Processing Options: [documents](/docs/document-processing/#customize-document-processing), [audio](/docs/audio/#clipping-intervals), [video](/docs/video-understanding/#customize-video-processing) | 支援 | 支援 |
 | [結構化輸出](/docs/structured-output/) | 支援 | 支援 |
 | [思考／推理](/docs/thinking/) | 支援 | 支援 |
 | [系統指令](/docs/text-generation/#system-instructions) | 支援 | 支援 |

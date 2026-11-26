@@ -188,6 +188,8 @@
 === "CLI"
 
       ```bash
+      # The CLI caps inline -i inputs at ~14 MB combined raw data per request (20 MB body with base64).
+      # For larger files, upload first with gemini-api files upload <path> --wait.
       gemini-api analyze -m gemini-4-hydrogen -i my_local_file.pdf "Summarize this document"
       ```
 
@@ -432,7 +434,9 @@
 === "CLI"
 
       ```bash
-      curl -sL -o base64_pdf.pdf "https://discovery.ucl.ac.uk/id/eprint/10089234/1/343019_3_art_0_py4t4l_convrt.pdf"
+      # The CLI caps inline -i inputs at ~14 MB combined raw data per request (20 MB body with base64).
+      # For larger files, upload first with gemini-api files upload <path> --wait.
+      curl -fsSL -o base64_pdf.pdf "https://discovery.ucl.ac.uk/id/eprint/10089234/1/343019_3_art_0_py4t4l_convrt.pdf"
       gemini-api analyze -m gemini-4-hydrogen -i base64_pdf.pdf "Summarize this document"
       ```
 
@@ -726,7 +730,7 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
       )
       ```
 
-=== "Javascript"
+=== "JavaScript"
 
       ```javascript
       const { GoogleAuth } = require('google-auth-library');
@@ -744,20 +748,41 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
       });
       ```
 
-=== "gcloud CLI"
+=== "Java"
 
-      ```bash
-      gcloud auth application-default login \
-        --client-id-file=service-account.json \
-        --scopes='https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/devstorage.read_only'
+      ```java
+      import com.google.auth.oauth2.GoogleCredentials;
+      import java.io.FileInputStream;
+      import java.util.Arrays;
+      import java.util.List;
+
+      List<String> gcsReadScopes =
+          Arrays.asList(
+              "https://www.googleapis.com/auth/devstorage.read_only",
+              "https://www.googleapis.com/auth/cloud-platform");
+
+      String serviceAccountFile = "service-account.json";
+
+      GoogleCredentials credentials =
+          GoogleCredentials.fromStream(new FileInputStream(serviceAccountFile))
+              .createScoped(gcsReadScopes);
       ```
 
-      **On Google Cloud**
+=== "Shell"
 
-      如果你直接在 Google Cloud 中執行，例如使用 [Cloud
-        Run functions](https://cloud.google.com/functions) 或
-        [Compute Engine instance](https://cloud.google.com/products/compute)，你會有
-        隱含的憑證，但仍需要重新驗證，才能授予適當的範圍。
+      ```bash
+      export GOOGLE_APPLICATION_CREDENTIALS="service-account.json"
+      ```
+
+
+**On Google Cloud**
+
+如果你直接在 Google Cloud 中執行，例如使用 [Cloud
+Run functions](https://cloud.google.com/functions) 或
+[Compute Engine instance](https://cloud.google.com/products/compute)，你會有
+隱含的憑證，但仍需要重新驗證，才能授予適當的範圍。
+appropriate scopes.
+
 
 === "Python"
 
@@ -765,61 +790,33 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
         [Application Default Credentials](https://docs.cloud.google.com/docs/authentication/application-default-credentials)
         的環境中執行，例如 Cloud Run 或 Compute Engine。
 
-      ```
       ```python
-      ```
-
       import google.auth
 
       GCS_READ_SCOPES = [
         'https://www.googleapis.com/auth/devstorage.read_only',
         'https://www.googleapis.com/auth/cloud-platform'
-        ]
+      ]
 
       credentials, project = google.auth.default(scopes=GCS_READ_SCOPES)
-        ```
-
-          {% /tab %}
-
-          {% tab label="JavaScript" %}
-          This code expects that the service is running in an environment where
-        [Application Default Credentials](https://docs.cloud.google.com/docs/authentication/application-default-credentials)
-        can be obtained automatically, such as Cloud Run or Compute Engine.
-
-          ```
-      ```javascript
       ```
 
+=== "JavaScript"
+
+      這段程式碼假設服務是在能自動取得
+        [Application Default Credentials](https://docs.cloud.google.com/docs/authentication/application-default-credentials)
+        的環境中執行，例如 Cloud Run 或 Compute Engine。
+
+      ```javascript
       const { GoogleAuth } = require('google-auth-library');
 
       const auth = new GoogleAuth({
         scopes: [
-        'https://www.googleapis.com/auth/devstorage.read_only',
-        'https://www.googleapis.com/auth/cloud-platform'
+          'https://www.googleapis.com/auth/devstorage.read_only',
+          'https://www.googleapis.com/auth/cloud-platform'
         ]
-        });
-        ```
-
-          {% /tab %}
-
-          {% tab label="Java" %}
-          ```java
-          import com.google.auth.oauth2.GoogleCredentials;
-          import java.io.FileInputStream;
-          import java.util.Arrays;
-          import java.util.List;
-  
-          List<String> gcsReadScopes =
-          Arrays.asList(
-              "https://www.googleapis.com/auth/devstorage.read_only",
-              "https://www.googleapis.com/auth/cloud-platform");
-  
-          String serviceAccountFile = "service-account.json";
-  
-          GoogleCredentials credentials =
-          GoogleCredentials.fromStream(new FileInputStream(serviceAccountFile))
-              .createScoped(gcsReadScopes);
-          ```
+      });
+      ```
 
 === "gcloud CLI"
 
@@ -827,37 +824,30 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
         附加到執行中的服務。範例請見
         [使用者代管服務文件](https://docs.cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances#using)。
 
-      ```
       ```bash
+      gcloud auth application-default login \
+      --scopes="https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/devstorage.read_only"
       ```
 
-      gcloud auth application-default login   
-        --scopes="https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/devstorage.read_only"
-        ```
 
-          {% /tab %}
+1. 檔案註冊（Files API）
 
-        {% /tabs %}
-
-        1. File registration (Files API)
-
-           Use the Files API to register files and produce a Files API path that can
-           directly be used in the Gemini API.
+   使用 Files API 註冊檔案，產生可直接用於 Gemini API 的 Files API 路徑。
 
 
-        {% tabs %}
-          {% tab label="Python" %}
-          ```python
-          from google import genai
-  
-          client = genai.Client(credentials=credentials)
-  
-          registered_gcs_files = client.files.register_files(
+=== "Python"
+
+      ```python
+      from google import genai
+
+      client = genai.Client(credentials=credentials)
+
+      registered_gcs_files = client.files.register_files(
           uris=["gs://my_bucket/some_object.pdf", "gs://bucket2/object2.txt"]
-          )
-          prompt = "Summarize this file."
-  
-          for f in registered_gcs_files.files:
+      )
+      prompt = "Summarize this file."
+
+      for f in registered_gcs_files.files:
         print(f.name)
         interaction = client.interactions.create(
           model="gemini-4-hydrogen",
@@ -867,7 +857,7 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
           ],
         )
         print(interaction.output_text)
-          ```
+      ```
 
 === "JavaScript"
 
@@ -995,6 +985,7 @@ File API 適用於較大的檔案（最大 2GB），或打算在多個請求中�
 === "CLI"
 
       ```bash
+      # Pass --access-token as an explicit flag so OAuth 2.0 overrides GEMINI_API_KEY when both are set.
       gemini-api files register \
         --uris '["gs://my_bucket/some_object.pdf", "gs://bucket2/object2.txt"]' \
         --access-token "$(gcloud auth application-default print-access-token)" \
@@ -1141,7 +1132,7 @@ Gemini API 會在處理過程中安全地擷取內容。
       }
       ```
 
-=== "Javascript"
+=== "JavaScript"
 
       ```javascript
       import { GoogleGenAI } from '@google/genai';

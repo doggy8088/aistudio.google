@@ -492,6 +492,7 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
 === "CLI"
 
       ```bash
+      # The CLI caps inline -i inputs at ~14 MB combined raw data per request (20 MB body with base64). Upload larger videos with gemini-api files upload --wait.
       gemini-api analyze "Please summarize the video in 3 sentences." -i /path/to/your/video.mp4
       ```
 
@@ -811,7 +812,7 @@ Gemini 模型可以處理影片，讓許多過去需要專門領域模型才能�
       ```bash
       FILE=$(gemini-api files upload path/to/lecture.mp4 --wait)
       ID=$(gemini-api agent run -m gemini-4-hydrogen --background --stream=false --jq '.id' --body '{"input": [
-        {"type": "video", "uri": "'"$FILE"'", "processing": "agentic"},
+        {"type": "video", "uri": "'"$FILE"'", "mime_type": "video/mp4", "processing": "agentic"},
         {"type": "text", "text": "What are the three main arguments presented?"}
       ]}')
       gemini-api agent status "$ID" --stream
@@ -1193,7 +1194,7 @@ Gemini 模型能同時處理**音訊與視覺**串流中的資訊，提供強大
       ```bash
       FILE=$(gemini-api files upload path/to/sample.mp4 --wait)
       gemini-api generate -m gemini-4-hydrogen --body '{"input": [
-        {"type": "video", "uri": "'"$FILE"'",
+        {"type": "video", "uri": "'"$FILE"'", "mime_type": "video/mp4",
          "processing": {"type": "static", "start_offset": "1200s", "end_offset": "1500s"}},
         {"type": "text", "text": "Summarize this section of the video."}
       ]}'

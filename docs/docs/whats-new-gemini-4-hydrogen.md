@@ -7,13 +7,6 @@ Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費�
 
   
 
-**[模型卡](/docs/models/gemini-4-hydrogen/)**
-
-查看 token 上限、支援的功能與完整規格。
-
-
-  
-
 **[在 AI Studio 中建構](https://aistudio.google.com/apps?model=gemini-4-hydrogen)**
 
 在 AI Studio Build 中建構全端 Web 應用程式。
@@ -24,6 +17,13 @@ Gemini 4 Hydrogen 在 Google AI Studio 與 Gemini API 的免費層級與付費�
 **[從 3.8 Flash 遷移](/docs/whats-new-gemini-4-hydrogen/#migrate-from-gemini-3-8-flash)**
 
 使用 Gemini 3.8 Flash 遷移檢查清單升級現有工作負載。
+
+
+  
+
+**[模型卡](/docs/models/gemini-4-hydrogen/)**
+
+查看 token 上限、支援的功能與完整規格。
 
 
 本指南說明 Gemini 4 Hydrogen 的新功能、API 變更、程式碼範例與遷移指引。

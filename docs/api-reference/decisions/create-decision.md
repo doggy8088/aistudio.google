@@ -721,6 +721,7 @@
           import com.google.genai.gaos.models.decisions.NoulQuestionInstructions;
           import com.google.genai.gaos.models.operations.CreateDecisionResponse;
           import com.google.genai.types.HttpOptions;
+          import java.util.Map;
 
           Client client =
               Client.builder()
@@ -933,6 +934,7 @@
           import com.google.genai.gaos.models.decisions.Input;
           import com.google.genai.gaos.models.operations.CreateDecisionResponse;
           import com.google.genai.types.HttpOptions;
+          import java.util.Map;
 
           Client client =
               Client.builder()
@@ -1138,6 +1140,7 @@
           import com.google.genai.gaos.models.operations.CreateDecisionResponse;
           import com.google.genai.types.HttpOptions;
           import java.util.List;
+          import java.util.Map;
 
           Client client =
               Client.builder()
@@ -1392,6 +1395,7 @@
           import com.google.genai.gaos.models.operations.CreateDecisionResponse;
           import com.google.genai.types.HttpOptions;
           import java.util.List;
+          import java.util.Map;
 
           Client client =
               Client.builder()

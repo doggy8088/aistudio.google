@@ -198,7 +198,9 @@ Gemini Deep Research 代理能自主規劃、執行並彙整多步驟的研究�
       INTERACTION_ID=$(gemini-api agent run "Research the history of Google TPUs." \
         --agent deep-research-preview-04-2026 --background --stream=false --jq '.id')
       echo "Research started: $INTERACTION_ID"
-      # Re-run until the status is "completed", then print the report
+      # Re-run until the status is "completed", then print the report.
+      # Note: agent status exits with code 1 if the interaction is "failed" or "cancelled"
+      # (append || true in scripts using set -e).
       gemini-api agent status "$INTERACTION_ID" --jq '.status'
       gemini-api agent status "$INTERACTION_ID" --jq '[.steps[]? | select(.type == "model_output") | .content[]? | select(.type == "text") | .text] | join("")'
       ```
@@ -2033,7 +2035,8 @@ Deep Research 支援多模態輸入，包括圖片與文件（PDF），讓代理
 === "CLI"
 
       ```bash
-      curl -sL -o watering_hole.jpg \
+      # Download the image locally first (-i accepts local files, files/<id>, or YouTube URLs).
+      curl -fsSL -o watering_hole.jpg \
         "https://storage.googleapis.com/generativeai-downloads/images/generated_elephants_giraffes_zebras_sunset.jpg"
       gemini-api agent run "Analyze the interspecies dynamics and behavioral risks present in the provided image of the African watering hole. Specifically, investigate the symbiotic relationship between the avian species and the pachyderms shown, and conduct a risk assessment for the reticulated giraffes based on their drinking posture relative to the specific predator visible in the foreground." \
         --agent deep-research-preview-04-2026 -i watering_hole.jpg \
@@ -2667,7 +2670,7 @@ Deep Research 支援串流，可即時接收研究進度的更新，包括思考
 
       ```bash
       gemini-api generate "Can you elaborate on the second point in the report?" \
-        -m gemini-4-argon --previous-interaction-id COMPLETED_INTERACTION_ID
+        -m gemini-4-carbon --previous-interaction-id COMPLETED_INTERACTION_ID
       ```
 
 

@@ -1,23 +1,20 @@
 # 文件理解
 
-Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文件的完整脈絡。這不只是擷取文字而已，Gemini 還能：
+Gemini 模型會處理 PDF、Microsoft Office 檔案與 OpenDocument 檔案，包括 Word 文件、PowerPoint 簡報與 Excel 試算表，從複雜檔案中分析、摘要並擷取資訊。除了讀取純文字之外，模型還能理解視覺與結構脈絡，因此可以：
 
-* 分析與解讀內容，包括文字、圖片、示意圖、圖表與表格，即使是長達 1000 頁的文件也不例外。
-
+* 分析文字、圖片、示意圖、圖表與表格，範圍涵蓋最多 1,000 頁 PDF，或最多 2,000 頁 Office 與 OpenDocument 頁面或投影片。
+* 讀取各工作表的試算表值、公式與算繪後的圖表。
 * 將資訊擷取為[結構化輸出](/docs/structured-output/)格式。
+* 運用視覺與文字細節進行摘要、比較與回答問題。
+* 將文件轉錄為 HTML 等格式，同時保留版面配置。
 
-* 根據文件中的視覺與文字元素進行摘要並回答問題。
+如需瞭解支援的 MIME 類型與預設值，請見 [Office 與 OpenDocument 檔案](/docs/document-processing/#office-documents)。若要檢查特定頁面、工作表或內容圖層，而非整份檔案，請見[自訂文件、簡報與試算表處理](/docs/document-processing/#customize-document-processing)。TXT、Markdown 與 HTML 等純文字格式只會以文字方式讀取，不含版面配置或圖表脈絡。
 
-* 轉錄文件內容（例如轉為 HTML），同時保留版面配置與格式，供下游應用程式使用。
+## 在請求中內嵌傳入文件資料 {#inline_data}
 
+對於小型檔案或一次性請求，若不需要重複使用檔案，可直接在請求中內嵌傳入文件資料。對於較大的文件或多輪工作流程，請使用 [Files API](/docs/document-processing/#large-pdfs) 來降低延遲與頻寬用量。
 
-你也可以傳入 Microsoft Office 與 OpenDocument 檔案，例如 Word 文件、PowerPoint 簡報與 Excel 試算表。若要檢查特定頁面、工作表或內容圖層，而非整份檔案，請見[自訂文件、簡報與試算表處理](/docs/document-processing/#customize-document-processing)。其他非 PDF 文件，例如 TXT、Markdown 或 HTML 檔案，會以純文字方式處理，因此圖表、格式等脈絡資訊將不復存在。
-
-## 在請求中內嵌傳入 PDF 資料 {#inline_data}
-
-你可以在請求中直接內嵌傳入 PDF 資料。這種方式最適合較小的文件，或不需要在後續請求中再次引用檔案的臨時處理情境。若文件較大，且需要在多輪互動中引用，我們建議改用 [Files API](/docs/document-processing/#large-pdfs)，以改善請求延遲並減少頻寬用量。
-
-以下範例示範如何內嵌傳入 PDF 資料：
+以下範例示範如何內嵌傳入 PDF：
 
 
 === "Python"
@@ -208,7 +205,7 @@ Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文�
       ```
 
 
-你也可以上傳本機的 PDF 檔案進行處理：
+你也可以上傳本機的文件進行處理：
 
 
 === "Python"
@@ -365,9 +362,9 @@ Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文�
       ```
 
 
-## 使用 Files API 上傳 PDF {#large-pdfs}
+## 使用 Files API 上傳文件 {#large-pdfs}
 
-若檔案較大，或打算在多個請求中重複使用同一份文件，建議使用 Files API。將檔案上傳與模型請求分開處理，能改善請求延遲並減少頻寬用量。
+若檔案較大，或打算在多個請求中重複使用同一份文件，請使用 Files API。只需上傳一次，即可將檔案傳輸與模型請求分開處理，降低延遲與頻寬用量。
 
 
 !!! note " "
@@ -375,9 +372,9 @@ Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文�
       只要是 Gemini API 提供服務的地區，Files API 皆可免費使用。上傳的檔案會保存 48 小時。
 
 
-### 來自 URL 的大型 PDF {#large-pdfs-urls}
+### 來自網址的大型文件 {#large-pdfs-urls}
 
-使用 File API 可以簡化從 URL 上傳與處理大型 PDF 檔案的流程：
+使用 Files API，即可從網址上傳並處理大型文件：
 
 
 === "Python"
@@ -651,13 +648,13 @@ Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文�
 === "CLI"
 
       ```bash
-      curl -sL -o Gemini_paper.pdf "https://arxiv.org/pdf/2312.11805"
+      curl -fsSL -o Gemini_paper.pdf "https://arxiv.org/pdf/2312.11805"
       FILE=$(gemini-api files upload Gemini_paper.pdf --wait)
       gemini-api analyze -i "$FILE" "Summarize this document"
       ```
 
 
-### 儲存在本機的大型 PDF {#large-pdfs-local}
+### 儲存在本機的大型文件 {#large-pdfs-local}
 
 
 === "Python"
@@ -978,14 +975,15 @@ Gemini 模型能處理 PDF 格式的文件，運用原生視覺能力理解文�
 === "CLI"
 
       ```bash
+      # Replace example.pdf with the path to a local PDF file.
       FILE=$(gemini-api files upload example.pdf)
       gemini-api files get "$FILE" -o json
       ```
 
 
-## 傳入多份 PDF {#prompt-multiple}
+## 傳入多份文件 {#prompt-multiple}
 
-Gemini API 能在單一請求中處理多份 PDF 文件（最多 1000 頁），前提是文件與文字提示詞的合計大小不超過模型的上下文視窗。
+只要合計的檔案與提示詞符合模型的上下文視窗，你可以在單一請求中處理多份文件。
 
 
 === "Python"
@@ -1331,8 +1329,8 @@ Gemini API 能在單一請求中處理多份 PDF 文件（最多 1000 頁），�
 === "CLI"
 
       ```bash
-      curl -sL -o Gemini_paper.pdf "https://arxiv.org/pdf/2312.11805"
-      curl -sL -o Gemini_1.5_paper.pdf "https://arxiv.org/pdf/2403.05530"
+      curl -fsSL -o Gemini_paper.pdf "https://arxiv.org/pdf/2312.11805"
+      curl -fsSL -o Gemini_1.5_paper.pdf "https://arxiv.org/pdf/2403.05530"
       PDF_1=$(gemini-api files upload Gemini_paper.pdf --wait)
       PDF_2=$(gemini-api files upload Gemini_1.5_paper.pdf --wait)
       gemini-api analyze -i "$PDF_1" -i "$PDF_2" \
@@ -1455,23 +1453,25 @@ Gemini 模型處理 Microsoft Office 與 OpenDocument 檔案的方式與 PDF 相
 
 ## 自訂文件、簡報與試算表處理 {#customize-document-processing}
 
-你可以在 `document` 區塊上傳入 `processing`（`{"type": "static", ...}`），以選取頁面範圍、工作表索引標籤、儲存格範圍、內容圖層與算繪解析度。這些選項適用於所有 Gemini 3 與 Gemini 4 以上模型，可用於使用者的 `input`，也可放在 `function_result.result` 內。
+你可以選取特定頁面、工作表索引標籤、儲存格範圍、內容圖層與算繪解析度，而不必傳送整份檔案。請在文件區塊上傳入 `processing` 物件，並將 `type` 設為 `static`，如下方範例所示。Gemini 3 與 Gemini 4 模型在使用者輸入與工具結果中都支援這些選項。
 
-Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費用。模型還會自動收到總頁數與工作表名稱，因此可以在後續回合中要求接續的範圍。
+Gemini 只會計算並收取你傳送的切割範圍的 token 費用。模型還會收到總頁數與工作表名稱，因此可以在後續回合中要求接續的範圍。
 
 ### 切割頁面並選取內容圖層 {#page-options}
 
-針對 PDF（`.pdf`）、文件（`.docx`、`.doc`、`.dotx`、`.odt`）與簡報（`.pptx`、`.ppt`、`.odp`），請設定 `processing.page_options`：
+使用 `processing.page_options` 來切割 PDF、文件與簡報。所有欄位皆為選填。
 
-* `start_page`（整數，選填）：以 1 為起始的包含起始頁。設定 `end_page` 時預設為 `1`。值 `<= 0` 會回傳 `400 INVALID_ARGUMENT`。超過頁數的值會回傳空的切割範圍。
-* `end_page`（整數，選填）：以 1 為起始的包含結束頁。設定 `start_page` 時預設為最後一頁，超過頁數時會箝制為最後一頁。必須 `>= start_page`。
-* `content_layers`（字串清單，選填）：選擇 `"page_image"`（算繪後的頁面圖片）、`"page_text"`（擷取的文字），或兩者皆選。設定 `processing` 時預設為 `["page_image"]`。
-* `resolution`（字串，選填）：在外層 `document` 區塊上設定（`"low"`、`"medium"` 或 `"high"`）。預設為 `"medium"`（每頁約 560 tokens；`"low"` 約 280 個，`"high"` 約 1,120 個）。
+| 選項 | 說明 |
+| --- | --- |
+| `start_page` | 要納入的第一頁（以 1 為起始，包含該頁）。設定 `end_page` 時預設為 1。值為 0 或更小會回傳無效引數錯誤；超過檔案結尾的值會回傳空的切割範圍。 |
+| `end_page` | 要納入的最後一頁（以 1 為起始，包含該頁）。設定 `start_page` 時預設為最後一頁，若高於最後一頁則箝制為最後一頁。必須至少為 `start_page`。 |
+| `content_layers` | 要擷取的圖層清單：`page_image` 為算繪後的頁面圖片，`page_text` 為擷取的文字，或兩者皆選。設定 `processing` 時預設為 `page_image`。 |
+| `resolution` | 在外層 document 區塊上設為 `low`（每頁約 280 tokens）、`medium`（預設，每頁約 560 tokens）或 `high`（每頁約 1,120 tokens）。 |
 
 
 !!! note " "
 
-      對於大型 Office 文件與簡報，請先以 `content_layers: ["page_text"]` 掃描檔案，再針對含有圖表或密集版面配置的頁面或投影片，以 `"high"` 解析度要求 `"page_image"`。
+      對於大型文件或投影片，請先以 `page_text` 掃描檔案，再針對含有圖表或密集版面配置的頁面，以 `high` 解析度要求 `page_image`。
 
 
 === "Python"
@@ -1713,12 +1713,14 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 
 ### 選取試算表索引標籤與儲存格範圍 {#spreadsheet-options}
 
-針對試算表（`.xlsx`、`.xls`、`.ods`），請設定 `processing.spreadsheet_options`：
+使用 `processing.spreadsheet_options` 來選取試算表中的索引標籤、儲存格範圍與圖層。所有欄位皆為選填。
 
-* `sheet_index`（整數，選填）：依索引標籤順序排列、以 1 為起始的工作表位置。省略時會擷取所有工作表（每張工作表上限 50,000 個儲存格）。值 `<= 0` 或超過工作表數量會回傳 `400 INVALID_ARGUMENT`。
-* `visible_cells`（字串，選填）：標準 A1 儲存格或範圍（例如 `"A1:G40"` 或 `"B5"`）。會將所有選取的圖層裁切至該區域。
-* `content_layers`（字串清單，選填）：選擇 `"data"`（求值後的儲存格值）、`"formulas"`（原始公式）與 `"visual"`（用於圖表與版面配置的算繪試算表快照）。預設為 `["data", "formulas"]`。
-* `resolution`（字串，選填）：啟用 `"visual"` 時，在外層 `document` 區塊上設定（`"low"`、`"medium"` 或 `"high"`）。預設為 `"medium"`。
+| 選項 | 說明 |
+| --- | --- |
+| `sheet_index` | 依索引標籤順序排列的工作表位置（以 1 為起始）。省略時會納入所有工作表，每張工作表上限 50,000 個儲存格。值為 0 或更小，或超過工作表數量，會回傳無效引數錯誤。 |
+| `visible_cells` | 以 A1 標記法表示的儲存格或範圍，例如 A1:G40 或 B5。會將所有選取的圖層裁切至該區域。 |
+| `content_layers` | 要擷取的圖層清單：`data` 為求值後的儲存格值，`formulas` 為原始公式，`visual` 為圖表與版面配置的算繪快照。預設為 `data` 與 `formulas`。 |
+| `resolution` | 在外層 document 區塊上設為 `low`、`medium`（預設）或 `high`，適用於納入 `visual` 圖層時。 |
 
 
 === "Python"
@@ -1975,17 +1977,17 @@ Gemini 只會計算並收取傳送給模型的切割後輸出內容的 token 費
 
 ### 限制與縮放 {#limits-and-scaling}
 
-* **檔案大小與長度**：每個檔案上限 50 MB、PDF 上限 1,000 頁，Office 或 OpenDocument 檔案上限 2,000 頁或投影片（同時適用於內嵌資料與 Files API 上傳；即使切割檔案，仍以完整上傳的檔案為準）。
-* **試算表**：每張工作表上限 50,000 個儲存格。
-* **頁面圖片算繪**：Gemini 會將 PDF 與 Office 頁面算繪為 200 萬像素的圖片（288 DPI），同時保留長寬比。輸入的像素尺寸不會改變 token 費用。請使用 `resolution` 控制 token 預算與細節程度。
-* **其他文字格式**：TXT、Markdown、HTML 與 XML 等檔案只會擷取為純文字（版面配置、格式與圖表不會保留）。如需瞭解所有輸入選項，請見[檔案輸入方式](/docs/file-input-methods/)。
+* 檔案大小與長度：每個檔案上限 50 MB、PDF 上限 1,000 頁，Office 或 OpenDocument 檔案上限 2,000 頁或投影片。這些限制同時適用於內嵌資料與 Files API 上傳；即使切割檔案，仍以完整上傳的檔案為準。
+* 試算表：每張工作表上限 50,000 個儲存格。
+* 頁面圖片算繪：Gemini 會將 PDF 與 Office 頁面算繪為 200 萬像素的圖片（288 DPI），同時保留長寬比。輸入的像素尺寸不會改變 token 費用；請使用 `resolution` 控制 token 預算與細節程度。
+* 其他文字格式：TXT、Markdown、HTML 與 XML 等純文字檔案只會擷取為文字，不含版面配置、格式或圖表。如需瞭解所有輸入選項，請見[檔案輸入方式](/docs/file-input-methods/)。
 
 ### token 與計費 {#tokens-and-billing}
 
-* **Gemini 4 與 Gemini 3 模型**：頁面圖片的 token 數量取決於 `resolution`。`low` 每頁約 280 tokens、`medium`（預設）約 560 tokens，`high` 約 1,120 tokens。詳情請見[媒體解析度](/docs/media-resolution/)。
-* **Gemini 2.5 模型**：每頁固定 258 tokens。
-* **PDF 原生文字與用量回報**：預設 PDF 處理（未設定 `processing` 選項）時，內嵌的 PDF 文字會與頁面圖片一併擷取，不另收 token 費用。頁面圖片 token 會在 `usage.input_tokens_by_modality` 中以 `"image"` 模態回報。
-* **切割計費**：設定 `processing` 選項時，Gemini 只會計算並收取傳送給模型的選取頁面、工作表與 `content_layers` 的費用。
+* Gemini 4 與 Gemini 3 模型：頁面圖片的 token 數量取決於 `resolution`。`low` 每頁約 280 tokens、`medium`（預設）約 560 tokens，`high` 約 1,120 tokens。詳情請見[媒體解析度](/docs/media-resolution/)。
+* Gemini 2.5 模型：每頁固定 258 tokens。
+* PDF 原生文字與用量回報：預設 PDF 處理（未設定 `processing` 選項）時，內嵌的 PDF 文字會與頁面圖片一併擷取，不另收 token 費用。頁面圖片 token 會在 `usage.input_tokens_by_modality` 中以 `image` 模態呈現。
+* 切割計費：設定 `processing` 選項時，Gemini 只會計算並收取傳送給模型的選取頁面、工作表與內容圖層的費用。
 
 ## 最佳做法 {#best-practices}
 

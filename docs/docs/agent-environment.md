@@ -3347,7 +3347,8 @@ Content-Length: 10485760
 
 連接自行代管環境的步驟如下：
 
-1.  呼叫 `POST /v1beta/environments` 並帶入 `{"mode": "self_hosted"}`，取得
+1.  執行 `gemini-api environments create --mode self_hosted`（或呼叫
+    `POST /v1beta/environments` 並帶入 `{"mode": "self_hosted"}`），取得
     環境 `id` 與一次性 `environment_key`。
 2.  在您的沙箱內執行 `gemini-api environments connect`（來自
     [`google-gemini/gemini-api-cli`](https://github.com/google-gemini/gemini-api-cli)），

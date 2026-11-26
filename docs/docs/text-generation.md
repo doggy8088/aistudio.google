@@ -869,6 +869,7 @@ Gemini API 支援多模態輸入，讓你可以將文字與媒體檔案結合使
 === "CLI"
 
       ```bash
+      # generate streams text deltas to stdout by default (--stream=false returns one complete response; -o json emits raw SSE events).
       gemini-api generate "Explain how AI works"
       ```
 

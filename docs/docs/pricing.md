@@ -2032,7 +2032,7 @@ Gemini Robotics ER 2 Streaming 是專為機器人設計的視覺語言模型端�
     | 用於改善我們的產品 | [是](/docs/terms/) | [否](/docs/terms/) |
 
 
-## [Gemma 4](https://ai.google.dev/gemma/docs/core/model_card_4) {#gemma-4}
+## [Gemma 4](https://gemma.ai/models/gemma-4/model-card/) {#gemma-4}
 
 
 ---

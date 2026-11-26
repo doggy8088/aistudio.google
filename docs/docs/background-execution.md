@@ -312,6 +312,7 @@
 === "CLI"
 
       ```bash
+      # Exits with code 1 if the interaction is "failed" or "cancelled".
       gemini-api agent status YOUR_INTERACTION_ID -o json
       ```
 
@@ -526,6 +527,8 @@
 === "CLI"
 
       ```bash
+      # Add -o json to emit full NDJSON SSE events (including event_id for reconnection).
+      # Default output prints text deltas only.
       gemini-api agent status YOUR_INTERACTION_ID --stream --last-event-id YOUR_LAST_EVENT_ID
       ```
 
@@ -755,7 +758,8 @@
       FIRST_ID=$(gemini-api agent run "Create a folder named project/ and write hello.py inside." \
         --agent antigravity-preview-09-2026 --body '{"environment": "remote"}' \
         --background --stream=false --jq '.id')
-      # Wait until `gemini-api agent status "$FIRST_ID" --jq '.status'` returns "completed".
+      # Wait until gemini-api agent status "$FIRST_ID" --jq '.status' returns "completed"
+      # (exits with code 1 if the interaction ends in "failed" or "cancelled").
       gemini-api agent run "List all files in the project/ directory." \
         --agent antigravity-preview-09-2026 --previous-interaction-id "$FIRST_ID" \
         --body '{"environment": "remote"}' --background --stream=false --jq '.id'

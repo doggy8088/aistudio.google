@@ -127,8 +127,11 @@ Gemini API 能運用 Gemini 的文字轉語音（TTS）生成功能，將文字�
 === "CLI"
 
       ```bash
-      # Note: tts does not send speech_metadata style annotations.
-      gemini-api tts 'Have a wonderful day!' --voice Kore --out out.wav
+      # Requires gemini-api v0.5.0+ for --style.
+      gemini-api tts 'Have a wonderful day!' \
+        --voice Kore \
+        --style 'cheerful and friendly' \
+        --out out.wav
       ```
 
 
@@ -288,8 +291,8 @@ Gemini API 能運用 Gemini 的文字轉語音（TTS）生成功能，將文字�
 === "CLI"
 
       ```bash
-      # Note: tts does not send per-turn speech_metadata style annotations.
-      gemini-api tts "Joe: How's it going today Jane? Jane: Not too bad, how about you? Ready to test these new voices?" \
+      # Requires gemini-api v0.5.0+ for per-turn [style] annotations.
+      gemini-api tts "Joe [cheerful and friendly]: How's it going today Jane? Jane [calm and relaxed]: Not too bad, how about you? Ready to test these new voices?" \
         --multi-speaker "Joe=Puck,Jane=Kore" --out out.wav
       ```
 

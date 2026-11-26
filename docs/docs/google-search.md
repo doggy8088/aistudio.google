@@ -206,7 +206,10 @@
 
 回覆中的關鍵欄位：
 
-* `google_search_call`：包含模型執行的搜尋 `queries`。
+* `google_search_call`：包含回應中呈現的搜尋 `queries`。
+  這個欄位適用於標示來源與除錯，不適合用來計算計費的查詢次數。
+  模型在推理過程中執行的額外查詢可能不會出現在此處，但仍會計入帳單。
+  詳情請見[計算計費的搜尋查詢次數](/docs/google-search/#counting-billed-search-queries)。
 
 * `google_search_result`：包含 `search_suggestions`，這是一段 HTML 程式碼片段，可用於在你的 UI 中算繪搜尋建議。完整的使用規定詳見[服務條款](/docs/terms/#grounding-with-google-search)。
 
@@ -435,6 +438,18 @@ Citations:
 
       **注意**：在 Gemini Developer API 的付費級別中，Gemini 3 與更新模型的 Google 搜尋接地預設上限為**每個專案每天 1,500 次要求（RPD）**。如果你的應用程式需要更高的每日上限，請在 [Google AI Studio](https://aistudio.google.com/rate-limit) 中提出申請（在 `generate_content_search_request_paid` 上限旁選取 **Request more quota**）。
 
+
+### 計算計費的搜尋查詢次數 {#counting-billed-search-queries}
+
+API 回應中傳回的搜尋查詢不是計費依據。計費的搜尋查詢次數可能高於
+`google_search_call` 步驟中列出的查詢次數。[Generate Content
+API](/docs/google-search/?generate-content=true#counting-billed-search-queries) 中的
+`groundingMetadata.webSearchQueries` 也是如此。
+
+在多步驟推理過程中，模型可能會執行中繼查詢來探索主題或精煉結果。回應中繼資料可能會省略模型在最終答案中未引用的查詢。在 Gemini 3 及更新的模型上，計費時會計算模型執行的每一個不重複、非空白的搜尋查詢，包括未引用的查詢。
+
+如要監控計費的使用量，請查看 [Cloud Billing
+主控台](https://console.cloud.google.com/billing)，或參閱[監控用量](/docs/billing/#monitor-usage)。
 
 ## 支援的模型 {#supported-models}
 

@@ -449,6 +449,9 @@
 
                   若為 true，系統會延遲載入此 MCP 伺服器上的工具。
 
+                  **credential**: `string`
+
+                  選用。透過 ID 參照由伺服器管理的 Credential 資源。
 
         ??? note "**ToolSearch**"
 
@@ -812,7 +815,7 @@
 
               **environment_id**: `string`
 
-              選填。互動的環境 ID。指定後，請求會更新現有環境，而非建立新環境。
+              選填。互動的環境 ID。指定後，請求會更新現有環境，而非建立新環境；建立時專用的欄位（`env` 和 `sources`）在恢復既有環境時無法更新。
 
 
 

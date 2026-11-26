@@ -2532,6 +2532,7 @@ Interaction 資源。
           import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
           import com.google.genai.gaos.models.operations.CreateInteractionResponse;
           import java.util.List;
+          import java.util.Map;
 
           Client client = new Client();
           Map<String, Object> parameters =
@@ -3037,6 +3038,12 @@ Interaction 資源。
 
       若為 true，系統會延遲載入此 MCP 伺服器上的工具。
 
+    ---
+
+
+      **credential**: `string`
+
+      選用。透過 ID 參照由伺服器管理的 Credential 資源。
 
 
 
@@ -8214,6 +8221,7 @@ Interaction 資源。
       import com.google.genai.gaos.models.operations.CreateInteractionRequestBody;
       import com.google.genai.gaos.models.operations.CreateInteractionResponse;
       import java.util.List;
+      import java.util.Map;
 
       Client client = new Client();
       Map<String, Object> parameters =

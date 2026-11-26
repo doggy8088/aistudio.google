@@ -676,7 +676,7 @@
 
 *   推出 `gemma-4-26b-a4b-it` 與 `gemma-4-31b-it`，可於 [AI
     Studio](https://aistudio.google.com) 與透過 Gemini API 使用，這是
-    [Gemma 4](https://ai.google.dev/gemma/docs/core) 發表的一部分。
+    [Gemma 4](https://gemma.ai/models/gemma-4/) 發表的一部分。
 
 ## 2026 年 4 月 1 日 {#04-01-2026}
 
@@ -1240,7 +1240,7 @@
 
 *   推出 `gemma-3n-e4b-it` 預覽版，可於 [AI
     Studio](https://aistudio.google.com) 與透過 Gemini API 使用，這是
-    [Gemma 3n](https://ai.google.dev/gemma/docs/3n) 發表的一部分。
+    [Gemma 3n](https://gemma.ai/models/gemma-3n/) 發表的一部分。
 
 
 ## 2025 年 5 月 7 日 {#05-07-2025}
@@ -1347,7 +1347,7 @@
 
 *   推出 `gemma-3-27b-it`，可於 [AI
     Studio](https://aistudio.google.com) 與透過 Gemini API 使用，這是
-    [Gemma 3](https://ai.google.dev/gemma/docs/core) 發表的一部分。
+    [Gemma 3](https://gemma.ai/models/gemma-3/) 發表的一部分。
 
 
 **API 更新：**
