@@ -126,7 +126,7 @@ Antigravity 代理是 Gemini API 上的通用型受管代理。只要一次 API 
 
 ## 支援的工具 {#supported-tools}
 
-代理預設可使用 `code_execution`、`google_search` 與 `url_context`。只要指定 `environment` 參數，檔案系統工具就會自動啟用。您也可以定義**自訂函式**，讓代理連接到您自己的 API 與工具。只有在自訂或限制預設工具集，或加入自訂函式時，才需要指定 `tools` 參數。
+代理預設可使用 `code_execution`、`google_search` 與 `url_context`。只要指定 `environment` 參數，檔案系統工具就會自動啟用。您也可以定義**自訂函式**，讓代理連接到您自己的 API 與工具。只有在自訂或限制預設工具集，或加入自訂函式時，才需要指定 `tools` 參數。傳入空清單（`tools: []`）時，所有預設工具仍保持啟用；只有非空清單才會限制預設工具集。
 
 | 工具 | 類型值 | 說明 |
 | :--- | :--- | :--- |
@@ -449,7 +449,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
 
 函式呼叫讓您能定義代理可呼叫的自訂工具，將 Antigravity 代理連接到外部 API 與資料庫。一般概念請參閱[使用 Gemini API 進行函式呼叫](/docs/function-calling/)。
 
-以下範例示範一個兩輪的互動。代理先要求呼叫自訂的 `get_weather` 函式，用戶端執行後，在第二輪回傳結果。
+以下範例示範一個兩輪的互動。代理先要求呼叫自訂的 `get_weather` 函式，用戶端執行後，在第二輪回傳結果。使用 `previous_interaction_id` 的接續輪次，必須傳入與第一輪完全相同的 `tools` 清單。
 
 
 === "Python"
@@ -476,15 +476,17 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
           },
       }
 
+      tools = [
+          {"type": "code_execution"},  # Enable default code execution
+          get_weather_tool,            # Add custom function
+      ]
+
       # 2. Call the agent with the custom tool (Turn 1)
       interaction = client.interactions.create(
           agent="antigravity-preview-09-2026",
           input="What is the weather in Tokyo?",
           environment="remote",
-          tools=[
-              {"type": "code_execution"},  # Enable default code execution
-              get_weather_tool,            # Add custom function
-          ],
+          tools=tools,
       )
 
       # Check if the agent requested a function call
@@ -510,6 +512,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
                   agent="antigravity-preview-09-2026",
                   previous_interaction_id=interaction.id,  # Reference the interaction ID
                   environment=interaction.environment_id,
+                  tools=tools,
                   input=[
                       {
                           "type": "function_result",
@@ -535,29 +538,31 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
 
       const client = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
 
+      const tools = [
+        { type: "code_execution" },
+        {
+          type: "function",
+          name: "get_weather",
+          description: "Gets the current weather for a given location.",
+          parameters: {
+            type: "object",
+            properties: {
+              location: {
+                type: "string",
+                description: "The city and country, e.g. San Francisco, USA",
+              },
+            },
+            required: ["location"],
+          },
+        },
+      ];
+
       // 1. Call the agent with the custom tool (Turn 1)
       const interaction = await client.interactions.create({
         agent: "antigravity-preview-09-2026",
         input: "What is the weather in Tokyo?",
         environment: "remote",
-        tools: [
-          { type: "code_execution" },
-          {
-            type: "function",
-            name: "get_weather",
-            description: "Gets the current weather for a given location.",
-            parameters: {
-              type: "object",
-              properties: {
-                location: {
-                  type: "string",
-                  description: "The city and country, e.g. San Francisco, USA",
-                },
-              },
-              required: ["location"],
-            },
-          },
-        ],
+        tools,
       }, { timeout: 300000 });
 
       if (interaction.status === "requires_action") {
@@ -588,6 +593,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
               agent: "antigravity-preview-09-2026",
               previous_interaction_id: interaction.id, // Reference the interaction ID
               environment: interaction.environment_id,
+              tools,
               input: [
                 {
                   type: "function_result",
@@ -649,6 +655,21 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
             \"agent\": \"antigravity-preview-09-2026\",
             \"previous_interaction_id\": \"$INTERACTION_ID\",
             \"environment\": \"$ENVIRONMENT_ID\",
+            \"tools\": [
+                {\"type\": \"code_execution\"},
+                {
+                    \"type\": \"function\",
+                    \"name\": \"get_weather\",
+                    \"description\": \"Gets the current weather for a given location.\",
+                    \"parameters\": {
+                        \"type\": \"object\",
+                        \"properties\": {
+                            \"location\": {\"type\": \"string\"}
+                        },
+                        \"required\": [\"location\"]
+                    }
+                }
+            ],
             \"input\": [
                 {
                     \"type\": \"function_result\",
@@ -748,6 +769,10 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
                   .agent(AgentOption.of("antigravity-preview-09-2026"))
                   .previousInteractionId(interaction.id().orElse(""))
                   .environment(CreateAgentInteractionEnvironment.of(interaction.environmentId().orElse("")))
+                  .tools(List.of(
+                      CodeExecution.builder().build(),
+                      getWeatherTool
+                  ))
                   .input(InteractionsInput.ofStep(List.of(resultStep)))
                   .build();
 
@@ -800,16 +825,18 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
               },
           })
 
+          tools := []interactions.Tool{
+              interactions.NewTool(interactions.CodeExecution{}), // Enable default code execution
+              getWeatherTool,                                     // Add custom function
+          }
+
           // 2. Call the agent with the custom tool (Turn 1)
           res, err := client.Interactions.Create(ctx, operations.CreateInteractionRequest{
               Body: operations.NewCreateInteractionRequestBody(interactions.CreateAgentInteraction{
                   Agent:       interactions.AgentOption("antigravity-preview-09-2026"),
                   Input:       interactions.NewInteractionsInput("What is the weather in Tokyo?"),
                   Environment: genai.Ptr(interactions.NewCreateAgentInteractionEnvironment("remote")),
-                  Tools: []interactions.Tool{
-                      interactions.NewTool(interactions.CodeExecution{}), // Enable default code execution
-                      getWeatherTool, // Add custom function
-                  },
+                  Tools:       tools,
               }),
           })
           if err != nil {
@@ -851,6 +878,7 @@ Antigravity 代理支援多模態輸入。目前僅支援 `text` 與 `image` 輸
                           Agent:                 interactions.AgentOption("antigravity-preview-09-2026"),
                           PreviousInteractionID: interaction.ID,
                           Environment:           genai.Ptr(interactions.NewCreateAgentInteractionEnvironment(*interaction.EnvironmentID)),
+                          Tools:                 tools,
                           Input: interactions.NewInteractionsInput([]interactions.Step{
                               interactions.NewStep(resultStep),
                           }),
@@ -2497,8 +2525,8 @@ Antigravity 互動會執行多輪自主循環，可能消耗大量 token。請�
 除了[模型選擇](/docs/antigravity-agent/#model-selection)之外，您還可以設定 `max_total_tokens`，將其放在 `agent_config` 中（並搭配 `"type": "antigravity"`），
 限制單次互動可消耗的 token 總數（輸入 + 輸出 + 思考）。
 快取的 token 不計入此上限。代理達到上限時，
-互動會停止，並以 `status: "incomplete"` 回傳。此上限為盡力而為：
-實際用量可能略微超過，視代理在步驟之間檢查預算的時機而定。
+互動會停止，並以 `status: "incomplete"` 回傳。此上限會在模型步驟之間檢查，
+因此實際用量最多可能超出上限一個完整模型步驟的用量。
 
 在互動要求中，於 `agent_config` 裡設定預算，位置與 `agent`、`input` 並列。
 
@@ -2844,7 +2872,7 @@ Antigravity 互動會執行多輪自主循環，可能消耗大量 token。請�
 ## 限制 {#limitations}
 
 - **預覽狀態**：Antigravity 代理與 Interactions API。功能與結構定義可能變更。
-- **不支援的生成設定**：下列參數不受支援，使用時會回傳 400 錯誤：`temperature`、`top_p`、`top_k`、`stop_sequences`、`max_output_tokens`。
+- **不支援的生成設定**：下列參數不受支援，使用時會回傳 400 錯誤：`temperature`、`top_p`、`top_k`、`stop_sequences`、`max_output_tokens`、`thinking_level`、`thinking_summaries`。
 - **結構化輸出**：Antigravity 代理不支援結構化輸出。
 - **尚不可用的工具**：`file_search`、`computer_use` 與 `google_maps` 尚未支援。
 - **遠端 MCP 限制**：不支援 Server-Sent Events（SSE）傳輸方式（請改用 Streamable HTTP）。此外，伺服器的 `name` 必須全為小寫英數字元（使用大寫字母會觸發一般的 `400 Bad Request` 錯誤）。

@@ -350,9 +350,29 @@ Prepay 使用者必須先[購買 Prepaid 點數](/docs/billing/#buy-credits)，�
 
 Gemini API 的計費由 [Cloud billing](https://cloud.google.com/billing/docs/concepts) 系統處理。如要了解產品內的 Cloud Billing 設定，請參閱 [Cloud Billing 文件](https://docs.cloud.google.com/billing/docs/in-product-billing-setup)。
 
-### 失敗的請求會被收費嗎？ {#am-i-charged-for-failed-requests}
+### 失敗、遭拒或取消的請求會被收費嗎？ {#am-i-charged-for-failed-requests}
 
-如果你的請求以 400 或 500 錯誤失敗，你不會為所使用的 token 付費。不過，該請求仍會計入你的配額。
+收費方式取決於請求的結束方式。
+
+| 情境 | 輸入 token | 輸出與思考 token |
+| :--- | :--- | :--- |
+| HTTP 4xx 或 5xx 錯誤（請求仍會計入配額） | 不收費 | 不收費 |
+| HTTP 200，但提示詞遭拒（`promptFeedback.blockReason`，無候選內容） | 不收費 | 不收費 |
+| HTTP 200，`finishReason: SAFETY` | 收費（快取 token 按快取費率計費） | 不收費（或僅收取先前已串流的片段） |
+| HTTP 200，其他非標準 `finishReason`（單次回應或第一個串流片段） | 不收費 | 不收費 |
+| HTTP 200，其他非標準 `finishReason`（在先前串流片段之後） | 收費（快取 token 按快取費率計費） | 僅收取先前串流片段的 token |
+| 在第一個片段前取消串流 | 不收費 | 不收費 |
+| 在一個或多個片段後取消串流 | 可能收費 | 最多收取至最後一個已傳送片段的 token |
+
+除 `STOP`、`MAX_TOKENS`、`CONTINUATION` 或 `SAFETY` 之外的任何 `finishReason`，皆適用上述非標準列。範例包括 `PROHIBITED_CONTENT`、`RECITATION`、`MALFORMED_FUNCTION_CALL`、`MALFORMED_RESPONSE` 與 `OTHER`。
+
+串流停止時，你需為截止前已傳送片段的 `candidatesTokenCount` 與 `thoughtsTokenCount` 付費。最後一個已停止片段中的 token 不收費。當你為輸入 token 付費時，`cachedContentTokenCount` 仍維持快取輸入費率。
+
+
+!!! note " "
+
+      注意：在 HTTP 200 回應中，即使輸入未收費，API 仍可能填入 `usageMetadata`，包括 `promptTokenCount`。回應中沒有欄位會顯示輸入 token 未收費。
+
 
 ### `GetTokens` 會被計費嗎？ {#is-gettokens-billed}
 

@@ -321,6 +321,9 @@
 
 如果網路中斷導致串流斷線，串流可以從最後收到的事件接續。每個 delta 的酬載中都包含唯一的 `event_id`。將這個 ID 作為 `last_event_id` 傳入，即可從該事件接續串流。
 
+!!! note " "
+
+      受管代理的串流（例如 `antigravity-preview-09-2026`）目前尚未發出 `event_id` 續接游標，因此重新連線時會從 `interaction.created` 開始重播。
 
 === "Python"
 
