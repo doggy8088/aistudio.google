@@ -57,6 +57,7 @@ extra:
 nav:
   - docs.md
   - Get started:
+      - docs/ai-studio.md
       - docs/get-started.md
       - docs/api-key.md
       - docs/pricing.md

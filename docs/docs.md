@@ -1146,3 +1146,28 @@
 串流即時 token、漸進式思考內容與工具呼叫事件。
 
 
+## 在 Google AI Studio 中建置 {#google-ai-studio}
+
+在 Playground 中建立提示詞原型與受管理代理、在 Build mode 中以 vibe coding 建立全端網頁與 Android 應用程式，並在同一個工作區管理方案、金鑰與計費。
+
+
+  
+
+**[AI Studio 總覽](/docs/ai-studio/)**
+
+探索 Google AI Studio 中的 Playground、Build mode、代理與帳戶工具。
+
+
+  
+
+**[建置應用程式](/docs/aistudio-build-mode/)**
+
+從提示詞生成、反覆調整並發佈全端網頁應用程式與原生 Android 應用程式。
+
+
+  
+
+**[疑難排解 AI Studio](/docs/troubleshoot-ai-studio/)**
+
+診斷存取封鎖、年齡驗證、配額問題與 Google Cloud IAM 權限。
+
